@@ -1,4 +1,4 @@
-# [Title of project]
+# Effects of Uganda's Covid Lockdown
 
 **Purpose:**
 
