@@ -3,7 +3,7 @@ library(tidyverse)
 library(haven)
 library(here)
 
-## import data
+## import raw data
 sec4  <- read_dta(here("raw_data", "original_Data", "round1","SEC4.dta")) 
 sec5  <- read_dta(here("raw_data", "original_Data", "round1","SEC5.dta")) 
 sec5a  <- read_dta(here("raw_data", "original_Data", "round1","SEC5A.dta")) 
