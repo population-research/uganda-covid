@@ -21,8 +21,8 @@ round_1_sec7  <- read_dta(here( "raw_data", "round1", "SEC7.dta" ))
 round_1_sec9  <- read_dta(here( "raw_data", "round1", "SEC9.dta" )) 
 
 ## round 2 ---- 
-round_2_interview_info <- read_dta(here(" raw_data", "round2", "Interview_info.dta "))
-round_2_interview_result <- read_dta(here(" raw_data", "round2", "interview_result.dta "))
+round_2_interview_info <- read_dta(here("raw_data", "round2", "Interview_info.dta"))
+round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_result.dta"))
 round_2_cover  <- read_dta(here( "raw_data", "round2", "Cover.dta" )) 
 
 
@@ -33,4 +33,56 @@ round_2_sec5a  <- read_dta(here( "raw_data", "round2", "SEC5A.dta" ))
 round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" )) 
 round_2_sec7  <- read_dta(here( "raw_data", "round2", "SEC7.dta" )) 
 round_2_sec9  <- read_dta(here( "raw_data", "round2", "SEC9.dta" )) 
+
+## round 3 ---- 
+round_3_interview_info <- read_dta(here( "raw_data", "round3", "interview_info.dta"))
+round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_result.dta"))
+round_3_cover  <- read_dta(here( "raw_data", "round3", "cover.dta" )) 
+
+round_3_sec1 <- read_dta(here( "raw_data", "round3", "SEC1.dta" )) 
+round_3_sec4  <- read_dta(here( "raw_data", "round3", "sec4.dta" )) 
+round_3_sec5  <- read_dta(here( "raw_data", "round3", "sec5.dta" )) 
+round_3_sec5a  <- read_dta(here( "raw_data", "round3", "sec5a.dta" )) 
+round_3_sec6  <- read_dta(here( "raw_data", "round3", "sec6.dta" )) 
+round_3_sec7  <- read_dta(here( "raw_data", "round3", "sec7a_1.dta" )) 
+round_3_sec9  <- read_dta(here( "raw_data", "round3", "sec9.dta" )) 
+
+## round 4 ---- 
+round_4_interview_info <- read_dta(here( "raw_data", "round4", "Interview_info.dta"))
+round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_result.dta"))
+round_4_cover  <- read_dta(here( "raw_data", "round4", "Cover.dta" )) 
+
+round_4_sec1 <- read_dta(here( "raw_data", "round4", "SEC1.dta" )) 
+round_4_sec4  <- read_dta(here( "raw_data", "round4", "SEC4.dta" )) 
+round_4_sec5  <- read_dta(here( "raw_data", "round4", "SEC5.dta" )) 
+round_4_sec5a  <- read_dta(here( "raw_data", "round4", "SEC5A.dta" )) 
+round_4_sec6  <- read_dta(here( "raw_data", "round4", "SEC6.dta" )) 
+##no sec7
+round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" )) 
+
+## round 5 ---- 
+round_5_interview_info <- read_dta(here( "raw_data", "round5", "interview_info.dta"))
+round_5_interview_result <- read_dta(here("raw_data", "round5", "interview_result.dta"))
+round_5_cover  <- read_dta(here( "raw_data", "round5", "cover.dta" )) 
+
+round_5_sec1 <- read_dta(here( "raw_data", "round5", "SEC1.dta" )) 
+round_5_sec4  <- read_dta(here( "raw_data", "round5", "sec4.dta" )) 
+round_5_sec5  <- read_dta(here( "raw_data", "round5", "sec5.dta" )) 
+round_5_sec5a  <- read_dta(here( "raw_data", "round5", "sec5a.dta" )) 
+round_5_sec6  <- read_dta(here( "raw_data", "round5", "sec6.dta" )) 
+# no sec 7
+round_5_sec9  <- read_dta(here( "raw_data", "round5", "sec9.dta" )) 
+
+## round 6 ----
+round_6_interview_info <- read_dta(here( "raw_data", "round6", "interview_info.dta"))
+round_6_interview_result <- read_dta(here("raw_data", "round6", "interview_result.dta"))
+round_6_cover  <- read_dta(here( "raw_data", "round6", "cover.dta" )) 
+
+round_6_sec1 <- read_dta(here( "raw_data", "round6", "sec1.dta" )) 
+round_6_sec4  <- read_dta(here( "raw_data", "round6", "sec4_1.dta" )) 
+#round_6_sec5  <- read_dta(here( "raw_data", "round6", "sec5.dta" )) 
+round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
+round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
+# no sec 7
+round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
