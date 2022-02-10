@@ -6,9 +6,9 @@ library(here)
 ## round 1 ---- 
 
 ## roster data (interview info and results?) 
-round_1_interview_info <- read_dta(here(" raw_data", "round1", "Interview_info.dta "))
-round_1_interview_result <- read_dta(here(" raw_data", "round1", "interview_result.dta "))
-round_1_cover  <- read_dta(here( "raw_data", "round1", "Cover.dta" )) 
+round_1_interview_info <- read_dta(here("raw_data", "round1", "Interview_info.dta"))
+round_1_interview_result <- read_dta(here("raw_data", "round1", "interview_result.dta"))
+round_1_cover  <- read_dta(here( "raw_data", "round1", "Cover.dta")) 
 
 
 ## import raw data
