@@ -15,11 +15,11 @@ round_1_interview_result
 round_1_cover
 
 ## import raw data
-round_1_sec1 <- read_dta(here( "raw_data", "round1", "SEC1.dta" )) 
+round_1_sec1 <- read_dta(here( "raw_data", "round1", "SEC1.dta" )) ## individual level
 round_1_sec4  <- read_dta(here( "raw_data", "round1", "SEC4.dta" )) 
 round_1_sec5  <- read_dta(here( "raw_data", "round1", "SEC5.dta" )) 
 round_1_sec5a  <- read_dta(here( "raw_data", "round1", "SEC5A.dta" )) 
-round_1_sec6  <- read_dta(here( "raw_data", "round1", "SEC6.dta" )) 
+round_1_sec6  <- read_dta(here( "raw_data", "round1", "SEC6.dta" )) ## individual level
 round_1_sec7  <- read_dta(here( "raw_data", "round1", "SEC7.dta" )) 
 round_1_sec9  <- read_dta(here( "raw_data", "round1", "SEC9.dta" )) 
 
@@ -28,14 +28,17 @@ round_1_sec1 <- round_1_sec1 %>%
   rename(HHID = hhid)
 
 ## merge round1 datasets
-round_1_info_res <- left_join(round_1_interview_info, round_1_interview_result, by = c("HHID"))
-round_1_info_res_cover <- left_join(round_1_info_res, round_1_cover, by = c("HHID"))
-round_1_sec1_4 <- left_join(round_1_sec1, round_1_sec4, by = c("HHID"))
-round_1_sec1_4_5 <- left_join(round_1_sec1_4, round_1_sec5, by = c("HHID"))
-round_1_sec1_4_5_5a <- left_join(round_1_sec1_4_5, round_1_sec5a, by = c("HHID"))
-round_1_sec1_4_5_5a_6 <- left_join(round_1_sec1_4_5_5a, round_1_sec6, by = c("HHID"))
-round_1_merged <- left_join(round_1_sec1_4_5_5a_6, round_1_sec7, by = c("HHID"))
-View(round_1_merged)
+
+merged_r1 <- left_join(round_1_interview_info, round_1_interview_result, by = c("HHID")) %>% 
+  left_join(round_1_cover, by = c("HHID")) %>% 
+  left_join(round_1_sec4, by = c("HHID")) %>% 
+  left_join(round_1_sec5, by = c("HHID")) %>% 
+  left_join(round_1_sec5a, by = c("HHID")) %>% 
+  left_join(round_1_sec7, by = c("HHID")) %>% 
+  left_join(round_1_sec9, by = c("HHID"))
+
+View(merged)
+  
 
 ## round 2 ---- 
 round_2_interview_info <- read_dta(here("raw_data", "round2", "Interview_info.dta"))
