@@ -143,11 +143,16 @@ round_6_cover  <- read_dta(here( "raw_data", "round6", "cover.dta" ))
 
 round_6_sec1 <- read_dta(here( "raw_data", "round6", "sec1.dta" )) 
 round_6_sec4  <- read_dta(here( "raw_data", "round6", "sec4_1.dta" )) 
-round_6_sec5  <- read_dta(here( "raw_data", "round6", "sec5.dta" )) 
+round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
+# no sec5
 round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
 # no sec 7
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
-
+## merge round5 datasets
+merged_r6 <- left_join( round_6_interview_info, round_6_interview_result, by = c("hhid")) %>% 
+  left_join(round_6_cover, by = c("hhid")) %>%
+  left_join(round_6_sec4, by = c("hhid")) %>% 
+  left_join(round_5_sec5a, by = c("hhid"))
 
 
