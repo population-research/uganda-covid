@@ -3,12 +3,16 @@ library(tidyverse)
 library(haven)
 library(here)
 
+
+
 ## round 1 ---- 
 
 ## roster data (interview info and results?) 
 round_1_interview_info <- read_dta(here("raw_data", "round1", "Interview_info.dta"))
 round_1_interview_result <- read_dta(here("raw_data", "round1", "interview_result.dta"))
 round_1_cover  <- read_dta(here( "raw_data", "round1", "Cover.dta")) 
+
+
 
 ## import raw data
 round_1_sec1 <- read_dta(here( "raw_data", "round1", "SEC1.dta" )) ## individual level
@@ -33,6 +37,8 @@ merged_r1 <- left_join(round_1_interview_info, round_1_interview_result, by = c(
   left_join(round_1_sec7, by = c("HHID")) %>% 
   mutate(round = 1)
 
+
+
 ## round 2 ---- 
 round_2_interview_info <- read_dta(here("raw_data", "round2", "Interview_info.dta"))
 round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_result.dta"))
@@ -56,6 +62,8 @@ merged_r2 <- left_join(round_2_interview_info, round_2_interview_result, by = c(
   left_join(round_2_sec7, by = c("HHID")) %>% 
   mutate(round = 2)
 
+
+
 ## round 3 ---- 
 round_3_interview_info <- read_dta(here( "raw_data", "round3", "interview_info.dta"))
 round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_result.dta"))
@@ -78,18 +86,39 @@ merged_r3 <- left_join( round_3_interview_info, round_3_interview_result, by = c
   left_join(round_3_sec7, by = c("hhid")) %>% 
   mutate(round = 3)
 
+
+
 ## round 4 ---- 
 round_4_interview_info <- read_dta(here( "raw_data", "round4", "Interview_info.dta"))
 round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_result.dta"))
 round_4_cover  <- read_dta(here( "raw_data", "round4", "Cover.dta" )) 
 
+
 round_4_sec1 <- read_dta(here( "raw_data", "round4", "SEC1.dta" )) 
 round_4_sec4  <- read_dta(here( "raw_data", "round4", "SEC4.dta" )) 
 round_4_sec5  <- read_dta(here( "raw_data", "round4", "SEC5.dta" )) 
 round_4_sec5a  <- read_dta(here( "raw_data", "round4", "SEC5A.dta" )) 
+
 round_4_sec6  <- read_dta(here( "raw_data", "round4", "SEC6.dta" )) 
 ##no sec7
 round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" )) 
+
+## rename hhid to HHID in round4 sec1 data
+round_4_sec1 <- round_4_sec1 %>%
+  rename(HHID = hhid)
+
+## merge round4 datasets
+merged_r4 <- left_join( round_4_interview_info, round_4_interview_result, by = c("HHID")) %>% 
+  left_join(round_4_cover, by = c("HHID")) %>% 
+  left_join(round_4_sec1, by = c("HHID")) %>% 
+  left_join(round_4_sec4, by = c("HHID")) %>% 
+  left_join(round_4_sec5, by = c("HHID")) %>% 
+  left_join(round_4_sec5a, by = c("HHID")) %>% 
+  left_join(round_4_sec6, by = c("HHID")) %>% 
+  left_join(round_4_sec9, by = c("HHID"))
+  mutate(round = 4)
+
+  merged_r4
 
 ## round 5 ---- 
 round_5_interview_info <- read_dta(here( "raw_data", "round5", "interview_info.dta"))
