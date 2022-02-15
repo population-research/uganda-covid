@@ -149,7 +149,7 @@ round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" ))
 # no sec 7
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
-## merge round5 datasets
+## merge round6 datasets
 merged_r6 <- left_join( round_6_interview_info, round_6_interview_result, by = c("hhid")) %>% 
   left_join(round_6_cover, by = c("hhid")) %>%
   left_join(round_6_sec4, by = c("hhid")) %>% 
