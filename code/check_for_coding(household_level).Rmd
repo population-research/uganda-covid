@@ -29,7 +29,7 @@ Round6(5resp): 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,8b1,8c1
 Round6(5other): 0a:c,1.1a:d,3a:b,6,6a,5a,5,8b1,8c1
 
 
-SEC5A
+SEC5A (Round 4, 5 and 6 have similar variables and coding)
 ---------------
 Round1: 16:17,17_1,18:31 (Agriculture while the rest are non-Ag businesses)
 Round2: 11,11a:b,12:15,15a:b
@@ -38,7 +38,7 @@ Round4: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 Round5: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 Round6: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 
-SEC7
+SEC7 (Has all similar variables and similar coding)
 
 Round1: 1:8
 Round2: 1:8
