@@ -17,6 +17,330 @@ Round4: 1e:g,1:4,8:11,11a:b,12:18
 Round5: 5:15,15_1,16:18
 Round6: 1e:g,1:4,4_1,4_2,4_3,4_4,4_5,8,12:14,19:22
 
+Coding
+----------------
+
+Variable 1:
+
+Round1: 
+In the last week did you have sufficient soap to wash your hands when needed?
+YES ..........1>>3
+NO ...........2 
+
+Round 2:
+In last 7 days week did you have sufficient soap to wash your hands when needed?
+YES ..........1 >>3
+NO ...........2 
+
+
+Round 6:
+In the last 7 days did you have sufficient soap to wash your hands when needed?
+YES ..........1>>3
+NO ...........2 
+
+---------------------------------------------------------------------------------------------------
+Variable 2:
+
+Round1:
+"What was the main reason you or members of your household were unable to access sufficient soap to wash hands?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+SHOPS HAVE RUN OUT OF STOCK ...1
+LOCAL MARKETS NOT OPERATING / CLOSED ........................2 
+LIMITED / NO TRANSPORTATION....3
+RESTRICTION TO GO OUTSIDE .....4
+INCREASE IN PRICE .............5
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........6
+CANNOT AFFORD IT ..............7
+AFRAID TO GET OUT AND GETTING THE VIRUS......................8
+OTHER .......................-96
+REFUSED TO RESPOND ...........99
+
+Round2:
+"What was the main reason you or members of your household were unable to access sufficient soap to wash hands?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+
+SHOPS HAVE RUN OUT OF STOCK ...1
+LOCAL MARKETS NOT OPERATING / CLOSED ........................2 
+LIMITED / NO TRANSPORTATION....3
+RESTRICTION TO GO OUTSIDE .....4
+INCREASE IN PRICE .............5
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........6
+CANNOT AFFORD IT ..............7
+AFRAID TO GET OUT AND GETTING THE VIRUS......................8
+OTHER .........................9
+REFUSED TO RESPOND ...........99
+
+
+
+Round4:
+"What was the main reason you or members of your household were unable to access sufficient soap to wash hands?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+SHOPS HAVE RUN OUT OF STOCK ...1
+LOCAL MARKETS NOT OPERATING / CLOSED ........................2 
+LIMITED / NO TRANSPORTATION....3
+RESTRICTION TO GO OUTSIDE .....4
+INCREASE IN PRICE .............5
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........6
+CANNOT AFFORD IT ..............7
+AFRAID TO GET OUT AND GETTING THE VIRUS......................8
+OTHER .........................9
+REFUSED TO RESPOND ...........99
+
+Round6:
+
+"What was the main reason you or members of your household were unable to access sufficient soap to wash hands?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+SHOPS HAVE RUN OUT OF STOCK ...1
+LOCAL MARKETS NOT OPERATING / CLOSED ........................2 
+LIMITED / NO TRANSPORTATION....3
+RESTRICTION TO GO OUTSIDE .....4
+INCREASE IN PRICE .............5
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........6
+CANNOT AFFORD IT ..............7
+AFRAID TO GET OUT AND GETTING THE VIRUS......................8
+OTHER .........................9
+REFUSED TO RESPOND ...........99
+
+
+---------------------------------------------------------------------------------------------------
+
+Variable 3:
+Round 1:
+In the last week, that is from Monday  up to Sunday, did you have sufficient water to wash your hands when needed?
+YES ..........1>>5
+NO ...........2 
+
+Round 2:
+In the last 7 days, that is from Monday  up to Sunday, did you have sufficient water to wash your hands when needed?
+
+YES ..........1>>5
+NO ...........2 
+
+
+Round 4:
+
+In the last week, that is from Monday  up to Sunday, did you have sufficient water to wash your hands when needed?
+
+YES ..........1>>8
+NO ...........2 
+
+
+Round 6:
+
+In the last 7 days, that is from Monday  up to Sunday, did you have sufficient water to wash your hands when needed?
+
+YES ..........1>>4_1
+NO ...........2 
+
+---------------------------------------------------------------------------------------------------
+
+Variable 4:
+Round 1:
+"What was the main reason your household was unable to access water to wash your hands ?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+
+"
+WATER SUPPLY NO LONGER 
+AVAILABLE......................1
+WATER SUPPLY REDUCED...........2
+UNABLE TO ACCESS COMMUNAL 
+SOURCES........................3
+SHOPS HAVE RUN OUT OF STOCK ...4
+LOCAL MARKETS NOT OPERATING / 
+CLOSED ........................5 
+LIMITED / NO TRANSPORTATION....6
+RESTRICTION TO GO OUTSIDE .....7
+INCREASE IN PRICE .............8
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........9
+CANNOT AFFORD IT ..............10
+AFRAID TO GET OUT AND GETTING THE VIRUS..........................11
+OTHER ........................-96
+REFUSED TO RESPOND.............99
+---------------------------------------------------------------------------------------------------
+
+Round 2:
+
+"What was the main reason your household was unable to access water to wash your hands ?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+
+WATER SUPPLY NO LONGER 
+AVAILABLE......................1
+WATER SUPPLY REDUCED...........2
+UNABLE TO ACCESS COMMUNAL 
+SOURCES........................3
+SHOPS HAVE RUN OUT OF STOCK ...4
+LOCAL MARKETS NOT OPERATING / 
+CLOSED ........................5 
+LIMITED / NO TRANSPORTATION....6
+RESTRICTION TO GO OUTSIDE .....7
+INCREASE IN PRICE .............8
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........9
+CANNOT AFFORD IT ..............10
+AFRAID TO GET OUT AND GETTING THE VIRUS..........................11
+OTHER .........................12
+REFUSED TO RESPOND.............99
+
+
+
+
+
+
+Round 4:
+"What was the main reason your household was unable to access water to wash your hands?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+
+WATER SUPPLY NO LONGER 
+AVAILABLE......................1
+WATER SUPPLY REDUCED...........2
+UNABLE TO ACCESS COMMUNAL 
+SOURCES........................3
+SHOPS HAVE RUN OUT OF STOCK ...4
+LOCAL MARKETS NOT OPERATING / 
+CLOSED ........................5 
+LIMITED / NO TRANSPORTATION....6
+RESTRICTION TO GO OUTSIDE .....7
+INCREASE IN PRICE .............8
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........9
+CANNOT AFFORD IT ..............10
+AFRAID TO GET OUT AND GETTING THE VIRUS..........................11
+OTHER .........................12
+REFUSED TO RESPOND.............99
+
+
+
+Round 6:
+
+"What was the main reason your household was unable to access water to wash your hands ?
+DO NOT READ OPTIONS
+PLEASE PROBE AND SELECT THE MAIN REASON
+"
+
+WATER SUPPLY NO LONGER 
+AVAILABLE......................1
+WATER SUPPLY REDUCED...........2
+UNABLE TO ACCESS COMMUNAL 
+SOURCES........................3
+SHOPS HAVE RUN OUT OF STOCK ...4
+LOCAL MARKETS NOT OPERATING / 
+CLOSED ........................5 
+LIMITED / NO TRANSPORTATION....6
+RESTRICTION TO GO OUTSIDE .....7
+INCREASE IN PRICE .............8
+NO ACCESS TO CASH AND CANNOT
+PAY WITH CREDIT CARD ..........9
+CANNOT AFFORD IT ..............10
+AFRAID TO GET OUT AND GETTING THE VIRUS..........................11
+OTHER .........................12
+REFUSED TO RESPOND.............99
+
+
+
+
+Variable 5:
+
+Round1: Main staple food 
+
+MAIZE ..........1
+RICE ...........2
+MATOOKE.........3 
+CASSAVA.........4
+MILLET..........5
+SORGHUM.........6
+SWEET POTATOES..7
+IRISH POTATOES..8
+
+
+Round3: Main staple food
+
+MAIZE ..........1
+RICE ...........2
+MATOOKE.........3 
+CASSAVA.........4
+MILLET..........5
+SORGHUM.........6
+SWEET POTATOES..7
+IRISH POTATOES..8
+
+
+Round5: Main staple food
+
+Empty
+---------------------------------------------------------------------------------------------------
+
+Variable 6:
+Round1:
+In the last week, that is from Monday  up to Sunday, has your household been unable to buy [MAIN Staple Food ]?
+
+YES ..........1
+NO ...........2 >>7a 
+NOT TRIED ....3 >>7a
+
+Round3:
+
+In the last 7 days, has your household been unable to buy [MAIN Staple Food ]?
+
+YES ..........1
+NO ...........2 >>8 
+NOT TRIED ....3 >>8
+
+Round5:
+
+In the last 7 days, has your household been unable to buy [MAIN Staple Food]?
+
+YES ..........1
+NO ...........2 >>8 
+NOT TRIED ....3 >>8
+---------------------------------------------------------------------------------------------------
+
+Variable 6:
+
+Round 1:
+
+In the last week, that is from Monday  up to Sunday, has your household been unable to buy [MAIN Staple Food ]?
+
+YES ..........1
+NO ...........2 >>7a 
+NOT TRIED ....3 >>7a
+
+
+
+Round 4:
+
+In the last 7 days, has your household been unable to buy [MAIN Staple Food ]?
+
+YES ..........1
+NO ...........2 >>8 
+NOT TRIED ....3 >>8
+
+Round 5:
+
+In the last 7 days, has your household been unable to buy [MAIN Staple Food]?
+
+YES ..........1
+NO ...........2 >>8 
+NOT TRIED ....3 >>8
+---------------------------------------------------------------------------------------------------
+
 
 SEC5
 ---------------
