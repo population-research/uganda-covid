@@ -8,7 +8,7 @@ output: html_document
 Contents(Variables): This section has different variables for the different 6 rounds [KEY: described as indices]
 
 
-SEC4
+SEC4 (Coding is similar in all respective rounds variables)
 ---------------
 Round1: 1:7,7a:c,8:20
 Round2: 1e:f, 1:4,8:12
@@ -17,7 +17,7 @@ Round4: 1e:g,1:4,8:11,11a:b,12:18
 Round5: 5:15,15_1,16:18
 Round6: 1e:g,1:4,4_1,4_2,4_3,4_4,4_5,8,12:14,19:22
 
-Coding
+Coding (Example of how I was checking the coding and questions in every variable.)
 ----------------
 
 Variable 1:
@@ -311,38 +311,11 @@ YES ..........1
 NO ...........2 >>8 
 NOT TRIED ....3 >>8
 ---------------------------------------------------------------------------------------------------
-
-Variable 6:
-
-Round 1:
-
-In the last week, that is from Monday  up to Sunday, has your household been unable to buy [MAIN Staple Food ]?
-
-YES ..........1
-NO ...........2 >>7a 
-NOT TRIED ....3 >>7a
-
-
-
-Round 4:
-
-In the last 7 days, has your household been unable to buy [MAIN Staple Food ]?
-
-YES ..........1
-NO ...........2 >>8 
-NOT TRIED ....3 >>8
-
-Round 5:
-
-In the last 7 days, has your household been unable to buy [MAIN Staple Food]?
-
-YES ..........1
-NO ...........2 >>8 
-NOT TRIED ....3 >>8
+END OF DEMONSTRATION
 ---------------------------------------------------------------------------------------------------
 
 
-SEC5
+SEC5 
 ---------------
 Round1: 1a,1:4,4a:c,5:8,8a:c,9:14
 Round2: 1,1a:c,3,3a:b,4a:b,5:8,8a:e,9:10
