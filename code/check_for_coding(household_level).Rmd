@@ -428,7 +428,7 @@ NO ........2
 REFUSED...99
 ---------------------------------------------------------------------------------------------------
 
-Variable 9: (Round is different in coding)
+Variable 9: (Round 1 has different coding)
 
 YES.1 
 NO..2 >>Q11
@@ -438,14 +438,61 @@ NO..2 >>Q11
 
 SEC5A (Round 4, 5 and 6 have similar variables and coding)
 ---------------
-Round1: 16:17,17_1,18:31 (Agriculture while the rest are non-Ag businesses)
+Round1: 16:17,17_1,18:31 (Agriculture while the rest are non-Ag businesses) --> different coding
 Round2: 11,11a:b,12:15,15a:b
 Round3: 11,11a:c,12:14,15a:b
 Round4: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 Round5: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 Round6: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 
-SEC7 (Has all similar variables and similar coding)
+Variable 11a:
+Round2 has different coding
+
+Open ................1 
+ >> Q15 IF CASE=1,
+    Q13 IF CASE=2,
+    Q12 IF CASE=3,
+    Q13 IF CASE=4,
+    Q12 IF CASE=5
+Temporarily closed ..2
+Permanently closed ..3
+---------------------------------------------------------------------------------------------------
+
+Variable 12: 
+
+Round 3: different coding
+      >> Q15A IF CASE=1,
+      >> Q13 IF CASE=2,
+      >> Q15A IF CASE=3,
+      >> Q13 IF CASE=4,
+      >> Q15A IF CASE=5
+      
+Round2: No question transitions
+---------------------------------------------------------------------------------------------------
+
+Variable 13
+
+Round 3: different question transitions 
+
+Higher ......1 >> Q15A
+The same ....2 >> Q15A
+Less ........3
+No revenue ..4
+
+---------------------------------------------------------------------------------------------------
+
+Variable 15:
+
+Round 2: different variable description and coding
+
+---------------------------------------------------------------------------------------------------
+
+Variable 15a and 15b:
+Round 2 and Round 3 have different variable descriptions.
+---------------------------------------------------------------------------------------------------
+
+
+SEC7 (Has all similar variables and similar coding) **** discuss more on this section 
 
 Round1: 1:8
 Round2: 1:8
