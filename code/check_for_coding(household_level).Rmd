@@ -319,11 +319,121 @@ SEC5
 ---------------
 Round1: 1a,1:4,4a:c,5:8,8a:c,9:14
 Round2: 1,1a:c,3,3a:b,4a:b,5:8,8a:e,9:10
-Round3: 1,1a:c,3,3a:b,4a:b,5:8,8a:g,8g_1,9:10
+Round3: 1,1a:c,3,3a:b,4a:b,5:8,8a:c,8f:g,8g_1,9:10
 Round4: 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,7:8,8a:c,8f:g,8g_1,9:10
 Round5: 1,1a:c,3,3a:b,4a:b,5a,5:6,6a
 Round6(5resp): 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,8b1,8c1
-Round6(5other): 0a:c,1.1a:d,3a:b,6,6a,5a,5,8b1,8c1
+Round6(5other): 0a:c,1,1a:d,3a:b,6,6a,5a,5,8b1,8c1
+
+Round 1: 
+Variable 1a: (Different from the rest)
+
+What is your highest level of Education? 
+SOME PRIMARY........1
+COMPLETED PRIMARY...2
+SOMEE SECONDARY.....3
+COMPLETED SECONDARY...........4
+UNIVERSITY DEGREE...5
+MASTER DEGREE.......6
+PhD.................7
+NO SCHOOL...........8
+DIPLOMA.............9
+CERTIFICATE........10
+DON'T KNOW........-96
+REFUSED TO RESPOND............99
+
+Variable 4a: (Different coding)
+YES.1 >>Q5
+NO..2 
+
+---------------------------------------------------------------------------------------------------
+
+Variable 6:
+
+Round 1, 2 and 3 have similar coding
+
+In your own business ..................1 >>Q9
+In a business operated by a 
+household or family member ............2 >>Q9
+In a family farm, raising family 
+livestock or fishing ..................3 >>Q9
+As an employee for someone else .......4 
+As an apprentice, trainee, intern .....5 
+
+
+Round 4:
+
+In your own non-farm business..........1 >> Q9
+In a non-farm business operated 
+ by a household member.................2 >> Q9
+In a family farm growing crops, raising
+ livestock, or fishing.................3 
+As an employee for a private company 
+ or another individual (not household
+ member)...............................4 >> Q7
+As an employee for the government......5 >> Q7
+As an apprentice, trainee, intern .....6 >> Q7
+
+Round 5:
+
+In your own non-farm business..........1 >> Q9
+In a non-farm business operated 
+ by a household member.................2 >> Q9
+In a family farm growing crops, raising
+ livestock, or fishing.................3 
+As an employee for a private company 
+ or another individual (not household
+ member)...............................4 >> Q7
+As an employee for the government......5 >> Q7
+As an apprentice, trainee, intern .....6 >> Q7
+
+Round 6(resp):
+
+In your own business ..................1 >> Q8b1
+In a business operated by a 
+household or family member ............2 >> Q8b1
+In a family farm growing crops, raising
+ livestock, or fishing.................3 
+As an employee for someone else .......4 >> Q8b1
+As an apprentice, trainee, intern .....5 >> Q8b1
+
+Round 6(other):
+
+In your own non-farm business...1 >> Q5a
+In a non-farm business operated 
+ by a household member..........2 >> Q5a
+In a familyfarm, growing crops, 
+ raising livestock, or fishing..3 
+As an employee for a private 
+ company or another individual 
+ (not household member) ........4 >> Q5a
+As an employee for 
+ the government.................5 >> Q5a
+As an apprentice, trainee,
+ intern.........................6 >> Q5a
+
+---------------------------------------------------------------------------------------------------
+
+Variable 8b: (All empty except for round 1)
+
+YES .......1
+NO ........2 
+REFUSED...99
+---------------------------------------------------------------------------------------------------
+
+Variable 8c: (Round 1 with different coding)
+
+YES .......1
+NO ........2 
+REFUSED...99
+---------------------------------------------------------------------------------------------------
+
+Variable 9: (Round is different in coding)
+
+YES.1 
+NO..2 >>Q11
+---------------------------------------------------------------------------------------------------
+
 
 
 SEC5A (Round 4, 5 and 6 have similar variables and coding)
