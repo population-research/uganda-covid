@@ -23,7 +23,6 @@ round_1_sec6  <- read_dta(here( "raw_data", "round1", "SEC6.dta" )) ## individua
 round_1_sec7  <- read_dta(here( "raw_data", "round1", "SEC7.dta" )) 
 round_1_sec9  <- read_dta(here( "raw_data", "round1", "SEC9.dta" )) ## individual leve
 
-View(round_1_sec4)
 
 ## rename hhid to HHID in round1 sec1 data
 round_1_sec1 <- round_1_sec1 %>%
@@ -52,7 +51,8 @@ round_2_sec4  <- read_dta(here( "raw_data", "round2", "SEC4.dta" ))
 round_2_sec5  <- read_dta(here( "raw_data", "round2", "SEC5.dta" )) 
 round_2_sec5a  <- read_dta(here( "raw_data", "round2", "SEC5A.dta" )) 
 round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" )) 
-round_2_sec7  <- read_dta(here( "raw_data", "round2", "SEC7.dta" )) 
+# sec8 as 7
+round_2_sec8  <- read_dta(here( "raw_data", "round2", "SEC8.dta" )) 
 round_2_sec9  <- read_dta(here( "raw_data", "round2", "SEC9.dta" )) 
 
 ## merge round2 datasets
@@ -61,7 +61,7 @@ merged_r2 <- left_join(round_2_interview_info, round_2_interview_result, by = c(
   left_join(round_2_sec4, by = c("HHID")) %>% 
   left_join(round_2_sec5, by = c("HHID")) %>% 
   left_join(round_2_sec5a, by = c("HHID")) %>% 
-  left_join(round_2_sec7, by = c("HHID")) %>% 
+  left_join(round_2_sec8, by = c("HHID")) %>% 
   mutate(round = 2)
 
 
@@ -76,7 +76,8 @@ round_3_sec4  <- read_dta(here( "raw_data", "round3", "sec4.dta" ))
 round_3_sec5  <- read_dta(here( "raw_data", "round3", "sec5.dta" )) 
 round_3_sec5a  <- read_dta(here( "raw_data", "round3", "sec5a.dta" )) 
 round_3_sec6  <- read_dta(here( "raw_data", "round3", "sec6.dta" )) 
-round_3_sec7  <- read_dta(here( "raw_data", "round3", "sec7a_1.dta" )) 
+# sec8 as 7
+round_3_sec8  <- read_dta(here( "raw_data", "round3", "sec8.dta" )) 
 round_3_sec9  <- read_dta(here( "raw_data", "round3", "sec9.dta" )) 
 
 ## merge round3 datasets
@@ -155,7 +156,7 @@ round_6_sec5_other <- read_dta(here( "raw_data", "round6", "sec5_other.dta" ))
 
 round_6_sec5  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
 round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
-# sec7 as sec 8
+#  sec7 as sec8
 round_6_sec8  <- read_dta(here( "raw_data", "round6", "sec8.dta" )) 
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
