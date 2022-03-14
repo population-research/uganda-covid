@@ -492,7 +492,7 @@ Round 2 and Round 3 have different variable descriptions.
 ---------------------------------------------------------------------------------------------------
 
 
-SEC7 (Has all similar variables and similar coding) **** discuss more on this section 
+SEC7 (Has all similar variables and similar coding)  
 
 Round1: 1:8
 Round2: 1:8
@@ -500,3 +500,7 @@ Round3: 1:8
 Round4: 1:8
 Round5: 1:8
 Round6: 1:8
+
+______________________________________________________________________________________
+DONE CHECKING FOR CODING.
+______________________________________________________________________________________
