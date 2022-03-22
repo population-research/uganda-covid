@@ -179,7 +179,7 @@ renamed_merged_r1 <- merged_r1 %>%
     not_ate_all_day = s7q08
       )
 
-View(renamed_merged_r1)
+
 
 ## round 2 ---- 
 round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_result.dta")) %>%
@@ -203,9 +203,103 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec5a, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   mutate(round = 2)
-View(merged_r2)
 
-
+renamed_merged_r2 <- merged_r2 %>%
+  rename(
+    interv_main_resp = Rq09,
+    interv_language = Rq10,
+    interviewer_name = Sq01,
+    interv_date = Sq02,
+    insuff_drinking_water = s4q01e,
+    why_insufficient_water = s4q01f,
+    why_insufficient_water_other = s4q01f_Other,
+    soap_wash_hands = s4q01,
+    why_not_access_soap = s4q02,
+    why_not_access_soap_other = s4q02_Other,
+    water_wash_hands = s4q03,
+    why_no_water_access = s4q04,
+    why_no_water_access_other = s4q04_Other,
+    unable_buy_medicine = s4q08,
+    hh_needed_mdeical = s4q09,
+    able_access_treatment = s4q10,
+    why_not_access_treatment = s4q11,
+    why_not_access_treatment_other = s4q11_Other,
+    hh_own_assets1 = s4q12__1,
+    hh_own_assets2 = s4q12__2,
+    hh_own_assets3 = s4q12__3,
+    hh_own_assets4 = s4q12__4,
+    hh_own_assets5 = s4q12__5,
+    work_for_pay = s5q01,
+    employment_status = s5q01a,
+    return_to_employment = s5q01b,
+    why_didnt_work = s5q01c,
+    why_stop_working = s5q03,
+    find_job_start_business = s5q03a,
+    main_act_to_find_employment = s5q03b,
+    same_job_as_before1 = s5q04a_1,
+    same_job_as_before2 = s5q04a_2,
+    why_change_jobs = s5q04b,
+    activity_in_main_job = s5q05,
+    nature_of_current_work = s5q06,
+    work_as_usual = s5q07,
+    paid_not_work_as_usual = s5q08,
+    why_not_work_as_usual = s5q08a,
+    hours_worked_previous_week =s5q08b,
+    if_hours_worked_changed = s5q08c,
+    employer_benefits1 = s5q08d__1,
+    employer_benefits2 = s5q08d__2,
+    employer_benefits3 = s5q08d__3,
+    employer_benefits4 = s5q08d__4,
+    written_work_contract = s5q08e,
+    hh_unable_to_work = s5q09,
+    which_hh_memebers = s5q10__0,
+    which_hh_memebers1 = s5q10__1,
+    which_hh_memebers2 = s5q10__2,
+    which_hh_memebers3 = s5q10__3,
+    which_hh_memebers4 = s5q10__4,
+    which_hh_memebers5 = s5q10__5,
+    hh_operate_non_family_business = s5aq11,
+    why_family_business_closed1 = s5aq11b__1,
+    why_family_business_closed2 = s5aq11b__2,
+    why_family_business_closed3 = s5aq11b__3,
+    why_family_business_closed4 = s5aq11b__4,
+    why_family_business_closed5 = s5aq11b__5,
+    why_family_business_closed6 = s5aq11b__6,
+    why_family_business_closed7 = s5aq11b__7,
+    why_family_business_closed8 = s5aq11b__8,
+    why_family_business_closed9 = s5aq11b__9,
+    why_family_business_closed10 = s5aq11b__10,
+    why_family_business_closed96 = s5aq11b__n96,
+    sector_family_business = s5aq12,
+    if_revenue_from_family_business = s5aq13,
+    less_revenue_from_sales1 = s5aq14_1,
+    less_revenue_from_sales2 = s5aq14_2,
+    challenges_due_to_covid1 = s5aq15__1,
+    challenges_due_to_covid2 = s5aq15__2,
+    challenges_due_to_covid3 = s5aq15__3,
+    challenges_due_to_covid4 = s5aq15__4,
+    challenges_due_to_covid5 = s5aq15__5,
+    challenges_due_to_covid6 = s5aq15__6,
+    challenges_due_to_covid96 = s5aq15__n96,
+    change_business_conduct = s5aq15a,
+    changes_to_be_made_in_business1 = s5aq15b__1,
+    changes_to_be_made_in_business2 = s5aq15b__2,
+    changes_to_be_made_in_business3 = s5aq15b__3,
+    changes_to_be_made_in_business4 = s5aq15b__4,
+    changes_to_be_made_in_business5 = s5aq15b__5,
+    changes_to_be_made_in_business6 = s5aq15b__6,
+    changes_to_be_made_in_business96 = s5aq15b__n96,
+    status_family_business = s5aq11a,
+    no_enough_food = s8q01,
+    unable_eat_healthy = s8q02,
+    ate_few_food_kinds = s8q03,
+    skip_a_meal = s8q04,
+    ate_less_food = s8q05,
+    food_ran_out = s8q06,
+    hungy_and_didnt_eat = s8q07,
+    whole_day_no_food = s8q08
+  )
+View(renamed_merged_r2)
 
 ## round 3 ---- 
 round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_result.dta")) %>%
