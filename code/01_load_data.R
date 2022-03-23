@@ -322,9 +322,84 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec5a, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   mutate(round = 3)
-View(merged_r3)
 
-
+renamed_merged_r3 <- merged_r3 %>% 
+  rename(
+    interviewer_main_respondend = Rq09,
+    interv_language = Rq10,
+    interviewer_name = Sq01,
+    interv_date = Sq02,
+    main_staple_food = s4q05,
+    hh_unable_buy_staple = s4q06,
+    why_unable_buy_staple = s4q07,
+    hh_unable_buy_medicine = s4q08,
+    hh_needed_medical_treatment = s4q09,
+    hh_access_medical = s4q10,
+    why_hh_unable_access_medical = s4q11,
+    why_hh_unable_access_medical_other =s4q11_Other,
+    hh_unable_access_masks = s4q12,
+    why_unable_access_masks = s4q13,
+    why_unable_access_masks_other = s4q13_Other,
+    hh_mask_source1 = s4q14__1,
+    hh_mask_source2 = s4q14__2,
+    hh_mask_source3 = s4q14__3,
+    hh_mask_source4 = s4q14__4,
+    hh_mask_source5 = s4q14__5,
+    hh_mask_source96 = s4q14__n96,
+    hh_mask_source_other = s4q14_Other,
+    work_for_pay = s5q01,
+    employment_to_return  = s5q01a,
+    when_return_employment = s5q01b,
+    why_not_work_previously = s5q01c,
+    why_stop_working = s5q03,
+    anything_done_obtain_employment = s5q03a,
+    what_done_obtain_employment = s5q03b,
+    same_job_as_previously = s5q04a_1,
+    why_change_jobs = s5q04b,
+    main_activity_of_job = s5q05,
+    worked_where = s5q06,
+    able_work_normally = s5q07,
+    paid_even_unable_to_work_as_usual = s5q08,
+    why_unable_work_as_usual = s5q08a,
+    hours_worked_previous_week = s5q08b,
+    how_working_hours_changed = s5q08c,
+    safety_measures_by_employer1 = s5q08f__1,
+    safety_measures_by_employer2 = s5q08f__2,
+    safety_measures_by_employer3 = s5q08f__3,
+    safety_measures_by_employer4 = s5q08f__4,
+    safety_measures_by_employer5 = s5q08f__5,
+    safety_measures_by_employer6 = s5q08f__6,
+    safety_measures_by_employer7 = s5q08f__7,
+    safety_measures_by_employer8 = s5q08f__8,
+    safety_measures_by_employer96 = s5q08f__n96,
+    safety_measures_by_employer_other = s5q08f_Other,
+    collegues_follow_measures = s5q08g,
+    percentage_collegues_follow_measures = s5q08g_1,
+    hh_unable_perform_job = s5q09,
+    which_hh_unable_perform_job = s5q10__0,
+    which_hh_unable_perform_job1 = s5q10__1,
+    which_hh_unable_perform_job2 = s5q10__2,
+    which_hh_unable_perform_job3 = s5q10__3,
+    which_hh_unable_perform_job4 = s5q10__4,
+    hh_operate_non_family_business = s5aq11,
+    why_family_business_closed = s5aq11b,
+    family_business_main_activity = s5a11c,
+    sector_family_business = s5aq12,
+    sales_revenue_from_non_family_business = s5aq13,
+    why_no_less_revenue_sales1 = s5aq14_1,
+    why_no_less_revenue_sales2 = s5aq14_2,
+    hh_other_non_farm_business = s5q15a,
+    number_family_businesses = s5q15b,
+    business_status_that_was_temporarily_closed = s5aq11a,
+    worried_no_food =s8q01,
+    unable_eat_healthy = s8q02,
+    ate_few_food_kinds = s8q03,
+    skipped_a_meal = s8q04,
+    ate_less_than_expected = s8q05,
+    food_ran_out = s8q06,
+    hungry_but_didnt_eat = s8q07,
+    didnt_eat_all_day = s8q08
+  )
 
 ## round 4 ---- 
 round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_result.dta")) %>%
@@ -352,7 +427,6 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
   left_join(round_4_sec5a, by = c("HHID")) %>%
   left_join(round_4_sec8, by = c("HHID")) %>% ##as sec 7
   mutate(round = 4)
-View(merged_r4)
 
 
 ## round 5 ---- 
@@ -376,8 +450,6 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid")) %
   left_join(round_5_sec5a, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   mutate(round = 5)
-View(merged_r5)
-
 
 
 ## round 6 ----
@@ -406,5 +478,4 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_5_sec5a, by = c("hhid")) %>% 
   left_join(round_5_sec8, by = c("hhid")) %>% 
   mutate(round = 6)
-View(merged_r6)
 
