@@ -39,12 +39,12 @@ renamed_merged_r1 <- merged_r1 %>%
   rename(
     interv_main_resp = Rq09,
     interv_language = Rq10,
-    intervier_name = Sq01,
+    interviewer_name = Sq01,
     interv_date = Sq02,
     base_weight = w1,
     soap_wash_hands = s4q01,
-    reason_no_access_soap = s4q02,
-    specific_no_access_soap = s4q02_Other,
+    soap_reason_no_access = s4q02,
+    soap_specific_no_access = s4q02_Other,
     suff_water_hands = s4q03,
     why_no_water_access = s4q04,
     specific_no_water = s4q04_Other,
@@ -176,7 +176,7 @@ renamed_merged_r1 <- merged_r1 %>%
     ate_less_expected = s7q05,
     food_ranout = s7q06,
     hungry_not_ate = s7q07,
-    not_ate_all_day = s7q08
+    not_eaten_all_day = s7q08
       )
 
 
@@ -297,7 +297,7 @@ renamed_merged_r2 <- merged_r2 %>%
     ate_less_food = s8q05,
     food_ran_out = s8q06,
     hungy_and_didnt_eat = s8q07,
-    whole_day_no_food = s8q08
+    not_eaten_all_day = s8q08
   )
 View(renamed_merged_r2)
 
@@ -398,7 +398,7 @@ renamed_merged_r3 <- merged_r3 %>%
     ate_less_than_expected = s8q05,
     food_ran_out = s8q06,
     hungry_but_didnt_eat = s8q07,
-    didnt_eat_all_day = s8q08
+    not_eaten_all_day = s8q08
   )
 
 ## round 4 ---- 
@@ -427,7 +427,104 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
   left_join(round_4_sec5a, by = c("HHID")) %>%
   left_join(round_4_sec8, by = c("HHID")) %>% ##as sec 7
   mutate(round = 4)
-
+\renamed_merged_r4 <- merged_r4 %>% 
+  rename(
+    interviewer_main_respondent = Rq09,
+    interviewer_language = Rq10,
+    interview_date = Sq02,
+    drinking_water_sufficient = s4q1e,
+    drinking_water_insufficient_reason = s4q1f,
+    drinking_water_source = s4q1g,
+    soap_sufficient_hands = s4q01,
+    soap_hands_lack_reason = s4q02,
+    water_wash_hands = s4q03,
+    water_wash_hands_lack_reason = s4q04,
+    medicine_inability = s4q08,
+    medical_treatment_need = s4q09,
+    medical_treatment_access = s4q10,
+    medical_treatment_inability_reason = s4q11,
+    medical_treatment_need_school_closure =  s4q11a,
+    medical_treatment_access_school_closure = s4q11b,
+    masks_access = s4q12,
+    masks_lack_reason = s4q13,
+    masks_source_govt = s4q14__1,
+    masks_source_purchased = s4q14__2,
+    masks_source_homemade = s4q14__3,
+    masks_source_friends_relatives = s4q14__4,
+    masks_source_employer = s4q14__5,
+    masks_source_other = s4q14__n96,
+    covid_test_free_willingness = s4q15,
+    covid_vaccine_free_willingness = s4q16,
+    covid_vaccine_free_unwillingness_not_work = s4q17__1,
+    covid_vaccine_free_unwillingness_unsafe = s4q17__2,
+    covid_vaccine_free_unwillingness_side_effects = s4q17__3,
+    covid_vaccine_free_unwillingness_low_risk = s4q17__4,
+    covid_vaccine_free_unwillingness_against_vaccines = s4q17__5,
+    covid_vaccine_free_unwillingness_religion = s4q17__6,
+    covid_vaccine_free_unwillingness_other = s4q17__n96,
+    vaccination_doubts_wont_work = s4q18__1,
+    vaccination_doubts_unsafe = s4q18__2,
+    vaccination_doubts_side_effects = s4q18__3,
+    vaccination_doubts_low_risk = s4q18__4,
+    vaccination_doubts_against_vaccines = s4q18__5,
+    vaccination_doubts_against_religion = s4q18__6,
+    vaccination_doubts_other = s4q18__n96,
+    work_for_pay = s5q01,
+    work_secured_absent = s5q01a,
+    work_secured_return = s5q01b,
+    work_missed_previously_reason = s5q01c,
+    work_stop_reason = s5q03,
+    work_search_start_business = s5q03a,
+    work_search_main_activity = s5q03b,
+    work_same_as_last_time = s5q04a,
+    work_change_reason = s5q04b,
+    work_main_description = s5q05a,
+    work_organization_main_activity = s5q05,
+    work_area = s5q06,
+    work_farming_products_intentions = s5q06a,
+    work_as_usual = s5q07,
+    work_unusual_payment = s5q08,
+    work_unusual_reason = s5q08a,
+    work_hours = s5q08b,
+    work_hours_change = s5q08c,
+    safety_measures_by_employer_disinfectants = s5q08f__1,
+    safety_measures_by_employer_sanitizer = s5q08f__2,
+    safety_measures_by_employer_preventative = s5q08f__3,
+    safety_measures_by_employer_masks = s5q08f__4,
+    safety_measures_by_employer_gloves = s5q08f__5,
+    safety_measures_by_employer_work_home = s5q08f__6,
+    safety_measures_by_employer_closed_office = s5q08f__7,
+    safety_measures_by_employer_none = s5q08f__8,
+    safety_measures_by_employer_others = s5q08f__n96,
+    safety_measures_followed = s5q08g,
+    safety_measures_followed_percentage = s5q08g_1,
+    work_inability_hh = s5q09,
+    work_inability_hh_who = s5q10__0, # no options given hence numbers used
+    work_inability_hh_who1 = s5q10__1,
+    work_inability_hh_who2 = s5q10__2,
+    work_inability_hh_who3 = s5q10__3,
+    work_inability_hh_who4 = s5q10__4,
+    non_farm_business_operation = s5aq11,
+    non_farm_business_closure_reason = s5aq11b,
+    non_farm_business_other_operating = s5aq11b_1,
+    non_farm_business_other_main_activity = s5a11c_1,
+    non_farm_business_other_sector = s5aq12_1,
+    non_farm_business_existing_main_activity = s5a11c,
+    non_farm_business_existing_sector = s5aq12,
+    non_farm_business_sales_level = s5aq13,
+    non_farm_business_sales_reason_covid = s5aq14_1,
+    non_farm_business_sales_reason_other = s5aq14_2,
+    non_farm_business_sales_compared_previous = s5aq15,
+    non_farm_business_status = s5aq11a,
+    food_insufficient_worry = s8q01,
+    food_healthy_lack = s8q02,
+    food_few_kinds = s8q03,
+    food_skipped_meal = s8q04,
+    food_less_than_expected = s8q05,
+    food_ranout = s8q06,
+    food_lacked_hungry = s8q07,
+    food_lack_didnt_eat_all_day = s8q08
+  )
 
 ## round 5 ---- 
 round_5_interview_result <- read_dta(here("raw_data", "round5", "interview_result.dta")) %>%
