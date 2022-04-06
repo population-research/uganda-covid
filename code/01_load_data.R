@@ -802,6 +802,20 @@ renamed_merged_r6 <- merged_r6 %>%
     food_lack_didnt_eat_all_day = s8q08
     )
 
+## round 7 ---- 
+round_7_interview_result <- read_dta(here("raw_data", "round7", "interview_result.dta")) %>%
+  select(c('HHID','Rq09','Rq10'))
+round_7_cover  <- read_dta(here( "raw_data", "round7", "Cover.dta" )) 
+
+round_7_sec1 <- read_dta(here( "raw_data", "round7", "SEC1.dta" )) 
+round_7_sec4  <- read_dta(here( "raw_data", "round7", "SEC4_1.dta" )) 
+round_7_sec5a  <- read_dta(here( "raw_data", "round7", "SEC5A.dta" )) 
+round_7_sec5 <- read_dta(here( "raw_data", "round7", "SEC5.dta" ))
+round_7_sec6e1  <- read_dta(here( "raw_data", "round7", "SEC6E_1.dta" )) 
+round_7_sec6e2  <- read_dta(here( "raw_data", "round7", "SEC6E_2.dta" )) 
+round_7_sec8  <- read_dta(here( "raw_data", "round7", "SEC8.dta" )) 
+round_7_sec9  <- read_dta(here( "raw_data", "round7", "SEC9.dta" )) 
+
 # merging all rounds renamed datasets
 all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6)
 
