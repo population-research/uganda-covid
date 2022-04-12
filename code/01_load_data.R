@@ -670,6 +670,7 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid")) %
   left_join(round_5_sec5, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
+  left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(round = 5)
 
 ##rename round5 columns
@@ -749,7 +750,32 @@ renamed_merged_r5 <- merged_r5 %>%
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
     food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08
+    food_lack_didnt_eat_all_day = s8q08,
+    
+    concerns_covid_hh_serious_illness = s9q01,
+    concerns_covid_threat_hh_finances = s9q02,
+    concerns_symptoms_cough = s9q03__1,
+    concerns_symptoms_breath_shortness = s9q03__2,
+    concerns_symptoms_fever = s9q03__3,
+    concerns_symptoms_chills = s9q03__4,
+    concerns_symptoms_muscle_pain = s9q03__5,
+    concerns_symptoms_headache = s9q03__6,
+    concerns_symptoms_sore_throat = s9q03__7,
+    concerns_symptoms_taste_smell_loss = s9q03__8,
+    concerns_hh_covid_diagnosis = s9q04,
+    concerns_security_risk_covid = s9q05,
+    concerns_covid_response_limit_freedom = s9q06,
+    concerns_misuse_covid_funds = s9q07,
+    concerns_government_corruption_lower_medical_quality = s9q08,
+    concerns_discomfort_in_house = s9q09,
+    concerns_bothered_by_little_pleasure_in_enjoyments = s9q10_1,
+    concerns_sad_down_depressed = s9q10_2,
+    concerns_sleep_issues = s9q10_3,
+    concerns_tired_burdened = s9q10_4,
+    concerns_appetite_loss =s9q10_5,
+    concerns_self_worth_loss = s9q10_6,
+    concerns_concentrating_work = s9q10_7,
+    concerns_motion_speaking_change = s9q10_8
   )
 
 
