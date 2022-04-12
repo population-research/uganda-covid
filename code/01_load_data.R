@@ -230,6 +230,7 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec5, by = c("HHID")) %>% 
   left_join(round_2_sec5a, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
+  left_join(round_2_sec9, by = c("HHID")) %>% 
   mutate(round = 2)
 
 ##rename round2 columns
@@ -338,7 +339,28 @@ renamed_merged_r2 <- merged_r2 %>%
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
     food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08
+    food_lack_didnt_eat_all_day = s8q08,
+    
+    concerns_covid_hh_serious_illness = s9q01,
+    concerns_covid_threat_hh_finances = s9q02,
+    concerns_symptoms_cough = s9q03__1,
+    concerns_symptoms_breath_shortness = s9q03__2,
+    concerns_symptoms_fever = s9q03__3,
+    concerns_symptoms_chills = s9q03__4,
+    concerns_symptoms_muscle_pain = s9q03__5,
+    concerns_symptoms_headache = s9q03__6,
+    concerns_symptoms_sore_throat = s9q03__7,
+    concerns_symptoms_taste_smell_loss = s9q03__8,
+    concerns_hh_covid_diagnosis = s9q04,
+    concerns_security_risk_covid = s9q05,
+    concerns_covid_response_limit_freedom = s9q06,
+    concerns_misuse_covid_funds = s9q07,
+    concerns_government_corruption_lower_medical_quality = s9q08,
+    concerns_measures_curb_covid_close_education_institutions = s9q09__1,
+    concerns_measures_curb_covid_suspension_churches = s9q09__2,
+    concerns_measures_curb_covid_suspension_gatherings = s9q09__3,
+    concerns_measures_curb_covid_suspension_weddings = s9q09__4,
+    concerns_measures_curb_covid_suspension_periodic_markets = s9q09__5
   )
 
 ## round 3 ---- 
