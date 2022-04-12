@@ -29,7 +29,8 @@ merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) 
   left_join(round_1_sec4, by = c("HHID")) %>% 
   left_join(round_1_sec5, by = c("HHID")) %>% 
   left_join(round_1_sec5a, by = c("HHID")) %>% 
-  left_join(round_1_sec7, by = c("HHID")) %>% 
+  left_join(round_1_sec7, by = c("HHID")) %>%
+  left_join(round_1_sec9, by = c("HHID")) %>% 
   mutate(round = 1)
 
 ## rename round1 columns
@@ -201,7 +202,28 @@ renamed_merged_r1 <- merged_r1 %>%
     food_less_than_expected = s7q05,
     food_ranout = s7q06,
     food_lacked_hungry = s7q07,
-    food_lack_didnt_eat_all_day = s7q08
+    food_lack_didnt_eat_all_day = s7q08,
+    
+    shock_hh_affected = s9q01,
+    shock_hh_affected_specific = s9q01_Other,
+    shocks_most_significant = s9q02,
+    shocks_hh_cope_assets_sale = s9q03__1,
+    shocks_hh_cope_addtional_income = s9q03__2,
+    shocks_hh_cope_assistance_relatives = s9q03__3,
+    shocks_hh_cope_borrowed_relatives = s9q03__4,
+    shocks_hh_cope_loan_financial_inst = s9q03__5,
+    shocks_hh_cope_credited_purchases = s9q03__6,
+    shocks_hh_cope_delayed_payment = s9q03__7,
+    shocks_hh_cope_sold_harvest = s9q03__8,
+    shocks_hh_cope_reduced_food = s9q03__9,
+    shocks_hh_cope_reduced_non_food = s9q03__10,
+    shocks_hh_cope_savings = s9q03__11,
+    shocks_hh_cope_ngo_assistance = s9q03__12,
+    shocks_hh_cope_employer_advance = s9q03__13,
+    shocks_hh_cope_government_assistance = s9q03__14,
+    shocks_hh_cope_insurance = s9q03__15,
+    shocks_hh_cope_nothing_done = s9q03__16,
+    shocks_hh_cope_specific = s9q03__n96
       )
 
 ## round 2 ---- 
@@ -815,6 +837,18 @@ round_7_sec6e1  <- read_dta(here( "raw_data", "round7", "SEC6E_1.dta" ))
 round_7_sec6e2  <- read_dta(here( "raw_data", "round7", "SEC6E_2.dta" )) 
 round_7_sec8  <- read_dta(here( "raw_data", "round7", "SEC8.dta" )) 
 round_7_sec9  <- read_dta(here( "raw_data", "round7", "SEC9.dta" )) 
+
+## merge round7 datasets
+merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %>% 
+  left_join(round_7_sec1, by = c("HHID")) %>% 
+  left_join(round_7_sec4, by = c("HHID")) %>% 
+  left_join(round_7_sec5a, by = c("HHID")) %>% 
+  left_join(round_7_sec5, by = c("HHID")) %>% 
+  left_join(round_7_sec6e1, by = c("HHID")) %>%
+  left_join(round_7_sec6e2, by = c("HHID")) %>% 
+  left_join(round_7_sec8, by = c("HHID")) %>% 
+  left_join(round_7_sec9, by = c("HHID")) %>% 
+  mutate(round = 7)
 
 # merging all rounds renamed datasets
 all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6)
