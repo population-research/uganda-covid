@@ -806,7 +806,6 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_5_sec8, by = c("hhid")) %>% 
   left_join(round_5_sec9, by = c("hhid")) %>% 
   mutate(round = 6)
-colnames(merged_r6)
 
 ## rename round6 columns
 renamed_merged_r6 <- merged_r6 %>% 
@@ -936,16 +935,128 @@ round_7_sec9  <- read_dta(here( "raw_data", "round7", "SEC9.dta" ))
 
 ## merge round7 datasets
 merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %>% 
-  left_join(round_7_sec1, by = c("HHID")) %>% 
   left_join(round_7_sec4, by = c("HHID")) %>% 
   left_join(round_7_sec5a, by = c("HHID")) %>% 
   left_join(round_7_sec5, by = c("HHID")) %>% 
-  left_join(round_7_sec6e1, by = c("HHID")) %>%
-  left_join(round_7_sec6e2, by = c("HHID")) %>% 
   left_join(round_7_sec8, by = c("HHID")) %>% 
   left_join(round_7_sec9, by = c("HHID")) %>% 
   mutate(round = 7)
 
-# merging all rounds renamed datasets
-all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6)
+## renaming merged round7
+renamed_merged_r7 <- merged_r7 %>% 
+  rename(
+    interviewer_main_respondent = Rq09,
+    interviewer_language = Rq10,
+    interview_date = Sq02,
+    
+    masks_access = s4q12,
+    masks_lack_reason = s4q13,
+    masks_source_government = s4q14__1,
+    masks_source_purchased = s4q14__2,
+    masks_source_home_made = s4q14__3,
+    masks_source_friends_relatives = s4q14__4,
+    masks_source_employer = s4q14__5,
+    masks_source_other = s4q14__n96,
+    
+    medicine_buy_ability = s4q15,
+    
+    non_farm_business_operation = s5aq11,
+    non_farm_business_status = s5aq11a,
+    non_farm_business_closure_reason = s5aq11b,
+    non_farm_business_another = s5aq11b_1,
+    non_farm_new_business_main_activity = s5a11c_1,
+    non_farm_new_business_sector = s5aq12_1,
+    non_farm_existing_business_main_activity = s5aq11c,
+    non_farm_existing_business_sector = s5aq12,
+    
+    revenue_sales_non_family_business_compared_apr = s5aq13,
+    revenue_sales_non_family_business_reason = s5aq14_1,
+    revenue_sales_non_family_business_reason_other = s5aq14_2,
+    revenue_sales_non_family_business_compared_year = s5aq15,
+    
+    change_business_conduct = s5aq15a,
+    changes_to_be_made_in_business_wear_masks = s5aq15b__1,
+    changes_to_be_made_in_business_distancing = s5aq15b__2,
+    changes_to_be_made_in_business_few_customers_at_once = s5aq15b__3,
+    changes_to_be_made_in_business_phone_media_market = s5aq15b__4,
+    changes_to_be_made_in_business_deliveries_only = s5aq15b__5,
+    changes_to_be_made_in_business_product_offering = s5aq15b__6,
+    changes_to_be_made_in_business_no_change = s5aq15b__7,
+    changes_to_be_made_in_business_other = s5aq15b__n96,
+    
+    work_done_for_pay = s5q01,
+    work_secured_absent = s5q01a,
+    work_secured_return = s5q01b,   
+    work_missed_previously_reason = s5q01c,
+    work_stop_reason = s5q03,
+    work_to_find_job = s5q03a,
+    work_main_find_job  = s5q03b,
+    work_same_as_last_time = s5q04a,
+    work_change_reason = s5q04b,
+    work_main_primary_activities = s5q05a,
+    work_main_activity = s5q05, 
+    work_area = s5q06,
+    
+    family_products_intentions = s5q06a,
+    
+    safety_measures_by_employer_disinfectants = s5q08f__1,
+    safety_measures_by_employer_sanitizer = s5q08f__2,
+    safety_measures_by_employer_preventative = s5q08f__3,
+    safety_measures_by_employer_masks = s5q08f__4,
+    safety_measures_by_employer_gloves = s5q08f__5,
+    safety_measures_by_employer_work_home = s5q08f__6,
+    safety_measures_by_employer_closed_office = s5q08f__7,
+    safety_measures_by_employer_none = s5q08f__8,
+    safety_measures_followed = s5q08g,
+    safety_measures_followed_percentage = s5q08g_1,
+    
+    work_hours_primary_activity_previously =s5q8b1,
+    work_hours_primary_activity_usually = s5q8c1,
 
+    food_insufficient_worry = s8q01,
+    food_healthy_lack = s8q02,
+    food_few_kinds = s8q03,
+    food_skipped_meal = s8q04,
+    food_less_than_expected = s8q05,
+    food_ranout = s8q06,
+    food_lacked_hungry = s8q07,
+    food_lack_didnt_eat_all_day = s8q08,
+    
+    concerns_relative_infected_covid = s9q03a,
+    concerns_covid_infection_even_not_tested = s9q03b,
+    concerns_hh_covid_diagnosis = s9q04,
+    concerns_covid_drug_modern = s9q05__1,
+    concerns_covid_drug_herbal_medicine = s9q05__2,
+    concerns_covid_drug_local_herbs = s9q05__3,
+    concerns_covid_drug_none = s9q05__4,
+    concerns_covid_drug_other = s9q05__n98,
+    concerns_covid_trusted_treatment = s9q06,
+    concerns_covid_vaccine_availability_knowledge = s9q10,
+    concerns_covid_vaccine_availability_info_source_poster = s9q10b__1,
+    concerns_covid_vaccine_availability_info_source_radio = s9q10b__2,
+    concerns_covid_vaccine_availability_info_source_tv = s9q10b__3,
+    concerns_covid_vaccine_availability_info_source_sms = s9q10b__4,
+    concerns_covid_vaccine_availability_info_source_phone = s9q10b__5,
+    concerns_covid_vaccine_availability_info_source_newspaper = s9q10b__6,
+    concerns_covid_vaccine_availability_info_source_social_media = s9q10b__7,
+    concerns_covid_vaccine_availability_info_source_healthcare = s9q10b__8,
+    concerns_covid_vaccine_availability_info_source_ngo = s9q10b__9,
+    concerns_covid_vaccine_availability_info_source_other_outreach = s9q10b__10,
+    concerns_covid_vaccine_availability_info_source_local_authority = s9q10b__11,
+    concerns_covid_vaccine_availability_info_source_family_neighbors = s9q10b__12,
+    concerns_covid_vaccine_availability_info_source_traditional_healer = s9q10b__13,
+    concerns_covid_vaccine_availability_info_source_other = s9q10b__n96,
+    concerns_covid_vaccine_priority_groups_knowledge = s9q10c,
+    concerns_covid_vaccine_priority_group_individula_included = s9q10d,
+    concerns_covid_vaccinated = s9q11,
+    concerns_covid_no_second_vaccine_shot_reason = s9q11b,
+    concerns_covid_vaccination_tried = s9q11c,
+    concerns_covid_not_vaccinated_reason = s9q11d,
+    concerns_covid_vaccine_received = s9q12,
+    concerns_approved_free_covid_vaccination_accept = s9q13,
+    concerns_covid_unvaccination_main_reason = s9q14,
+    concerns_covid_vaccine_tyoe_wanted = s9q15
+  )
+
+# merging all rounds renamed datasets
+all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6,renamed_merged_r7)
