@@ -3,6 +3,12 @@ library(tidyverse)
 library(haven)
 library(here)
 
+rename_to_lower_snake <- function(df) {
+  df %>% 
+    rename_with( ~gsub("([a-z])([A-Z])", "\\1_\\2", .x) ) %>%  # Adds _ to camel case var names
+    rename_with( ~tolower(gsub("[ ]+", "_", .x)) )  # Converts to lower and substitutes _ for spaces
+}
+
 ## round 1 ---- 
 
 ## roster data (interview info and results?) 
@@ -80,6 +86,7 @@ renamed_merged_r1 <- merged_r1 %>%
     children_education_engage_tutor = s4q15__5,
     children_education_engage_government_materials = s4q15__6,
     children_education_engage_other = s4q15__n96,
+    ## s4q15_other not in survey
     
     teacher_contact = s4q16,
     teacher_contact_channel_sms = s4q17__1,
@@ -151,6 +158,7 @@ renamed_merged_r1 <- merged_r1 %>%
     crop_planting_change_more_variety = s5aq20__6,
     crop_planting_change_delayed_planting = s5aq20__7,
     crop_planting_change_other = s5aq20__n96,
+    ##s5aq20_other not in survey
     
     covid_affect_planting_stayed_home = s5aq21__1,
     covid_affect_planting_reduced_labor = s5aq21__2,
@@ -162,6 +170,7 @@ renamed_merged_r1 <- merged_r1 %>%
     covid_affect_planting_care_family_member = s5aq21__8,
     covid_affect_planting_delayed_planting = s5aq21__9,
     covid_affect_planting_other = s5aq21__n96,
+    #s5aq21_other not is survey
     
     seeds_unable_transport_shops_stock_ranout = s5aq22__1,
     seeds_unable_transport_markets_closed = s5aq22__2,
@@ -207,7 +216,8 @@ renamed_merged_r1 <- merged_r1 %>%
 
     concerns_covid_hh_serious_illness = s8q01,
     concerns_covid_threat_hh_finances = a8q02
-      )
+      ) %>% 
+  rename_to_lower_snake()
 
 ## round 2 ---- 
 round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_result.dta")) %>%
@@ -361,7 +371,8 @@ renamed_merged_r2 <- merged_r2 %>%
     concerns_measures_curb_covid_suspension_gatherings = s9q09__3,
     concerns_measures_curb_covid_suspension_weddings = s9q09__4,
     concerns_measures_curb_covid_suspension_periodic_markets = s9q09__5
-  )
+  ) %>% 
+  rename_to_lower_snake()
 
 ## round 3 ---- 
 round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_result.dta")) %>%
@@ -385,6 +396,7 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
   mutate(round = 3)
+
 
 ##rename round3 columns
 renamed_merged_r3 <- merged_r3 %>% 
@@ -413,6 +425,7 @@ renamed_merged_r3 <- merged_r3 %>%
     mask_source_relatives = s4q14__4,
     mask_source_employer = s4q14__5,
     mask_source_other = s4q14__n96,
+    ## s4q14_other not in survey
     
     work_done_for_pay = s5q01,
     work_secured_absent  = s5q01a,
@@ -440,6 +453,7 @@ renamed_merged_r3 <- merged_r3 %>%
     safety_measures_by_employer_office_closed = s5q08f__7,
     safety_measures_by_employer_none = s5q08f__8,
     safety_measures_by_employer_other = s5q08f__n96,
+    ## s5q08f_other not in survey
     
     measures_followed_by_collegues = s5q08g,
     measures_followed_by_collegues_percentage = s5q08g_1,
@@ -489,7 +503,8 @@ renamed_merged_r3 <- merged_r3 %>%
     concerns_misuse_covid_funds = s9q07,
     concerns_government_corruption_lower_medical_quality = s9q08,
     concerns_discomfort_in_house = s9q09
-  )
+  ) %>% 
+  rename_to_lower_snake()
 
 ## round 4 ---- 
 round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_result.dta")) %>%
@@ -647,7 +662,8 @@ renamed_merged_r4 <- merged_r4 %>%
     concerns_misuse_covid_funds = s9q07,
     concerns_government_corruption_lower_medical_quality = s9q08,
     concerns_discomfort_in_house = s9q09
-  )
+  ) %>% 
+  rename_to_lower_snake()
 
 
 ## round 5 ---- 
@@ -754,6 +770,8 @@ renamed_merged_r5 <- merged_r5 %>%
     
     concerns_covid_hh_serious_illness = s9q01,
     concerns_covid_threat_hh_finances = s9q02,
+    concerns_relative_infected_covid = s9q03a,
+    concerns_covid_infection_even_not_tested = s9q03b,
     concerns_symptoms_cough = s9q03__1,
     concerns_symptoms_breath_shortness = s9q03__2,
     concerns_symptoms_fever = s9q03__3,
@@ -776,8 +794,8 @@ renamed_merged_r5 <- merged_r5 %>%
     concerns_self_worth_loss = s9q10_6,
     concerns_concentrating_work = s9q10_7,
     concerns_motion_speaking_change = s9q10_8
-  )
-
+  ) %>% 
+  rename_to_lower_snake()
 
 ## round 6 ----
 round_6_interview_result <- read_dta(here("raw_data", "round6", "interview_result.dta")) %>%
@@ -864,8 +882,24 @@ renamed_merged_r6 <- merged_r6 %>%
     
     work_hours_previous_week = s5q8b1,
     work_hours_by_member_week = s5q8c1,
-    #s5Oq0b_1, not in the survey
-    
+
+    # #s5oq0b_1 not is survey,
+    # work_individual_available_respond = s5oq0b,
+    # work_individual_responding = s5oq0c,
+    # work_done_for_pay = s5oq01,
+    # work_secured_absent = s5oq01a,
+    # work_secured_return = s5oq01b,
+    # work_missed_previously_reason = s5oq01c,
+    # work_secured_return_type = s5oq01d,
+    # work_to_find_job = s5oq03a,
+    # work_main_find_job = s5oq03b,
+    # work_done_previously_type = s5oq06,
+    # work_farm_products_intentions = s5oq06a,
+    # work_main_primary_description = s5oq05a,
+    # work_sector = s5oq05,
+    # work_hours = s5oq8b1,
+    # work_hours_usual = s5oq8c1,
+
     non_farm_business_operation = s5aq11,
     non_farm_business_closure_reason = s5aq11b,
     non_farm_business_another = s5aq11b_1,
@@ -917,7 +951,9 @@ renamed_merged_r6 <- merged_r6 %>%
     concerns_self_worth_loss = s9q10_6,
     concerns_concentrating_work = s9q10_7,
     concerns_motion_speaking_change = s9q10_8
-    )
+    ) %>% 
+  rename_to_lower_snake()
+colnames(renamed_merged_r6)
 
 ## round 7 ---- 
 round_7_interview_result <- read_dta(here("raw_data", "round7", "interview_result.dta")) %>%
@@ -959,7 +995,7 @@ renamed_merged_r7 <- merged_r7 %>%
     masks_source_other = s4q14__n96,
     
     medicine_buy_ability = s4q15,
-    
+ 
     non_farm_business_operation = s5aq11,
     non_farm_business_status = s5aq11a,
     non_farm_business_closure_reason = s5aq11b,
@@ -1007,6 +1043,7 @@ renamed_merged_r7 <- merged_r7 %>%
     safety_measures_by_employer_work_home = s5q08f__6,
     safety_measures_by_employer_closed_office = s5q08f__7,
     safety_measures_by_employer_none = s5q08f__8,
+    safety_measures_by_employer_other = s5q08f__96,
     safety_measures_followed = s5q08g,
     safety_measures_followed_percentage = s5q08g_1,
     
@@ -1047,7 +1084,7 @@ renamed_merged_r7 <- merged_r7 %>%
     concerns_covid_vaccine_availability_info_source_traditional_healer = s9q10b__13,
     concerns_covid_vaccine_availability_info_source_other = s9q10b__n96,
     concerns_covid_vaccine_priority_groups_knowledge = s9q10c,
-    concerns_covid_vaccine_priority_group_individula_included = s9q10d,
+    concerns_covid_vaccine_priority_group_individual_included = s9q10d,
     concerns_covid_vaccinated = s9q11,
     concerns_covid_no_second_vaccine_shot_reason = s9q11b,
     concerns_covid_vaccination_tried = s9q11c,
@@ -1055,8 +1092,12 @@ renamed_merged_r7 <- merged_r7 %>%
     concerns_covid_vaccine_received = s9q12,
     concerns_approved_free_covid_vaccination_accept = s9q13,
     concerns_covid_unvaccination_main_reason = s9q14,
-    concerns_covid_vaccine_tyoe_wanted = s9q15
-  )
+    concerns_covid_vaccine_type_wanted = s9q15
+  ) %>% 
+  rename_to_lower_snake()
 
 # merging all rounds renamed datasets
-all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6,renamed_merged_r7)
+all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6,renamed_merged_r7) %>%
+  select(-starts_with("BSEQ", ignore.case = TRUE)
+         )
+
