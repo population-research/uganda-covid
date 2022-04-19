@@ -8,7 +8,7 @@ output: html_document
 Contents(Variables): This section has different variables for the different 6 rounds [KEY: described as indices]
 
 
-SEC4 (Coding is similar in all respective rounds variables)
+SEC4 (Coding is similar in all respective rounds' variables)
 ---------------
 Round1: 1:7,7a:c,8:20
 Round2: 1e:f, 1:4,8:12
@@ -16,6 +16,7 @@ Round3: 5:14
 Round4: 1e:g,1:4,8:11,11a:b,12:18
 Round5: 5:15,15_1,16:18
 Round6: 1e:g,1:4,4_1,4_2,4_3,4_4,4_5,8,12:14,19:22
+Round7: 12:22 (different variable description as compared to counter parts)
 
 Coding (Example of how I was checking the coding and questions in every variable.)
 ----------------
@@ -199,9 +200,6 @@ REFUSED TO RESPOND.............99
 
 
 
-
-
-
 Round 4:
 "What was the main reason your household was unable to access water to wash your hands?
 DO NOT READ OPTIONS
@@ -253,7 +251,7 @@ AFRAID TO GET OUT AND GETTING THE VIRUS..........................11
 OTHER .........................12
 REFUSED TO RESPOND.............99
 
-
+--------------------------------------------------------------------------------------------------------
 
 
 Variable 5:
@@ -310,6 +308,97 @@ In the last 7 days, has your household been unable to buy [MAIN Staple Food]?
 YES ..........1
 NO ...........2 >>8 
 NOT TRIED ....3 >>8
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 12:
+
+Round 1: Different variable description
+Round 2: Different variable description
+
+Round 2: Different variable description
+Does your household own any of these assets?
+
+The rest:
+In the last 7 days, were you or any member of  your household unable to access masks?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 13:
+
+Round 1: different variable description.
+Were any of the children attending school before schools were closed due to corona virus?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 14:
+
+Round 1: different variable description.
+Have the children been engaged in any education or learning activities since the schools closed?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 15:
+
+Round 1: different variable description.
+In what types of education or learning activities have the children been engaged in the last week? 
+
+Round 4 & 5:
+If you could get tested for free for the COVID-19 virus, would you be willing to get tested?
+
+Round 7:
+In the last 7 days, has your household been able to buy medicine?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 16:
+
+Round 1:
+Have the children or anyone else in the household been in contact with their teachers in the last week?
+
+Round 4 & 5:
+If an approved vaccine to prevent coronavirus was available right now at no cost, would you agree to be vaccinated?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 17:
+
+Round 1:
+How have the children or others in your household been in contact with their teachers in the last week? 
+
+Round 4 & 5:
+What are the reasons you would not agree to be vaccinated?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 18:
+
+Round 1:
+In the last week, that is from Monday  up to Sunday , did you or any member of your household need to go to the bank, money agent (western union, moneygram, mobile money) or use the ATM?
+
+Round 4 & 5:
+What are the reasons you are not sure whether you would agree to be vaccinated?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 19:
+
+Round 1:
+Were you able to successfully access it?
+
+Round 6 & 7:
+Have you or any member of your household  needed any medical services ( treatment or consultation)  in the past 4 weeks whether there was illness or not?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 20:
+
+Round 1:
+Why were you not able to access it?
+
+Round 6 & 7:
+What type of service did you or any member of your household need?  
+
 ---------------------------------------------------------------------------------------------------
 END OF DEMONSTRATION
 ---------------------------------------------------------------------------------------------------
@@ -322,8 +411,9 @@ Round2: 1,1a:c,3,3a:b,4a:b,5:8,8a:e,9:10
 Round3: 1,1a:c,3,3a:b,4a:b,5:8,8a:c,8f:g,8g_1,9:10
 Round4: 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,7:8,8a:c,8f:g,8g_1,9:10
 Round5: 1,1a:c,3,3a:b,4a:b,5a,5:6,6a
-Round6(5resp): 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,8b1,8c1
+Round6(5resp): 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,8b1:c1
 Round6(5other): 0a:c,1,1a:d,3a:b,6,6a,5a,5,8b1,8c1
+Round7: 1,1a:c,3,3a:b,4a:b,5a,5:6,6a,8f:g,8g_1,8b1:c1
 
 Round 1: 
 Variable 1a: (Different from the rest)
@@ -444,6 +534,7 @@ Round3: 11,11a:c,12:14,15a:b
 Round4: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 Round5: 11,11a:b,11b1,11c_1,12_1,11c,12:15
 Round6: 11,11a:b,11b1,11c_1,12_1,11c,12:15
+Round7: 11,11a:b,11b1,11c_1,12_1,11c,12:15,15a:b
 
 Variable 11a:
 Round2 has different coding
@@ -493,6 +584,7 @@ Round 2 and Round 3 have different variable descriptions.
 
 
 SEC7 (Has all similar variables and similar coding)  
+## section 7 as 8 in some rounds....
 
 Round1: 1:8
 Round2: 1:8
@@ -500,6 +592,53 @@ Round3: 1:8
 Round4: 1:8
 Round5: 1:8
 Round6: 1:8
+Round7: 1:8
+
+SEC9(section 8 as section 9 in round 1)
+
+Round1: 1:2
+Round2: 1:9
+Round3: 1:9
+Round4: 1:9
+Round5: 1:6,9:10 
+Round6: 1:9
+Round7: 3a:b,4:6,10,10b:d,11b:d,12:15
+
+Variable 4:
+
+Different variable descriptions.
+Round 2:5 --> Has anyone in your household ever received a laboratory diagnosis for COVID-19?
+
+Round 6:7 --> Since the last interview, has anyone in your household ever received a laboratory diagnosis for COVID-19?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 5:
+
+Round 7 : Different variable description
+What kind of drugs did you use for COVID-19 management?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 6:
+
+Different variable description in round 7.
+Which of the COVID-19 treatment method you trust the most?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 9:
+
+Different variable description in round 2.
+Do you think that the following measures would curb the spread of COVID19 ?
+
+--------------------------------------------------------------------------------------------------------
+
+Variable 10:
+
+Different variable description in round 5 and 7.
+
+--------------------------------------------------------------------------------------------------------
 
 ______________________________________________________________________________________
 DONE CHECKING FOR CODING.
