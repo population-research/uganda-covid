@@ -606,6 +606,7 @@ renamed_merged_r3 <- merged_r3 %>%
     concerns_discomfort_in_house = s9q09
   ) %>% 
   rename_to_lower_snake()
+colnames(renamed_merged_r3)
 
 ## round 4 ---- 
 round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_result.dta")) %>%
@@ -1034,7 +1035,7 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_5_sec8, by = c("hhid")) %>% 
   left_join(round_5_sec9, by = c("hhid")) %>% 
   mutate(round = 6)
-colnames(merged_r6)
+
 ## rename round6 columns
 renamed_merged_r6 <- merged_r6 %>% 
   rename(  
@@ -1075,23 +1076,23 @@ renamed_merged_r6 <- merged_r6 %>%
     medical_services_need_emergency_care = s4q20__6,
     medical_services_need_pharmacy = s4q20__7,
     
-    # work_done_for_pay = s5q01,
-    # work_secured_absent = s5q01a,
-    # work_secured_return = s5q01b,
-    # work_missed_previously_reason = s5q01c,
-    # work_stop_reason = s5q03,
-    # work_to_find_job = s5q03a,
-    # work_main_find_job  = s5q03b,
-    work_same_as_last_time = s5q04a,
-    work_change_reason = s5q04b,
-    work_main_primary_activities = s5q05a,
-    work_main_activity = s5q05,
-    work_area = s5q06,
+    work_done_for_pay_respondent = s5q01,
+    work_secured_absent_respondent = s5q01a,
+    work_secured_return_respondent = s5q01b,
+    work_missed_previously_reason_respondent = s5q01c,
+    work_stop_reason_respondent = s5q03,
+    work_to_find_job_respondent = s5q03a,
+    work_main_find_job_respondent  = s5q03b,
+    work_same_as_last_time_respondent = s5q04a,
+    work_change_reason_respondent = s5q04b,
+    work_main_primary_activities_respondent = s5q05a,
+    work_main_activity_respondent = s5q05,
+    work_area_respondent = s5q06,
     
-    family_products_intentions = s5q06a,
+    family_products_intentions_respondent = s5q06a,
     
-    work_hours_previous_week = s5q8b1,
-    work_hours_by_member_week = s5q8c1,
+    work_hours_previous_week_respondent = s5q8b1,
+    work_hours_by_member_week_respondent = s5q8c1,
 
     #s5oq0b_1 not is survey,
     work_individual_available_respond = s5Oq0b,
@@ -1124,6 +1125,42 @@ renamed_merged_r6 <- merged_r6 %>%
     revenue_sales_non_family_business_compared_year = s5aq15,
     
     non_farm_business_temporary_close_status = s5aq11a,
+    
+    #s5bq16,s5bq18_1,s5bq18_2,s5bq18_3,s5bq19,s5bq20__1,s5bq20__2,s5bq20__3,s5bq20__4,s5bq20__5,s5bq20__6,s5bq20__7
+    # not is survey
+    #s5bq21a,s5bq21b,s5bq21c,s5bq21d not in survey
+    agriculture_current_farm_gate_price_small_banana_bunch = s5bq21__1,
+    agriculture_current_farm_gate_price_large_banana_bunch = s5bq21__3,
+    #21_4 5 and 6 not is survey hence considered as in previous rounds 
+    agriculture_current_farm_gate_price_100kg_cassava_bag = s5bq21__4,
+    agriculture_current_farm_gate_price_basin_dry_casava_chips = s5bq21__5,
+    agriculture_current_farm_gate_price_kg_dry_cassava_flour = s5bq21__6,
+    agriculture_current_farm_gate_price_kg_dry_beans = s5bq21__7,
+    agriculture_current_farm_gate_price_basin_fresh_beans = s5bq21__9,
+    agriculture_current_farm_gate_price_kg_maize_grains = s5bq21__8,
+    
+    agriculture_farm_production_normally_sold = s5bq23,
+    agriculture_revenues_expected_from_season_sales = s5bq24,
+    agriculture_farm_products_needed_to_sale_since_last_call = s5bq25,
+    agriculture_hh_able_sell_farm_products = s5bq26,
+    agricluture_hh_products_sale_location_farm = s5bq27__1,
+    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
+    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
+    
+    livestock_products_produced_since_last_time = s5dq12,
+    livestock_products_sales_level = s5dq13,
+    livestock_products_sales_decline_reason_closed_markets =  s5dq14__1,
+    livestock_products_sales_decline_reason_restaurants_closed = s5dq14__2,
+    livestock_products_sales_decline_reason_limited_transport = s5dq14__3,
+    livestock_products_sales_decline_reason_travel_restrictions = s5dq14__4,
+    livestock_products_sales_decline_reason_prices_fall = s5dq14__5,
+    livestock_products_no_sales_reason_closed_markerts = s5dq14_1__1,
+    livestock_products_no_sales_reason_closed_restaurants = s5dq14_1__2,
+    livestock_products_no_sales_reason_limited_transport = s5dq14_1__3,
+    livestock_products_no_sales_reason_travel_restrictions = s5dq14_1__4,
+    livestock_products_no_sales_reason_prices_fall = s5dq14_1__5,
+    livestock_products_no_sales_reason_home_consumption = s5dq14_1__6,
+    livestock_products_price_level_since_last_time = s5dq15,
     
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
@@ -1229,20 +1266,20 @@ renamed_merged_r7 <- merged_r7 %>%
     changes_to_be_made_in_business_no_change = s5aq15b__7,
     changes_to_be_made_in_business_other = s5aq15b__n96,
     
-    work_done_for_pay = s5q01,
-    work_secured_absent = s5q01a,
-    work_secured_return = s5q01b,   
-    work_missed_previously_reason = s5q01c,
-    work_stop_reason = s5q03,
-    work_to_find_job = s5q03a,
-    work_main_find_job  = s5q03b,
-    work_same_as_last_time = s5q04a,
-    work_change_reason = s5q04b,
-    work_main_primary_activities = s5q05a,
-    work_main_activity = s5q05, 
-    work_area = s5q06,
+    work_done_for_pay_respondent = s5q01,
+    work_secured_absent_respondent = s5q01a,
+    work_secured_return_respondent = s5q01b,   
+    work_missed_previously_reason_respondent = s5q01c,
+    work_stop_reason_respondent = s5q03,
+    work_to_find_job_respondent = s5q03a,
+    work_main_find_job_respondent  = s5q03b,
+    work_same_as_last_time_respondent = s5q04a,
+    work_change_reason_respondent = s5q04b,
+    work_main_primary_activities_respondent = s5q05a,
+    work_main_activity_respondent = s5q05, 
+    work_area_respondent = s5q06,
     
-    family_products_intentions = s5q06a,
+    family_products_intentions_respondent = s5q06a,
     
     safety_measures_by_employer_disinfectants = s5q08f__1,
     safety_measures_by_employer_sanitizer = s5q08f__2,
@@ -1256,8 +1293,8 @@ renamed_merged_r7 <- merged_r7 %>%
     safety_measures_followed = s5q08g,
     safety_measures_followed_percentage = s5q08g_1,
     
-    work_hours_primary_activity_previously =s5q8b1,
-    work_hours_primary_activity_usually = s5q8c1,
+    work_hours_primary_activity_previously_respondent =s5q8b1,
+    work_hours_primary_activity_usually_respondent = s5q8c1,
 
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
@@ -1309,4 +1346,3 @@ renamed_merged_r7 <- merged_r7 %>%
 all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6,renamed_merged_r7) %>%
   select(-starts_with("BSEQ", ignore.case = TRUE)
          )
-## add all section 5s in subsequent rounds
