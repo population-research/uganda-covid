@@ -21,7 +21,7 @@ round_1_cover  <- read_dta(here( "raw_data", "round1", "Cover.dta"))
 round_1_sec1 <- read_dta(here( "raw_data", "round1", "SEC1.dta" )) ## individual level
 round_1_sec4  <- read_dta(here( "raw_data", "round1", "SEC4.dta" )) 
 round_1_sec5  <- read_dta(here( "raw_data", "round1", "SEC5.dta" )) 
-round_1_sec5a  <- read_dta(here( "raw_data", "round1", "SEC5A.dta" )) 
+round_1_sec5a  <- read_dta(here( "raw_data", "round1", "SEC5A.dta" ))
 round_1_sec6  <- read_dta(here( "raw_data", "round1", "SEC6.dta" )) ## individual level
 round_1_sec7  <- read_dta(here( "raw_data", "round1", "SEC7.dta" )) 
 round_1_sec8  <- read_dta(here( "raw_data", "round1", "SEC8.dta" )) ## individual level, sec8 as sec9 for concerns not coping strategies
@@ -226,9 +226,13 @@ round_2_cover  <- read_dta(here( "raw_data", "round2", "Cover.dta" ))
 
 
 round_2_sec1 <- read_dta(here( "raw_data", "round2", "SEC1.dta" )) 
+
 round_2_sec4  <- read_dta(here( "raw_data", "round2", "SEC4.dta" )) 
 round_2_sec5  <- read_dta(here( "raw_data", "round2", "SEC5.dta" )) 
 round_2_sec5a  <- read_dta(here( "raw_data", "round2", "SEC5A.dta" )) 
+round_2_sec5b  <- read_dta(here( "raw_data", "round2", "SEC5B.dta" )) 
+round_2_sec5c_1  <- read_dta(here( "raw_data", "round2", "SEC5C_1.dta" )) 
+round_2_sec5c  <- read_dta(here( "raw_data", "round2", "SEC5C.dta" ))
 round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" )) 
 # sec8 as 7
 round_2_sec8  <- read_dta(here( "raw_data", "round2", "SEC8.dta" )) 
@@ -239,6 +243,9 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec4, by = c("HHID")) %>% 
   left_join(round_2_sec5, by = c("HHID")) %>% 
   left_join(round_2_sec5a, by = c("HHID")) %>% 
+  left_join(round_2_sec5b, by = c("HHID")) %>% 
+  left_join(round_2_sec5c_1, by = c("HHID")) %>% 
+  left_join(round_2_sec5c, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
   mutate(round = 2)
@@ -342,6 +349,67 @@ renamed_merged_r2 <- merged_r2 %>%
     
     non_farm_business_temporary_close_status = s5aq11a,
     
+    harvest_hh_grown_any_crop = s5bq01,
+    ##crop grown by code no names indicated
+    harvest_hh_main_crop_grown_1 = s5bq02_1,
+    harvest_hh_main_crop_grown_2 = s5bq02_2,
+    harvest_hh_main_crop_grown_3 = s5bq02_3,
+    harvest_main_crop_progress = s5bq03,
+    harvest_crop_decisions_affected_covid = s5bq04,
+    harvest_how_crop_decisions_affected_covid_safety_measures = s5bq05__1,
+    harvest_crop_decisions_affected_covid_no_workers_hired = s5bq05__2,
+    harvest_crop_decisions_affected_covid_less_workers_hired = s5bq05__3,
+    harvest_crop_decisions_affected_covid_abandoned_crops = s5bq05__4,
+    harvest_crop_decisions_affected_covid_delayed_harvesting = s5bq05__5,
+    harvest_crop_decisions_affected_covid_other = s5bq05__n96,
+    harvest_measures_safety_covid_masks = s5bq06__1,
+    harvest_measures_safety_covid_no_hand_shakes = s5bq06__2,
+    harvest_measures_safety_covid_gloves = s5bq06__3,
+    harvest_measures_safety_covid_keeping_distance = s5bq06__4,
+    harvest_measures_safety_covid_others = s5bq06__5,
+    harvest_main_reason_not_hire_workers = s5bq07,
+    harvest_crops_needed_sale_since_last_call = s5bq08,
+    harvest_household_able_sale_farm_products = s5bq09,
+    
+    livestock_products_sale_level = s5cq13,
+    livestock_sale_declined_reason_markets_closed =  s5cq14_1__1,
+    livestock_sale_declined_reason_restaurants_closed = s5cq14_1__2,
+    livestock_sale_declined_reason_limited_transport = s5cq14_1__3,
+    livestock_sale_declined_reason_travel_restrictions = s5cq14_1__4,
+    livestock_sale_declined_reason_prices_fall = s5cq14_1__5,
+    livestock_sale_declined_reason_other = s5cq14_1__6,
+    # s5cq14_3 is 14a
+    livestock_no_sales_reason_markets_closed = s5cq14_2__1,
+    livestock_no_sales_reason_restaurants_closed = s5cq14_2__2,
+    livestock_no_sales_reason_limited_transport = s5cq14_2__3,
+    livestock_no_sales_reason_travel_restrictions = s5cq14_2__4,
+    livestock_no_sales_reason_prices_fall = s5cq14_2__5,
+    livestock_no_sales_reason_home_consumption = s5cq14_2__6,
+    livestock_price_level_since_march = s5cq15,
+    livestock_hh_kept = s5cq01,
+    livestock_type_kept_improved_large_ruminants = s5cq02__1,
+    livestock_type_kept_indiginous_large_ruminants = s5cq02__2,
+    livestock_type_kept_improved_small_ruminants = s5cq02__3,
+    livestock_type_kept_indiginous_small_ruminants = s5cq02__4,
+    livestock_type_kept_improved_poultry = s5cq02__5,
+    livestock_type_kept_local_poultry = s5cq02__6,
+    livestock_type_kept_pigs = s5cq02__7,
+    livestock_type_kept_equines = s5cq02__8,
+    livestock_activities_affected_by_covid = s5cq03,
+    livestock_activitied_covid_effects_reduced_animal_feed = s5cq04__1,
+    livestock_activitied_covid_effects_reduced_animal_breed_access = s5cq04__2,
+    livestock_activitied_covid_effects_reduced_veterinary_access = s5cq04__3,
+    livestock_activitied_covid_effects_reduced_markets_access = s5cq04__4,
+    livestock_activitied_covid_effects_reduced_milk_eggs_production = s5cq04__5,
+    livestock_activitied_covid_effects_compromised_storage = s5cq04__6,
+    livestock_activitied_covid_effects_reduced_processing = s5cq04__7,
+    livestock_animals_wanted_sale = s5cq08,
+    livestock_animals_wanted_able_sale = s5cq09,
+    livestock_animales_sale_unable_reason_limited_transport = s5cq11__2,
+    livestock_animales_sale_unable_reason_travel_restriction = s5cq11__3,
+    livestock_animales_sale_unable_reason_prices_fall = s5cq11__4,
+    livestock_animales_sale_unable_reason_other = s5cq11__5, ## there is no five hence called it other 
+    
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
@@ -383,6 +451,8 @@ round_3_sec1 <- read_dta(here( "raw_data", "round3", "SEC1.dta" ))
 round_3_sec4  <- read_dta(here( "raw_data", "round3", "sec4.dta" )) 
 round_3_sec5  <- read_dta(here( "raw_data", "round3", "sec5.dta" )) 
 round_3_sec5a  <- read_dta(here( "raw_data", "round3", "sec5a.dta" )) 
+round_3_sec5b  <- read_dta(here( "raw_data", "round3", "sec5b.dta" )) 
+round_3_sec5d  <- read_dta(here( "raw_data", "round3", "sec5d.dta" )) 
 round_3_sec6  <- read_dta(here( "raw_data", "round3", "sec6.dta" )) 
 # sec8 as 7
 round_3_sec8  <- read_dta(here( "raw_data", "round3", "sec8.dta" )) 
@@ -393,6 +463,8 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec4, by = c("hhid")) %>% 
   left_join(round_3_sec5, by = c("hhid")) %>% 
   left_join(round_3_sec5a, by = c("hhid")) %>% 
+  left_join(round_3_sec5b, by = c("hhid")) %>% 
+  left_join(round_3_sec5d, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
   mutate(round = 3)
@@ -478,6 +550,35 @@ renamed_merged_r3 <- merged_r3 %>%
     non_farm_businesses_number = s5q15b,
     non_farm_business_temporary_close_status = s5aq11a,
     
+    agriculture_hh_worked_land_preparation = s5bq16,
+    ## crop by code
+    agriculture_hh_main_crops_cultivated_1 = s5bq18_1,
+    agriculture_hh_main_crops_cultivated_2 = s5bq18_2,
+    agriculture_hh_main_crops_cultivated_3 = s5bq18_3,
+    agriculture_expected_output_based_current_activities = s5bq19,
+    agriculture_expected_harvest_quantity = s5bq20,
+    agriculture_expected_harvest_unit = s5bq20b, ## double check 
+    agriculture_expected_harvest_kg_equivalent = s5bq20c,
+    agriculture_current_farm_gate_price_small_banana_bunch = s5bq21_1,
+    agriculture_current_farm_gate_price_medium_banana_bunch = s5bq21_2,
+    agriculture_current_farm_gate_price_large_banana_bunch = s5bq21_3,
+    agriculture_current_farm_gate_price_100kg_cassava_bag = s5bq21_4,
+    agriculture_current_farm_gate_price_basin_dry_casava_chips = s5bq21_5,
+    agriculture_current_farm_gate_price_kg_dry_cassava_flour = s5bq21_6,
+    agriculture_current_farm_gate_price_kg_dry_beans = s5bq21_7,
+    agriculture_current_farm_gate_price_basin_fresh_beans = s5bq21_9,
+    agriculture_current_farm_gate_price_kg_maize_grains = s5bq21_8,
+    agriculture_farm_production_normally_sold = s5bq23,
+    agriculture_revenues_expected_from_season_sales = s5bq24,
+    agriculture_famr_products_needed_to_sale_since_last_call = s5bq25,
+    agriculture_hh_able_sell_farm_products = s5bq26,
+    agricluture_hh_products_sale_location_farm = s5bq27__1,
+    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
+    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
+    agricluture_hh_products_sale_location_other = s5bq27__n96,
+    ##section5c runs has only variables of 1,8,9, and 11 in survey
+    # s5cq13,s5cq14__1,s5cq14__2,s5cq14__3,s5cq14__4,s5cq14__5,s5cq14__6,s5cq14a__1,s5cq14a__2,s5cq14a__3,s5cq14a__4,s5cq14a__5,s5cq14a__6,s5cq15
+    
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
@@ -515,7 +616,7 @@ round_4_sec1 <- read_dta(here( "raw_data", "round4", "SEC1.dta" ))
 round_4_sec4  <- read_dta(here( "raw_data", "round4", "SEC4.dta" )) 
 round_4_sec5  <- read_dta(here( "raw_data", "round4", "SEC5.dta" )) 
 round_4_sec5a  <- read_dta(here( "raw_data", "round4", "SEC5A.dta" )) 
-round_4_sec6  <- read_dta(here( "raw_data", "round4", "SEC6.dta" )) 
+round_4_sec5b  <- read_dta(here( "raw_data", "round4", "SEC5B.dta" )) 
 ## sec7 found to be sec8 
 round_4_sec8  <- read_dta(here( "raw_data", "round4", "SEC8.dta" )) 
 round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" )) 
@@ -529,6 +630,7 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
   left_join(round_4_sec4, by = c("HHID")) %>% 
   left_join(round_4_sec5, by = c("HHID")) %>% 
   left_join(round_4_sec5a, by = c("HHID")) %>%
+  left_join(round_4_sec5b, by = c("HHID")) %>%
   left_join(round_4_sec8, by = c("HHID")) %>% ##as sec 7
   left_join(round_4_sec9, by = c("HHID")) %>% 
   mutate(round = 4)
@@ -637,6 +739,57 @@ renamed_merged_r4 <- merged_r4 %>%
     
     non_farm_business_temporary_close_status = s5aq11a,
     
+    agriculture_hh_worked_land_preparation = s5bq16,
+    agriculture_hh_planning_grow_crops_that_season = s5bq17,
+    agriculture_crops_not_grown_that_season_reason_stay_home_advice = s5bq17_1__1,
+    agriculture_crops_not_grown_that_season_reason_reduced_labor = s5bq17_1__2,
+    agriculture_crops_not_grown_that_season_reason_travel_restrictions = s5bq17_1__3,
+    agriculture_crops_not_grown_that_season_reason_unable_transport_seeds = s5bq17_1__4,
+    agriculture_crops_not_grown_that_season_reason_unable_transport_fertilizer = s5bq17_1__5,
+    agriculture_crops_not_grown_that_season_reason_unable_transport_other_inputs = s5bq17_1__6,
+    agriculture_crops_not_grown_that_season_reason_unable_transport_outputs = s5bq17_1__7,
+    agriculture_crops_not_grown_that_season_reason_family_ill = s5bq17_1__8,
+    agriculture_crops_not_grown_that_season_reason_other = s5bq17_1__n96,
+    # crop codes used in q18
+    agriculture_hh_main_crops_cultivated_1 = s5bq18_1,
+    agriculture_hh_main_crops_cultivated_2 = s5bq18_2,
+    agriculture_hh_main_crops_cultivated_3 = s5bq18_3,
+    agriculture_planting_activities_change_covid = s5bq19,
+    agriculture_crop_planting_change_abandoned = s5bq20__1,
+    agriculture_crop_planting_change_reduced_planted_area = s5bq20__2,
+    agriculture_crop_planting_change_increased_planted_area = s5bq20__3,
+    agriculture_crop_planting_change_planted_less_time_mature_crops = s5bq20__4,
+    agriculture_crop_planting_change_less_variety_planted = s5bq20__5,
+    agriculture_crop_planting_change_more_variety_planted = s5bq20__6,
+    agriculture_crop_planting_change_delayed_planting = s5bq20__7,
+    agriculture_crop_planting_change_other = s5bq20__n96,
+    agriculture_ways_covid_affected_planting_stay_home = s5bq21__1,
+    agriculture_ways_covid_affected_planting_movement_restriction = s5bq21__3,
+    agriculture_ways_covid_affected_planting_unable_transport_seeds = s5bq21__4,
+    agriculture_ways_covid_affected_planting_unable_transport_fertilizer = s5bq21__5,
+    agriculture_ways_covid_affected_planting_unable_transport_other_inputs = s5bq21__6,
+    agriculture_ways_covid_affected_planting_unable_transport_outputs = s5bq21__7,
+    agriculture_ways_covid_affected_planting_fammily_ill = s5bq21__8,
+    agriculture_ways_covid_affected_planting_delayed_planting = s5bq21__9,
+    agriculture_ways_covid_affected_planting_other = s5bq21__n96,
+    agriculture_current_farm_gate_price_small_banana_bunch = s5bq21a,
+    agriculture_current_farm_gate_price_medium_banana_bunch = s5bq21b,
+    agriculture_current_farm_gate_price_large_banana_bunch = s5bq21c,
+    agriculture_current_farm_gate_price_100kg_cassava_bag = s5bq21d,
+    agriculture_current_farm_gate_price_basin_dry_casava_chips = s5bq21e,
+    agriculture_current_farm_gate_price_kg_dry_cassava_flour = s5bq21f,
+    agriculture_current_farm_gate_price_kg_dry_beans = s5bq21g,
+    agriculture_current_farm_gate_price_basin_fresh_beans = s5bq21h,
+    agriculture_current_farm_gate_price_kg_maize_grains = s5bq21i,
+    agriculture_farm_production_normally_sold = s5bq23,
+    agriculture_revenues_expected_from_season_sales = s5bq24,
+    agriculture_famr_products_needed_to_sale_since_last_call = s5bq25,
+    agriculture_hh_able_sell_farm_products = s5bq26,
+    agricluture_hh_products_sale_location_farm = s5bq27__1,
+    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
+    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
+    agricluture_hh_products_sale_location_other = s5bq27__n96,
+    
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
@@ -675,16 +828,21 @@ round_5_sec1 <- read_dta(here( "raw_data", "round5", "SEC1.dta" ))
 round_5_sec4  <- read_dta(here( "raw_data", "round5", "sec4.dta" )) 
 round_5_sec5  <- read_dta(here( "raw_data", "round5", "sec5.dta" )) 
 round_5_sec5a  <- read_dta(here( "raw_data", "round5", "sec5a.dta" )) 
+round_5_sec5b  <- read_dta(here( "raw_data", "round5", "sec5b.dta" )) 
+round_5_sec5d  <- read_dta(here( "raw_data", "round5", "sec5d.dta" )) 
 round_5_sec6  <- read_dta(here( "raw_data", "round5", "sec6.dta" )) 
 # sec 7 as sec8
 round_5_sec8 <- read_dta(here( "raw_data", "round5", "sec8.dta" )) 
 round_5_sec9  <- read_dta(here( "raw_data", "round5", "sec9.dta" )) 
+
 
 ## merge round5 datasets
 merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid")) %>% 
   left_join(round_5_sec4, by = c("hhid")) %>% 
   left_join(round_5_sec5, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>%
+  left_join(round_5_sec5b, by = c("hhid")) %>%
+  left_join(round_5_sec5d, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(round = 5)
@@ -759,6 +917,54 @@ renamed_merged_r5 <- merged_r5 %>%
     
     non_farm_business_temporary_close_status = s5aq11a,
     
+    agriculture_hh_worked_land_preparation = s5bq16,
+    ## crop by code
+    agriculture_hh_main_crops_cultivated_1 = s5bq18_1,
+    agriculture_hh_main_crops_cultivated_2 = s5bq18_2,
+    agriculture_hh_main_crops_cultivated_3 = s5bq18_3,
+    agriculture_planting_activities_change_covid = s5bq19,
+    agriculture_crop_planting_change_abandoned = s5bq20__1,
+    agriculture_crop_planting_change_reduced_planted_area = s5bq20__2,
+    agriculture_crop_planting_change_increased_planted_area = s5bq20__3,
+    agriculture_crop_planting_change_planted_less_time_mature_crops = s5bq20__4,
+    agriculture_crop_planting_change_less_variety_planted = s5bq20__5,
+    agriculture_crop_planting_change_more_variety_planted = s5bq20__6,
+    agriculture_crop_planting_change_delayed_planting = s5bq20__7,
+    agriculture_ways_covid_affected_planting_stay_home = s5bq21__1,
+    agriculture_ways_covid_affected_planting_movement_restriction = s5bq21__3,
+    agriculture_ways_covid_affected_planting_unable_transport_seeds = s5bq21__4,
+    agriculture_ways_covid_affected_planting_unable_transport_fertilizer = s5bq21__5,
+    agriculture_ways_covid_affected_planting_unable_transport_other_inputs = s5bq21__6,
+    agriculture_ways_covid_affected_planting_unable_transport_outputs = s5bq21__7,
+    agriculture_ways_covid_affected_planting_fammily_ill = s5bq21__8,
+    agriculture_ways_covid_affected_planting_delayed_planting = s5bq21__9,
+    agriculture_main_crops =  s5bq21a,
+    agriculture_main_crops_completed_planting = s5bq21b,
+    agriculture_crops_planted_area_acres = s5bq21c,
+    agriculture_crop_out_expectations = s5bq21d,
+    agriculture_farm_production_normally_sold = s5bq23,
+    agriculture_revenues_expected_from_season_sales = s5bq24,
+    agriculture_famr_products_needed_to_sale_since_last_call = s5bq25,
+    agriculture_hh_able_sell_farm_products = s5bq26,
+    agricluture_hh_products_sale_location_farm = s5bq27__1,
+    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
+    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
+    
+    livestock_products_produced_since_last_time = s5dq12,
+    livestock_products_sales_level_since_last_time = s5dq13,
+    livestock_products_sales_decline_reason_closed_markets = s5dq14__1,
+    livestock_products_sales_decline_reason_restaurants_closed = s5dq14__2,
+    livestock_products_sales_decline_reason_limited_transport = s5dq14__3,
+    livestock_products_sales_decline_reason_travel_restrictions = s5dq14__4,
+    livestock_products_sales_decline_reason_prices_fall = s5dq14__5,
+    livestock_products_no_sales_reason_markets_closed = s5dq14_1__1,
+    livestock_products_no_sales_reason_restaurants_closed = s5dq14_1__2,
+    livestock_products_no_sales_reason_limited_transport = s5dq14_1__3,
+    livestock_products_no_sales_reason_travel_restrictions = s5dq14_1__4,
+    livestock_products_no_sales_reason_prices_fall = s5dq14_1__5,
+    livestock_products_no_sales_reason_only_consumption = s5dq14_1__6,
+    livestock_product_price_level_since_last_time = s5dq15,
+    
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
@@ -797,6 +1003,7 @@ renamed_merged_r5 <- merged_r5 %>%
   ) %>% 
   rename_to_lower_snake()
 
+
 ## round 6 ----
 round_6_interview_result <- read_dta(here("raw_data", "round6", "interview_result.dta")) %>%
   select(c('hhid','Rq09','Rq10'))
@@ -805,15 +1012,16 @@ round_6_cover  <- read_dta(here( "raw_data", "round6", "cover.dta" ))
 round_6_sec1 <- read_dta(here( "raw_data", "round6", "sec1.dta" )) 
 round_6_sec4  <- read_dta(here( "raw_data", "round6", "sec4_1.dta" )) 
 round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
-#  sec5 as sec5resp and sec5other
+round_6_sec5b  <- read_dta(here( "raw_data", "round6", "sec5b.dta" )) 
+round_6_sec5d  <- read_dta(here( "raw_data", "round6", "sec5d.dta" )) 
 round_6_sec5_resp <- read_dta(here( "raw_data", "round6", "sec5_resp.dta" ))
 round_6_sec5_other <- read_dta(here( "raw_data", "round6", "sec5_other.dta" ))
 
-round_6_sec5  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
 round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
 #  sec7 as sec8
 round_6_sec8  <- read_dta(here( "raw_data", "round6", "sec8.dta" )) 
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
+
 
 ## merge round6 datasets
 merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %>% 
@@ -821,10 +1029,12 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_6_sec5_resp, by = c("hhid")) %>% 
   left_join(round_6_sec5_other, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>% 
+  left_join(round_5_sec5b, by = c("hhid")) %>% 
+  left_join(round_5_sec5d, by = c("hhid")) %>% 
   left_join(round_5_sec8, by = c("hhid")) %>% 
   left_join(round_5_sec9, by = c("hhid")) %>% 
   mutate(round = 6)
-
+colnames(merged_r6)
 ## rename round6 columns
 renamed_merged_r6 <- merged_r6 %>% 
   rename(  
@@ -865,17 +1075,17 @@ renamed_merged_r6 <- merged_r6 %>%
     medical_services_need_emergency_care = s4q20__6,
     medical_services_need_pharmacy = s4q20__7,
     
-    work_done_for_pay = s5q01,
-    work_secured_absent = s5q01a,
-    work_secured_return = s5q01b,   
-    work_missed_previously_reason = s5q01c,
-    work_stop_reason = s5q03,
-    work_to_find_job = s5q03a,
-    work_main_find_job  = s5q03b,
+    # work_done_for_pay = s5q01,
+    # work_secured_absent = s5q01a,
+    # work_secured_return = s5q01b,
+    # work_missed_previously_reason = s5q01c,
+    # work_stop_reason = s5q03,
+    # work_to_find_job = s5q03a,
+    # work_main_find_job  = s5q03b,
     work_same_as_last_time = s5q04a,
     work_change_reason = s5q04b,
     work_main_primary_activities = s5q05a,
-    work_main_activity = s5q05, 
+    work_main_activity = s5q05,
     work_area = s5q06,
     
     family_products_intentions = s5q06a,
@@ -883,22 +1093,22 @@ renamed_merged_r6 <- merged_r6 %>%
     work_hours_previous_week = s5q8b1,
     work_hours_by_member_week = s5q8c1,
 
-    # #s5oq0b_1 not is survey,
-    # work_individual_available_respond = s5oq0b,
-    # work_individual_responding = s5oq0c,
-    # work_done_for_pay = s5oq01,
-    # work_secured_absent = s5oq01a,
-    # work_secured_return = s5oq01b,
-    # work_missed_previously_reason = s5oq01c,
-    # work_secured_return_type = s5oq01d,
-    # work_to_find_job = s5oq03a,
-    # work_main_find_job = s5oq03b,
-    # work_done_previously_type = s5oq06,
-    # work_farm_products_intentions = s5oq06a,
-    # work_main_primary_description = s5oq05a,
-    # work_sector = s5oq05,
-    # work_hours = s5oq8b1,
-    # work_hours_usual = s5oq8c1,
+    #s5oq0b_1 not is survey,
+    work_individual_available_respond = s5Oq0b,
+    work_individual_responding = s5Oq0c,
+    work_done_for_pay = s5Oq01,
+    work_secured_absent = s5Oq01a,
+    work_secured_return = s5Oq01b,
+    work_missed_previously_reason = s5Oq01c,
+    work_secured_return_type = s5Oq01d,
+    work_to_find_job = s5Oq03a,
+    work_main_find_job = s5Oq03b,
+    work_done_previously_type = s5Oq06,
+    work_farm_products_intentions = s5Oq06a,
+    work_main_primary_description = s5Oq05a,
+    work_sector = s5Oq05,
+    work_hours = s5Oq8b1,
+    work_hours_usual = s5Oq8c1,
 
     non_farm_business_operation = s5aq11,
     non_farm_business_closure_reason = s5aq11b,
@@ -953,7 +1163,6 @@ renamed_merged_r6 <- merged_r6 %>%
     concerns_motion_speaking_change = s9q10_8
     ) %>% 
   rename_to_lower_snake()
-colnames(renamed_merged_r6)
 
 ## round 7 ---- 
 round_7_interview_result <- read_dta(here("raw_data", "round7", "interview_result.dta")) %>%
@@ -977,7 +1186,7 @@ merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %
   left_join(round_7_sec8, by = c("HHID")) %>% 
   left_join(round_7_sec9, by = c("HHID")) %>% 
   mutate(round = 7)
-
+         
 ## renaming merged round7
 renamed_merged_r7 <- merged_r7 %>% 
   rename(
@@ -1100,4 +1309,4 @@ renamed_merged_r7 <- merged_r7 %>%
 all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6,renamed_merged_r7) %>%
   select(-starts_with("BSEQ", ignore.case = TRUE)
          )
-
+## add all section 5s in subsequent rounds
