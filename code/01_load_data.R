@@ -41,7 +41,7 @@ merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) 
   left_join(round_1_sec5a, by = c("HHID")) %>% 
   left_join(round_1_sec7, by = c("HHID")) %>%
   left_join(round_1_sec8, by = c("HHID")) %>% 
-  mutate(round = 1)
+  mutate(survey = 1)
 
 
 ## rename round1 columns
@@ -53,11 +53,11 @@ renamed_merged_r1 <- merged_r1 %>%
   ) %>% 
   rename(
   	# basic survey information
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_name = Sq01,
     interview_date = Sq02,
-    weight_final = w1,
+    weight_final = wfinal,
     
     # Section 4 - Access
     soap_wash = s4q01,
@@ -257,13 +257,13 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec5c, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
-  mutate(round = 2)
+  mutate(survey = 2)
 
 ##rename round2 columns
 renamed_merged_r2 <- merged_r2 %>%
   rename(
     # basic survey information
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_name = Sq01,
     interview_date = Sq02,
@@ -489,7 +489,7 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec5d, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
-  mutate(round = 3) %>% 
+  mutate(survey = 3) %>% 
   mutate(
     # Somehow was coded as a string.
     # I keep getting a "NAs introduced by coercion" warning but it seems to be working as intended.
@@ -509,7 +509,7 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
 renamed_merged_r3 <- merged_r3 %>% 
   rename(
     # basic survey information
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_name = Sq01,
     interview_date = Sq02,
@@ -681,13 +681,13 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
   left_join(round_4_sec5b, by = c("HHID")) %>%
   left_join(round_4_sec8, by = c("HHID")) %>% ##as sec 7
   left_join(round_4_sec9, by = c("HHID")) %>% 
-  mutate(round = 4)
+  mutate(survey = 4)
 
 ##rename round4 columns
 renamed_merged_r4 <- merged_r4 %>% 
   rename(
   	# basic survey information  
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_date = Sq02,
     weight_final = wfinal, # R4 does not have R1 weight
@@ -901,13 +901,13 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid")) %
   left_join(round_5_sec5d, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
-  mutate(round = 5)
+  mutate(survey = 5)
 
 ##rename round5 columns
 renamed_merged_r5 <- merged_r5 %>% 
   rename(
   	# basic survey information  
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_date = Sq02,
     weight_final = wfinal, # R5 does not have R1 weight
@@ -1100,13 +1100,13 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_5_sec5d, by = c("hhid")) %>% 
   left_join(round_5_sec8, by = c("hhid")) %>% 
   left_join(round_5_sec9, by = c("hhid")) %>% 
-  mutate(round = 6)
+  mutate(survey = 6)
 
 ## rename round6 columns
 renamed_merged_r6 <- merged_r6 %>% 
   rename( 
   	# basic survey information   
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_date = Sq02,
     weight_final = wfinal, # R6 does not have R1 weight
@@ -1122,9 +1122,9 @@ renamed_merged_r6 <- merged_r6 %>%
     water_wash = s4q03,
     water_wash_lack_why =  s4q04,
     
-    food_buy_maize_flour = s4q04_1__1,
-    food_buy_rice = s4q04_1__2,
-    food_buy_beans = s4q04_1__3,
+    buy_maize_flour = s4q04_1__1,
+    buy_rice = s4q04_1__2,
+    buy_beans = s4q04_1__3,
     
     price_kg_maize = s4q04_2,
     price_kg_rice = s4q04_3,
@@ -1308,7 +1308,7 @@ merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %
   left_join(round_7_sec5, by = c("HHID")) %>% 
   left_join(round_7_sec8, by = c("HHID")) %>% 
   left_join(round_7_sec9, by = c("HHID")) %>% 
-  mutate(round = 7)
+  mutate(survey = 7)
 
 ## renaming merged round7
 renamed_merged_r7 <- merged_r7 %>% 
@@ -1318,10 +1318,10 @@ renamed_merged_r7 <- merged_r7 %>%
   )) %>% 
   rename(
   	# basic survey information  
-    interview_main_resp = Rq09,
+    interview_resp = Rq09,
     interview_language = Rq10,
     interview_date = Sq02,
-	weight_final = wfinal, # R7 does not have R1 weight
+    weight_final = wfinal, # R7 does not have R1 weight
     
     # Section 4 - Access
     # Medical treatment needs to be pivoted before adding (after adding SEC4_2.dta to data loading)
@@ -1446,7 +1446,26 @@ all_rounds_df <- bind_rows(
   renamed_merged_r5,
   renamed_merged_r6,
   renamed_merged_r7) %>%
-  select(-starts_with("BSEQ", ignore.case = TRUE))
+  select(
+    -starts_with("BSEQ", ignore.case = TRUE),
+    -interview_name,
+    -weight_round_1,
+    -ends_with("code2"), -ends_with("name2") # only a few in R3
+    ) %>% 
+  mutate(
+    hh_size = hhsize
+  ) %>% 
+  relocate(
+    hhid, survey,
+    starts_with("interview"),
+    starts_with("weight"),
+    region, urban, starts_with("district"), starts_with("county"), 
+    hh_size, # currently only in R1!
+    starts_with("food"), # Food insecurity experience scale
+  ) %>% 
+  arrange(
+    hhid, survey
+  )
 
 all_rounds_df %>% 
   write_rds(here("data", "base.rds"))
