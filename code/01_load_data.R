@@ -2,7 +2,11 @@
 library(tidyverse)
 library(haven)
 library(here)
+library(janitor)   # For data checking
+library(vtable)    # For data checking
+library(labelled)  # For data checking
 
+# Functions
 rename_to_lower_snake <- function(df) {
   df %>% 
     rename_with( ~gsub("([a-z])([A-Z])", "\\1_\\2", .x) ) %>%  # Adds _ to camel case var names
@@ -41,83 +45,87 @@ merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) 
 
 
 ## rename round1 columns
-renamed_merged_r1 <- merged_r1 %>% 
+renamed_merged_r1 <- merged_r1 %>%
+  mutate(
+    # For subsequent rounds there are two different weights reported, one the
+    # original and the adjusted for that round
+    weight_round_1 = w1 
+  ) %>% 
   rename(
-    interviewer_main_resp = Rq09,
+  	# basic survey information
+    interview_main_resp = Rq09,
     interview_language = Rq10,
-    interviewer_name = Sq01,
+    interview_name = Sq01,
     interview_date = Sq02,
+    weight_final = w1,
     
-    base_weight = w1,
+    # Section 4 - Access
+    soap_wash = s4q01,
+    soap_wash_lack_why = s4q02,
+    soap_wash_lack_why_other = s4q02_Other,
     
-    soap_wash_hands = s4q01,
-    soap_wash_hands_lack_reason = s4q02,
-    soap_wash_hands_lack_reason_other = s4q02_Other,
+    water_wash = s4q03,
+    water_wash_lack_why = s4q04,
+    water_wash_lack_why_other = s4q04_Other,
     
-    water_wash_hands = s4q03,
-    water_wash_hands_lack_reason = s4q04,
-    water_wash_hands_lack_reason_other = s4q04_Other,
-    
-    staple_food_main = s4q05,
-    staple_food_lack = s4q06,
-    staple_food_lack_reason = s4q07,
-    staple_food_lack_specific_reason = s4q07_Other,
+    staple_main = s4q05,
+    staple_lack = s4q06,
+    staple_lack_why = s4q07,
+    staple_lack_specific_why = s4q07_Other,
     
     sauce_main_consumed = s4q07a,
     sauce_buy_unable = s4q07b,
-    sauce_buy_unable_reason = s4q07c,
-    sauce_buy_unable_reason_other = s4q07c_Other,
+    sauce_buy_unable_why = s4q07c,
+    sauce_buy_unable_why_other = s4q07c_Other,
     
-    medicine_access = s4q08,
-    medical_treatment_needed = s4q09,
+    medicine_no_access = s4q08,
+    medical_treatment_need = s4q09,
     medical_access = s4q10,
-    medical_access_lack_reason = s4q11,
-    medical_access_lack_specific_reason = s4q11_Other,
+    medical_access_lack_why = s4q11,
+    medical_access_lack_why_spec = s4q11_Other,
     
-    child_3_to_18 = s4q012,
-    
-    school_closed_covid = s4q013,
-    school_closed_education_after = s4q014,
-    
-    children_education_engage_assignments_completed = s4q15__1,
-    children_education_engage_mobile_learning =s4q15__2,
-    children_education_engage_tv_programs = s4q15__3,
-    children_education_engage_radio_programs =s4q15__4,
-    children_education_engage_tutor = s4q15__5,
-    children_education_engage_government_materials = s4q15__6,
-    children_education_engage_other = s4q15__n96,
+    educ_any_child_3_to_18 = s4q012,
+    educ_attend_pre_covid = s4q013,
+    educ_engage_after = s4q014,
+    educ_engage_assigs_completed = s4q15__1,
+    educ_engage_mobile_learning =s4q15__2,
+    educ_engage_tv_programs = s4q15__3,
+    educ_engage_radio_programs =s4q15__4,
+    educ_engage_tutor = s4q15__5,
+    educ_engage_gov_materials = s4q15__6,
+    educ_engage_other = s4q15__n96,
     ## s4q15_other not in survey
+    educ_teacher_contact = s4q16,
+    educ_teacher_contact_sms = s4q17__1,
+    educ_teacher_contact_online_apps = s4q17__2,
+    educ_teacher_contact_email = s4q17__3,
+    educ_teacher_contact_mail = s4q17__4,
+    educ_teacher_contact_phone = s4q17__5,
+    educ_teacher_contact_whatsapp =s4q17__6,
+    educ_teacher_contact_facebook = s4q17__7,
+    educ_teacher_contact_physically = s4q17__8,
+    educ_teacher_contact_others = s4q17__n96,
     
-    teacher_contact = s4q16,
-    teacher_contact_channel_sms = s4q17__1,
-    teacher_contact_channel_online_applications = s4q17__2,
-    teacher_contact_channel_email = s4q17__3,
-    teacher_contact_channel_mail = s4q17__4,
-    teacher_contact_channel_telephone = s4q17__5,
-    teacher_contact_channel_whatsapp =s4q17__6,
-    teacher_contact_channel_facebook = s4q17__7,
-    teacher_contact_channel_physically = s4q17__8,
-    teacher_contact_channel_others = s4q17__n96,
+    financial_access = s4q18,
+    financial_access_success = s4q19,
+    financial_access_why = s4q20,
+    financial_access_why_spec = s4q20_Other,
     
-    financial_institution_access = s4q18,
-    financial_institution_access_success = s4q19,
-    financial_institution_access_reason = s4q20,
-    financial_institution_access_reason_specific = s4q20_Other,
-    
+    # Section 5 - Employment
     education_level_highest = s5q01a,
     
     work_done_for_pay = s5q01,
     working_before_march = s5q02,
-    work_stop_reason = s5q03,
+    work_stop_why = s5q03,
     work_main_activity = s504,
     work_same_as_before = s5q04a,
-    work_change_reason = s5q04b,
+    work_change_why = s5q04b,
     work_before_main_activity = s504c,
     work_current_main_activity = s5q05,
     work_current_area = s5q06,
     work_as_usual = s5q07,
-    work_unusually_but_payed = s5q08,
-    work_unusually_reason = s5q08a,
+    work_unusually_but_paid = s5q08,
+    work_unusually_why = s5q08a,
     work_benefits_health_insurance = s5q08b__1,
     work_benefits_paid_sick_leave = s5q08b__2,
     work_benefits_pension = s5q08b__3,
@@ -136,28 +144,28 @@ renamed_merged_r1 <- merged_r1 %>%
     hh_not_able_work_roster8 = s5q10__8,
     hh_not_able_work_roster9 = s5q10__9,
     
-    non_farm_business_operation = s5q11,
-    non_farm_business_sector = s5q12,
-    non_farm_business_revenue_level= s5q13,
-    non_farm_business_revenue_level_reason = s5q14,
+    non_farm_biz_operate = s5q11,
+    non_farm_biz_sector = s5q12,
+    non_farm_biz_rev_level= s5q13,
+    non_farm_biz_rev_level_why = s5q14,
     
     ag_worked_land_preparation = s5aq16,
     ag_plan_growing_crops = s5aq17,
-    ag_crops_not_grown_reason_stay_home = s5qaq17_1,
-    ag_crops_not_grown_reason__other = s5qaq17_1_Other,
+    ag_crops_not_grown_why_home = s5qaq17_1,
+    ag_crops_not_grown_why_other = s5qaq17_1_Other,
     ag_crops_grown0 = s5aq18__0, ## crops codes
     ag_crops_grown1 = s5aq18__1,
     ag_crops_grown2 = s5aq18__2,
     ag_hh_farm_progress = s5aq19,
     
-    crop_planting_change_abandoned = s5aq20__1,
-    crop_planting_change_reduced_planting_area = s5aq20__2,
-    crop_planting_change_increased_planting_area = s5aq20__3,
-    crop_planting_change_fast_crops = s5aq20__4,
-    crop_planting_change_less_variety = s5aq20__5,
-    crop_planting_change_more_variety = s5aq20__6,
-    crop_planting_change_delayed_planting = s5aq20__7,
-    crop_planting_change_other = s5aq20__n96,
+    crop_planting_abandoned = s5aq20__1,
+    crop_planting_reduced_area = s5aq20__2,
+    crop_planting_increased_area = s5aq20__3,
+    crop_planting_fast_crops = s5aq20__4,
+    crop_planting_less_variety = s5aq20__5,
+    crop_planting_more_variety = s5aq20__6,
+    crop_planting_delayed_planting = s5aq20__7,
+    crop_planting_other = s5aq20__n96,
     ##s5aq20_other not in survey
     
     covid_affect_planting_stayed_home = s5aq21__1,
@@ -180,11 +188,11 @@ renamed_merged_r1 <- merged_r1 %>%
     seeds_unable_transport_money_lack = s5aq22__6,
     seeds_unable_transport_other = s5aq22__n96,
     
-    fertilizer_not_transported_reason = s5aq23,
-    fertilizer_not_transported_reason_other = s5aq23_Other,
+    fertilizer_not_transported_why = s5aq23,
+    fertilizer_not_transported_why_other = s5aq23_Other,
     
-    transport_inability_ag_inputs_reason = s5aq24,
-    transport_inability_ag_inputs_reason_other = s5aq24_Other,
+    transport_inability_ag_inputs_why = s5aq24,
+    transport_inability_ag_inputs_why_other = s5aq24_Other,
     
     locust_lost_crops = s5aq25,
     
@@ -192,17 +200,17 @@ renamed_merged_r1 <- merged_r1 %>%
     
     hh_farm_progress = s5aq27,
     
-    livestock_activities_change_treat_self = s5aq28__1,
-    livestock_activities_change_couldnt_vaccinate = s5aq28__2,
-    livestock_activities_change_couldnt_deworm = s5aq28__3,
-    livestock_activities_change_postpone_insermination = s5aq28__4,
-    livestock_activities_change_change_feed_ratio = s5aq28__5,
-    livestock_activities_change_cant_sell_animal = s5aq28__6,
-    livestock_activities_change_change_water_given = s5aq28__7,
+    livestock_activities_treat_self = s5aq28__1,
+    livestock_activities_couldnt_vaccinate = s5aq28__2,
+    livestock_activities_couldnt_deworm = s5aq28__3,
+    livestock_activities_postpone_insermination = s5aq28__4,
+    livestock_activities_change_feed_ratio = s5aq28__5,
+    livestock_activities_cant_sell_animal = s5aq28__6,
+    livestock_activities_change_water_given = s5aq28__7,
     
     locust_grazing_lands = s5aq29,
     
-    farm_products_needed_sell = s5aq30,
+    farm_products_need_sell = s5aq30,
     farm_products_sell_ability = s5aq31,
     
     food_insufficient_worry = s7q01,
@@ -213,17 +221,17 @@ renamed_merged_r1 <- merged_r1 %>%
     food_ranout = s7q06,
     food_lacked_hungry = s7q07,
     food_lack_didnt_eat_all_day = s7q08,
-
+    
     concerns_covid_hh_serious_illness = s8q01,
     concerns_covid_threat_hh_finances = a8q02
-      ) %>% 
+  ) %>% 
   rename_to_lower_snake()
 
 ## round 2 ---- 
+
 round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_result.dta")) %>%
   select(c('HHID','Rq09','Rq10'))
 round_2_cover  <- read_dta(here( "raw_data", "round2", "Cover.dta" )) 
-
 
 round_2_sec1 <- read_dta(here( "raw_data", "round2", "SEC1.dta" )) 
 
@@ -253,50 +261,61 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
 ##rename round2 columns
 renamed_merged_r2 <- merged_r2 %>%
   rename(
-    interviewer_main_resp = Rq09,
+    # basic survey information
+    interview_main_resp = Rq09,
     interview_language = Rq10,
-    interviewer_name = Sq01,
+    interview_name = Sq01,
     interview_date = Sq02,
+    weight_round_1 = Round1_hh_weight,
+    weight_final = wfinal,
     
-    water_drinking_insufficient = s4q01e,
-    water_drinking_insufficient_reason = s4q01f,
-    water_drinking_insufficient_reason_other = s4q01f_Other,
+    # Section 4 - Access
+    # Drinking water questions not in R1
+    # Assets questions not in R1
+    # Staples and sauce questions not in R2
+    # Education questions not in R2
+    # Financial access not in R2
     
-    soap_wash_hands = s4q01,
-    soap_wash_hands_lack_reason = s4q02,
-    soap_wash_hands_lack_reason_other = s4q02_Other,
+    water_drink_insuf = s4q01e,
+    water_drink_insuf_why = s4q01f,
+    water_drink_insuf_why_other = s4q01f_Other,
     
-    water_wash_hands = s4q03,
-    water_wash_hands_lack_reason = s4q04,
-    water_wash_hands_lack_reason_other = s4q04_Other,
+    soap_wash = s4q01,
+    soap_wash_lack_why = s4q02,
+    soap_wash_lack_why_other = s4q02_Other,
     
-    medicine_access = s4q08,
-    medical_treatment_needed = s4q09,
+    water_wash = s4q03,
+    water_wash_lack_why = s4q04,
+    water_wash_lack_why_other = s4q04_Other,
+    
+    medicine_no_access = s4q08,
+    medical_treatment_need = s4q09,
     medical_access = s4q10,
-    medical_access_lack_reason = s4q11,
-    medical_access_lack_specific_reason = s4q11_Other,
+    medical_access_lack_why = s4q11,
+    medical_access_lack_why_spec = s4q11_Other,
     
-    assets_hh_owned_radio1 = s4q12__1,
-    assets_hh_owned_tv = s4q12__2,
-    assets_hh_owned_grid_electricity = s4q12__3,
-    assets_hh_owned_lar_system = s4q12__4,
-    assets_hh_owned_solar_kit_lantern = s4q12__5,
+    assets_hh_radio1 = s4q12__1,
+    assets_hh_tv = s4q12__2,
+    assets_hh_grid_electricity = s4q12__3,
+    assets_hh_lar_system = s4q12__4,
+    assets_hh_solar_kit_lantern = s4q12__5,
     
+    #Section 5 - Employment
     work_done_for_pay = s5q01,    
     work_secured_absent = s5q01a,
     work_secured_return = s5q01b,
-    work_missed_previously_reason = s5q01c,
-    work_stop_reason = s5q03,
+    work_missed_previously_why = s5q01c,
+    work_stop_why = s5q03,
     work_to_find_job = s5q03a,
     work_main_find_job = s5q03b,
     work_same_as_before_march = s5q04a_1,
     work_same_as_last_time = s5q04a_2,
-    work_change_reason = s5q04b,
+    work_change_why = s5q04b,
     work_main_activity = s5q05,
     work_main_area = s5q06,
     work_as_usual = s5q07,
     work_unusually_but_paid = s5q08,
-    work_unusually_reason = s5q08a,
+    work_unusually_why = s5q08a,
     work_hours =s5q08b,
     work_hours_change = s5q08c,
     work_benefits_health_insurance = s5q08d__1,
@@ -312,42 +331,42 @@ renamed_merged_r2 <- merged_r2 %>%
     hh_not_able_work_roster3 = s5q10__3,
     hh_not_able_work_roster4 = s5q10__4,
     hh_not_able_work_roster5 = s5q10__5,
-    hh_operate_non_family_business = s5aq11,
     
-    non_farm_business_closure_reason_covid = s5aq11b__1,
-    non_farm_business_place_closure_other_reason = s5aq11b__2,
-    non_farm_business_closure_reason_no_customers = s5aq11b__3,
-    non_farm_business_closure_reason_no_inputs = s5aq11b__4,
-    non_farm_business_closure_reason_travel_restrictions = s5aq11b__5,
-    non_farm_business_closure_reason_ill_covid = s5aq11b__6,
-    non_farm_business_closure_reason_ill_other_disease = s5aq11b__7,
-    non_farm_business_closure_reason_care_family = s5aq11b__8,
-    non_farm_business_closure_reason_seasonal = s5aq11b__9,
-    non_farm_business_closure_reason_vacation = s5aq11b__10,
-    non_farm_business_closure_reason_other = s5aq11b__n96,
-    non_farm_business_sector = s5aq12,
-    non_farm_business_revenue_level = s5aq13,
-    non_farm_business_revenue_less_reason_covid = s5aq14_1,
-    non_farm_business_revenue_less_closure_another_reason = s5aq14_2,
+    non_farm_biz_operate = s5aq11,
+    non_farm_biz_closure_why_covid = s5aq11b__1,
+    non_farm_biz_place_closure_other_why = s5aq11b__2,
+    non_farm_biz_closure_why_no_customers = s5aq11b__3,
+    non_farm_biz_closure_why_no_inputs = s5aq11b__4,
+    non_farm_biz_closure_why_travel_restrictions = s5aq11b__5,
+    non_farm_biz_closure_why_ill_covid = s5aq11b__6,
+    non_farm_biz_closure_why_ill_other_disease = s5aq11b__7,
+    non_farm_biz_closure_why_care_family = s5aq11b__8,
+    non_farm_biz_closure_why_seasonal = s5aq11b__9,
+    non_farm_biz_closure_why_vacation = s5aq11b__10,
+    non_farm_biz_closure_why_other = s5aq11b__n96,
+    non_farm_biz_sector = s5aq12,
+    non_farm_biz_rev_level = s5aq13,
+    non_farm_biz_rev_less_why_covid = s5aq14_1,
+    non_farm_biz_rev_less_closure_another_why = s5aq14_2,
     
-    challenges_due_to_covid_business_inputs = s5aq15__1,
-    challenges_due_to_covid_business_operation_money = s5aq15__2,
-    challenges_due_to_covid_business_loans = s5aq15__3,
+    challenges_due_to_covid_biz_inputs = s5aq15__1,
+    challenges_due_to_covid_biz_operation_money = s5aq15__2,
+    challenges_due_to_covid_biz_loans = s5aq15__3,
     challenges_due_to_covid_rent = s5aq15__4,
     challenges_due_to_covid_paying_workers = s5aq15__5,
     challenges_due_to_covid_sales = s5aq15__6,
     challenges_due_to_covid_other = s5aq15__n96,
     
-    change_business_conduct = s5aq15a,
-    changes_to_be_made_in_business_wear_masks = s5aq15b__1,
-    changes_to_be_made_in_business_distancing = s5aq15b__2,
-    changes_to_be_made_in_business_few_customers_at_once = s5aq15b__3,
-    changes_to_be_made_in_business_phone_media_market = s5aq15b__4,
-    changes_to_be_made_in_business_deliveries_only = s5aq15b__5,
-    changes_to_be_made_in_business_product_offering = s5aq15b__6,
-    changes_to_be_made_in_business_other = s5aq15b__n96,
+    change_biz_conduct = s5aq15a,
+    changes_to_be_made_in_biz_wear_mask = s5aq15b__1,
+    changes_to_be_made_in_biz_distancing = s5aq15b__2,
+    changes_to_be_made_in_biz_few_customers_at_once = s5aq15b__3,
+    changes_to_be_made_in_biz_phone_media_market = s5aq15b__4,
+    changes_to_be_made_in_biz_deliveries_only = s5aq15b__5,
+    changes_to_be_made_in_biz_product_offering = s5aq15b__6,
+    changes_to_be_made_in_biz_other = s5aq15b__n96,
     
-    non_farm_business_temporary_close_status = s5aq11a,
+    non_farm_biz_temporary_close_status = s5aq11a,
     
     harvest_hh_grown_any_crop = s5bq01,
     ##crop grown by code no names indicated
@@ -362,29 +381,29 @@ renamed_merged_r2 <- merged_r2 %>%
     harvest_crop_decisions_affected_covid_abandoned_crops = s5bq05__4,
     harvest_crop_decisions_affected_covid_delayed_harvesting = s5bq05__5,
     harvest_crop_decisions_affected_covid_other = s5bq05__n96,
-    harvest_measures_safety_covid_masks = s5bq06__1,
+    harvest_measures_safety_covid_mask = s5bq06__1,
     harvest_measures_safety_covid_no_hand_shakes = s5bq06__2,
     harvest_measures_safety_covid_gloves = s5bq06__3,
     harvest_measures_safety_covid_keeping_distance = s5bq06__4,
     harvest_measures_safety_covid_others = s5bq06__5,
-    harvest_main_reason_not_hire_workers = s5bq07,
-    harvest_crops_needed_sale_since_last_call = s5bq08,
+    harvest_main_why_not_hire_workers = s5bq07,
+    harvest_crops_need_sale_since_last_call = s5bq08,
     harvest_household_able_sale_farm_products = s5bq09,
     
     livestock_products_sale_level = s5cq13,
-    livestock_sale_declined_reason_markets_closed =  s5cq14_1__1,
-    livestock_sale_declined_reason_restaurants_closed = s5cq14_1__2,
-    livestock_sale_declined_reason_limited_transport = s5cq14_1__3,
-    livestock_sale_declined_reason_travel_restrictions = s5cq14_1__4,
-    livestock_sale_declined_reason_prices_fall = s5cq14_1__5,
-    livestock_sale_declined_reason_other = s5cq14_1__6,
+    livestock_sale_declined_why_markets_closed =  s5cq14_1__1,
+    livestock_sale_declined_why_restaurants_closed = s5cq14_1__2,
+    livestock_sale_declined_why_limited_transport = s5cq14_1__3,
+    livestock_sale_declined_why_travel_restrictions = s5cq14_1__4,
+    livestock_sale_declined_why_prices_fall = s5cq14_1__5,
+    livestock_sale_declined_why_other = s5cq14_1__6,
     # s5cq14_3 is 14a
-    livestock_no_sales_reason_markets_closed = s5cq14_2__1,
-    livestock_no_sales_reason_restaurants_closed = s5cq14_2__2,
-    livestock_no_sales_reason_limited_transport = s5cq14_2__3,
-    livestock_no_sales_reason_travel_restrictions = s5cq14_2__4,
-    livestock_no_sales_reason_prices_fall = s5cq14_2__5,
-    livestock_no_sales_reason_home_consumption = s5cq14_2__6,
+    livestock_no_sales_why_markets_closed = s5cq14_2__1,
+    livestock_no_sales_why_restaurants_closed = s5cq14_2__2,
+    livestock_no_sales_why_limited_transport = s5cq14_2__3,
+    livestock_no_sales_why_travel_restrictions = s5cq14_2__4,
+    livestock_no_sales_why_prices_fall = s5cq14_2__5,
+    livestock_no_sales_why_home_consumption = s5cq14_2__6,
     livestock_price_level_since_march = s5cq15,
     livestock_hh_kept = s5cq01,
     livestock_type_kept_improved_large_ruminants = s5cq02__1,
@@ -405,10 +424,10 @@ renamed_merged_r2 <- merged_r2 %>%
     livestock_activitied_covid_effects_reduced_processing = s5cq04__7,
     livestock_animals_wanted_sale = s5cq08,
     livestock_animals_wanted_able_sale = s5cq09,
-    livestock_animales_sale_unable_reason_limited_transport = s5cq11__2,
-    livestock_animales_sale_unable_reason_travel_restriction = s5cq11__3,
-    livestock_animales_sale_unable_reason_prices_fall = s5cq11__4,
-    livestock_animales_sale_unable_reason_other = s5cq11__5, ## there is no five hence called it other 
+    livestock_animales_sale_unable_why_limited_transport = s5cq11__2,
+    livestock_animales_sale_unable_why_travel_restriction = s5cq11__3,
+    livestock_animales_sale_unable_why_prices_fall = s5cq11__4,
+    livestock_animales_sale_unable_why_other = s5cq11__5, ## there is no five hence called it other 
     
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
@@ -433,8 +452,8 @@ renamed_merged_r2 <- merged_r2 %>%
     concerns_security_risk_covid = s9q05,
     concerns_covid_response_limit_freedom = s9q06,
     concerns_misuse_covid_funds = s9q07,
-    concerns_government_corruption_lower_medical_quality = s9q08,
-    concerns_measures_curb_covid_close_education_institutions = s9q09__1,
+    concerns_gov_corruption_lower_medical_quality = s9q08,
+    concerns_measures_curb_covid_close_educations = s9q09__1,
     concerns_measures_curb_covid_suspension_churches = s9q09__2,
     concerns_measures_curb_covid_suspension_gatherings = s9q09__3,
     concerns_measures_curb_covid_suspension_weddings = s9q09__4,
@@ -443,6 +462,7 @@ renamed_merged_r2 <- merged_r2 %>%
   rename_to_lower_snake()
 
 ## round 3 ---- 
+
 round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_result.dta")) %>%
   select(c('hhid','Rq09','Rq10'))
 round_3_cover  <- read_dta(here( "raw_data", "round3", "cover.dta" )) 
@@ -467,59 +487,84 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec5d, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
-  mutate(round = 3)
+  mutate(round = 3) %>% 
+  mutate(
+    # Somehow was coded as a string.
+    # I keep getting a "NAs introduced by coercion" warning but it seems to be working as intended.
+    s5bq21_5 = str_remove(s5bq21_5, ","),
+    s5bq21_5 = case_when(
+      s5bq21_5 == ""  ~ NA_real_,
+      s5bq21_5 == " " ~ NA_real_,
+      s5bq21_5 == "##N/A##" ~ NA_real_,
+      s5bq21_5 == "98"  ~ NA_real_,
+      s5bq21_5 == "-98" ~ NA_real_,
+      TRUE          ~ as.numeric(s5bq21_5)
+    )
+  ) 
 
 
 ##rename round3 columns
 renamed_merged_r3 <- merged_r3 %>% 
   rename(
-    interviewer_main_resp = Rq09,
+    # basic survey information
+    interview_main_resp = Rq09,
     interview_language = Rq10,
-    interviewer_name = Sq01,
+    interview_name = Sq01,
     interview_date = Sq02,
+    weight_round_1 = Round1_hh_weight,
+    weight_final = wfinal,
+
+    # Section 4 - Access
+    # Soap questions not in R4
+    # Drinking water questions not in R4
+    # Hand-washing water questions not in R4
+    # Sauce questions not in R4
+    # Educ access questions not in R4
+    # Financial access questions not in R4
+    # mask questions not in R1 or R2
+    staple_main = s4q05,
+    staple_lack = s4q06,
+    staple_lack_why = s4q07,
     
-    staple_food_main = s4q05,
-    staple_food_lack = s4q06,
-    staple_food_lack_reason = s4q07,
-    
-    medicine_access = s4q08,
-    medical_treatment_needed = s4q09,
+    medicine_no_access = s4q08,
+    medical_treatment_need = s4q09,
     medical_access = s4q10,
-    medical_access_lack_reason = s4q11,
-    medical_access_lack_specific_reason = s4q11_Other,
+    medical_access_lack_why = s4q11,
+    medical_access_lack_why_spec = s4q11_Other,
     
-    masks_access_unable = s4q12,
-    masks_access_unable_reason = s4q13,
-    masks_access_unable_reason_other = s4q13_Other,
-    mask_source_government = s4q14__1,
-    mask_source_purchased = s4q14__2,
+    mask_no_access = s4q12,
+    mask_no_access_why = s4q13,
+    mask_no_access_why_other = s4q13_Other,
+    mask_source_gov = s4q14__1,
+    mask_source_buy = s4q14__2,
     mask_source_home_made = s4q14__3,
-    mask_source_relatives = s4q14__4,
+    mask_source_friends_relatives = s4q14__4,
     mask_source_employer = s4q14__5,
     mask_source_other = s4q14__n96,
     ## s4q14_other not in survey
     
+    # Section 5 - Employment
     work_done_for_pay = s5q01,
     work_secured_absent  = s5q01a,
     work_secured_return = s5q01b,
-    work_missed_previously_reason = s5q01c,
-    work_stop_reason = s5q03,
+    work_missed_previously_why = s5q01c,
+    work_stop_why = s5q03,
     work_to_find_job = s5q03a,
     work_main_find_job = s5q03b,
     work_same_as_last_time = s5q04a_1,
-    work_change_reason = s5q04b,
+    work_change_why = s5q04b,
     work_main_description = s5q05,
     work_area = s5q06,
     work_as_usual = s5q07,
     work_unusually_but_paid = s5q08,
-    work_unusually_reason = s5q08a,
+    work_unusually_why = s5q08a,
     work_hours = s5q08b,
     work_hours_change = s5q08c,
     
     safety_measures_by_employer_disinfectant = s5q08f__1,
     safety_measures_by_employer_hadn_sanitizer = s5q08f__2,
     safety_measures_by_employer_awareness = s5q08f__3,
-    safety_measures_by_employer_masks = s5q08f__4,
+    safety_measures_by_employer_mask = s5q08f__4,
     safety_measures_by_employer_gloves = s5q08f__5,
     safety_measures_by_employer_work_from_home = s5q08f__6,
     safety_measures_by_employer_office_closed = s5q08f__7,
@@ -537,45 +582,43 @@ renamed_merged_r3 <- merged_r3 %>%
     hh_not_able_work_roster3 = s5q10__3,
     hh_not_able_work_roster4 = s5q10__4,
     
-    non_farm_business_operation = s5aq11,
-    non_farm_business_closure_reason = s5aq11b,
-    non_farm_business_main_activity = s5a11c,
-    non_farm_business_sector = s5aq12,
+    non_farm_biz_operation = s5aq11,
+    non_farm_biz_closure_why = s5aq11b,
+    non_farm_biz_main_activity = s5a11c,
+    non_farm_biz_sector = s5aq12,
+    non_farm_biz_rev_sales_compared_feb = s5aq13,
+    non_farm_biz_rev_sales_covid = s5aq14_1,
+    non_farm_biz_rev_sales_other = s5aq14_2,
+    non_farm_biz_another = s5q15a, 
+    non_farm_biz_number = s5q15b,
+    non_farm_biz_temporary_close_status = s5aq11a,
     
-    revenue_sales_non_family_business_compared_feb = s5aq13,
-    revenue_sales_non_family_business_covid = s5aq14_1,
-    revenue_sales_non_family_business_other = s5aq14_2,
-    
-    non_farm_business_another = s5q15a, 
-    non_farm_businesses_number = s5q15b,
-    non_farm_business_temporary_close_status = s5aq11a,
-    
-    agriculture_hh_worked_land_preparation = s5bq16,
+    ag_hh_worked_land_preparation = s5bq16,
     ## crop by code
-    agriculture_hh_main_crops_cultivated_1 = s5bq18_1,
-    agriculture_hh_main_crops_cultivated_2 = s5bq18_2,
-    agriculture_hh_main_crops_cultivated_3 = s5bq18_3,
-    agriculture_expected_output_based_current_activities = s5bq19,
-    agriculture_expected_harvest_quantity = s5bq20,
-    agriculture_expected_harvest_unit = s5bq20b, ## double check 
-    agriculture_expected_harvest_kg_equivalent = s5bq20c,
-    agriculture_current_farm_gate_price_small_banana_bunch = s5bq21_1,
-    agriculture_current_farm_gate_price_medium_banana_bunch = s5bq21_2,
-    agriculture_current_farm_gate_price_large_banana_bunch = s5bq21_3,
-    agriculture_current_farm_gate_price_100kg_cassava_bag = s5bq21_4,
-    agriculture_current_farm_gate_price_basin_dry_casava_chips = s5bq21_5,
-    agriculture_current_farm_gate_price_kg_dry_cassava_flour = s5bq21_6,
-    agriculture_current_farm_gate_price_kg_dry_beans = s5bq21_7,
-    agriculture_current_farm_gate_price_basin_fresh_beans = s5bq21_9,
-    agriculture_current_farm_gate_price_kg_maize_grains = s5bq21_8,
-    agriculture_farm_production_normally_sold = s5bq23,
-    agriculture_revenues_expected_from_season_sales = s5bq24,
-    agriculture_famr_products_needed_to_sale_since_last_call = s5bq25,
-    agriculture_hh_able_sell_farm_products = s5bq26,
-    agricluture_hh_products_sale_location_farm = s5bq27__1,
-    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
-    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
-    agricluture_hh_products_sale_location_other = s5bq27__n96,
+    ag_hh_main_crops_cultivated_1 = s5bq18_1,
+    ag_hh_main_crops_cultivated_2 = s5bq18_2,
+    ag_hh_main_crops_cultivated_3 = s5bq18_3,
+    ag_expected_output_based_current_activities = s5bq19,
+    ag_expected_harvest_quantity = s5bq20,
+    ag_expected_harvest_unit = s5bq20b, ## double check 
+    ag_expected_harvest_kg_equivalent = s5bq20c,
+    ag_price_small_banana_bunch = s5bq21_1,
+    ag_price_medium_banana_bunch = s5bq21_2,
+    ag_price_large_banana_bunch = s5bq21_3,
+    ag_price_100kg_cassava_bag = s5bq21_4,
+    ag_price_basin_dry_casava_chips = s5bq21_5,
+    ag_price_kg_dry_cassava_flour = s5bq21_6,
+    ag_price_kg_dry_beans = s5bq21_7,
+    ag_price_basin_fresh_beans = s5bq21_9,
+    ag_price_kg_maize_grains = s5bq21_8,
+    ag_farm_production_normally_sold = s5bq23,
+    ag_rev_expected_from_season_sales = s5bq24,
+    ag_farm_products_need_to_sale_since_last_call = s5bq25,
+    ag_hh_able_sell_farm_products = s5bq26,
+    ag_hh_products_sale_location_farm = s5bq27__1,
+    ag_hh_products_sale_location_daily_market = s5bq27__2,
+    ag_hh_products_sale_location_weekly_market = s5bq27__3,
+    ag_hh_products_sale_location_other = s5bq27__n96,
     ##section5c runs has only variables of 1,8,9, and 11 in survey
     # s5cq13,s5cq14__1,s5cq14__2,s5cq14__3,s5cq14__4,s5cq14__5,s5cq14__6,s5cq14a__1,s5cq14a__2,s5cq14a__3,s5cq14a__4,s5cq14a__5,s5cq14a__6,s5cq15
     
@@ -602,13 +645,14 @@ renamed_merged_r3 <- merged_r3 %>%
     concerns_security_risk_covid = s9q05,
     concerns_covid_response_limit_freedom = s9q06,
     concerns_misuse_covid_funds = s9q07,
-    concerns_government_corruption_lower_medical_quality = s9q08,
+    concerns_gov_corruption_lower_medical_quality = s9q08,
     concerns_discomfort_in_house = s9q09
   ) %>% 
   rename_to_lower_snake()
-colnames(renamed_merged_r3)
+
 
 ## round 4 ---- 
+
 round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_result.dta")) %>%
   select(c('HHID','Rq09','Rq10'))
 round_4_cover  <- read_dta(here( "raw_data", "round4", "Cover.dta" )) 
@@ -639,77 +683,83 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
 ##rename round4 columns
 renamed_merged_r4 <- merged_r4 %>% 
   rename(
-    interviewer_main_respondent = Rq09,
-    interviewer_language = Rq10,
+  	# basic survey information  
+    interview_main_resp = Rq09,
+    interview_language = Rq10,
     interview_date = Sq02,
+    weight_final = wfinal, # R4 does not have R1 weight
+
+    # Section 4 - Access
+    # Drinking water also in R2
+    # Covid test questions not in R1, R2, R3
+    # vac questions not in R1, R2, R3
+    water_drink_insuf = s4q1e,
+    water_drink_insuf_why = s4q1f,
+    water_drink_source = s4q1g,
     
-    water_drinking_insufficient = s4q1e,
-    water_drinking_insufficient_reason = s4q1f,
-    water_drinking_source = s4q1g,
+    soap_wash = s4q01,
+    soap_wash_lack_why = s4q02,
     
-    soap_wash_hands = s4q01,
-    soap_wash_hands_lack_reason = s4q02,
+    water_wash = s4q03,
+    water_wash_lack_why = s4q04,
     
-    water_wash_hands = s4q03,
-    water_wash_hands_lack_reason = s4q04,
-    
-    medicine_access = s4q08,
-    medical_treatment_needed = s4q09,
+    medicine_no_access = s4q08,
+    medical_treatment_need = s4q09,
     medical_access = s4q10,
-    medical_access_lack_reason = s4q11,
-    medical_need_after_school_closure =  s4q11a,
-    medical_access_after_school_closure = s4q11b,
+    medical_access_lack_why = s4q11,
+    medical_need_2019_04_2020_04 =  s4q11a,
+    medical_access__2019_04_2020_04 = s4q11b,
     
-    masks_access = s4q12,
-    masks_lack_reason = s4q13,
-    masks_source_government = s4q14__1,
-    masks_source_purchased = s4q14__2,
-    masks_source_homemade = s4q14__3,
-    masks_source_friends_relatives = s4q14__4,
-    masks_source_employer = s4q14__5,
-    masks_source_other = s4q14__n96,
+    mask_no_access = s4q12,
+    mask_no_access_why = s4q13,
+    mask_source_gov = s4q14__1,
+    mask_source_buy = s4q14__2,
+    mask_source_home_made = s4q14__3,
+    mask_source_friends_relatives = s4q14__4,
+    mask_source_employer = s4q14__5,
+    mask_source_other = s4q14__n96,
     
-    covid_test_free_willingness = s4q15,
-    covid_vaccine_free_willingness = s4q16,
-    covid_vaccine_free_unwillingness_not_work = s4q17__1,
-    covid_vaccine_free_unwillingness_unsafe = s4q17__2,
-    covid_vaccine_free_unwillingness_side_effects = s4q17__3,
-    covid_vaccine_free_unwillingness_low_risk = s4q17__4,
-    covid_vaccine_free_unwillingness_against_vaccines = s4q17__5,
-    covid_vaccine_free_unwillingness_religion = s4q17__6,
-    covid_vaccine_free_unwillingness_other = s4q17__n96,
+    covid_test_free_accept = s4q15,
+    covid_vac_willing = s4q16,
+    covid_vac_refuse_not_work = s4q17__1,
+    covid_vac_refuse_unsafe = s4q17__2,
+    covid_vac_refuse_side_effects = s4q17__3,
+    covid_vac_refuse_low_risk = s4q17__4,
+    covid_vac_refuse_against_vacs = s4q17__5,
+    covid_vac_refuse_religion = s4q17__6,
+    covid_vac_refuse_other = s4q17__n96,
+    covid_vac_doubts_wont_work = s4q18__1,
+    covid_vac_doubt_unsafe = s4q18__2,
+    covid_vac_doubt_side_effects = s4q18__3,
+    covid_vac_doubt_low_risk = s4q18__4,
+    covid_vac_doubt_against_vacs = s4q18__5,
+    covid_vac_doubt_against_relig = s4q18__6,
+    covid_vac_doubt_other = s4q18__n96,
     
-    vaccination_doubts_wont_work = s4q18__1,
-    vaccination_doubts_unsafe = s4q18__2,
-    vaccination_doubts_side_effects = s4q18__3,
-    vaccination_doubts_low_risk = s4q18__4,
-    vaccination_doubts_against_vaccines = s4q18__5,
-    vaccination_doubts_against_religion = s4q18__6,
-    vaccination_doubts_other = s4q18__n96,
-    
+    # Section 5 - Employment
     work_done_for_pay = s5q01,
     work_secured_absent = s5q01a,
     work_secured_return = s5q01b,
     work_to_find_job  = s5q01c,
-    work_stop_reason = s5q03,
+    work_stop_why = s5q03,
     work_main_find_job = s5q03a,
     work_search_main_activity = s5q03b,
     work_same_as_last_time = s5q04a,
-    work_change_reason = s5q04b,
+    work_change_why = s5q04b,
     work_main_primary_description = s5q05a,
     work_organization_main_activity = s5q05,
     work_area = s5q06,
     work_farming_products_intentions = s5q06a,
     work_as_usual = s5q07,
     work_unusually_but_paid = s5q08,
-    work_unusually_reason = s5q08a,
+    work_unusually_why = s5q08a,
     work_hours = s5q08b,
     work_hours_change = s5q08c,
     
     safety_measures_by_employer_disinfectants = s5q08f__1,
     safety_measures_by_employer_sanitizer = s5q08f__2,
     safety_measures_by_employer_preventative = s5q08f__3,
-    safety_measures_by_employer_masks = s5q08f__4,
+    safety_measures_by_employer_mask = s5q08f__4,
     safety_measures_by_employer_gloves = s5q08f__5,
     safety_measures_by_employer_work_home = s5q08f__6,
     safety_measures_by_employer_closed_office = s5q08f__7,
@@ -725,71 +775,71 @@ renamed_merged_r4 <- merged_r4 %>%
     hh_not_able_work_roster3 = s5q10__3,
     hh_not_able_work_roster4 = s5q10__4,
     
-    non_farm_business_operation = s5aq11,
-    non_farm_business_closure_reason = s5aq11b,
-    non_farm_business_other_operating = s5aq11b_1,
-    non_farm_business_other_main_activity = s5a11c_1,
-    non_farm_business_other_sector = s5aq12_1,
-    non_farm_business_existing_main_activity = s5a11c,
-    non_farm_business_existing_sector = s5aq12,
+    non_farm_biz_operation = s5aq11,
+    non_farm_biz_closure_why = s5aq11b,
+    non_farm_biz_other_operating = s5aq11b_1,
+    non_farm_biz_other_main_activity = s5a11c_1,
+    non_farm_biz_other_sector = s5aq12_1,
+    non_farm_biz_existing_main_activity = s5a11c,
+    non_farm_biz_existing_sector = s5aq12,
     
-    revenue_sales_non_family_business_compared_feb = s5aq13,
-    revenue_sales_non_family_business_reason_covid = s5aq14_1,
-    revenue_sales_non_family_business_reason_other = s5aq14_2,
-    revenue_sales_non_family_business_compared_year = s5aq15,
+    non_farm_biz_rev_sales_compared_feb = s5aq13,
+    non_farm_biz_rev_sales_why_covid = s5aq14_1,
+    non_farm_biz_rev_sales_why_other = s5aq14_2,
+    non_farm_biz_rev_sales_compared_year = s5aq15,
     
-    non_farm_business_temporary_close_status = s5aq11a,
+    non_farm_biz_temporary_close_status = s5aq11a,
     
-    agriculture_hh_worked_land_preparation = s5bq16,
-    agriculture_hh_planning_grow_crops_that_season = s5bq17,
-    agriculture_crops_not_grown_that_season_reason_stay_home_advice = s5bq17_1__1,
-    agriculture_crops_not_grown_that_season_reason_reduced_labor = s5bq17_1__2,
-    agriculture_crops_not_grown_that_season_reason_travel_restrictions = s5bq17_1__3,
-    agriculture_crops_not_grown_that_season_reason_unable_transport_seeds = s5bq17_1__4,
-    agriculture_crops_not_grown_that_season_reason_unable_transport_fertilizer = s5bq17_1__5,
-    agriculture_crops_not_grown_that_season_reason_unable_transport_other_inputs = s5bq17_1__6,
-    agriculture_crops_not_grown_that_season_reason_unable_transport_outputs = s5bq17_1__7,
-    agriculture_crops_not_grown_that_season_reason_family_ill = s5bq17_1__8,
-    agriculture_crops_not_grown_that_season_reason_other = s5bq17_1__n96,
+    ag_hh_worked_land_preparation = s5bq16,
+    ag_hh_planning_grow_crops_that_season = s5bq17,
+    ag_crops_not_grown_that_season_why_stay_home_advice = s5bq17_1__1,
+    ag_crops_not_grown_that_season_why_reduced_labor = s5bq17_1__2,
+    ag_crops_not_grown_that_season_why_travel_restrictions = s5bq17_1__3,
+    ag_crops_not_grown_that_season_why_unable_transport_seeds = s5bq17_1__4,
+    ag_crops_not_grown_that_season_why_unable_transport_fertilizer = s5bq17_1__5,
+    ag_crops_not_grown_that_season_why_unable_transport_other_inputs = s5bq17_1__6,
+    ag_crops_not_grown_that_season_why_unable_transport_outputs = s5bq17_1__7,
+    ag_crops_not_grown_that_season_why_family_ill = s5bq17_1__8,
+    ag_crops_not_grown_that_season_why_other = s5bq17_1__n96,
     # crop codes used in q18
-    agriculture_hh_main_crops_cultivated_1 = s5bq18_1,
-    agriculture_hh_main_crops_cultivated_2 = s5bq18_2,
-    agriculture_hh_main_crops_cultivated_3 = s5bq18_3,
-    agriculture_planting_activities_change_covid = s5bq19,
-    agriculture_crop_planting_change_abandoned = s5bq20__1,
-    agriculture_crop_planting_change_reduced_planted_area = s5bq20__2,
-    agriculture_crop_planting_change_increased_planted_area = s5bq20__3,
-    agriculture_crop_planting_change_planted_less_time_mature_crops = s5bq20__4,
-    agriculture_crop_planting_change_less_variety_planted = s5bq20__5,
-    agriculture_crop_planting_change_more_variety_planted = s5bq20__6,
-    agriculture_crop_planting_change_delayed_planting = s5bq20__7,
-    agriculture_crop_planting_change_other = s5bq20__n96,
-    agriculture_ways_covid_affected_planting_stay_home = s5bq21__1,
-    agriculture_ways_covid_affected_planting_movement_restriction = s5bq21__3,
-    agriculture_ways_covid_affected_planting_unable_transport_seeds = s5bq21__4,
-    agriculture_ways_covid_affected_planting_unable_transport_fertilizer = s5bq21__5,
-    agriculture_ways_covid_affected_planting_unable_transport_other_inputs = s5bq21__6,
-    agriculture_ways_covid_affected_planting_unable_transport_outputs = s5bq21__7,
-    agriculture_ways_covid_affected_planting_fammily_ill = s5bq21__8,
-    agriculture_ways_covid_affected_planting_delayed_planting = s5bq21__9,
-    agriculture_ways_covid_affected_planting_other = s5bq21__n96,
-    agriculture_current_farm_gate_price_small_banana_bunch = s5bq21a,
-    agriculture_current_farm_gate_price_medium_banana_bunch = s5bq21b,
-    agriculture_current_farm_gate_price_large_banana_bunch = s5bq21c,
-    agriculture_current_farm_gate_price_100kg_cassava_bag = s5bq21d,
-    agriculture_current_farm_gate_price_basin_dry_casava_chips = s5bq21e,
-    agriculture_current_farm_gate_price_kg_dry_cassava_flour = s5bq21f,
-    agriculture_current_farm_gate_price_kg_dry_beans = s5bq21g,
-    agriculture_current_farm_gate_price_basin_fresh_beans = s5bq21h,
-    agriculture_current_farm_gate_price_kg_maize_grains = s5bq21i,
-    agriculture_farm_production_normally_sold = s5bq23,
-    agriculture_revenues_expected_from_season_sales = s5bq24,
-    agriculture_famr_products_needed_to_sale_since_last_call = s5bq25,
-    agriculture_hh_able_sell_farm_products = s5bq26,
-    agricluture_hh_products_sale_location_farm = s5bq27__1,
-    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
-    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
-    agricluture_hh_products_sale_location_other = s5bq27__n96,
+    ag_hh_main_crops_cultivated_1 = s5bq18_1,
+    ag_hh_main_crops_cultivated_2 = s5bq18_2,
+    ag_hh_main_crops_cultivated_3 = s5bq18_3,
+    ag_planting_activities_change_covid = s5bq19,
+    ag_crop_planting_change_abandoned = s5bq20__1,
+    ag_crop_planting_change_reduced_planted_area = s5bq20__2,
+    ag_crop_planting_change_increased_planted_area = s5bq20__3,
+    ag_crop_planting_change_planted_less_time_mature_crops = s5bq20__4,
+    ag_crop_planting_change_less_variety_planted = s5bq20__5,
+    ag_crop_planting_change_more_variety_planted = s5bq20__6,
+    ag_crop_planting_change_delayed_planting = s5bq20__7,
+    ag_crop_planting_change_other = s5bq20__n96,
+    ag_ways_covid_affected_planting_stay_home = s5bq21__1,
+    ag_ways_covid_affected_planting_movement_restriction = s5bq21__3,
+    ag_ways_covid_affected_planting_unable_transport_seeds = s5bq21__4,
+    ag_ways_covid_affected_planting_unable_transport_fertilizer = s5bq21__5,
+    ag_ways_covid_affected_planting_unable_transport_other_inputs = s5bq21__6,
+    ag_ways_covid_affected_planting_unable_transport_outputs = s5bq21__7,
+    ag_ways_covid_affected_planting_fammily_ill = s5bq21__8,
+    ag_ways_covid_affected_planting_delayed_planting = s5bq21__9,
+    ag_ways_covid_affected_planting_other = s5bq21__n96,
+    ag_price_small_banana_bunch = s5bq21a,
+    ag_price_medium_banana_bunch = s5bq21b,
+    ag_price_large_banana_bunch = s5bq21c,
+    ag_price_100kg_cassava_bag = s5bq21d,
+    ag_price_basin_dry_casava_chips = s5bq21e,
+    ag_price_kg_dry_cassava_flour = s5bq21f,
+    ag_price_kg_dry_beans = s5bq21g,
+    ag_price_basin_fresh_beans = s5bq21h,
+    ag_price_kg_maize_grains = s5bq21i,
+    ag_farm_production_normally_sold = s5bq23,
+    ag_rev_expected_from_season_sales = s5bq24,
+    ag_famr_products_need_to_sale_since_last_call = s5bq25,
+    ag_hh_able_sell_farm_products = s5bq26,
+    ag_hh_products_sale_location_farm = s5bq27__1,
+    ag_hh_products_sale_location_daily_market = s5bq27__2,
+    ag_hh_products_sale_location_weekly_market = s5bq27__3,
+    ag_hh_products_sale_location_other = s5bq27__n96,
     
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
@@ -814,13 +864,14 @@ renamed_merged_r4 <- merged_r4 %>%
     concerns_security_risk_covid = s9q05,
     concerns_covid_response_limit_freedom = s9q06,
     concerns_misuse_covid_funds = s9q07,
-    concerns_government_corruption_lower_medical_quality = s9q08,
+    concerns_gov_corruption_lower_medical_quality = s9q08,
     concerns_discomfort_in_house = s9q09
   ) %>% 
   rename_to_lower_snake()
 
 
 ## round 5 ---- 
+
 round_5_interview_result <- read_dta(here("raw_data", "round5", "interview_result.dta")) %>%
   select(c('hhid','Rq09','Rq10'))
 round_5_cover  <- read_dta(here( "raw_data", "round5", "cover.dta" )) 
@@ -851,119 +902,126 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid")) %
 ##rename round5 columns
 renamed_merged_r5 <- merged_r5 %>% 
   rename(
-    interviewer_main_respondent = Rq09,
-    interviewer_language = Rq10,
+  	# basic survey information  
+    interview_main_resp = Rq09,
+    interview_language = Rq10,
     interview_date = Sq02,
-    
-    food_main_staple = s4q05,
-    food_main_staple_lack =  s4q06,
-    food_main_staple_lack_reason = s4q07,
-    
-    medicine_access = s4q08,
-    medical_treatment_needed = s4q09,
-    medical_access = s4q10,
-    medical_access_lack_reason = s4q11,
+    weight_final = wfinal, # R5 does not have R1 weight
 
-    masks_access = s4q12,
-    masks_lack_reason = s4q13,
-    masks_source_government = s4q14__1,
-    masks_source_purchased = s4q14__2,
-    masks_source_homemade = s4q14__3,
-    masks_source_friends_relatives = s4q14__4,
-    masks_source_employer = s4q14__5,
+    # Section 4 - Access
+    # Soap questions not in R5
+    # Water wash questions not in R5
+    # Water drinking questions not in R5
+    staple_main = s4q05,
+    staple_lack =  s4q06,
+    staple_lack_why = s4q07,
     
-    covid_pay_test_acceptance = s4q15,
-    covid_pay_test_acceptance_price =  s4q15_1,
-    covid_vaccine_acceptance = s4q16,
-    covid_vaccine_refusal_wont_work =  s4q17__1,
-    covid_vaccine_refusal_unsafe = s4q17__2,
-    covid_vaccine_refusal_side_effects = s4q17__3,
-    covid_vaccine_refusal_no_risk = s4q17__4,
-    covid_vaccine_refusal_against_vaccines = s4q17__5,
-    covid_vaccine_refusal_religion = s4q17__6,
-    covid_vaccine_unsure_wont_work = s4q18__1,
-    covid_vaccine_unsure_unsafe = s4q18__2,
-    covid_vaccine_unsure_side_effects = s4q18__3,
-    covid_vaccine_unsure_no_risk = s4q18__4,
-    covid_vaccine_unsure_against_vaccines = s4q18__5,
-    covid_vaccine_unsure_religion = s4q18__6,
+    medicine_no_access = s4q08,
+    medical_treatment_need = s4q09,
+    medical_access = s4q10,
+    medical_access_lack_why = s4q11,
     
+    mask_no_access = s4q12,
+    mask_no_access_why = s4q13,
+    mask_source_gov = s4q14__1,
+    mask_source_buy = s4q14__2,
+    mask_source_home_made = s4q14__3,
+    mask_source_friends_relatives = s4q14__4,
+    mask_source_employer = s4q14__5,
+    
+    covid_test_pay_accept = s4q15,
+    covid_test_pay_accept_price =  s4q15_1,
+    covid_vac_willing = s4q16,
+    covid_vac_refuse_not_work =  s4q17__1,
+    covid_vac_refuse_unsafe = s4q17__2,
+    covid_vac_refuse_side_effects = s4q17__3,
+    covid_vac_refuse_low_risk = s4q17__4,
+    covid_vac_refuse_against_vacs = s4q17__5,
+    covid_vac_refuse_religion = s4q17__6,
+    covid_vac_doubt_wont_work = s4q18__1,
+    covid_vac_doubt_unsafe = s4q18__2,
+    covid_vac_doubt_side_effects = s4q18__3,
+    covid_vac_doubt_no_risk = s4q18__4,
+    covid_vac_doubt_against_vacs = s4q18__5,
+    covid_vac_doubt_religion = s4q18__6,
+    
+    # Section 5 - Employment
     work_done_for_pay = s5q01,
     work_secured_absent = s5q01a,
     work_secured_return = s5q01b,   
-    work_missed_previously_reason = s5q01c,
-    work_stop_reason = s5q03,
+    work_missed_previously_why = s5q01c,
+    work_stop_why = s5q03,
     work_to_find_job = s5q03a,
     work_main_find_job = s5q03b,
     work_same_as_last_time  = s5q04a,
-    work_change_reason = s5q04b,
+    work_change_why = s5q04b,
     
     work_main_primary_description = s5q05a,
     work_main_activity = s5q05,
     work_area = s5q06,
     work_farm_products_intentions = s5q06a,
     
-    non_farm_business_operation = s5aq11,
-    non_farm_business_closure_reason = s5aq11b,
-    non_farm_business_other_operating = s5aq11b_1,
-    non_farm_business_other_main_activity = s5a11c_1,
-    non_farm_business_other_sector = s5aq12_1,
-    non_farm_business_existing_main_activity = s5a11c,
-    non_farm_business_existing_sector = s5aq12,
+    non_farm_biz_operation = s5aq11,
+    non_farm_biz_closure_why = s5aq11b,
+    non_farm_biz_other_operating = s5aq11b_1,
+    non_farm_biz_other_main_activity = s5a11c_1,
+    non_farm_biz_other_sector = s5aq12_1,
+    non_farm_biz_existing_main_activity = s5a11c,
+    non_farm_biz_existing_sector = s5aq12,
     
-    revenue_sales_non_family_business_compared_feb = s5aq13,
-    revenue_sales_non_family_business_covid = s5aq14_1,
-    revenue_sales_non_family_business_other = s5aq14_2,
-    revenue_sales_non_family_business_compared_year = s5aq15,
+    non_farm_biz_rev_sales_compared_feb = s5aq13,
+    non_farm_biz_rev_sales_covid = s5aq14_1,
+    non_farm_biz_rev_sales_other = s5aq14_2,
+    non_farm_biz_rev_sales_compared_year = s5aq15,
     
-    non_farm_business_temporary_close_status = s5aq11a,
+    non_farm_biz_temporary_close_status = s5aq11a,
     
-    agriculture_hh_worked_land_preparation = s5bq16,
+    ag_hh_worked_land_preparation = s5bq16,
     ## crop by code
-    agriculture_hh_main_crops_cultivated_1 = s5bq18_1,
-    agriculture_hh_main_crops_cultivated_2 = s5bq18_2,
-    agriculture_hh_main_crops_cultivated_3 = s5bq18_3,
-    agriculture_planting_activities_change_covid = s5bq19,
-    agriculture_crop_planting_change_abandoned = s5bq20__1,
-    agriculture_crop_planting_change_reduced_planted_area = s5bq20__2,
-    agriculture_crop_planting_change_increased_planted_area = s5bq20__3,
-    agriculture_crop_planting_change_planted_less_time_mature_crops = s5bq20__4,
-    agriculture_crop_planting_change_less_variety_planted = s5bq20__5,
-    agriculture_crop_planting_change_more_variety_planted = s5bq20__6,
-    agriculture_crop_planting_change_delayed_planting = s5bq20__7,
-    agriculture_ways_covid_affected_planting_stay_home = s5bq21__1,
-    agriculture_ways_covid_affected_planting_movement_restriction = s5bq21__3,
-    agriculture_ways_covid_affected_planting_unable_transport_seeds = s5bq21__4,
-    agriculture_ways_covid_affected_planting_unable_transport_fertilizer = s5bq21__5,
-    agriculture_ways_covid_affected_planting_unable_transport_other_inputs = s5bq21__6,
-    agriculture_ways_covid_affected_planting_unable_transport_outputs = s5bq21__7,
-    agriculture_ways_covid_affected_planting_fammily_ill = s5bq21__8,
-    agriculture_ways_covid_affected_planting_delayed_planting = s5bq21__9,
-    agriculture_main_crops =  s5bq21a,
-    agriculture_main_crops_completed_planting = s5bq21b,
-    agriculture_crops_planted_area_acres = s5bq21c,
-    agriculture_crop_out_expectations = s5bq21d,
-    agriculture_farm_production_normally_sold = s5bq23,
-    agriculture_revenues_expected_from_season_sales = s5bq24,
-    agriculture_famr_products_needed_to_sale_since_last_call = s5bq25,
-    agriculture_hh_able_sell_farm_products = s5bq26,
-    agricluture_hh_products_sale_location_farm = s5bq27__1,
-    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
-    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
+    ag_hh_main_crops_cultivated_1 = s5bq18_1,
+    ag_hh_main_crops_cultivated_2 = s5bq18_2,
+    ag_hh_main_crops_cultivated_3 = s5bq18_3,
+    ag_planting_activities_change_covid = s5bq19,
+    ag_crop_planting_change_abandoned = s5bq20__1,
+    ag_crop_planting_change_reduced_planted_area = s5bq20__2,
+    ag_crop_planting_change_increased_planted_area = s5bq20__3,
+    ag_crop_planting_change_planted_less_time_mature_crops = s5bq20__4,
+    ag_crop_planting_change_less_variety_planted = s5bq20__5,
+    ag_crop_planting_change_more_variety_planted = s5bq20__6,
+    ag_crop_planting_change_delayed_planting = s5bq20__7,
+    ag_ways_covid_affected_planting_stay_home = s5bq21__1,
+    ag_ways_covid_affected_planting_movement_restriction = s5bq21__3,
+    ag_ways_covid_affected_planting_unable_transport_seeds = s5bq21__4,
+    ag_ways_covid_affected_planting_unable_transport_fertilizer = s5bq21__5,
+    ag_ways_covid_affected_planting_unable_transport_other_inputs = s5bq21__6,
+    ag_ways_covid_affected_planting_unable_transport_outputs = s5bq21__7,
+    ag_ways_covid_affected_planting_fammily_ill = s5bq21__8,
+    ag_ways_covid_affected_planting_delayed_planting = s5bq21__9,
+    ag_main_crops =  s5bq21a,
+    ag_main_crops_completed_planting = s5bq21b,
+    ag_crops_planted_area_acres = s5bq21c,
+    ag_crop_out_expectations = s5bq21d,
+    ag_farm_production_normally_sold = s5bq23,
+    ag_rev_expected_from_season_sales = s5bq24,
+    ag_famr_products_need_to_sale_since_last_call = s5bq25,
+    ag_hh_able_sell_farm_products = s5bq26,
+    ag_hh_products_sale_location_farm = s5bq27__1,
+    ag_hh_products_sale_location_daily_market = s5bq27__2,
+    ag_hh_products_sale_location_weekly_market = s5bq27__3,
     
     livestock_products_produced_since_last_time = s5dq12,
     livestock_products_sales_level_since_last_time = s5dq13,
-    livestock_products_sales_decline_reason_closed_markets = s5dq14__1,
-    livestock_products_sales_decline_reason_restaurants_closed = s5dq14__2,
-    livestock_products_sales_decline_reason_limited_transport = s5dq14__3,
-    livestock_products_sales_decline_reason_travel_restrictions = s5dq14__4,
-    livestock_products_sales_decline_reason_prices_fall = s5dq14__5,
-    livestock_products_no_sales_reason_markets_closed = s5dq14_1__1,
-    livestock_products_no_sales_reason_restaurants_closed = s5dq14_1__2,
-    livestock_products_no_sales_reason_limited_transport = s5dq14_1__3,
-    livestock_products_no_sales_reason_travel_restrictions = s5dq14_1__4,
-    livestock_products_no_sales_reason_prices_fall = s5dq14_1__5,
-    livestock_products_no_sales_reason_only_consumption = s5dq14_1__6,
+    livestock_products_sales_decline_why_closed_markets = s5dq14__1,
+    livestock_products_sales_decline_why_restaurants_closed = s5dq14__2,
+    livestock_products_sales_decline_why_limited_transport = s5dq14__3,
+    livestock_products_sales_decline_why_travel_restrictions = s5dq14__4,
+    livestock_products_sales_decline_why_prices_fall = s5dq14__5,
+    livestock_products_no_sales_why_markets_closed = s5dq14_1__1,
+    livestock_products_no_sales_why_restaurants_closed = s5dq14_1__2,
+    livestock_products_no_sales_why_limited_transport = s5dq14_1__3,
+    livestock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
+    livestock_products_no_sales_why_prices_fall = s5dq14_1__5,
+    livestock_products_no_sales_why_only_consumption = s5dq14_1__6,
     livestock_product_price_level_since_last_time = s5dq15,
     
     food_insufficient_worry = s8q01,
@@ -991,7 +1049,7 @@ renamed_merged_r5 <- merged_r5 %>%
     concerns_security_risk_covid = s9q05,
     concerns_covid_response_limit_freedom = s9q06,
     concerns_misuse_covid_funds = s9q07,
-    concerns_government_corruption_lower_medical_quality = s9q08,
+    concerns_gov_corruption_lower_medical_quality = s9q08,
     concerns_discomfort_in_house = s9q09,
     concerns_bothered_by_little_pleasure_in_enjoyments = s9q10_1,
     concerns_sad_down_depressed = s9q10_2,
@@ -1006,12 +1064,14 @@ renamed_merged_r5 <- merged_r5 %>%
 
 
 ## round 6 ----
+
 round_6_interview_result <- read_dta(here("raw_data", "round6", "interview_result.dta")) %>%
   select(c('hhid','Rq09','Rq10'))
 round_6_cover  <- read_dta(here( "raw_data", "round6", "cover.dta" )) 
 
 round_6_sec1 <- read_dta(here( "raw_data", "round6", "sec1.dta" )) 
-round_6_sec4  <- read_dta(here( "raw_data", "round6", "sec4_1.dta" )) 
+round_6_sec4_1 <- read_dta(here( "raw_data", "round6", "sec4_1.dta" )) 
+round_6_sec4_2 <- read_dta(here( "raw_data", "round6", "sec4_2.dta" )) 
 round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
 round_6_sec5b  <- read_dta(here( "raw_data", "round6", "sec5b.dta" )) 
 round_6_sec5d  <- read_dta(here( "raw_data", "round6", "sec5d.dta" )) 
@@ -1026,7 +1086,8 @@ round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" ))
 
 ## merge round6 datasets
 merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %>% 
-  left_join(round_6_sec4, by = c("hhid")) %>% 
+  left_join(round_6_sec4_1, by = c("hhid")) %>% 
+  left_join(round_6_sec4_2, by = c("hhid")) %>% 
   left_join(round_6_sec5_resp, by = c("hhid")) %>% 
   left_join(round_6_sec5_other, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>% 
@@ -1038,69 +1099,87 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
 
 ## rename round6 columns
 renamed_merged_r6 <- merged_r6 %>% 
-  rename(  
-    interviewer_main_respondent = Rq09,
-    interviewer_language = Rq10,
+  rename( 
+  	# basic survey information   
+    interview_main_resp = Rq09,
+    interview_language = Rq10,
     interview_date = Sq02,
+    weight_final = wfinal, # R6 does not have R1 weight
+
+    # Section 4 - Access
+    # Medical access questions are slightly different. 
+    # R6 asks about treatment *and* consultations
+    # Also, the access questions are by type of treatment/consult needed
+    # These need to be combined for analyses if needed
+    soap_wash = s4q01,
+    soap_wash_lack_why = s4q02,
     
-    soap_wash_hands = s4q01,
-    soap_wash_hands_lack_reason = s4q02,
+    water_wash = s4q03,
+    water_wash_lack_why =  s4q04,
     
-    water_wash_hands = s4q03,
-    water_wash_hands_lack_reason =  s4q04,
-    
-    food_purchased_maize_flour = s4q04_1__1,
-    food_purchased_rice = s4q04_1__2,
-    food_purchased_beans = s4q04_1__3,
+    food_buy_maize_flour = s4q04_1__1,
+    food_buy_rice = s4q04_1__2,
+    food_buy_beans = s4q04_1__3,
     
     price_kg_maize = s4q04_2,
     price_kg_rice = s4q04_3,
-    price_kg_fresh_beans = s4q04_4,
-    price_kg_dry_beans = s4q04_5,
-    
-    masks_access = s4q12,
-    masks_lack_reason = s4q13,
-    masks_source_government = s4q14__1,
-    masks_source_purchased = s4q14__2,
-    masks_source_home_made = s4q14__3,
-    masks_source_friends_relatives = s4q14__4,
-    masks_source_employer = s4q14__5,
-    
-    medicine_access = s4q08,
-    medical_services_need = s4q19,
-    medical_services_need_family_planning = s4q20__1,
-    medical_services_need_vaccination = s4q20__2,
-    medical_services_need_maternal_health = s4q20__3,
-    medical_services_need_chuld_health = s4q20__4,
-    medical_services_need_adult_health = s4q20__5,
-    medical_services_need_emergency_care = s4q20__6,
-    medical_services_need_pharmacy = s4q20__7,
-    
-    work_done_for_pay_respondent = s5q01,
-    work_secured_absent_respondent = s5q01a,
-    work_secured_return_respondent = s5q01b,
-    work_missed_previously_reason_respondent = s5q01c,
-    work_stop_reason_respondent = s5q03,
-    work_to_find_job_respondent = s5q03a,
-    work_main_find_job_respondent  = s5q03b,
-    work_same_as_last_time_respondent = s5q04a,
-    work_change_reason_respondent = s5q04b,
-    work_main_primary_activities_respondent = s5q05a,
-    work_main_activity_respondent = s5q05,
-    work_area_respondent = s5q06,
-    
-    family_products_intentions_respondent = s5q06a,
-    
-    work_hours_previous_week_respondent = s5q8b1,
-    work_hours_by_member_week_respondent = s5q8c1,
+    price_kg_beans_fresh = s4q04_4,
+    price_kg_beans_dra   = s4q04_5,
 
+    medicine_no_access = s4q08,
+    medical_treatment_need = s4q19,
+    medical_need_fp = s4q20__1,
+    medical_need_vac = s4q20__2,
+    medical_need_maternal = s4q20__3,
+    medical_need_child_health = s4q20__4,
+    medical_need_adult_health = s4q20__5,
+    medical_need_emergency_care = s4q20__6,
+    medical_need_pharmacy = s4q20__7,
+    medical_type_1            = medical_access__id_1,
+    medical_access_1          = s4q21_1,
+    medical_access_lack_why_1 = s4q22_1,
+    medical_type_2            = medical_access__id_2,
+    medical_access_2          = s4q21_2,
+    medical_access_lack_why_2 = s4q22_2,
+    medical_type_3            = medical_access__id_3,
+    medical_access_3          = s4q21_3,
+    medical_access_lack_why_3 = s4q22_3,
+    
+    mask_no_access = s4q12,
+    mask_no_access_why = s4q13,
+    mask_source_gov = s4q14__1,
+    mask_source_buy = s4q14__2,
+    mask_source_home_made = s4q14__3,
+    mask_source_friends_relatives = s4q14__4,
+    mask_source_employer = s4q14__5,
+     
+    
+    # Section 5 - Employment    
+    work_done_for_pay_resp = s5q01,
+    work_secured_absent_resp = s5q01a,
+    work_secured_return_resp = s5q01b,
+    work_missed_previously_why_resp = s5q01c,
+    work_stop_why_resp = s5q03,
+    work_to_find_job_resp = s5q03a,
+    work_main_find_job_resp  = s5q03b,
+    work_same_as_last_time_resp = s5q04a,
+    work_change_why_resp = s5q04b,
+    work_main_primary_activities_resp = s5q05a,
+    work_main_activity_resp = s5q05,
+    work_area_resp = s5q06,
+    
+    family_products_intentions_resp = s5q06a,
+    
+    work_hours_previous_week_resp = s5q8b1,
+    work_hours_by_member_week_resp = s5q8c1,
+    
     #s5oq0b_1 not is survey,
     work_individual_available_respond = s5Oq0b,
     work_individual_responding = s5Oq0c,
     work_done_for_pay = s5Oq01,
     work_secured_absent = s5Oq01a,
     work_secured_return = s5Oq01b,
-    work_missed_previously_reason = s5Oq01c,
+    work_missed_previously_why = s5Oq01c,
     work_secured_return_type = s5Oq01d,
     work_to_find_job = s5Oq03a,
     work_main_find_job = s5Oq03b,
@@ -1110,56 +1189,56 @@ renamed_merged_r6 <- merged_r6 %>%
     work_sector = s5Oq05,
     work_hours = s5Oq8b1,
     work_hours_usual = s5Oq8c1,
-
-    non_farm_business_operation = s5aq11,
-    non_farm_business_closure_reason = s5aq11b,
-    non_farm_business_another = s5aq11b_1,
-    non_farm_new_business_main_activity = s5a11c_1,
-    non_farm_new_business_sector = s5aq12_1,
-    non_farm_existing_business_main_activity = s5a11c,
-    non_farm_existing_business_sector = s5aq12,
     
-    revenue_sales_non_family_business_compared_feb = s5aq13,
-    revenue_sales_non_family_business_covid = s5aq14_1,
-    revenue_sales_non_family_business_other = s5aq14_2,
-    revenue_sales_non_family_business_compared_year = s5aq15,
+    non_farm_biz_operation = s5aq11,
+    non_farm_biz_closure_why = s5aq11b,
+    non_farm_biz_another = s5aq11b_1,
+    non_farm_new_biz_main_activity = s5a11c_1,
+    non_farm_new_biz_sector = s5aq12_1,
+    non_farm_existing_biz_main_activity = s5a11c,
+    non_farm_existing_biz_sector = s5aq12,
     
-    non_farm_business_temporary_close_status = s5aq11a,
+    non_farm_biz_rev_sales_compared_feb = s5aq13,
+    non_farm_biz_rev_sales_covid = s5aq14_1,
+    non_farm_biz_rev_sales_other = s5aq14_2,
+    non_farm_biz_rev_sales_compared_year = s5aq15,
+    
+    non_farm_biz_temporary_close_status = s5aq11a,
     
     #s5bq16,s5bq18_1,s5bq18_2,s5bq18_3,s5bq19,s5bq20__1,s5bq20__2,s5bq20__3,s5bq20__4,s5bq20__5,s5bq20__6,s5bq20__7
     # not is survey
     #s5bq21a,s5bq21b,s5bq21c,s5bq21d not in survey
-    agriculture_current_farm_gate_price_small_banana_bunch = s5bq21__1,
-    agriculture_current_farm_gate_price_large_banana_bunch = s5bq21__3,
+    ag_price_small_banana_bunch = s5bq21__1,
+    ag_price_large_banana_bunch = s5bq21__3,
     #21_4 5 and 6 not is survey hence considered as in previous rounds 
-    agriculture_current_farm_gate_price_100kg_cassava_bag = s5bq21__4,
-    agriculture_current_farm_gate_price_basin_dry_casava_chips = s5bq21__5,
-    agriculture_current_farm_gate_price_kg_dry_cassava_flour = s5bq21__6,
-    agriculture_current_farm_gate_price_kg_dry_beans = s5bq21__7,
-    agriculture_current_farm_gate_price_basin_fresh_beans = s5bq21__9,
-    agriculture_current_farm_gate_price_kg_maize_grains = s5bq21__8,
+    ag_price_100kg_cassava_bag = s5bq21__4,
+    ag_price_basin_dry_casava_chips = s5bq21__5,
+    ag_price_kg_dry_cassava_flour = s5bq21__6,
+    ag_price_kg_dry_beans = s5bq21__7,
+    ag_price_basin_fresh_beans = s5bq21__9,
+    ag_price_kg_maize_grains = s5bq21__8,
     
-    agriculture_farm_production_normally_sold = s5bq23,
-    agriculture_revenues_expected_from_season_sales = s5bq24,
-    agriculture_farm_products_needed_to_sale_since_last_call = s5bq25,
-    agriculture_hh_able_sell_farm_products = s5bq26,
-    agricluture_hh_products_sale_location_farm = s5bq27__1,
-    agricluture_hh_products_sale_location_daily_market = s5bq27__2,
-    agricluture_hh_products_sale_location_weekly_market = s5bq27__3,
+    ag_farm_production_normally_sold = s5bq23,
+    ag_rev_expected_from_season_sales = s5bq24,
+    ag_farm_products_need_to_sale_since_last_call = s5bq25,
+    ag_hh_able_sell_farm_products = s5bq26,
+    ag_hh_products_sale_location_farm = s5bq27__1,
+    ag_hh_products_sale_location_daily_market = s5bq27__2,
+    ag_hh_products_sale_location_weekly_market = s5bq27__3,
     
     livestock_products_produced_since_last_time = s5dq12,
     livestock_products_sales_level = s5dq13,
-    livestock_products_sales_decline_reason_closed_markets =  s5dq14__1,
-    livestock_products_sales_decline_reason_restaurants_closed = s5dq14__2,
-    livestock_products_sales_decline_reason_limited_transport = s5dq14__3,
-    livestock_products_sales_decline_reason_travel_restrictions = s5dq14__4,
-    livestock_products_sales_decline_reason_prices_fall = s5dq14__5,
-    livestock_products_no_sales_reason_closed_markerts = s5dq14_1__1,
-    livestock_products_no_sales_reason_closed_restaurants = s5dq14_1__2,
-    livestock_products_no_sales_reason_limited_transport = s5dq14_1__3,
-    livestock_products_no_sales_reason_travel_restrictions = s5dq14_1__4,
-    livestock_products_no_sales_reason_prices_fall = s5dq14_1__5,
-    livestock_products_no_sales_reason_home_consumption = s5dq14_1__6,
+    livestock_products_sales_decline_why_closed_markets =  s5dq14__1,
+    livestock_products_sales_decline_why_restaurants_closed = s5dq14__2,
+    livestock_products_sales_decline_why_limited_transport = s5dq14__3,
+    livestock_products_sales_decline_why_travel_restrictions = s5dq14__4,
+    livestock_products_sales_decline_why_prices_fall = s5dq14__5,
+    livestock_products_no_sales_why_closed_markerts = s5dq14_1__1,
+    livestock_products_no_sales_why_closed_restaurants = s5dq14_1__2,
+    livestock_products_no_sales_why_limited_transport = s5dq14_1__3,
+    livestock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
+    livestock_products_no_sales_why_prices_fall = s5dq14_1__5,
+    livestock_products_no_sales_why_home_consumption = s5dq14_1__6,
     livestock_products_price_level_since_last_time = s5dq15,
     
     food_insufficient_worry = s8q01,
@@ -1187,7 +1266,7 @@ renamed_merged_r6 <- merged_r6 %>%
     concerns_security_risk_covid = s9q05,
     concerns_covid_response_limit_freedom = s9q06,
     concerns_misuse_covid_funds = s9q07,
-    concerns_government_corruption_lower_medical_quality = s9q08,
+    concerns_gov_corruption_lower_medical_quality = s9q08,
     concerns_discomfort_in_house = s9q09,
     ## question 10 not in survey but data available hence questions considered as in earlier rounds
     concerns_bothered_by_little_pleasure_in_enjoyments = s9q10_1,
@@ -1198,10 +1277,11 @@ renamed_merged_r6 <- merged_r6 %>%
     concerns_self_worth_loss = s9q10_6,
     concerns_concentrating_work = s9q10_7,
     concerns_motion_speaking_change = s9q10_8
-    ) %>% 
+  ) %>% 
   rename_to_lower_snake()
 
 ## round 7 ---- 
+
 round_7_interview_result <- read_dta(here("raw_data", "round7", "interview_result.dta")) %>%
   select(c('HHID','Rq09','Rq10'))
 round_7_cover  <- read_dta(here( "raw_data", "round7", "Cover.dta" )) 
@@ -1223,68 +1303,76 @@ merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %
   left_join(round_7_sec8, by = c("HHID")) %>% 
   left_join(round_7_sec9, by = c("HHID")) %>% 
   mutate(round = 7)
-         
+
 ## renaming merged round7
 renamed_merged_r7 <- merged_r7 %>% 
+  mutate(s4q15 = recode(
+    # Medicine question went from unable to able in R7, so swap yes/no
+    s4q15, "1" = 2, "2" = 1 
+  )) %>% 
   rename(
-    interviewer_main_respondent = Rq09,
-    interviewer_language = Rq10,
+  	# basic survey information  
+    interview_main_resp = Rq09,
+    interview_language = Rq10,
     interview_date = Sq02,
+	weight_final = wfinal, # R7 does not have R1 weight
     
-    masks_access = s4q12,
-    masks_lack_reason = s4q13,
-    masks_source_government = s4q14__1,
-    masks_source_purchased = s4q14__2,
-    masks_source_home_made = s4q14__3,
-    masks_source_friends_relatives = s4q14__4,
-    masks_source_employer = s4q14__5,
-    masks_source_other = s4q14__n96,
+    # Section 4 - Access
+    # Medical treatment needs to be pivoted before adding (after adding SEC4_2.dta to data loading)
+    mask_no_access = s4q12,
+    mask_no_access_why = s4q13,
+    mask_source_gov = s4q14__1,
+    mask_source_buy = s4q14__2,
+    mask_source_home_made = s4q14__3,
+    mask_source_friends_relatives = s4q14__4,
+    mask_source_employer = s4q14__5,
+    mask_source_other = s4q14__n96,
     
-    medicine_buy_ability = s4q15,
- 
-    non_farm_business_operation = s5aq11,
-    non_farm_business_status = s5aq11a,
-    non_farm_business_closure_reason = s5aq11b,
-    non_farm_business_another = s5aq11b_1,
-    non_farm_new_business_main_activity = s5a11c_1,
-    non_farm_new_business_sector = s5aq12_1,
-    non_farm_existing_business_main_activity = s5aq11c,
-    non_farm_existing_business_sector = s5aq12,
+    medicine_no_access = s4q15,
     
-    revenue_sales_non_family_business_compared_apr = s5aq13,
-    revenue_sales_non_family_business_reason = s5aq14_1,
-    revenue_sales_non_family_business_reason_other = s5aq14_2,
-    revenue_sales_non_family_business_compared_year = s5aq15,
+    # Section 5 - Employment
+    non_farm_biz_operation = s5aq11,
+    non_farm_biz_status = s5aq11a,
+    non_farm_biz_closure_why = s5aq11b,
+    non_farm_biz_another = s5aq11b_1,
+    non_farm_new_biz_main_activity = s5a11c_1,
+    non_farm_new_biz_sector = s5aq12_1,
+    non_farm_existing_biz_main_activity = s5aq11c,
+    non_farm_existing_biz_sector = s5aq12,
+    non_farm_biz_rev_sales_compared_apr = s5aq13,
+    non_farm_biz_rev_sales_why = s5aq14_1,
+    non_farm_biz_rev_sales_why_other = s5aq14_2,
+    non_farm_biz_rev_sales_compared_year = s5aq15,
     
-    change_business_conduct = s5aq15a,
-    changes_to_be_made_in_business_wear_masks = s5aq15b__1,
-    changes_to_be_made_in_business_distancing = s5aq15b__2,
-    changes_to_be_made_in_business_few_customers_at_once = s5aq15b__3,
-    changes_to_be_made_in_business_phone_media_market = s5aq15b__4,
-    changes_to_be_made_in_business_deliveries_only = s5aq15b__5,
-    changes_to_be_made_in_business_product_offering = s5aq15b__6,
-    changes_to_be_made_in_business_no_change = s5aq15b__7,
-    changes_to_be_made_in_business_other = s5aq15b__n96,
+    change_biz_conduct = s5aq15a,
+    changes_to_be_made_in_biz_wear_mask = s5aq15b__1,
+    changes_to_be_made_in_biz_distancing = s5aq15b__2,
+    changes_to_be_made_in_biz_few_customers_at_once = s5aq15b__3,
+    changes_to_be_made_in_biz_phone_media_market = s5aq15b__4,
+    changes_to_be_made_in_biz_deliveries_only = s5aq15b__5,
+    changes_to_be_made_in_biz_product_offering = s5aq15b__6,
+    changes_to_be_made_in_biz_no_change = s5aq15b__7,
+    changes_to_be_made_in_biz_other = s5aq15b__n96,
     
-    work_done_for_pay_respondent = s5q01,
-    work_secured_absent_respondent = s5q01a,
-    work_secured_return_respondent = s5q01b,   
-    work_missed_previously_reason_respondent = s5q01c,
-    work_stop_reason_respondent = s5q03,
-    work_to_find_job_respondent = s5q03a,
-    work_main_find_job_respondent  = s5q03b,
-    work_same_as_last_time_respondent = s5q04a,
-    work_change_reason_respondent = s5q04b,
-    work_main_primary_activities_respondent = s5q05a,
-    work_main_activity_respondent = s5q05, 
-    work_area_respondent = s5q06,
+    work_done_for_pay_resp = s5q01,
+    work_secured_absent_resp = s5q01a,
+    work_secured_return_resp = s5q01b,   
+    work_missed_previously_why_resp = s5q01c,
+    work_stop_why_resp = s5q03,
+    work_to_find_job_resp = s5q03a,
+    work_main_find_job_resp  = s5q03b,
+    work_same_as_last_time_resp = s5q04a,
+    work_change_why_resp = s5q04b,
+    work_main_primary_activities_resp = s5q05a,
+    work_main_activity_resp = s5q05, 
+    work_area_resp = s5q06,
     
-    family_products_intentions_respondent = s5q06a,
+    family_products_intentions_resp = s5q06a,
     
     safety_measures_by_employer_disinfectants = s5q08f__1,
     safety_measures_by_employer_sanitizer = s5q08f__2,
     safety_measures_by_employer_preventative = s5q08f__3,
-    safety_measures_by_employer_masks = s5q08f__4,
+    safety_measures_by_employer_mask = s5q08f__4,
     safety_measures_by_employer_gloves = s5q08f__5,
     safety_measures_by_employer_work_home = s5q08f__6,
     safety_measures_by_employer_closed_office = s5q08f__7,
@@ -1293,9 +1381,9 @@ renamed_merged_r7 <- merged_r7 %>%
     safety_measures_followed = s5q08g,
     safety_measures_followed_percentage = s5q08g_1,
     
-    work_hours_primary_activity_previously_respondent =s5q8b1,
-    work_hours_primary_activity_usually_respondent = s5q8c1,
-
+    work_hours_primary_activity_previously_resp =s5q8b1,
+    work_hours_primary_activity_usually_resp = s5q8c1,
+    
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
@@ -1314,35 +1402,52 @@ renamed_merged_r7 <- merged_r7 %>%
     concerns_covid_drug_none = s9q05__4,
     concerns_covid_drug_other = s9q05__n98,
     concerns_covid_trusted_treatment = s9q06,
-    concerns_covid_vaccine_availability_knowledge = s9q10,
-    concerns_covid_vaccine_availability_info_source_poster = s9q10b__1,
-    concerns_covid_vaccine_availability_info_source_radio = s9q10b__2,
-    concerns_covid_vaccine_availability_info_source_tv = s9q10b__3,
-    concerns_covid_vaccine_availability_info_source_sms = s9q10b__4,
-    concerns_covid_vaccine_availability_info_source_phone = s9q10b__5,
-    concerns_covid_vaccine_availability_info_source_newspaper = s9q10b__6,
-    concerns_covid_vaccine_availability_info_source_social_media = s9q10b__7,
-    concerns_covid_vaccine_availability_info_source_healthcare = s9q10b__8,
-    concerns_covid_vaccine_availability_info_source_ngo = s9q10b__9,
-    concerns_covid_vaccine_availability_info_source_other_outreach = s9q10b__10,
-    concerns_covid_vaccine_availability_info_source_local_authority = s9q10b__11,
-    concerns_covid_vaccine_availability_info_source_family_neighbors = s9q10b__12,
-    concerns_covid_vaccine_availability_info_source_traditional_healer = s9q10b__13,
-    concerns_covid_vaccine_availability_info_source_other = s9q10b__n96,
-    concerns_covid_vaccine_priority_groups_knowledge = s9q10c,
-    concerns_covid_vaccine_priority_group_individual_included = s9q10d,
+    concerns_covid_vac_availability_knowledge = s9q10,
+    concerns_covid_vac_availability_info_source_poster = s9q10b__1,
+    concerns_covid_vac_availability_info_source_radio = s9q10b__2,
+    concerns_covid_vac_availability_info_source_tv = s9q10b__3,
+    concerns_covid_vac_availability_info_source_sms = s9q10b__4,
+    concerns_covid_vac_availability_info_source_phone = s9q10b__5,
+    concerns_covid_vac_availability_info_source_newspaper = s9q10b__6,
+    concerns_covid_vac_availability_info_source_social_media = s9q10b__7,
+    concerns_covid_vac_availability_info_source_healthcare = s9q10b__8,
+    concerns_covid_vac_availability_info_source_ngo = s9q10b__9,
+    concerns_covid_vac_availability_info_source_other_outreach = s9q10b__10,
+    concerns_covid_vac_availability_info_source_local_authority = s9q10b__11,
+    concerns_covid_vac_availability_info_source_family_neighbors = s9q10b__12,
+    concerns_covid_vac_availability_info_source_traditional_healer = s9q10b__13,
+    concerns_covid_vac_availability_info_source_other = s9q10b__n96,
+    concerns_covid_vac_priority_groups_knowledge = s9q10c,
+    concerns_covid_vac_priority_group_individual_included = s9q10d,
     concerns_covid_vaccinated = s9q11,
-    concerns_covid_no_second_vaccine_shot_reason = s9q11b,
-    concerns_covid_vaccination_tried = s9q11c,
-    concerns_covid_not_vaccinated_reason = s9q11d,
-    concerns_covid_vaccine_received = s9q12,
-    concerns_approved_free_covid_vaccination_accept = s9q13,
-    concerns_covid_unvaccination_main_reason = s9q14,
-    concerns_covid_vaccine_type_wanted = s9q15
+    concerns_covid_no_second_vac_shot_why = s9q11b,
+    concerns_covid_vac_tried = s9q11c,
+    concerns_covid_not_vaccinated_why = s9q11d,
+    concerns_covid_vac_received = s9q12,
+    concerns_approved_free_covid_vac_accept = s9q13,
+    concerns_covid_unvac_main_why = s9q14,
+    concerns_covid_vac_type_wanted = s9q15
   ) %>% 
   rename_to_lower_snake()
 
-# merging all rounds renamed datasets
-all_rounds_df <- bind_rows(renamed_merged_r1,renamed_merged_r2,renamed_merged_r3,renamed_merged_r4,renamed_merged_r5,renamed_merged_r6,renamed_merged_r7) %>%
-  select(-starts_with("BSEQ", ignore.case = TRUE)
-         )
+# merging all and saving ----
+all_rounds_df <- bind_rows(
+  renamed_merged_r1,
+  renamed_merged_r2,
+  renamed_merged_r3,
+  renamed_merged_r4,
+  renamed_merged_r5,
+  renamed_merged_r6,
+  renamed_merged_r7) %>%
+  select(-starts_with("BSEQ", ignore.case = TRUE))
+
+all_rounds_df %>% 
+  write_rds(here("data", "base.rds"))
+
+all_rounds_df %>% 
+  write_dta(
+    here("data", "base.dta"),
+    version = 15,
+    )
+
+
