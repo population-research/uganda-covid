@@ -213,14 +213,15 @@ renamed_merged_r1 <- merged_r1 %>%
     farm_products_need_sell = s5aq30,
     farm_products_sell_ability = s5aq31,
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s7q01,
     food_healthy_lack = s7q02,
     food_few_kinds = s7q03,
     food_skipped_meal = s7q04,
     food_less_than_expected = s7q05,
     food_ranout = s7q06,
-    food_lacked_hungry = s7q07,
-    food_lack_didnt_eat_all_day = s7q08,
+    food_hungry = s7q07,
+    food_didnt_eat_all_day = s7q08,
     
     concerns_covid_hh_serious_illness = s8q01,
     concerns_covid_threat_hh_finances = a8q02
@@ -429,14 +430,15 @@ renamed_merged_r2 <- merged_r2 %>%
     livestock_animales_sale_unable_why_prices_fall = s5cq11__4,
     livestock_animales_sale_unable_why_other = s5cq11__5, ## there is no five hence called it other 
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
     food_skipped_meal = s8q04,
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
-    food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08,
+    food_hungry = s8q07,
+    food_didnt_eat_all_day = s8q08,
     
     concerns_covid_hh_serious_illness = s9q01,
     concerns_covid_threat_hh_finances = s9q02,
@@ -622,14 +624,15 @@ renamed_merged_r3 <- merged_r3 %>%
     ##section5c runs has only variables of 1,8,9, and 11 in survey
     # s5cq13,s5cq14__1,s5cq14__2,s5cq14__3,s5cq14__4,s5cq14__5,s5cq14__6,s5cq14a__1,s5cq14a__2,s5cq14a__3,s5cq14a__4,s5cq14a__5,s5cq14a__6,s5cq15
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
     food_skipped_meal = s8q04,
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
-    food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08,
+    food_hungry = s8q07,
+    food_didnt_eat_all_day = s8q08,
     
     concerns_covid_hh_serious_illness = s9q01,
     concerns_covid_threat_hh_finances = s9q02,
@@ -841,14 +844,15 @@ renamed_merged_r4 <- merged_r4 %>%
     ag_hh_products_sale_location_weekly_market = s5bq27__3,
     ag_hh_products_sale_location_other = s5bq27__n96,
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
     food_skipped_meal = s8q04,
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
-    food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08,
+    food_hungry = s8q07,
+    food_didnt_eat_all_day = s8q08,
     
     concerns_covid_hh_serious_illness = s9q01,
     concerns_covid_threat_hh_finances = s9q02,
@@ -1024,14 +1028,15 @@ renamed_merged_r5 <- merged_r5 %>%
     livestock_products_no_sales_why_only_consumption = s5dq14_1__6,
     livestock_product_price_level_since_last_time = s5dq15,
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
     food_skipped_meal = s8q04,
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
-    food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08,
+    food_hungry = s8q07,
+    food_didnt_eat_all_day = s8q08,
     
     concerns_covid_hh_serious_illness = s9q01,
     concerns_covid_threat_hh_finances = s9q02,
@@ -1241,14 +1246,15 @@ renamed_merged_r6 <- merged_r6 %>%
     livestock_products_no_sales_why_home_consumption = s5dq14_1__6,
     livestock_products_price_level_since_last_time = s5dq15,
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
     food_skipped_meal = s8q04,
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
-    food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08,
+    food_hungry = s8q07,
+    food_didnt_eat_all_day = s8q08,
     
     concerns_covid_hh_serious_illness = s9q01,
     concerns_covid_threat_hh_finances = s9q02,
@@ -1384,14 +1390,15 @@ renamed_merged_r7 <- merged_r7 %>%
     work_hours_primary_activity_previously_resp =s5q8b1,
     work_hours_primary_activity_usually_resp = s5q8c1,
     
+    # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
     food_healthy_lack = s8q02,
     food_few_kinds = s8q03,
     food_skipped_meal = s8q04,
     food_less_than_expected = s8q05,
     food_ranout = s8q06,
-    food_lacked_hungry = s8q07,
-    food_lack_didnt_eat_all_day = s8q08,
+    food_hungry = s8q07,
+    food_didnt_eat_all_day = s8q08,
     
     concerns_relative_infected_covid = s9q03a,
     concerns_covid_infection_even_not_tested = s9q03b,
