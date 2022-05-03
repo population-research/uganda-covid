@@ -253,7 +253,8 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec5, by = c("HHID")) %>% 
   left_join(round_2_sec5a, by = c("HHID")) %>% 
   left_join(round_2_sec5b, by = c("HHID")) %>% 
-  left_join(round_2_sec5c_1, by = c("HHID")) %>% 
+  # This is by product within household currently; remove comment when fixed
+  # left_join(round_2_sec5c_1, by = c("HHID")) %>%  
   left_join(round_2_sec5c, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
@@ -391,21 +392,22 @@ renamed_merged_r2 <- merged_r2 %>%
     harvest_crops_need_sale_since_last_call = s5bq08,
     harvest_household_able_sale_farm_products = s5bq09,
     
-    livestock_products_sale_level = s5cq13,
-    livestock_sale_declined_why_markets_closed =  s5cq14_1__1,
-    livestock_sale_declined_why_restaurants_closed = s5cq14_1__2,
-    livestock_sale_declined_why_limited_transport = s5cq14_1__3,
-    livestock_sale_declined_why_travel_restrictions = s5cq14_1__4,
-    livestock_sale_declined_why_prices_fall = s5cq14_1__5,
-    livestock_sale_declined_why_other = s5cq14_1__6,
-    # s5cq14_3 is 14a
-    livestock_no_sales_why_markets_closed = s5cq14_2__1,
-    livestock_no_sales_why_restaurants_closed = s5cq14_2__2,
-    livestock_no_sales_why_limited_transport = s5cq14_2__3,
-    livestock_no_sales_why_travel_restrictions = s5cq14_2__4,
-    livestock_no_sales_why_prices_fall = s5cq14_2__5,
-    livestock_no_sales_why_home_consumption = s5cq14_2__6,
-    livestock_price_level_since_march = s5cq15,
+    # This is by product within household currently; remove comment when fixed
+    # livestock_products_sale_level = s5cq13,
+    # livestock_sale_declined_why_markets_closed =  s5cq14_1__1,
+    # livestock_sale_declined_why_restaurants_closed = s5cq14_1__2,
+    # livestock_sale_declined_why_limited_transport = s5cq14_1__3,
+    # livestock_sale_declined_why_travel_restrictions = s5cq14_1__4,
+    # livestock_sale_declined_why_prices_fall = s5cq14_1__5,
+    # livestock_sale_declined_why_other = s5cq14_1__6,
+    # # s5cq14_3 is 14a
+    # livestock_no_sales_why_markets_closed = s5cq14_2__1,
+    # livestock_no_sales_why_restaurants_closed = s5cq14_2__2,
+    # livestock_no_sales_why_limited_transport = s5cq14_2__3,
+    # livestock_no_sales_why_travel_restrictions = s5cq14_2__4,
+    # livestock_no_sales_why_prices_fall = s5cq14_2__5,
+    # livestock_no_sales_why_home_consumption = s5cq14_2__6,
+    # livestock_price_level_since_march = s5cq15,
     livestock_hh_kept = s5cq01,
     livestock_type_kept_improved_large_ruminants = s5cq02__1,
     livestock_type_kept_indiginous_large_ruminants = s5cq02__2,
@@ -893,12 +895,13 @@ round_5_sec9  <- read_dta(here( "raw_data", "round5", "sec9.dta" ))
 
 
 ## merge round5 datasets
-merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid")) %>% 
+merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>% 
   left_join(round_5_sec4, by = c("hhid")) %>% 
   left_join(round_5_sec5, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>%
   left_join(round_5_sec5b, by = c("hhid")) %>%
-  left_join(round_5_sec5d, by = c("hhid")) %>%
+  # This is by product within household currently; remove comment when fixed
+  # left_join(round_5_sec5d, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(survey = 5)
@@ -1013,20 +1016,21 @@ renamed_merged_r5 <- merged_r5 %>%
     ag_hh_products_sale_location_daily_market = s5bq27__2,
     ag_hh_products_sale_location_weekly_market = s5bq27__3,
     
-    livestock_products_produced_since_last_time = s5dq12,
-    livestock_products_sales_level_since_last_time = s5dq13,
-    livestock_products_sales_decline_why_closed_markets = s5dq14__1,
-    livestock_products_sales_decline_why_restaurants_closed = s5dq14__2,
-    livestock_products_sales_decline_why_limited_transport = s5dq14__3,
-    livestock_products_sales_decline_why_travel_restrictions = s5dq14__4,
-    livestock_products_sales_decline_why_prices_fall = s5dq14__5,
-    livestock_products_no_sales_why_markets_closed = s5dq14_1__1,
-    livestock_products_no_sales_why_restaurants_closed = s5dq14_1__2,
-    livestock_products_no_sales_why_limited_transport = s5dq14_1__3,
-    livestock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
-    livestock_products_no_sales_why_prices_fall = s5dq14_1__5,
-    livestock_products_no_sales_why_only_consumption = s5dq14_1__6,
-    livestock_product_price_level_since_last_time = s5dq15,
+    # This is by product within household currently; remove comment when fixed
+    # livestock_products_produced_since_last_time = s5dq12,
+    # livestock_products_sales_level_since_last_time = s5dq13,
+    # livestock_products_sales_decline_why_closed_markets = s5dq14__1,
+    # livestock_products_sales_decline_why_restaurants_closed = s5dq14__2,
+    # livestock_products_sales_decline_why_limited_transport = s5dq14__3,
+    # livestock_products_sales_decline_why_travel_restrictions = s5dq14__4,
+    # livestock_products_sales_decline_why_prices_fall = s5dq14__5,
+    # livestock_products_no_sales_why_markets_closed = s5dq14_1__1,
+    # livestock_products_no_sales_why_restaurants_closed = s5dq14_1__2,
+    # livestock_products_no_sales_why_limited_transport = s5dq14_1__3,
+    # livestock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
+    # livestock_products_no_sales_why_prices_fall = s5dq14_1__5,
+    # livestock_products_no_sales_why_only_consumption = s5dq14_1__6,
+    # livestock_product_price_level_since_last_time = s5dq15,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
@@ -1093,11 +1097,12 @@ round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" ))
 merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %>% 
   left_join(round_6_sec4_1, by = c("hhid")) %>% 
   left_join(round_6_sec4_2, by = c("hhid")) %>% 
-  left_join(round_6_sec5_resp, by = c("hhid")) %>% 
+  left_join(round_6_sec5_resp, by = c("hhid"))%>% 
   left_join(round_6_sec5_other, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>% 
   left_join(round_5_sec5b, by = c("hhid")) %>% 
-  left_join(round_5_sec5d, by = c("hhid")) %>% 
+  # This is by product within household currently; remove comment when fixed
+  # left_join(round_5_sec5d, by = c("hhid")) %>% 
   left_join(round_5_sec8, by = c("hhid")) %>% 
   left_join(round_5_sec9, by = c("hhid")) %>% 
   mutate(survey = 6)
@@ -1231,20 +1236,21 @@ renamed_merged_r6 <- merged_r6 %>%
     ag_hh_products_sale_location_daily_market = s5bq27__2,
     ag_hh_products_sale_location_weekly_market = s5bq27__3,
     
-    livestock_products_produced_since_last_time = s5dq12,
-    livestock_products_sales_level = s5dq13,
-    livestock_products_sales_decline_why_closed_markets =  s5dq14__1,
-    livestock_products_sales_decline_why_restaurants_closed = s5dq14__2,
-    livestock_products_sales_decline_why_limited_transport = s5dq14__3,
-    livestock_products_sales_decline_why_travel_restrictions = s5dq14__4,
-    livestock_products_sales_decline_why_prices_fall = s5dq14__5,
-    livestock_products_no_sales_why_closed_markerts = s5dq14_1__1,
-    livestock_products_no_sales_why_closed_restaurants = s5dq14_1__2,
-    livestock_products_no_sales_why_limited_transport = s5dq14_1__3,
-    livestock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
-    livestock_products_no_sales_why_prices_fall = s5dq14_1__5,
-    livestock_products_no_sales_why_home_consumption = s5dq14_1__6,
-    livestock_products_price_level_since_last_time = s5dq15,
+    # This is by product within household currently; remove comment when fixed
+    # livestock_products_produced_since_last_time = s5dq12,
+    # livestock_products_sales_level = s5dq13,
+    # livestock_products_sales_decline_why_closed_markets =  s5dq14__1,
+    # livestock_products_sales_decline_why_restaurants_closed = s5dq14__2,
+    # livestock_products_sales_decline_why_limited_transport = s5dq14__3,
+    # livestock_products_sales_decline_why_travel_restrictions = s5dq14__4,
+    # livestock_products_sales_decline_why_prices_fall = s5dq14__5,
+    # livestock_products_no_sales_why_closed_markerts = s5dq14_1__1,
+    # livestock_products_no_sales_why_closed_restaurants = s5dq14_1__2,
+    # livestock_products_no_sales_why_limited_transport = s5dq14_1__3,
+    # livestock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
+    # livestock_products_no_sales_why_prices_fall = s5dq14_1__5,
+    # livestock_products_no_sales_why_home_consumption = s5dq14_1__6,
+    # livestock_products_price_level_since_last_time = s5dq15,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry = s8q01,
