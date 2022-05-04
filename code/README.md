@@ -17,3 +17,10 @@ Round 6 asks by child in Section 5c, which is listed as 1c
 in questionnaire. 
 
 Round 7 asks by child in Section 1c.
+
+
+### Agriculture - Crops/planting
+
+Round 1 ask how the planting is progressing and changes due
+to Covid in the same question. 
+This is split into two questions in Round 2.
