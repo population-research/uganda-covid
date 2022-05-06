@@ -263,12 +263,12 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
 renamed_merged_r2 <- merged_r2 %>%
   rename(
     # basic survey information
-    interview_resp 					= Rq09,
-    interview_language 				= Rq10,
-    interview_name 					= Sq01,
-    interview_date 					= Sq02,
-    weight_round_1 					= Round1_hh_weight,
-    weight_final 					= wfinal,
+    interview_resp                  = Rq09,
+    interview_language              = Rq10,
+    interview_name                  = Sq01,
+    interview_date                  = Sq02,
+    weight_round_1                  = Round1_hh_weight,
+    weight_final                    = wfinal,
     
     # Section 4 - Access
     # Drinking water questions not in R1
@@ -277,29 +277,29 @@ renamed_merged_r2 <- merged_r2 %>%
     # Education questions not in R2
     # Financial access not in R2
     
-    water_drink_insuf 				= s4q01e,
-    water_drink_insuf_why 			= s4q01f,
-    water_drink_insuf_why_other 	= s4q01f_Other,
+    water_drink_insuf               = s4q01e,
+    water_drink_insuf_why           = s4q01f,
+    water_drink_insuf_why_other     = s4q01f_Other,
     
-    soap_wash 						= s4q01,
-    soap_wash_lack_why 				= s4q02,
-    soap_wash_lack_why_other 		= s4q02_Other,
+    soap_wash                       = s4q01,
+    soap_wash_lack_why              = s4q02,
+    soap_wash_lack_why_other        = s4q02_Other,
     
-    water_wash 						= s4q03,
-    water_wash_lack_why 			= s4q04,
-    water_wash_lack_why_other 		= s4q04_Other,
+    water_wash                      = s4q03,
+    water_wash_lack_why             = s4q04,
+    water_wash_lack_why_other       = s4q04_Other,
     
-    medicine_no_access 				= s4q08,
-    medical_treatment_need 			= s4q09,
-    medical_access 					= s4q10,
-    medical_access_lack_why 		= s4q11,
-    medical_access_lack_why_spec 	= s4q11_Other,
+    medicine_no_access              = s4q08,
+    medical_treatment_need          = s4q09,
+    medical_access                  = s4q10,
+    medical_access_lack_why         = s4q11,
+    medical_access_lack_why_spec    = s4q11_Other,
     
-    assets_hh_radio1 				= s4q12__1,
-    assets_hh_tv 					= s4q12__2,
-    assets_hh_grid_electricity 		= s4q12__3,
-    assets_hh_lar_system 			= s4q12__4,
-    assets_hh_solar_kit_lantern 	= s4q12__5,
+    assets_hh_radio1                = s4q12__1,
+    assets_hh_tv                    = s4q12__2,
+    assets_hh_grid_electricity      = s4q12__3,
+    assets_hh_lar_system            = s4q12__4,
+    assets_hh_solar_kit_lantern     = s4q12__5,
     
     #Section 5 - Employment NOT FIXED YET!
 #     work_done_for_pay = s5q01,    
@@ -370,30 +370,30 @@ renamed_merged_r2 <- merged_r2 %>%
 #     non_farm_biz_temporary_close_status = s5aq11a,
     
     # Section 5b - Agriculture
-    ag_crops_plant 					= s5bq01,
+    ag_crops_plant                  = s5bq01,
     ##crop grown by code no names indicated
-    ag_crops_grown_1 				= s5bq02_1,
-    ag_crops_grown_2 				= s5bq02_2,
-    ag_crops_grown_3 				= s5bq02_3,
-    ag_crops_progress 				= s5bq03,
+    ag_crops_grown_1                = s5bq02_1,
+    ag_crops_grown_2                = s5bq02_2,
+    ag_crops_grown_3                = s5bq02_3,
+    ag_crops_progress               = s5bq03,
     
-    ag_plant_change 				= s5bq04,
-    ag_plant_what_covid_measures 	= s5bq05__1,
+    ag_plant_change                 = s5bq04,
+    ag_plant_what_covid_measures    = s5bq05__1,
     ag_plant_what_no_workers_hired	= s5bq05__2,
-    ag_plant_what_fewer_workers 	= s5bq05__3,
-    ag_plant_what_abandoned 		= s5bq05__4,
-    ag_plant_what_delayed 			= s5bq05__5,
-    ag_plant_what_other 			= s5bq05__n96,
+    ag_plant_what_fewer_workers     = s5bq05__3,
+    ag_plant_what_abandoned         = s5bq05__4,
+    ag_plant_what_delayed           = s5bq05__5,
+    ag_plant_what_other             = s5bq05__n96,
     
-    ag_plant_safety_mask 			= s5bq06__1,
+    ag_plant_safety_mask            = s5bq06__1,
     ag_plant_safety_no_hand_shakes 	= s5bq06__2,
-    ag_plant_safety_gloves 			= s5bq06__3,
-    ag_plant_safety_distance 		= s5bq06__4,
-    ag_plant_safety_others 			= s5bq06__5,
-    ag_plant_why_not_hire_workers 	= s5bq07,
+    ag_plant_safety_gloves          = s5bq06__3,
+    ag_plant_safety_distance        = s5bq06__4,
+    ag_plant_safety_others          = s5bq06__5,
+    ag_plant_why_not_hire_workers   = s5bq07,
     
-    ag_farm_products_sell_need 		= s5bq08,
-    ag_farm_products_sell_able 		= s5bq09,
+    ag_farm_products_sell_need      = s5bq08,
+    ag_farm_products_sell_able      = s5bq09,
     
     # This is by product within household currently; remove comment when fixed
     # stock_products_sale_level = s5cq13,
@@ -438,14 +438,14 @@ renamed_merged_r2 <- merged_r2 %>%
     # stock_animales_sale_unable_why_other = s5cq11__5, ## there is no five hence called it other 
     
     # Section 8 - Food insecurity experience scale
-    food_insufficient_worry 		= s8q01,
-    food_healthy_lack 				= s8q02,
-    food_few_kinds 					= s8q03,
-    food_skipped_meal 				= s8q04,
-    food_less_than_expected 		= s8q05,
-    food_ranout 					= s8q06,
-    food_hungry 					= s8q07,
-    food_didnt_eat_all_day 			= s8q08,
+    food_insufficient_worry         = s8q01,
+    food_healthy_lack               = s8q02,
+    food_few_kinds                  = s8q03,
+    food_skipped_meal               = s8q04,
+    food_less_than_expected         = s8q05,
+    food_ranout                     = s8q06,
+    food_hungry                     = s8q07,
+    food_didnt_eat_all_day          = s8q08,
     
     # Too long variables - need to shorten
     # concerns_covid_hh_serious_illness = s9q01,
@@ -494,7 +494,7 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec5, by = c("hhid")) %>% 
   left_join(round_3_sec5a, by = c("hhid")) %>% 
   left_join(round_3_sec5b, by = c("hhid")) %>% 
-  left_join(round_3_sec5d, by = c("hhid")) %>% 
+  # left_join(round_3_sec5d, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
   mutate(survey = 3) %>% 
