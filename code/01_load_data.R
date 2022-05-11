@@ -30,15 +30,16 @@ round_1_sec6  <- read_dta(here( "raw_data", "round1", "SEC6.dta" )) ## individua
 round_1_sec7  <- read_dta(here( "raw_data", "round1", "SEC7.dta" )) 
 round_1_sec8  <- read_dta(here( "raw_data", "round1", "SEC8.dta" )) ## individual level, sec8 as sec9 for concerns not coping strategies
 
-## rename hhid to HHID in round1 sec1 data
-round_1_sec1 <- round_1_sec1 %>%
-  rename(HHID = hhid)
+## filter out income_loss_id = -96 in sec6
+round_1_sec6 <- round_1_sec6 %>%
+  filter(!income_loss__id == -96)
 
 ## merge round1 datasets
 merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) %>% 
   left_join(round_1_sec4, by = c("HHID")) %>% 
   left_join(round_1_sec5, by = c("HHID")) %>% 
   left_join(round_1_sec5a, by = c("HHID")) %>% 
+  left_join(round_1_sec6, by = c("HHID")) %>% 
   left_join(round_1_sec7, by = c("HHID")) %>%
   left_join(round_1_sec8, by = c("HHID")) %>% 
   mutate(survey = 1)
@@ -211,6 +212,10 @@ renamed_merged_r1 <- merged_r1 %>%
     
     ag_farm_products_sell_need      = s5aq30,
     ag_farm_products_sell_able      = s5aq31,
+
+
+    income_source                   = s6q01,
+    income_level_since_march        = s6q02,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s7q01,
@@ -227,6 +232,7 @@ renamed_merged_r1 <- merged_r1 %>%
   ) %>% 
   rename_to_lower_snake()
 
+
 ## round 2 ---- 
 
 round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_result.dta")) %>%
@@ -234,7 +240,6 @@ round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_resul
 round_2_cover  <- read_dta(here( "raw_data", "round2", "Cover.dta" )) 
 
 round_2_sec1 <- read_dta(here( "raw_data", "round2", "SEC1.dta" )) 
-
 round_2_sec4  <- read_dta(here( "raw_data", "round2", "SEC4.dta" )) 
 round_2_sec5  <- read_dta(here( "raw_data", "round2", "SEC5.dta" )) 
 round_2_sec5a  <- read_dta(here( "raw_data", "round2", "SEC5A.dta" )) 
@@ -246,6 +251,10 @@ round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" ))
 round_2_sec8  <- read_dta(here( "raw_data", "round2", "SEC8.dta" )) 
 round_2_sec9  <- read_dta(here( "raw_data", "round2", "SEC9.dta" )) 
 
+## filter out income_loss_id = -96 in round_2_sec6
+round_2_sec6 <- round_2_sec6 %>% 
+  filter(!income_loss__id == -96)
+
 ## merge round2 datasets
 merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %>% 
   left_join(round_2_sec4, by = c("HHID")) %>% 
@@ -255,6 +264,7 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   # This is by product within household currently; remove comment when fixed
   # left_join(round_2_sec5c_1, by = c("HHID")) %>%  
   left_join(round_2_sec5c, by = c("HHID")) %>% 
+  left_join(round_2_sec6, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
   mutate(survey = 2)
@@ -436,7 +446,10 @@ renamed_merged_r2 <- merged_r2 %>%
     # stock_animales_sale_unable_why_travel_restriction = s5cq11__3,
     # stock_animales_sale_unable_why_prices_fall = s5cq11__4,
     # stock_animales_sale_unable_why_other = s5cq11__5, ## there is no five hence called it other 
-    
+
+    income_source                  = s6q01,
+    income_level_since_march       = s6q02,    
+
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
     food_healthy_lack 				= s8q02,
@@ -488,6 +501,11 @@ round_3_sec6  <- read_dta(here( "raw_data", "round3", "sec6.dta" ))
 round_3_sec8  <- read_dta(here( "raw_data", "round3", "sec8.dta" )) 
 round_3_sec9  <- read_dta(here( "raw_data", "round3", "sec9.dta" )) 
 
+## remove s6q01_Other and filter out income_loss_id = -96
+round_3_sec6 <- round_3_sec6 %>% 
+  select(-s6q01_Other)%>% 
+  filter(!income_loss__id == -96)
+
 ## merge round3 datasets
 merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %>% 
   left_join(round_3_sec4, by = c("hhid")) %>% 
@@ -495,6 +513,7 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec5a, by = c("hhid")) %>% 
   left_join(round_3_sec5b, by = c("hhid")) %>% 
   left_join(round_3_sec5d, by = c("hhid")) %>% 
+  left_join(round_3_sec6, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
   mutate(survey = 3) %>% 
@@ -638,7 +657,11 @@ renamed_merged_r3 <- merged_r3 %>%
     ag_farm_products_sale_other 	= s5bq27__n96,
     ##section5c runs has only variables of 1,8,9, and 11 in survey
     # s5cq13,s5cq14__1,s5cq14__2,s5cq14__3,s5cq14__4,s5cq14__5,s5cq14__6,s5cq14a__1,s5cq14a__2,s5cq14a__3,s5cq14a__4,s5cq14a__5,s5cq14a__6,s5cq15
-    
+
+
+    income_source = s6q01,
+    income_level_since_march = s6q02,    
+
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
     food_healthy_lack 				= s8q02,
@@ -682,6 +705,7 @@ round_4_sec5  <- read_dta(here( "raw_data", "round4", "SEC5.dta" ))
 round_4_sec5a  <- read_dta(here( "raw_data", "round4", "SEC5A.dta" )) 
 round_4_sec5b  <- read_dta(here( "raw_data", "round4", "SEC5B.dta" )) 
 ## sec7 found to be sec8 
+round_4_sec6  <- read_dta(here( "raw_data", "round4", "SEC6.dta" )) 
 round_4_sec8  <- read_dta(here( "raw_data", "round4", "SEC8.dta" )) 
 round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" )) 
 
@@ -689,12 +713,17 @@ round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" ))
 round_4_sec1 <- round_4_sec1 %>%
   rename(HHID = hhid)
 
+## filter out income_loss_id = -96
+round4_sec_6 <- round4_sec_6 %>% 
+  filter(!income_loss__id == -96)
+
 ## merge round4 datasets
 merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %>% 
   left_join(round_4_sec4, by = c("HHID")) %>% 
   left_join(round_4_sec5, by = c("HHID")) %>% 
   left_join(round_4_sec5a, by = c("HHID")) %>%
   left_join(round_4_sec5b, by = c("HHID")) %>%
+  left_join(round_4_sec6, by = c("HHID")) %>%
   left_join(round_4_sec8, by = c("HHID")) %>% ##as sec 7
   left_join(round_4_sec9, by = c("HHID")) %>% 
   mutate(survey = 4)
@@ -866,6 +895,10 @@ renamed_merged_r4 <- merged_r4 %>%
     ag_farm_products_sale_day_mrkt	= s5bq27__2,
     ag_farm_products_sale_week_mrkt	= s5bq27__3,
     ag_farm_products_sale_other 	= s5bq27__n96,
+
+    income_source = s6q01,
+    income_level_since_march = s6q02,
+    income_level_annual = s6q03,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -914,6 +947,11 @@ round_5_sec6  <- read_dta(here( "raw_data", "round5", "sec6.dta" ))
 round_5_sec8 <- read_dta(here( "raw_data", "round5", "sec8.dta" )) 
 round_5_sec9  <- read_dta(here( "raw_data", "round5", "sec9.dta" )) 
 
+colnames(round_5_sec6)
+
+## filter out income_loss_id = -96
+round_5_sec6 <- round_5_sec6 %>% 
+  filter(!income_loss__id == -96)
 
 ## merge round 5 datasets
 merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>% 
@@ -923,6 +961,7 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>
   left_join(round_5_sec5b, by = c("hhid")) %>%
   # This is by product within household currently; remove comment when fixed
   # left_join(round_5_sec5d, by = c("hhid")) %>%
+  left_join(round_5_sec6, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(survey = 5)
@@ -1059,6 +1098,10 @@ renamed_merged_r5 <- merged_r5 %>%
     # stock_products_no_sales_why_prices_fall = s5dq14_1__5,
     # stock_products_no_sales_why_only_consumption = s5dq14_1__6,
     # stock_product_price_level_since_last_time = s5dq15,
+
+    income_source = s6q01,
+    income_level_since_march = s6q02,
+    income_level_annual = s6q03,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -1114,12 +1157,14 @@ round_6_sec5b  <- read_dta(here( "raw_data", "round6", "sec5b.dta" ))
 round_6_sec5d  <- read_dta(here( "raw_data", "round6", "sec5d.dta" )) 
 round_6_sec5_resp <- read_dta(here( "raw_data", "round6", "sec5_resp.dta" ))
 round_6_sec5_other <- read_dta(here( "raw_data", "round6", "sec5_other.dta" ))
-
 round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
 #  sec7 as sec8
 round_6_sec8  <- read_dta(here( "raw_data", "round6", "sec8.dta" )) 
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
+## filter out income_loss_id = -96
+round_6_sec6 <- round_6_sec6 %>% 
+  filter(!income_loss__id == -96)
 
 ## merge round6 datasets
 merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %>% 
@@ -1127,12 +1172,13 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_6_sec4_2, by = c("hhid")) %>% 
   left_join(round_6_sec5_resp, by = c("hhid"))%>% 
   left_join(round_6_sec5_other, by = c("hhid")) %>% 
-  left_join(round_5_sec5a, by = c("hhid")) %>% 
-  left_join(round_5_sec5b, by = c("hhid")) %>% 
+  left_join(round_6_sec5a, by = c("hhid")) %>% 
   # This is by product within household currently; remove comment when fixed
   # left_join(round_5_sec5d, by = c("hhid")) %>% 
-  left_join(round_5_sec8, by = c("hhid")) %>% 
-  left_join(round_5_sec9, by = c("hhid")) %>% 
+  left_join(round_6_sec5b, by = c("hhid")) %>% 
+  left_join(round_6_sec6, by = c("hhid")) %>% 
+  left_join(round_6_sec8, by = c("hhid")) %>% 
+  left_join(round_6_sec9, by = c("hhid")) %>% 
   mutate(survey = 6)
 
 ## rename round6 columns
@@ -1284,6 +1330,9 @@ renamed_merged_r6 <- merged_r6 %>%
     # stock_products_no_sales_why_home_consumption = s5dq14_1__6,
     # stock_products_price_level_since_last_time = s5dq15,
     
+    income_source = s6q01,
+    income_level_since_march = s6q02,    
+
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
     food_healthy_lack 				= s8q02,
