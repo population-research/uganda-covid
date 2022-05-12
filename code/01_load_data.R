@@ -30,16 +30,13 @@ round_1_sec6  <- read_dta(here( "raw_data", "round1", "SEC6.dta" )) ## individua
 round_1_sec7  <- read_dta(here( "raw_data", "round1", "SEC7.dta" )) 
 round_1_sec8  <- read_dta(here( "raw_data", "round1", "SEC8.dta" )) ## individual level, sec8 as sec9 for concerns not coping strategies
 
-## filter out income_loss_id = -96 in sec6
-round_1_sec6 <- round_1_sec6 %>%
-  filter(!income_loss__id == -96)
+
 
 ## merge round1 datasets
 merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) %>% 
   left_join(round_1_sec4, by = c("HHID")) %>% 
   left_join(round_1_sec5, by = c("HHID")) %>% 
   left_join(round_1_sec5a, by = c("HHID")) %>% 
-  left_join(round_1_sec6, by = c("HHID")) %>% 
   left_join(round_1_sec7, by = c("HHID")) %>%
   left_join(round_1_sec8, by = c("HHID")) %>% 
   mutate(survey = 1)
@@ -214,8 +211,8 @@ renamed_merged_r1 <- merged_r1 %>%
     ag_farm_products_sell_able      = s5aq31,
 
 
-    income_source                   = s6q01,
-    income_level_since_march        = s6q02,
+    # income_source                   = s6q01,
+    # income_level_since_march        = s6q02,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s7q01,
@@ -231,6 +228,38 @@ renamed_merged_r1 <- merged_r1 %>%
 #     concerns_covid_threat_hh_finances = a8q02
   ) %>% 
   rename_to_lower_snake()
+
+## income loss round 1
+renamed_round1_sec_6 <- round1_sec_6 %>% 
+  rename(
+    hhid = HHID,
+    inc_source = s6q01,
+    inc_level = s6q02
+  ) %>% 
+  select(-s6q01_Other) %>% 
+  filter(!income_loss__id == -96) %>% 
+  pivot_wider(
+    id_cols = hhid, 
+    names_from = income_loss__id, 
+    values_from = c(inc_source,inc_level), 
+    names_sort = TRUE
+  ) %>% 
+  rename_with(~ gsub("_1$", "_farm", .x))%>% 
+  rename_with(~ gsub("_2$", "_nfe", .x))%>% 
+  rename_with(~ gsub("_3$", "_wage", .x))%>% 
+  rename_with(~ gsub("_4$", "_benefits", .x))%>% 
+  rename_with(~ gsub("_5$", "_remittance", .x))%>% 
+  rename_with(~ gsub("_6$", "_family", .x))%>% 
+  rename_with(~ gsub("_7$", "_non_family", .x))%>% 
+  rename_with(~ gsub("_8$", "_assets", .x))%>% 
+  rename_with(~ gsub("_9$", "_pension", .x))%>% 
+  rename_with(~ gsub("_10$", "_govt", .x))%>% 
+  rename_with(~ gsub("_11$", "_ngo", .x))
+
+## merge section 6 to the rest
+renamed_merged_r1 <- renamed_merged_r1 %>% 
+  left_join(renamed_round1_sec_6, by = "hhid")
+
 
 
 ## round 2 ---- 
@@ -264,7 +293,6 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   # This is by product within household currently; remove comment when fixed
   # left_join(round_2_sec5c_1, by = c("HHID")) %>%  
   left_join(round_2_sec5c, by = c("HHID")) %>% 
-  left_join(round_2_sec6, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
   mutate(survey = 2)
@@ -447,8 +475,8 @@ renamed_merged_r2 <- merged_r2 %>%
     # stock_animales_sale_unable_why_prices_fall = s5cq11__4,
     # stock_animales_sale_unable_why_other = s5cq11__5, ## there is no five hence called it other 
 
-    income_source                  = s6q01,
-    income_level_since_march       = s6q02,    
+    # income_source                  = s6q01,
+    # income_level_since_march       = s6q02,    
 
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -484,6 +512,39 @@ renamed_merged_r2 <- merged_r2 %>%
   ) %>% 
   rename_to_lower_snake()
 
+## income loss round 2
+renamed_round2_sec_6 <- round2_sec_6 %>% 
+  rename(
+    hhid = HHID,
+    inc_source = s6q01,
+    inc_level = s6q02
+  ) %>% 
+  select(-s6q01_Other) %>% 
+  filter(!income_loss__id == -96) %>% 
+  pivot_wider(
+    id_cols = hhid, 
+    names_from = income_loss__id, 
+    values_from = c(inc_source,inc_level), 
+    names_sort = TRUE
+  ) %>% 
+  rename_with(~ gsub("_1$", "_farm", .x))%>% 
+  rename_with(~ gsub("_2$", "_nfe", .x))%>% 
+  rename_with(~ gsub("_3$", "_wage", .x))%>% 
+  rename_with(~ gsub("_4$", "_benefits", .x))%>% 
+  rename_with(~ gsub("_5$", "_remittance", .x))%>% 
+  rename_with(~ gsub("_6$", "_family", .x))%>% 
+  rename_with(~ gsub("_7$", "_non_family", .x))%>% 
+  rename_with(~ gsub("_8$", "_assets", .x))%>% 
+  rename_with(~ gsub("_9$", "_pension", .x))%>% 
+  rename_with(~ gsub("_10$", "_govt", .x))%>% 
+  rename_with(~ gsub("_11$", "_ngo", .x))
+## inc_level_12 not in survey
+
+renamed_merged_r2 <- renamed_merged_r2 %>% 
+  left_join(renamed_round2_sec_6, by = "hhid")
+
+
+
 ## round 3 ---- 
 
 round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_result.dta")) %>%
@@ -513,7 +574,6 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
   left_join(round_3_sec5a, by = c("hhid")) %>% 
   left_join(round_3_sec5b, by = c("hhid")) %>% 
   left_join(round_3_sec5d, by = c("hhid")) %>% 
-  left_join(round_3_sec6, by = c("hhid")) %>% 
   left_join(round_3_sec8, by = c("hhid")) %>% 
   left_join(round_3_sec9, by = c("hhid")) %>% 
   mutate(survey = 3) %>% 
@@ -530,7 +590,6 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
       TRUE          ~ as.numeric(s5bq21_5)
     )
   ) 
-
 
 ##rename round3 columns
 renamed_merged_r3 <- merged_r3 %>% 
@@ -659,8 +718,8 @@ renamed_merged_r3 <- merged_r3 %>%
     # s5cq13,s5cq14__1,s5cq14__2,s5cq14__3,s5cq14__4,s5cq14__5,s5cq14__6,s5cq14a__1,s5cq14a__2,s5cq14a__3,s5cq14a__4,s5cq14a__5,s5cq14a__6,s5cq15
 
 
-    income_source = s6q01,
-    income_level_since_march = s6q02,    
+    # income_source = s6q01,
+    # income_level_since_march = s6q02,    
 
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -691,6 +750,37 @@ renamed_merged_r3 <- merged_r3 %>%
     # concerns_discomfort_in_house = s9q09
   ) %>% 
   rename_to_lower_snake()
+
+## income loss round 3
+renamed_round3_sec_6 <- round3_sec_6 %>% 
+  rename(
+    inc_source = s6q01,
+    inc_level = s6q02
+  ) %>% 
+  select(-s6q01_Other) %>% 
+  filter(!income_loss__id == -96) %>% 
+  pivot_wider(
+    id_cols = hhid, 
+    names_from = income_loss__id, 
+    values_from = c(inc_source,inc_level), 
+    names_sort = TRUE
+  ) %>% 
+  rename_with(~ gsub("_1$", "_farm", .x))%>% 
+  rename_with(~ gsub("_2$", "_nfe", .x))%>% 
+  rename_with(~ gsub("_3$", "_wage", .x))%>% 
+  rename_with(~ gsub("_4$", "_benefits", .x))%>% 
+  rename_with(~ gsub("_5$", "_remittance", .x))%>% 
+  rename_with(~ gsub("_6$", "_family", .x))%>% 
+  rename_with(~ gsub("_7$", "_non_family", .x))%>% 
+  rename_with(~ gsub("_8$", "_assets", .x))%>% 
+  rename_with(~ gsub("_9$", "_pension", .x))%>% 
+  rename_with(~ gsub("_10$", "_govt", .x))%>% 
+  rename_with(~ gsub("_11$", "_ngo", .x))
+## inc_level_12 not in survey
+
+renamed_merged_r3 <- renamed_merged_r3 %>% 
+  left_join(renamed_round3_sec_6, by = "hhid")
+
 
 
 ## round 4 ---- 
@@ -723,7 +813,6 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
   left_join(round_4_sec5, by = c("HHID")) %>% 
   left_join(round_4_sec5a, by = c("HHID")) %>%
   left_join(round_4_sec5b, by = c("HHID")) %>%
-  left_join(round_4_sec6, by = c("HHID")) %>%
   left_join(round_4_sec8, by = c("HHID")) %>% ##as sec 7
   left_join(round_4_sec9, by = c("HHID")) %>% 
   mutate(survey = 4)
@@ -896,9 +985,9 @@ renamed_merged_r4 <- merged_r4 %>%
     ag_farm_products_sale_week_mrkt	= s5bq27__3,
     ag_farm_products_sale_other 	= s5bq27__n96,
 
-    income_source = s6q01,
-    income_level_since_march = s6q02,
-    income_level_annual = s6q03,
+    # income_source = s6q01,
+    # income_level_since_march = s6q02,
+    # income_level_annual = s6q03,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -929,6 +1018,35 @@ renamed_merged_r4 <- merged_r4 %>%
   ) %>% 
   rename_to_lower_snake()
 
+## income loss round 4
+renamed_round4_sec_6 <- round4_sec_6 %>% 
+  rename(
+    hhid = HHID,
+    inc_source = s6q01,
+    inc_level = s6q02
+  ) %>% 
+  filter(!income_loss__id == -96) %>% 
+  pivot_wider(
+    id_cols = hhid, 
+    names_from = income_loss__id, 
+    values_from = c(inc_source,inc_level), 
+    names_sort = TRUE
+  ) %>% 
+  rename_with(~ gsub("_1$", "_farm", .x))%>% 
+  rename_with(~ gsub("_2$", "_nfe", .x))%>% 
+  rename_with(~ gsub("_3$", "_wage", .x))%>% 
+  rename_with(~ gsub("_4$", "_benefits", .x))%>% 
+  rename_with(~ gsub("_5$", "_remittance", .x))%>% 
+  rename_with(~ gsub("_6$", "_family", .x))%>% 
+  rename_with(~ gsub("_7$", "_non_family", .x))%>% 
+  rename_with(~ gsub("_8$", "_assets", .x))%>% 
+  rename_with(~ gsub("_9$", "_pension", .x))%>% 
+  rename_with(~ gsub("_10$", "_govt", .x))%>% 
+  rename_with(~ gsub("_11$", "_ngo", .x))
+## inc_level_12 not in survey
+
+renamed_merged_r4 <- renamed_merged_r4 %>% 
+  left_join(renamed_round4_sec_6, by = "hhid")
 
 ## round 5 ---- 
 
@@ -947,8 +1065,6 @@ round_5_sec6  <- read_dta(here( "raw_data", "round5", "sec6.dta" ))
 round_5_sec8 <- read_dta(here( "raw_data", "round5", "sec8.dta" )) 
 round_5_sec9  <- read_dta(here( "raw_data", "round5", "sec9.dta" )) 
 
-colnames(round_5_sec6)
-
 ## filter out income_loss_id = -96
 round_5_sec6 <- round_5_sec6 %>% 
   filter(!income_loss__id == -96)
@@ -961,7 +1077,6 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>
   left_join(round_5_sec5b, by = c("hhid")) %>%
   # This is by product within household currently; remove comment when fixed
   # left_join(round_5_sec5d, by = c("hhid")) %>%
-  left_join(round_5_sec6, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(survey = 5)
@@ -1099,9 +1214,9 @@ renamed_merged_r5 <- merged_r5 %>%
     # stock_products_no_sales_why_only_consumption = s5dq14_1__6,
     # stock_product_price_level_since_last_time = s5dq15,
 
-    income_source = s6q01,
-    income_level_since_march = s6q02,
-    income_level_annual = s6q03,
+    # income_source = s6q01,
+    # income_level_since_march = s6q02,
+    # income_level_annual = s6q03,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -1142,6 +1257,37 @@ renamed_merged_r5 <- merged_r5 %>%
    ) %>% 
    rename_to_lower_snake()
 
+## income loss round 5
+renamed_round5_sec_6 <- round5_sec_6 %>% 
+  rename(
+    inc_source = s6q01,
+    inc_level = s6q02
+  ) %>% 
+  filter(!income_loss__id == -96) %>% 
+  pivot_wider(
+    id_cols = hhid, 
+    names_from = income_loss__id, 
+    values_from = c(inc_source,inc_level), 
+    names_sort = TRUE
+  ) %>% 
+  rename_with(~ gsub("_1$", "_farm", .x))%>% 
+  rename_with(~ gsub("_2$", "_nfe", .x))%>% 
+  rename_with(~ gsub("_3$", "_wage", .x))%>% 
+  rename_with(~ gsub("_4$", "_benefits", .x))%>% 
+  rename_with(~ gsub("_5$", "_remittance", .x))%>% 
+  rename_with(~ gsub("_6$", "_family", .x))%>% 
+  rename_with(~ gsub("_7$", "_non_family", .x))%>% 
+  rename_with(~ gsub("_8$", "_assets", .x))%>% 
+  rename_with(~ gsub("_9$", "_pension", .x))%>% 
+  rename_with(~ gsub("_10$", "_govt", .x))%>% 
+  rename_with(~ gsub("_11$", "_ngo", .x))
+## inc_level_12 not in survey
+
+renamed_merged_r5 <- renamed_merged_r5 %>% 
+  left_join(renamed_round5_sec_6, by = "hhid")
+
+
+
 
 ## round 6 ----
 
@@ -1176,7 +1322,6 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   # This is by product within household currently; remove comment when fixed
   # left_join(round_5_sec5d, by = c("hhid")) %>% 
   left_join(round_6_sec5b, by = c("hhid")) %>% 
-  left_join(round_6_sec6, by = c("hhid")) %>% 
   left_join(round_6_sec8, by = c("hhid")) %>% 
   left_join(round_6_sec9, by = c("hhid")) %>% 
   mutate(survey = 6)
@@ -1330,8 +1475,8 @@ renamed_merged_r6 <- merged_r6 %>%
     # stock_products_no_sales_why_home_consumption = s5dq14_1__6,
     # stock_products_price_level_since_last_time = s5dq15,
     
-    income_source = s6q01,
-    income_level_since_march = s6q02,    
+    # income_source = s6q01,
+    # income_level_since_march = s6q02,    
 
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry 		= s8q01,
@@ -1372,6 +1517,37 @@ renamed_merged_r6 <- merged_r6 %>%
 #     concerns_motion_speaking_change = s9q10_8
    ) %>% 
    rename_to_lower_snake()
+
+## income loss round 2
+renamed_round6_sec_6 <- round6_sec_6 %>% 
+  rename(
+    inc_source = s6q01,
+    inc_level = s6q02
+  ) %>% 
+  filter(!income_loss__id == -96) %>% 
+  pivot_wider(
+    id_cols = hhid, 
+    names_from = income_loss__id, 
+    values_from = c(inc_source,inc_level), 
+    names_sort = TRUE
+  ) %>% 
+  rename_with(~ gsub("_1$", "_farm", .x))%>% 
+  rename_with(~ gsub("_2$", "_nfe", .x))%>% 
+  rename_with(~ gsub("_3$", "_wage", .x))%>% 
+  rename_with(~ gsub("_4$", "_benefits", .x))%>% 
+  rename_with(~ gsub("_5$", "_remittance", .x))%>% 
+  rename_with(~ gsub("_6$", "_family", .x))%>% 
+  rename_with(~ gsub("_7$", "_non_family", .x))%>% 
+  rename_with(~ gsub("_8$", "_assets", .x))%>% 
+  rename_with(~ gsub("_9$", "_pension", .x))%>% 
+  rename_with(~ gsub("_10$", "_govt", .x))%>% 
+  rename_with(~ gsub("_11$", "_ngo", .x))
+## inc_level_12 not in survey
+
+renamed_merged_r6 <- renamed_merged_r6 %>% 
+  left_join(renamed_round6_sec_6, by = "hhid")
+
+
 
 ## round 7 ---- 
 
