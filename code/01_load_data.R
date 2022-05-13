@@ -230,7 +230,7 @@ renamed_merged_r1 <- merged_r1 %>%
   rename_to_lower_snake()
 
 ## income loss round 1
-renamed_round1_sec_6 <- round1_sec_6 %>% 
+renamed_round1_sec_6 <- round_1_sec6 %>% 
   rename(
     hhid = HHID,
     inc_source = s6q01,
@@ -279,10 +279,6 @@ round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" ))
 # sec8 as 7
 round_2_sec8  <- read_dta(here( "raw_data", "round2", "SEC8.dta" )) 
 round_2_sec9  <- read_dta(here( "raw_data", "round2", "SEC9.dta" )) 
-
-## filter out income_loss_id = -96 in round_2_sec6
-round_2_sec6 <- round_2_sec6 %>% 
-  filter(!income_loss__id == -96)
 
 ## merge round2 datasets
 merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %>% 
@@ -513,7 +509,7 @@ renamed_merged_r2 <- merged_r2 %>%
   rename_to_lower_snake()
 
 ## income loss round 2
-renamed_round2_sec_6 <- round2_sec_6 %>% 
+renamed_round2_sec_6 <- round_2_sec6 %>% 
   rename(
     hhid = HHID,
     inc_source = s6q01,
@@ -562,10 +558,6 @@ round_3_sec6  <- read_dta(here( "raw_data", "round3", "sec6.dta" ))
 round_3_sec8  <- read_dta(here( "raw_data", "round3", "sec8.dta" )) 
 round_3_sec9  <- read_dta(here( "raw_data", "round3", "sec9.dta" )) 
 
-## remove s6q01_Other and filter out income_loss_id = -96
-round_3_sec6 <- round_3_sec6 %>% 
-  select(-s6q01_Other)%>% 
-  filter(!income_loss__id == -96)
 
 ## merge round3 datasets
 merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %>% 
@@ -752,12 +744,11 @@ renamed_merged_r3 <- merged_r3 %>%
   rename_to_lower_snake()
 
 ## income loss round 3
-renamed_round3_sec_6 <- round3_sec_6 %>% 
+renamed_round3_sec_6 <- round_3_sec6 %>% 
   rename(
     inc_source = s6q01,
     inc_level = s6q02
   ) %>% 
-  select(-s6q01_Other) %>% 
   filter(!income_loss__id == -96) %>% 
   pivot_wider(
     id_cols = hhid, 
@@ -802,10 +793,6 @@ round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" ))
 ## rename hhid to HHID in round4 sec1 data
 round_4_sec1 <- round_4_sec1 %>%
   rename(HHID = hhid)
-
-## filter out income_loss_id = -96
-round4_sec_6 <- round4_sec_6 %>% 
-  filter(!income_loss__id == -96)
 
 ## merge round4 datasets
 merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %>% 
@@ -1019,7 +1006,7 @@ renamed_merged_r4 <- merged_r4 %>%
   rename_to_lower_snake()
 
 ## income loss round 4
-renamed_round4_sec_6 <- round4_sec_6 %>% 
+renamed_round4_sec_6 <- round_4_sec6 %>% 
   rename(
     hhid = HHID,
     inc_source = s6q01,
@@ -1065,9 +1052,6 @@ round_5_sec6  <- read_dta(here( "raw_data", "round5", "sec6.dta" ))
 round_5_sec8 <- read_dta(here( "raw_data", "round5", "sec8.dta" )) 
 round_5_sec9  <- read_dta(here( "raw_data", "round5", "sec9.dta" )) 
 
-## filter out income_loss_id = -96
-round_5_sec6 <- round_5_sec6 %>% 
-  filter(!income_loss__id == -96)
 
 ## merge round 5 datasets
 merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>% 
@@ -1258,7 +1242,7 @@ renamed_merged_r5 <- merged_r5 %>%
    rename_to_lower_snake()
 
 ## income loss round 5
-renamed_round5_sec_6 <- round5_sec_6 %>% 
+renamed_round5_sec_6 <- round_5_sec6 %>% 
   rename(
     inc_source = s6q01,
     inc_level = s6q02
@@ -1308,9 +1292,6 @@ round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" ))
 round_6_sec8  <- read_dta(here( "raw_data", "round6", "sec8.dta" )) 
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
-## filter out income_loss_id = -96
-round_6_sec6 <- round_6_sec6 %>% 
-  filter(!income_loss__id == -96)
 
 ## merge round6 datasets
 merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %>% 
@@ -1440,14 +1421,14 @@ renamed_merged_r6 <- merged_r6 %>%
     #s5bq21a,s5bq21b,s5bq21c,s5bq21d not in survey
     
     #21_4 5 and 6 not is survey hence considered as in previous rounds 
-    ag_price_small_banana 			= s5bq21__1,
-    ag_price_large_banana 			= s5bq21__3,
-    ag_price_100kg_cassava_bag 		= s5bq21__4,
-    ag_price_basin_dry_casava_chips = s5bq21__5,
-    ag_price_kg_dry_cassava_flour 	= s5bq21__6,
-    ag_price_kg_dry_beans 			= s5bq21__7,
-    ag_price_basin_fresh_beans 		= s5bq21__9,
-    ag_price_kg_maize_grains 		= s5bq21__8,
+    # ag_price_small_banana 			= s5bq21__1,
+    # ag_price_large_banana 			= s5bq21__3,
+    # ag_price_100kg_cassava_bag 		= s5bq21__4,
+    # ag_price_basin_dry_casava_chips = s5bq21__5,
+    # ag_price_kg_dry_cassava_flour 	= s5bq21__6,
+    # ag_price_kg_dry_beans 			= s5bq21__7,
+    # ag_price_basin_fresh_beans 		= s5bq21__9,
+    # ag_price_kg_maize_grains 		= s5bq21__8,
     
     ag_farm_production_normal_sold 	= s5bq23,
     ag_rev_expected 				= s5bq24,
@@ -1518,8 +1499,8 @@ renamed_merged_r6 <- merged_r6 %>%
    ) %>% 
    rename_to_lower_snake()
 
-## income loss round 2
-renamed_round6_sec_6 <- round6_sec_6 %>% 
+## income loss round 6
+renamed_round6_sec_6 <- round_6_sec6 %>% 
   rename(
     inc_source = s6q01,
     inc_level = s6q02
