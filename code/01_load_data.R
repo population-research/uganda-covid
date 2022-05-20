@@ -1077,7 +1077,7 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(survey = 5)
-colnames(round_5_sec5)
+
 ## rename round 5 columns
 renamed_merged_r5 <- merged_r5 %>% 
   rename(
@@ -1123,6 +1123,8 @@ renamed_merged_r5 <- merged_r5 %>%
     covid_vac_doubt_no_risk 		= s4q18__4,
     covid_vac_doubt_against_vacs 	= s4q18__5,
     covid_vac_doubt_religion 		= s4q18__6,
+    
+    ## section 5
     
     work_for_pay = s5q01,
     work_secured_absent = s5q01a,
@@ -1306,6 +1308,7 @@ round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" ))
 round_6_sec8  <- read_dta(here( "raw_data", "round6", "sec8.dta" )) 
 round_6_sec9  <- read_dta(here( "raw_data", "round6", "sec9.dta" )) 
 
+
 ## merge round6 datasets
 merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %>% 
   left_join(round_6_sec4_1, by = c("hhid")) %>% 
@@ -1376,8 +1379,25 @@ renamed_merged_r6 <- merged_r6 %>%
     mask_source_friends_relatives 	= s4q14__4,
     mask_source_employer 			= s4q14__5,
 
-# no section 5     
-  
+    ## section 5
+    
+    work_for_pay = s5q01,
+    work_secured_absent = s5q01a,
+    work_secured_return = s5q01b,
+    work_missed_previously_why = s5q01c,
+    work_stop_why = s5q03,
+    work_find_job = s5q03a,
+    work_main_find_job = s5q03b,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,
+    work_main_prim_descr = s5q05a,
+    work_prev_main_activity = s5q05,
+    work_prev_area = s5q06,
+    work_fam_prod_intentions = s5q06a,
+    work_hours = s5q8b1,
+    work_hours_usually = s5q8c1,
+    
+    
 #     #s5oq0b_1 not is survey,
 #     work_individual_available_respond = s5Oq0b,
 #     work_individual_responding = s5Oq0c,
@@ -1534,11 +1554,12 @@ round_7_cover  <- read_dta(here( "raw_data", "round7", "Cover.dta" ))
 round_7_sec1 <- read_dta(here( "raw_data", "round7", "SEC1.dta" )) 
 round_7_sec4  <- read_dta(here( "raw_data", "round7", "SEC4_1.dta" )) 
 round_7_sec5a  <- read_dta(here( "raw_data", "round7", "SEC5A.dta" )) 
-round_7_sec5 <- read_dta(here( "raw_data", "round7", "SEC5.dta" ))
+round_7_sec5 <- read_dta(here( "raw_data", "round7", "SEC5.dta" )) #3 respondent
 round_7_sec6e1  <- read_dta(here( "raw_data", "round7", "SEC6E_1.dta" )) 
 round_7_sec6e2  <- read_dta(here( "raw_data", "round7", "SEC6E_2.dta" )) 
 round_7_sec8  <- read_dta(here( "raw_data", "round7", "SEC8.dta" )) 
 round_7_sec9  <- read_dta(here( "raw_data", "round7", "SEC9.dta" )) 
+
 
 ## merge round 7 datasets
 merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %>% 
@@ -1576,8 +1597,36 @@ renamed_merged_r7 <- merged_r7 %>%
     
     medicine_no_access 				= s4q15,
     
-    # No section 5 in survey but the data is available
+    ## section 5
     
+    work_for_pay = s5q01,
+    work_secured_absent = s5q01a,
+    work_secured_return = s5q01b,
+    work_missed_previously_why = s5q01c,
+    work_stop_why = s5q03,
+    work_find_job = s5q03a,
+    work_main_find_job = s5q03b,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,
+    work_main_prim_descr = s5q05a,
+    work_prev_main_activity = s5q05,
+    work_prev_area = s5q06,
+    work_fam_prod_intentions = s5q06a,
+    
+    work_safety_disinfectant = s5q08f__1,
+    work_safety_sanitizer = s5q08f__2,
+    work_safety_awareness = s5q08f__3,
+    work_safety_mask = s5q08f__4,
+    work_safety_gloves = s5q08f__5,
+    work_safety_from_home = s5q08f__6,
+    work_safety_office_closed = s5q08f__7,
+    work_safety_none = s5q08f__8,
+    work_safety_other = s5q08f__96,
+    work_safety_followed_resp = s5q08g, ## should i make it the same as in round 3 where they were asking if collegues follow ?
+    work_safety_followed_percentage = s5q08g_1,
+    
+    work_hours = s5q8b1,
+    work_hours_usually = s5q8c1,    
     
 #     non_farm_biz_operation = s5aq11,
 #     non_farm_biz_status = s5aq11a,
