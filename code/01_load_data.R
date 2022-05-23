@@ -41,7 +41,6 @@ merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) 
   left_join(round_1_sec8, by = c("HHID")) %>% 
   mutate(survey = 1)
 
-
 ## rename round1 columns
 renamed_merged_r1 <- merged_r1 %>%
   mutate(
@@ -109,43 +108,44 @@ renamed_merged_r1 <- merged_r1 %>%
     financial_access_why            = s4q20,
     financial_access_why_spec       = s4q20_Other,
     
-    # Section 5 - Employment NOT FIXED YET!
-#     education_level_highest = s5q01a,
-#     
-#     work_done_for_pay = s5q01,
-#     working_before_march = s5q02,
-#     work_stop_why = s5q03,
-#     work_main_activity = s504,
-#     work_same_as_before = s5q04a,
-#     work_change_why = s5q04b,
-#     work_before_main_activity = s504c,
-#     work_current_main_activity = s5q05,
-#     work_current_area = s5q06,
-#     work_as_usual = s5q07,
-#     work_unusually_but_paid = s5q08,
-#     work_unusually_why = s5q08a,
-#     work_benefits_health_insurance = s5q08b__1,
-#     work_benefits_paid_sick_leave = s5q08b__2,
-#     work_benefits_pension = s5q08b__3,
-#     work_benefits_paid_annual_leave = s5q08b__4,
-#     work_written_contract = s5q08c,
-#     
-#     hh_not_able_work = s5q09,
-#     hh_not_able_work_roster0 = s5q10__0, ## from roster
-#     hh_not_able_work_roster1 = s5q10__1,
-#     hh_not_able_work_roster2 = s5q10__2,
-#     hh_not_able_work_roster3 = s5q10__3,
-#     hh_not_able_work_roster4 = s5q10__4,
-#     hh_not_able_work_roster5 = s5q10__5,
-#     hh_not_able_work_roster6 = s5q10__6,
-#     hh_not_able_work_roster7 = s5q10__7,
-#     hh_not_able_work_roster8 = s5q10__8,
-#     hh_not_able_work_roster9 = s5q10__9,
-#     
-#     non_farm_biz_operate = s5q11,
-#     non_farm_biz_sector = s5q12,
-#     non_farm_biz_rev_level= s5q13,
-#     non_farm_biz_rev_level_why = s5q14,
+    # Section 5 
+    
+    work_for_pay = s5q01,
+    work_before = s5q02,
+    work_stop_why = s5q03,
+    work_main_activity = s504,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,
+    work_before_main_activity = s504c,
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    work_as_usual = s5q07,
+    
+    work_unusually_but_paid = s5q08,
+    work_unusually_why = s5q08a,
+    work_benefits_health_insurance = s5q08b__1,
+    work_benefits_paid_sick_leave = s5q08b__2,
+    work_benefits_pension = s5q08b__3,
+    work_benefits_paid_annual_leave = s5q08b__4,
+    work_written_contract = s5q08c,
+
+    work_hh_unable= s5q09,
+    work_hh_unable_who = s5q10__0, ## from roster
+    work_hh_unable_who_1 = s5q10__1,
+    work_hh_unable_who_2 = s5q10__2,
+    work_hh_unable_who_3 = s5q10__3,
+    work_hh_unable_who_4 = s5q10__4,
+    work_hh_unable_who_5 = s5q10__5,
+    work_hh_unable_who_6 = s5q10__6,
+    work_hh_unable_who_7 = s5q10__7,
+    work_hh_unable_who_8 = s5q10__8,
+    work_hh_unable_who_9 = s5q10__9,
+
+    work_fam_biz = s5q11,
+    work_fam_biz_sec = s5q12,
+    work_fam_biz_rev_level= s5q13,
+    work_fam_biz_rev_level_why = s5q14,
+
     
     # Section 5a - Agriculture 
     ag_crops_plant                  = s5aq16,
@@ -280,6 +280,7 @@ round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" ))
 round_2_sec8  <- read_dta(here( "raw_data", "round2", "SEC8.dta" )) 
 round_2_sec9  <- read_dta(here( "raw_data", "round2", "SEC9.dta" )) 
 
+
 ## merge round2 datasets
 merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %>% 
   left_join(round_2_sec4, by = c("HHID")) %>% 
@@ -335,38 +336,42 @@ renamed_merged_r2 <- merged_r2 %>%
     assets_hh_lar_system            = s4q12__4,
     assets_hh_solar_kit_lantern     = s4q12__5,
     
-    #Section 5 - Employment NOT FIXED YET!
-#     work_done_for_pay = s5q01,    
-#     work_secured_absent = s5q01a,
-#     work_secured_return = s5q01b,
-#     work_missed_previously_why = s5q01c,
-#     work_stop_why = s5q03,
-#     work_to_find_job = s5q03a,
-#     work_main_find_job = s5q03b,
-#     work_same_as_before_march = s5q04a_1,
-#     work_same_as_last_time = s5q04a_2,
-#     work_change_why = s5q04b,
-#     work_main_activity = s5q05,
-#     work_main_area = s5q06,
-#     work_as_usual = s5q07,
-#     work_unusually_but_paid = s5q08,
-#     work_unusually_why = s5q08a,
-#     work_hours =s5q08b,
-#     work_hours_change = s5q08c,
-#     work_benefits_health_insurance = s5q08d__1,
-#     work_benefits_paid_sick_leave = s5q08d__2,
-#     work_benefits_pension = s5q08d__3,
-#     work_benefits_paid_annual_leave = s5q08d__4,
-#     work_written_contract = s5q08e,
-#     
-#     hh_not_able_work = s5q09,
-#     hh_not_able_work_roster0 = s5q10__0, ## from roster
-#     hh_not_able_work_roster1 = s5q10__1,
-#     hh_not_able_work_roster2 = s5q10__2,
-#     hh_not_able_work_roster3 = s5q10__3,
-#     hh_not_able_work_roster4 = s5q10__4,
-#     hh_not_able_work_roster5 = s5q10__5,
-#     
+    #Section 5 
+    
+    work_for_pay = s5q01,
+    work_return_expect = s5q01a,
+    work_return_when = s5q01b,
+    work_last_week_why_not = s5q01c,
+    work_stop_why = s5q03,
+    work_look = s5q03a,
+    work_look_how = s5q03b,
+    work_same_before_yes = s5q04a_1,
+    work_same_before_no = s5q04a_2,
+    work_change_why = s5q04b,
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    work_as_usual = s5q07,
+    
+    work_unusually_but_paid = s5q08,
+    work_unusually_why = s5q08a,
+    work_hours = s5q08b,
+    work_hours_change = s5q08c,
+    
+    work_benefits_health_insurance = s5q08d__1,
+    work_benefits_paid_sick_leave = s5q08d__2,
+    work_benefits_pension = s5q08d__3,
+    work_benefits_paid_annual_leave = s5q08d__4,
+    work_written_contract = s5q08e,
+    work_hh_unable= s5q09,
+    
+    work_hh_unable_who = s5q10__0, ## from roster
+    work_hh_unable_who_1 = s5q10__1,
+    work_hh_unable_who_2 = s5q10__2,
+    work_hh_unable_who_3 = s5q10__3,
+    work_hh_unable_who_4 = s5q10__4,
+    work_hh_unable_who_5 = s5q10__5,
+
+
 #     non_farm_biz_operate = s5aq11,
 #     non_farm_biz_closure_why_covid = s5aq11b__1,
 #     non_farm_biz_place_closure_other_why = s5aq11b__2,
@@ -506,6 +511,13 @@ renamed_merged_r2 <- merged_r2 %>%
     # concerns_measures_curb_covid_suspension_weddings = s9q09__4,
     # concerns_measures_curb_covid_suspension_periodic_markets = s9q09__5
   ) %>% 
+  mutate(
+    work_same_before = case_when(
+      is.na(work_same_before_yes) & is.na(work_same_before_no) ~ NA_real_,
+      work_same_before_yes == 1 | work_same_before_no == 2 ~ 1,
+      work_same_before_yes == 2 | work_same_before_no == 1 ~ 2, 
+    )
+  ) %>%
   rename_to_lower_snake()
 
 ## income loss round 2
@@ -583,6 +595,7 @@ merged_r3 <- left_join(round_3_interview_result,round_3_cover, by = c("hhid")) %
     )
   ) 
 
+
 ##rename round3 columns
 renamed_merged_r3 <- merged_r3 %>% 
   rename(
@@ -623,45 +636,46 @@ renamed_merged_r3 <- merged_r3 %>%
     mask_source_other 				= s4q14__n96,
     ## s4q14_other not in survey
     
-    # Section 5 - Employment NOT FIXED YET!
-#     work_done_for_pay = s5q01,
-#     work_secured_absent  = s5q01a,
-#     work_secured_return = s5q01b,
-#     work_missed_previously_why = s5q01c,
-#     work_stop_why = s5q03,
-#     work_to_find_job = s5q03a,
-#     work_main_find_job = s5q03b,
-#     work_same_as_last_time = s5q04a_1,
-#     work_change_why = s5q04b,
-#     work_main_description = s5q05,
-#     work_area = s5q06,
-#     work_as_usual = s5q07,
-#     work_unusually_but_paid = s5q08,
-#     work_unusually_why = s5q08a,
-#     work_hours = s5q08b,
-#     work_hours_change = s5q08c,
+    # Section 5 
     
-    # Too long variables - need to shorten
-    # safety_measures_by_employer_disinfectant = s5q08f__1,
-    # safety_measures_by_employer_hadn_sanitizer = s5q08f__2,
-    # safety_measures_by_employer_awareness = s5q08f__3,
-    # safety_measures_by_employer_mask = s5q08f__4,
-    # safety_measures_by_employer_gloves = s5q08f__5,
-    # safety_measures_by_employer_work_from_home = s5q08f__6,
-    # safety_measures_by_employer_office_closed = s5q08f__7,
-    # safety_measures_by_employer_none = s5q08f__8,
-    # safety_measures_by_employer_other = s5q08f__n96,
-    ## s5q08f_other not in survey
+    work_for_pay = s5q01,
+    work_return_expect  = s5q01a,
+    work_return_when = s5q01b,
+    work_last_week_why_not = s5q01c,    
+    work_stop_why = s5q03,
+    work_look = s5q03a,
+    work_look_how = s5q03b,
+    work_same_before = s5q04a_1,
+    work_change_why = s5q04b,
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    work_as_usual = s5q07,
     
-#     measures_followed_by_collegues = s5q08g,
-#     measures_followed_by_collegues_percentage = s5q08g_1,
-#     
-#     hh_not_able_work = s5q09,
-#     hh_not_able_work_roster0 = s5q10__0, ## from roster
-#     hh_not_able_work_roster1 = s5q10__1,
-#     hh_not_able_work_roster2 = s5q10__2,
-#     hh_not_able_work_roster3 = s5q10__3,
-#     hh_not_able_work_roster4 = s5q10__4,
+    work_unusually_but_paid = s5q08,
+    work_unusually_why = s5q08a,
+    work_hours = s5q08b,
+    work_hours_change = s5q08c,
+    
+    work_safety_disinfectant = s5q08f__1,
+    work_safety_sanitizer = s5q08f__2,
+    work_safety_awareness = s5q08f__3,
+    work_safety_mask = s5q08f__4,
+    work_safety_gloves = s5q08f__5,
+    work_safety_from_home = s5q08f__6,
+    work_safety_office_closed = s5q08f__7,
+    work_safety_none = s5q08f__8,
+    work_safety_other = s5q08f__n96,
+    work_safety_followed = s5q08g,
+    work_safety_followed_percentage = s5q08g_1,
+    
+    
+    work_hh_unable= s5q09,
+    work_hh_unable_who = s5q10__0, ## from roster
+    work_hh_unable_who_1 = s5q10__1,
+    work_hh_unable_who_2 = s5q10__2,
+    work_hh_unable_who_3 = s5q10__3,
+    work_hh_unable_who_4 = s5q10__4,
+    
 #     
 #     non_farm_biz_operation = s5aq11,
 #     non_farm_biz_closure_why = s5aq11b,
@@ -804,6 +818,7 @@ merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %
   left_join(round_4_sec9, by = c("HHID")) %>% 
   mutate(survey = 4)
 
+
 ##rename round4 columns
 renamed_merged_r4 <- merged_r4 %>% 
   rename(
@@ -860,44 +875,48 @@ renamed_merged_r4 <- merged_r4 %>%
     covid_vac_doubt_against_relig 	= s4q18__6,
     covid_vac_doubt_other 			= s4q18__n96,
     
-    # Section 5 - Employment NOT FIXED YET!
-#     work_done_for_pay = s5q01,
-#     work_secured_absent = s5q01a,
-#     work_secured_return = s5q01b,
-#     work_to_find_job  = s5q01c,
-#     work_stop_why = s5q03,
-#     work_main_find_job = s5q03a,
-#     work_search_main_activity = s5q03b,
-#     work_same_as_last_time = s5q04a,
-#     work_change_why = s5q04b,
-#     work_main_primary_description = s5q05a,
-#     work_organization_main_activity = s5q05,
-#     work_area = s5q06,
-#     work_farming_products_intentions = s5q06a,
-#     work_as_usual = s5q07,
-#     work_unusually_but_paid = s5q08,
-#     work_unusually_why = s5q08a,
-#     work_hours = s5q08b,
-#     work_hours_change = s5q08c,
-#     
-#     safety_measures_by_employer_disinfectants = s5q08f__1,
-#     safety_measures_by_employer_sanitizer = s5q08f__2,
-#     safety_measures_by_employer_preventative = s5q08f__3,
-#     safety_measures_by_employer_mask = s5q08f__4,
-#     safety_measures_by_employer_gloves = s5q08f__5,
-#     safety_measures_by_employer_work_home = s5q08f__6,
-#     safety_measures_by_employer_closed_office = s5q08f__7,
-#     safety_measures_by_employer_none = s5q08f__8,
-#     safety_measures_by_employer_others = s5q08f__n96,
-#     safety_measures_followed = s5q08g,
-#     safety_measures_followed_percentage = s5q08g_1,
-#     
-#     hh_not_able_work = s5q09,
-#     hh_not_able_work_roster0 = s5q10__0, # no options given hence numbers used
-#     hh_not_able_work_roster1 = s5q10__1,
-#     hh_not_able_work_roster2 = s5q10__2,
-#     hh_not_able_work_roster3 = s5q10__3,
-#     hh_not_able_work_roster4 = s5q10__4,
+    # Section 5 
+    
+    work_for_pay = s5q01,
+    work_return_expect  = s5q01a,
+    work_return_when = s5q01b,
+    work_last_week_why_not = s5q01c,    
+    work_stop_why = s5q03,
+    work_look = s5q03a,
+    work_look_how = s5q03b,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,   
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    work_fam_prod_intentions = s5q06a,
+    work_as_usual = s5q07,
+    
+    work_unusually_but_paid = s5q08,
+    work_unusually_why = s5q08a,
+    work_hours = s5q08b,
+    work_hours_change = s5q08c,
+    
+    work_safety_disinfectant = s5q08f__1,
+    work_safety_sanitizer = s5q08f__2,
+    work_safety_awareness = s5q08f__3,
+    work_safety_mask = s5q08f__4,
+    work_safety_gloves = s5q08f__5,
+    work_safety_from_home = s5q08f__6,
+    work_safety_office_closed = s5q08f__7,
+    work_safety_none = s5q08f__8,
+    work_safety_other = s5q08f__n96,
+    work_safety_followed = s5q08g,
+    work_safety_followed_percentage = s5q08g_1,
+    
+    
+    work_hh_unable= s5q09,
+    work_hh_unable_who = s5q10__0, ## from roster
+    work_hh_unable_who_1 = s5q10__1,
+    work_hh_unable_who_2 = s5q10__2,
+    work_hh_unable_who_3 = s5q10__3,
+    work_hh_unable_who_4 = s5q10__4,
+    
+
 #     
 #     non_farm_biz_operation = s5aq11,
 #     non_farm_biz_closure_why = s5aq11b,
@@ -1111,22 +1130,23 @@ renamed_merged_r5 <- merged_r5 %>%
     covid_vac_doubt_against_vacs 	= s4q18__5,
     covid_vac_doubt_religion 		= s4q18__6,
     
-    # Section 5 - Employment NOT FIXED YET!
-#     work_done_for_pay = s5q01,
-#     work_secured_absent = s5q01a,
-#     work_secured_return = s5q01b,   
-#     work_missed_previously_why = s5q01c,
-#     work_stop_why = s5q03,
-#     work_to_find_job = s5q03a,
-#     work_main_find_job = s5q03b,
-#     work_same_as_last_time  = s5q04a,
-#     work_change_why = s5q04b,
-#     
-#     work_main_primary_description = s5q05a,
-#     work_main_activity = s5q05,
-#     work_area = s5q06,
-#     work_farm_products_intentions = s5q06a,
-#     
+    # section 5
+    
+    work_for_pay = s5q01,
+    work_return_expect = s5q01a,
+    work_return_when = s5q01b,
+    work_last_week_why_not = s5q01c,
+    work_stop_why = s5q03,
+    work_look = s5q03a,
+    work_look_how = s5q03b,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,
+    work_main_prim_descr = s5q05a,
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    work_fam_prod_intentions = s5q06a,
+
+
 #     non_farm_biz_operation = s5aq11,
 #     non_farm_biz_closure_why = s5aq11b,
 #     non_farm_biz_other_operating = s5aq11b_1,
@@ -1362,37 +1382,37 @@ renamed_merged_r6 <- merged_r6 %>%
     mask_source_home_made 			= s4q14__3,
     mask_source_friends_relatives 	= s4q14__4,
     mask_source_employer 			= s4q14__5,
-     
+
+    # section 5
     
-    # Section 5 - Employment NOT FIXED YET!   
-#     work_done_for_pay_resp = s5q01,
-#     work_secured_absent_resp = s5q01a,
-#     work_secured_return_resp = s5q01b,
-#     work_missed_previously_why_resp = s5q01c,
-#     work_stop_why_resp = s5q03,
-#     work_to_find_job_resp = s5q03a,
-#     work_main_find_job_resp  = s5q03b,
-#     work_same_as_last_time_resp = s5q04a,
-#     work_change_why_resp = s5q04b,
-#     work_main_primary_activities_resp = s5q05a,
-#     work_main_activity_resp = s5q05,
-#     work_area_resp = s5q06,
-#     
-#     family_products_intentions_resp = s5q06a,
-#     
-#     work_hours_previous_week_resp = s5q8b1,
-#     work_hours_by_member_week_resp = s5q8c1,
-#     
+    work_for_pay = s5q01,
+    work_return_expect = s5q01a,
+    work_return_when = s5q01b,
+    work_last_week_why_not = s5q01c,
+    work_stop_why = s5q03,
+    work_look = s5q03a,
+    work_look_how = s5q03b,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,
+    work_main_prim_descr = s5q05a,
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    
+    work_fam_prod_intentions = s5q06a,
+    work_hours = s5q8b1,
+    work_hours_usually = s5q8c1,
+    
+    
 #     #s5oq0b_1 not is survey,
 #     work_individual_available_respond = s5Oq0b,
 #     work_individual_responding = s5Oq0c,
 #     work_done_for_pay = s5Oq01,
-#     work_secured_absent = s5Oq01a,
+#     work_return_expect = s5Oq01a,
 #     work_secured_return = s5Oq01b,
 #     work_missed_previously_why = s5Oq01c,
 #     work_secured_return_type = s5Oq01d,
 #     work_to_find_job = s5Oq03a,
-#     work_main_find_job = s5Oq03b,
+#     work_look_how = s5Oq03b,
 #     work_done_previously_type = s5Oq06,
 #     work_farm_products_intentions = s5Oq06a,
 #     work_main_primary_description = s5Oq05a,
@@ -1460,14 +1480,14 @@ renamed_merged_r6 <- merged_r6 %>%
     # income_level_since_march = s6q02,    
 
     # Section 8 - Food insecurity experience scale
-    food_insufficient_worry 		= s8q01,
-    food_healthy_lack 				= s8q02,
+    food_insufficient_worry = s8q01,
+    food_healthy_lack 			= s8q02,
     food_few_kinds	 				= s8q03,
-    food_skipped_meal 				= s8q04,
-    food_less_than_expected 		= s8q05,
-    food_ranout 					= s8q06,
-    food_hungry 					= s8q07,
-    food_didnt_eat_all_day 			= s8q08,
+    food_skipped_meal 			= s8q04,
+    food_less_than_expected = s8q05,
+    food_ranout 					  = s8q06,
+    food_hungry 					  = s8q07,
+    food_didnt_eat_all_day 	= s8q08,
     
 #     concerns_covid_hh_serious_illness = s9q01,
 #     concerns_covid_threat_hh_finances = s9q02,
@@ -1536,23 +1556,25 @@ round_7_interview_result <- read_dta(here("raw_data", "round7", "interview_resul
   select(c('HHID','Rq09','Rq10'))
 round_7_cover  <- read_dta(here( "raw_data", "round7", "Cover.dta" )) 
 
-round_7_sec1 <- read_dta(here( "raw_data", "round7", "SEC1.dta" )) 
-round_7_sec4  <- read_dta(here( "raw_data", "round7", "SEC4_1.dta" )) 
-round_7_sec5a  <- read_dta(here( "raw_data", "round7", "SEC5A.dta" )) 
-round_7_sec5 <- read_dta(here( "raw_data", "round7", "SEC5.dta" ))
+round_7_sec1    <- read_dta(here( "raw_data", "round7", "SEC1.dta" )) 
+round_7_sec4    <- read_dta(here( "raw_data", "round7", "SEC4_1.dta" )) 
+round_7_sec5a   <- read_dta(here( "raw_data", "round7", "SEC5A.dta" )) 
+round_7_sec5    <- read_dta(here( "raw_data", "round7", "SEC5.dta" )) #3 respondent
 round_7_sec6e1  <- read_dta(here( "raw_data", "round7", "SEC6E_1.dta" )) 
 round_7_sec6e2  <- read_dta(here( "raw_data", "round7", "SEC6E_2.dta" )) 
-round_7_sec8  <- read_dta(here( "raw_data", "round7", "SEC8.dta" )) 
-round_7_sec9  <- read_dta(here( "raw_data", "round7", "SEC9.dta" )) 
+round_7_sec8    <- read_dta(here( "raw_data", "round7", "SEC8.dta" )) 
+round_7_sec9    <- read_dta(here( "raw_data", "round7", "SEC9.dta" )) 
+
 
 ## merge round 7 datasets
 merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %>% 
   left_join(round_7_sec4, by = c("HHID")) %>% 
-  left_join(round_7_sec5a, by = c("HHID")) %>% 
   left_join(round_7_sec5, by = c("HHID")) %>% 
+  left_join(round_7_sec5a, by = c("HHID")) %>% 
   left_join(round_7_sec8, by = c("HHID")) %>% 
   left_join(round_7_sec9, by = c("HHID")) %>% 
   mutate(survey = 7)
+
 
 ## renaming merged round 7
 renamed_merged_r7 <- merged_r7 %>% 
@@ -1580,7 +1602,37 @@ renamed_merged_r7 <- merged_r7 %>%
     
     medicine_no_access 				= s4q15,
     
-    # Section 5 - Employment NOT FIXED YET!
+    # section 5
+    
+    work_for_pay = s5q01,
+    work_return_expect = s5q01a,
+    work_return_when = s5q01b,
+    work_last_week_why_not = s5q01c,
+    work_stop_why = s5q03,
+    work_look = s5q03a,
+    work_look_how = s5q03b,
+    work_same_before = s5q04a,
+    work_change_why = s5q04b,
+    work_main_prim_descr = s5q05a,
+    work_main_business_area = s5q05,
+    work_main_business_type = s5q06,
+    work_fam_prod_intentions = s5q06a,
+    
+    work_safety_disinfectant = s5q08f__1,
+    work_safety_sanitizer = s5q08f__2,
+    work_safety_awareness = s5q08f__3,
+    work_safety_mask = s5q08f__4,
+    work_safety_gloves = s5q08f__5,
+    work_safety_from_home = s5q08f__6,
+    work_safety_office_closed = s5q08f__7,
+    work_safety_none = s5q08f__8,
+    work_safety_other = s5q08f__96,
+    work_safety_followed_resp = s5q08g, ## should i make it the same as in round 3 where they were asking if collegues follow ?
+    work_safety_followed_percentage = s5q08g_1,
+    
+    work_hours = s5q8b1,
+    work_hours_usually = s5q8c1,    
+    
 #     non_farm_biz_operation = s5aq11,
 #     non_farm_biz_status = s5aq11a,
 #     non_farm_biz_closure_why = s5aq11b,
@@ -1605,17 +1657,17 @@ renamed_merged_r7 <- merged_r7 %>%
 #     changes_to_be_made_in_biz_other = s5aq15b__n96,
 #     
 #     work_done_for_pay_resp = s5q01,
-#     work_secured_absent_resp = s5q01a,
-#     work_secured_return_resp = s5q01b,   
-#     work_missed_previously_why_resp = s5q01c,
+#     work_return_expect_resp = s5q01a,
+#     work_return_when = s5q01b,   
+#     work_last_week_why_not = s5q01c,
 #     work_stop_why_resp = s5q03,
 #     work_to_find_job_resp = s5q03a,
-#     work_main_find_job_resp  = s5q03b,
+#     work_look_how_resp  = s5q03b,
 #     work_same_as_last_time_resp = s5q04a,
 #     work_change_why_resp = s5q04b,
 #     work_main_primary_activities_resp = s5q05a,
-#     work_main_activity_resp = s5q05, 
-#     work_area_resp = s5q06,
+#     work_main_business_area = s5q05, 
+#     work_main_business_type = s5q06,
 #     
 #     family_products_intentions_resp = s5q06a,
 #     
@@ -1713,7 +1765,8 @@ all_rounds_df <- bind_rows(
     starts_with("staple"),
     starts_with("medi"),
     starts_with("staple"),
-    starts_with("ag_")
+    starts_with("ag_"),
+    starts_with("work_")
   ) %>% 
   arrange(
     hhid, survey
