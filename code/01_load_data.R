@@ -270,10 +270,15 @@ View(renamed_merged_r1)
 female_led <- round_1_sec1 %>% ## filter seems to work without using the function any()
   filter(s1q05 == 2 & s1q07 == 1)
 
-## number of adult males and adult females.
-male_adults <- add_tally(round_1_sec1, s1q05 == 1 & s1q06 >= 18, sort = FALSE)
-female_adults <- add_tally(round_1_sec1, s1q05 == 2 & s1q06 >= 18, sort = FALSE)
+# fem_led <- round_1_sec1 %>% 
+#   mutate (
+#   any(s1q05 == 2 & s1q07 == 1, na.rm = FALSE)
+#   )
+     
 
+## number of adult males and adult females.
+male_adults <- add_tally(round_1_sec1, s1q05 == 1 & s1q06 >= 18, sort = FALSE) ## creates repetitive total value which is queer
+female_adults <- add_tally(round_1_sec1, s1q05 == 2 & s1q06 >= 18, sort = FALSE)
 
 ## round 2 ---- 
 
