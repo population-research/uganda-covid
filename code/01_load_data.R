@@ -264,21 +264,48 @@ renamed_merged_r1 <- renamed_merged_r1 %>%
 ## drop out hh guests ( s1q02a) and s1q03 == 2 nolonger hh member
 non_guests <- round_1_sec1 %>% 
   filter(s1q02a == 1 & s1q03 == 1)
-View(renamed_merged_r1)
 
 ## female led household dummy variable 
 female_led <- round_1_sec1 %>% ## filter seems to work without using the function any()
   filter(s1q05 == 2 & s1q07 == 1)
 
-# fem_led <- round_1_sec1 %>% 
-#   mutate (
-#   any(s1q05 == 2 & s1q07 == 1, na.rm = FALSE)
-#   )
+fem_led <- round_1_sec1 %>%
+  group_by(s1q05) %>% 
+  mutate(
+    fem = case_when(
+      s1q05 == 2 ~ TRUE,
+      s1q07 == 1 ~ TRUE,
+      TRUE ~ FALSE
+    )
+  )
+
      
 
 ## number of adult males and adult females.
 male_adults <- add_tally(round_1_sec1, s1q05 == 1 & s1q06 >= 18, sort = FALSE) ## creates repetitive total value which is queer
 female_adults <- add_tally(round_1_sec1, s1q05 == 2 & s1q06 >= 18, sort = FALSE)
+
+male_adults <- round_1_sec1 %>% 
+  group_by(s1q05) %>% 
+  mutate(
+    male_adu = case_when(
+      s1q05 == 1 ~ TRUE,
+      s1q06 >= 18 ~ TRUE,
+      TRUE ~ FALSE
+      )
+) %>% 
+  mutate(count = n())
+
+female_adults <- round_1_sec1 %>% 
+  group_by(s1q05) %>% 
+  mutate(
+    female_adu = case_when(
+      s1q05 == 1 ~ TRUE,
+      s1q06 >= 18 ~ TRUE,
+      TRUE ~ FALSE
+    )
+  ) %>% 
+  mutate(count = n())
 
 ## round 2 ---- 
 
