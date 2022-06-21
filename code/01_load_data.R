@@ -275,10 +275,22 @@ test <- round_1_sec1 %>%
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
-  ungroup() %>%  # speeds up the processing when we merge 
+  ungroup() %>%  # speeds up the processing when we merge
   add_tally(hh_adult_males, name = "total_adult_males") %>%  # adds a column for total adults by gender
-  add_tally(hh_adult_females, name = "total_adult_females")
+  add_tally(hh_adult_females, name = "total_adult_females") 
+ 
   
+test2 <- round_1_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
+  add_tally(s1q05 == 1, name = "total_hh_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "total_hh_females") %>% # total hh females
+  add_tally(s1q05, name = "total_hh_members") %>% # total houselhold members
+  add_tally((s1q05 == 2 & s1q05 == 2 & s1q06 < 5), name = "hh_younger_five") %>%  # children younger than five
+  select(
+    hhid,total_hh_males,total_hh_females,total_hh_members,hh_younger_five
+  )
 
 ## drop out hh guests ( s1q02a) and s1q03 == 2 nolonger hh member
 non_guests <- round_1_sec1 %>% 
