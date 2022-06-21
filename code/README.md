@@ -25,6 +25,13 @@ Round 1 ask how the planting is progressing and changes due
 to Covid in the same question. 
 This is split into two questions in Round 2.
 
+#### Round 6 
+
+`ag_crops_plant`, `ag_crops_grown_1`, `ag_crops_grown_2`,
+and `ag_crops_grown_3` appear to have been pre-populated
+from round 5 (or 4).
+
+
 
 #### Round 7 - Section 6e 1
 
