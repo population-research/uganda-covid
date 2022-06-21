@@ -1163,6 +1163,7 @@ renamed_merged_r5 <- merged_r5 %>%
 #     non_farm_biz_temporary_close_status = s5aq11a,
     
     # Section 5b - Agriculture
+    ag_case_filter                  = agic_case_filter,
     ag_crops_plant                  = s5bq16,
     ## crop by code
     ag_crops_grown_1                = s5bq18_1,
@@ -1436,19 +1437,17 @@ renamed_merged_r6 <- merged_r6 %>%
 #     non_farm_biz_temporary_close_status = s5aq11a,
     
     # Section 5B - Agriculture
-    #s5bq16,s5bq18_1,s5bq18_2,s5bq18_3,s5bq19,s5bq20__1,s5bq20__2,s5bq20__3,s5bq20__4,s5bq20__5,s5bq20__6,s5bq20__7
-    # not is survey
-    #s5bq21a,s5bq21b,s5bq21c,s5bq21d not in survey
+    ag_crops_plant                  = t0_s5bq16_R4,
+    ag_crops_grown_1                = t0_s5bq18_1,
+    ag_crops_grown_2                = t0_s5bq18_2,
+    ag_crops_grown_3                = t0_s5bq18_3,
     
-    #21_4 5 and 6 not is survey hence considered as in previous rounds 
-    # ag_price_small_banana       = s5bq21__1,
-    # ag_price_large_banana       = s5bq21__3,
-    # ag_price_100kg_cassava_bag     = s5bq21__4,
-    # ag_price_basin_dry_casava_chips = s5bq21__5,
-    # ag_price_kg_dry_cassava_flour   = s5bq21__6,
-    # ag_price_kg_dry_beans       = s5bq21__7,
-    # ag_price_basin_fresh_beans     = s5bq21__9,
-    # ag_price_kg_maize_grains     = s5bq21__8,
+    ag_price_small_banana           = s5bq21_1,
+    ag_price_medium_banana          = s5bq21_2,
+    ag_price_large_banana           = s5bq21_3,
+    ag_price_kg_dry_beans           = s5bq21_7,
+    ag_price_basin_fresh_beans      = s5bq21_9,
+    ag_price_kg_maize_grains        = s5bq21_8,
     
     ag_farm_products_sell_normally  = s5bq23,
     ag_farm_products_revenue_size   = s5bq24,
