@@ -24,3 +24,18 @@ Round 7 asks by child in Section 1c.
 Round 1 ask how the planting is progressing and changes due
 to Covid in the same question. 
 This is split into two questions in Round 2.
+
+
+#### Round 7 - Section 6e 1
+
+There is no option for being unable to acquire fertilizer as reason
+for not growing crops in Round 7.
+Presumably, this is subsumed into the other inputs category.
+There is a new option, "Not a farmer," added instead.
+
+Round 7 follows the skip pattern for sale of agricultural
+products from round 3 on. 
+The household is asked whether it normally sells any agricultural
+products, including crops and lifestock (`ag_farm_products_sell_normally`).
+If no, the revenue, need to sell, able to sell, and where are all 
+skipped. 
