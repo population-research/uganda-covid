@@ -1561,7 +1561,7 @@ round_7_sec4    <- read_dta(here( "raw_data", "round7", "SEC4_1.dta" ))
 round_7_sec5a   <- read_dta(here( "raw_data", "round7", "SEC5A.dta" )) 
 round_7_sec5    <- read_dta(here( "raw_data", "round7", "SEC5.dta" )) #3 respondent
 round_7_sec6e1  <- read_dta(here( "raw_data", "round7", "SEC6E_1.dta" )) 
-round_7_sec6e2  <- read_dta(here( "raw_data", "round7", "SEC6E_2.dta" )) 
+round_7_sec6e2  <- read_dta(here( "raw_data", "round7", "SEC6E_2.dta" )) # crop level; see below for pivot/merge
 round_7_sec8    <- read_dta(here( "raw_data", "round7", "SEC8.dta" )) 
 round_7_sec9    <- read_dta(here( "raw_data", "round7", "SEC9.dta" )) 
 
@@ -1738,7 +1738,8 @@ renamed_merged_r7 <- merged_r7 %>%
     ag_farm_products_sale_week_mrkt = s6eq27__3,
     ag_farm_products_sale_other     = s6eq27__n96,
 
-   # Section 6E - Agriculture - section 2 NOT ADDED YET
+    # Section 6E - Agriculture - section 2 
+    # crop level; see below for pivot/merge
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s8q01,
@@ -1786,6 +1787,35 @@ renamed_merged_r7 <- merged_r7 %>%
 #     concerns_covid_vac_type_wanted = s9q15
    ) %>% 
    rename_to_lower_snake()
+
+# Agricultural section 6e_2 is at crop level
+round_7_sec6e2  <- round_7_sec6e2 %>% 
+  select(-interview__id) %>% 
+  group_by(HHID) %>% 
+  mutate(
+    crop_number = row_number()
+  ) %>% 
+  relocate(
+    crop_number, .after = HHID
+  ) %>% 
+  rename(
+    hhid                    = HHID,
+    id                      = crop__id,
+    area                    = s6eq21d,
+    expect_output           = s6eq21e,
+    expect_why_better       =  s6eq21f,
+    expect_why_less         =  s6eq21g
+  ) %>% 
+  pivot_wider(
+    id_cols = hhid,
+    names_from = crop_number,
+    names_glue = "ag_crop_{crop_number}_{.value}",
+    values_from = c("id", area, starts_with("expect"))
+  )
+
+renamed_merged_r7 <- renamed_merged_r7 %>% 
+  left_join(round_7_sec6e2, by = "hhid")
+
 
 # merging all and saving ----
 all_rounds_df <- bind_rows(
