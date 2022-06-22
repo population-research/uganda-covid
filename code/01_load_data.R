@@ -433,7 +433,32 @@ renamed_merged_r2 <- merged_r2 %>%
     
     ag_farm_products_sell_need      = s5bq08,
     ag_farm_products_sell_able      = s5bq09,
+        
+    ag_stock_raised                 = s5cq01, 
+    ag_stock_type_ruminants_l_impr  = s5cq02__1,
+    ag_stock_type_ruminants_l_indi  = s5cq02__2,
+    ag_stock_type_ruminants_s_impr  = s5cq02__3,
+    ag_stock_type_ruminants_s_indi  = s5cq02__4,
+    ag_stock_type_poultry_impr      = s5cq02__5,
+    ag_stock_type_poultry_indi      = s5cq02__6,
+    ag_stock_type_pigs              = s5cq02__7,
+    ag_stock_type_equines           = s5cq02__8,
+    ag_stock_change                 = s5cq03,
+    ag_stock_reduce_feed            = s5cq04__1,
+    ag_stock_reduce_breed_access    = s5cq04__2,
+    ag_stock_reduce_vet_access      = s5cq04__3,
+    ag_stock_reduce_markets_access  = s5cq04__4,
+    ag_stock_reduce_milk_eggs_prod  = s5cq04__5,
+    ag_stock_compromised_storage    = s5cq04__6,
+    ag_stock_reduced_processing     = s5cq04__7,
     
+    ag_stock_sell_wanted            = s5cq08,
+    ag_stock_sell_able              = s5cq09,
+    ag_stock_sell_unable_transport  = s5cq11__2,
+    ag_stock_sell_unable_travel     = s5cq11__3,
+    ag_stock_sale_unable_prices     = s5cq11__4,
+    ag_stock_sale_unable_other      = s5cq11__5, ## there is no five hence called it other 
+
     # This is by product within household currently; remove comment when fixed
     # stock_products_sale_level = s5cq13,
     # stock_sale_declined_why_markets_closed =  s5cq14_1__1,
@@ -450,31 +475,7 @@ renamed_merged_r2 <- merged_r2 %>%
     # stock_no_sales_why_prices_fall = s5cq14_2__5,
     # stock_no_sales_why_home_consumption = s5cq14_2__6,
     # stock_price_level_since_march = s5cq15,
-    
-    # Too long variables - need to shorten
-    # stock_hh_kept = s5cq01,
-    # stock_type_kept_improved_large_ruminants = s5cq02__1,
-    # stock_type_kept_indiginous_large_ruminants = s5cq02__2,
-    # stock_type_kept_improved_small_ruminants = s5cq02__3,
-    # stock_type_kept_indiginous_small_ruminants = s5cq02__4,
-    # stock_type_kept_improved_poultry = s5cq02__5,
-    # stock_type_kept_local_poultry = s5cq02__6,
-    # stock_type_kept_pigs = s5cq02__7,
-    # stock_type_kept_equines = s5cq02__8,
-    # stock_activities_affected_by_covid = s5cq03,
-    # stock_activitied_covid_effects_reduced_animal_feed = s5cq04__1,
-    # stock_activitied_covid_effects_reduced_animal_breed_access = s5cq04__2,
-    # stock_activitied_covid_effects_reduced_veterinary_access = s5cq04__3,
-    # stock_activitied_covid_effects_reduced_markets_access = s5cq04__4,
-    # stock_activitied_covid_effects_reduced_milk_eggs_production = s5cq04__5,
-    # stock_activitied_covid_effects_compromised_storage = s5cq04__6,
-    # stock_activitied_covid_effects_reduced_processing = s5cq04__7,
-    # stock_animals_wanted_sale = s5cq08,
-    # stock_animals_wanted_able_sale = s5cq09,
-    # stock_animales_sale_unable_why_limited_transport = s5cq11__2,
-    # stock_animales_sale_unable_why_travel_restriction = s5cq11__3,
-    # stock_animales_sale_unable_why_prices_fall = s5cq11__4,
-    # stock_animales_sale_unable_why_other = s5cq11__5, ## there is no five hence called it other 
+
 
     # income_source                  = s6q01,
     # income_level_since_march       = s6q02,    
