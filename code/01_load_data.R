@@ -287,8 +287,7 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec5, by = c("HHID")) %>% 
   left_join(round_2_sec5a, by = c("HHID")) %>% 
   left_join(round_2_sec5b, by = c("HHID")) %>% 
-  # This is by product within household currently; remove comment when fixed
-  # left_join(round_2_sec5c_1, by = c("HHID")) %>%  
+  # round_2_sec5c_1 is by product and merged in after the main wrangling  
   left_join(round_2_sec5c, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
@@ -459,24 +458,6 @@ renamed_merged_r2 <- merged_r2 %>%
     ag_stock_sale_unable_prices     = s5cq11__4,
     ag_stock_sale_unable_other      = s5cq11__5, ## there is no five hence called it other 
 
-    # This is by product within household currently; remove comment when fixed
-    # stock_products_sale_level = s5cq13,
-    # stock_sale_declined_why_markets_closed =  s5cq14_1__1,
-    # stock_sale_declined_why_restaurants_closed = s5cq14_1__2,
-    # stock_sale_declined_why_limited_transport = s5cq14_1__3,
-    # stock_sale_declined_why_travel_restrictions = s5cq14_1__4,
-    # stock_sale_declined_why_prices_fall = s5cq14_1__5,
-    # stock_sale_declined_why_other = s5cq14_1__6,
-    # # s5cq14_3 is 14a
-    # stock_no_sales_why_markets_closed = s5cq14_2__1,
-    # stock_no_sales_why_restaurants_closed = s5cq14_2__2,
-    # stock_no_sales_why_limited_transport = s5cq14_2__3,
-    # stock_no_sales_why_travel_restrictions = s5cq14_2__4,
-    # stock_no_sales_why_prices_fall = s5cq14_2__5,
-    # stock_no_sales_why_home_consumption = s5cq14_2__6,
-    # stock_price_level_since_march = s5cq15,
-
-
     # income_source                  = s6q01,
     # income_level_since_march       = s6q02,    
 
@@ -521,6 +502,41 @@ renamed_merged_r2 <- merged_r2 %>%
   ) %>%
   rename_to_lower_snake()
 
+# Livestock product by product - Section 5c
+# The questionnaire lists only milk (1) and egg (2), but the data also includes
+# 3 and 4. Given that the follow-up responses to 4 are all NAs, this is most
+# likely the option "None", which is 3 in questionnaire. With all later surveys
+# covering milk, egg, and meat, I treat 3 as meat.
+
+round_2_sec5c_1 <- round_2_sec5c_1 %>% 
+  select(-BSEQNO) %>% 
+  rename(
+    hhid            = HHID,
+    change          = s5cq13,
+    decl_local_mrkt = s5cq14_1__1,
+    decl_hotel_clsd = s5cq14_1__2,
+    decl_transport  = s5cq14_1__3,
+    decl_restrict   = s5cq14_1__4,
+    decl_prices     = s5cq14_1__5,
+    decl_home_prdct = s5cq14_1__6,
+    no_local_mrkt   = s5cq14_2__1,
+    no_hotel_clsd   = s5cq14_2__2,
+    no_transport    = s5cq14_2__3,
+    no_restrict     = s5cq14_2__4,
+    no_prices       = s5cq14_2__5,
+    no_home_prdct   = s5cq14_2__6,
+    price_change    = s5cq15
+  ) %>% 
+  filter(
+    livestock_products__id %in% c(1:3)
+  ) %>% 
+  pivot_wider(
+    id_cols = hhid,
+    names_from = livestock_products__id,
+    names_glue = "ag_stock_{livestock_products__id}_{.value}",
+    values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
+  )
+
 ## income loss round 2
 renamed_round2_sec_6 <- round_2_sec6 %>% 
   rename(
@@ -550,7 +566,8 @@ renamed_round2_sec_6 <- round_2_sec6 %>%
 ## inc_level_12 not in survey
 
 renamed_merged_r2 <- renamed_merged_r2 %>% 
-  left_join(renamed_round2_sec_6, by = "hhid")
+  left_join(renamed_round2_sec_6, by = "hhid") %>% 
+  left_join(round_2_sec5c_1, by = "hhid")
 
 
 
@@ -721,6 +738,7 @@ renamed_merged_r3 <- merged_r3 %>%
     ag_farm_products_sale_day_mrkt  = s5bq27__2,
     ag_farm_products_sale_week_mrkt = s5bq27__3,
     ag_farm_products_sale_other     = s5bq27__n96,
+
     ##section5c runs has only variables of 1,8,9, and 11 in survey
     # s5cq13,s5cq14__1,s5cq14__2,s5cq14__3,s5cq14__4,s5cq14__5,s5cq14__6,s5cq14a__1,s5cq14a__2,s5cq14a__3,s5cq14a__4,s5cq14a__5,s5cq14a__6,s5cq15
 
