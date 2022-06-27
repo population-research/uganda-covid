@@ -263,7 +263,9 @@ renamed_merged_r1 <- renamed_merged_r1 %>%
 
 # Claus's suggested code
 
-test <- round_1_sec1 %>% 
+## hh roster information
+
+hh_roster_info_r1 <- round_1_sec1 %>% 
   filter(s1q02a == 1 & s1q03 == 1) %>% 
   arrange(hhid, hh_roster__id) %>% 
   group_by(hhid) %>% 
@@ -272,28 +274,17 @@ test <- round_1_sec1 %>%
   # Easy version is just to count the number of female heads! We can always make
   # it a factor later
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
-  ungroup() %>%  # speeds up the processing when we merge
-  add_tally(hh_adult_males, name = "total_adult_males") %>%  # adds a column for total adults by gender
-  add_tally(hh_adult_females, name = "total_adult_females") 
+  ungroup()
   
-View(test)
- 
-  
-test2 <- round_1_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_count(s1q05 == 1, name = "total_hh_males") %>%   # total hh males
-  add_count((s1q05 == 2), name = "total_hh_females") %>% # total hh females
-  add_count(s1q05, name = "total_hh_members") %>% # total houselhold members
-  add_count((s1q05 == 2 & s1q05 == 2 & s1q06 < 5), name = "hh_younger_five") %>%  # children younger than five
-  select(
-    hhid,total_hh_males,total_hh_females,total_hh_members,hh_younger_five
-  )
-View(test2)
+
+
 
 ## drop out hh guests ( s1q02a) and s1q03 == 2 nolonger hh member
 non_guests <- round_1_sec1 %>% 
@@ -568,7 +559,7 @@ renamed_merged_r2 <- merged_r2 %>%
     food_hungry                     = s8q07,
     food_didnt_eat_all_day          = s8q08,
     
-    # Too long variables - need to shorten
+    # Too long variables - need to shorten.  #### here
     # concerns_covid_hh_serious_illness = s9q01,
     # concerns_covid_threat_hh_finances = s9q02,
     # concerns_symptoms_cough = s9q03__1,
@@ -626,6 +617,27 @@ renamed_round2_sec_6 <- round_2_sec6 %>%
   rename_with(~ gsub("_10$", "_govt", .x))%>% 
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
+
+## hh roster information
+
+hh_roster_info_r2 <- round_2_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
+  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
+  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
+  # Easy version is just to count the number of female heads! We can always make
+  # it a factor later
+  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
+  # All the other counts here using hh_ as prefix of variable names
+  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
+  slice_head() %>% 
+  ungroup()
+
 
 renamed_merged_r2 <- renamed_merged_r2 %>% 
   left_join(renamed_round2_sec_6, by = "hhid")
@@ -861,6 +873,27 @@ renamed_round3_sec_6 <- round_3_sec6 %>%
   rename_with(~ gsub("_10$", "_govt", .x))%>% 
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
+
+## hh roster information
+
+hh_roster_info_r3 <- round_3_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
+  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
+  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
+  # Easy version is just to count the number of female heads! We can always make
+  # it a factor later
+  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
+  # All the other counts here using hh_ as prefix of variable names
+  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
+  slice_head() %>% 
+  ungroup()
+
 
 renamed_merged_r3 <- renamed_merged_r3 %>% 
   left_join(renamed_round3_sec_6, by = "hhid")
@@ -1130,6 +1163,26 @@ renamed_round4_sec_6 <- round_4_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
+## hh roster information
+
+hh_roster_info_r4 <- round_4_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(HHID, hh_roster__id) %>% 
+  group_by(HHID) %>% 
+  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
+  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
+  # Easy version is just to count the number of female heads! We can always make
+  # it a factor later
+  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
+  # All the other counts here using hh_ as prefix of variable names
+  select(HHID, starts_with("hh_"), -hh_roster__id) %>% 
+  slice_head() %>% 
+  ungroup()
+
 renamed_merged_r4 <- renamed_merged_r4 %>% 
   left_join(renamed_round4_sec_6, by = "hhid")
 
@@ -1365,6 +1418,27 @@ renamed_round5_sec_6 <- round_5_sec6 %>%
   rename_with(~ gsub("_10$", "_govt", .x))%>% 
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
+
+## hh roster information
+
+hh_roster_info_r5 <- round_5_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
+  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
+  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
+  # Easy version is just to count the number of female heads! We can always make
+  # it a factor later
+  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
+  # All the other counts here using hh_ as prefix of variable names
+  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
+  slice_head() %>% 
+  ungroup()
+
 
 renamed_merged_r5 <- renamed_merged_r5 %>% 
   left_join(renamed_round5_sec_6, by = "hhid")
@@ -1624,6 +1698,27 @@ renamed_round6_sec_6 <- round_6_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
+## hh roster information
+
+hh_roster_info_r6 <- round_6_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
+  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
+  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
+  # Easy version is just to count the number of female heads! We can always make
+  # it a factor later
+  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
+  # All the other counts here using hh_ as prefix of variable names
+  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
+  slice_head() %>% 
+  ungroup()
+
+
 renamed_merged_r6 <- renamed_merged_r6 %>% 
   left_join(renamed_round6_sec_6, by = "hhid")
 
@@ -1813,6 +1908,27 @@ renamed_merged_r7 <- merged_r7 %>%
     #     concerns_covid_vac_type_wanted = s9q15
   ) %>% 
   rename_to_lower_snake()
+
+## hh roster information
+
+hh_roster_info_r7 <- round_7_sec1 %>% 
+  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  arrange(HHID, hh_roster__id) %>% 
+  group_by(HHID) %>% 
+  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
+  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
+  # Easy version is just to count the number of female heads! We can always make
+  # it a factor later
+  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
+  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
+  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
+  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
+  # All the other counts here using hh_ as prefix of variable names
+  select(HHID, starts_with("hh_"), -hh_roster__id) %>% 
+  slice_head() %>% 
+  ungroup()
+
 
 # merging all and saving ----
 all_rounds_df <- bind_rows(
