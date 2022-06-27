@@ -257,16 +257,12 @@ renamed_round1_sec_6 <- round_1_sec6 %>%
   rename_with(~ gsub("_10$", "_govt", .x))%>% 
   rename_with(~ gsub("_11$", "_ngo", .x))
 
-## merge section 6 to the rest
-renamed_merged_r1 <- renamed_merged_r1 %>% 
-  left_join(renamed_round1_sec_6, by = "hhid")
-
-# Claus's suggested code
-
-## hh roster information
+# hh roster information
 
 hh_roster_info_r1 <- round_1_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  # drop hh guests ( s1q02a) and s1q03 == 2 no longer hh member
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%
+  filter(s1q03 != 2 | is.na(s1q03)) %>%
   arrange(hhid, hh_roster__id) %>% 
   group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
@@ -276,61 +272,19 @@ hh_roster_info_r1 <- round_1_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
   
+# merge household roster data and section 6 to the rest
 
+renamed_merged_r1 <- renamed_merged_r1 %>% 
+  left_join(renamed_round1_sec_6, by = "hhid") %>% 
+  left_join(hh_roster_info_r1, by = "hhid")
 
-
-## drop out hh guests ( s1q02a) and s1q03 == 2 nolonger hh member
-non_guests <- round_1_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1)
-
-# ## female led household dummy variable 
-# female_led <- round_1_sec1 %>% ## filter seems to work without using the function any()
-#   filter(s1q05 == 2 & s1q07 == 1)
-# 
-# fem_led <- round_1_sec1 %>%
-#   group_by(s1q05) %>% 
-#   mutate(
-#     fem = case_when(
-#       s1q05 == 2 ~ TRUE,
-#       s1q07 == 1 ~ TRUE,
-#       TRUE ~ FALSE
-#     )
-#   )
-# 
-#      
-# 
-# ## number of adult males and adult females.
-# male_adults <- add_tally(round_1_sec1, s1q05 == 1 & s1q06 >= 18, sort = FALSE) ## creates repetitive total value which is queer
-# female_adults <- add_tally(round_1_sec1, s1q05 == 2 & s1q06 >= 18, sort = FALSE)
-# 
-# male_adults <- round_1_sec1 %>% 
-#   group_by(s1q05) %>% 
-#   mutate(
-#     male_adu = case_when(
-#       s1q05 == 1 ~ TRUE,
-#       s1q06 >= 18 ~ TRUE,
-#       TRUE ~ FALSE
-#       )
-# ) %>% 
-#   mutate(count = n())
-# 
-# female_adults <- round_1_sec1 %>% 
-#   group_by(s1q05) %>% 
-#   mutate(
-#     female_adu = case_when(
-#       s1q05 == 1 ~ TRUE,
-#       s1q06 >= 18 ~ TRUE,
-#       TRUE ~ FALSE
-#     )
-#   ) %>% 
-#   mutate(count = n())
 
 ## round 2 ---- 
 
@@ -621,7 +575,8 @@ renamed_round2_sec_6 <- round_2_sec6 %>%
 ## hh roster information
 
 hh_roster_info_r2 <- round_2_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
+  filter(s1q03 != 2 | is.na(s1q03)) %>% 
   arrange(hhid, hh_roster__id) %>% 
   group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
@@ -631,16 +586,18 @@ hh_roster_info_r2 <- round_2_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
 
+# merge household roster data and section 6 to the rest
 
 renamed_merged_r2 <- renamed_merged_r2 %>% 
-  left_join(renamed_round2_sec_6, by = "hhid")
+  left_join(renamed_round2_sec_6, by = "hhid") %>% 
+  left_join(hh_roster_info_r2, by = "hhid")
 
 
 
@@ -874,10 +831,11 @@ renamed_round3_sec_6 <- round_3_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
-## hh roster information
+# hh roster information
 
 hh_roster_info_r3 <- round_3_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
+  filter(s1q03 != 2 | is.na(s1q03)) %>% 
   arrange(hhid, hh_roster__id) %>% 
   group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
@@ -887,16 +845,18 @@ hh_roster_info_r3 <- round_3_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
 
+# merge household roster data and section 6 to the rest
 
 renamed_merged_r3 <- renamed_merged_r3 %>% 
-  left_join(renamed_round3_sec_6, by = "hhid")
+  left_join(renamed_round3_sec_6, by = "hhid") %>% 
+  left_join(hh_roster_info_r3, by = "hhid")
 
 
 
@@ -1166,9 +1126,11 @@ renamed_round4_sec_6 <- round_4_sec6 %>%
 ## hh roster information
 
 hh_roster_info_r4 <- round_4_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
-  arrange(HHID, hh_roster__id) %>% 
-  group_by(HHID) %>% 
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
+  filter(s1q03 != 2 | is.na(s1q03)) %>% 
+  rename(hhid = HHID) %>%
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
   add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
   # Easy version is just to count the number of female heads! We can always make
@@ -1176,15 +1138,19 @@ hh_roster_info_r4 <- round_4_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
-  select(HHID, starts_with("hh_"), -hh_roster__id) %>% 
+  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
 
+# merge household roster data and section 6 to the rest
+
 renamed_merged_r4 <- renamed_merged_r4 %>% 
-  left_join(renamed_round4_sec_6, by = "hhid")
+  left_join(renamed_round4_sec_6, by = "hhid") %>% 
+  left_join(hh_roster_info_r4, by = "hhid")
+
 
 ## round 5 ---- 
 
@@ -1422,7 +1388,8 @@ renamed_round5_sec_6 <- round_5_sec6 %>%
 ## hh roster information
 
 hh_roster_info_r5 <- round_5_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
+  filter(s1q03 != 2 | is.na(s1q03)) %>% 
   arrange(hhid, hh_roster__id) %>% 
   group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
@@ -1432,17 +1399,18 @@ hh_roster_info_r5 <- round_5_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
 
+# merge household roster data and section 6 to the rest
 
 renamed_merged_r5 <- renamed_merged_r5 %>% 
-  left_join(renamed_round5_sec_6, by = "hhid")
-
+  left_join(renamed_round5_sec_6, by = "hhid") %>% 
+  left_join(hh_roster_info_r5, by = "hhid")
 
 
 
@@ -1670,7 +1638,8 @@ renamed_merged_r6 <- merged_r6 %>%
     #     concerns_concentrating_work = s9q10_7,
     #     concerns_motion_speaking_change = s9q10_8
   ) %>% 
-  rename_to_lower_snake()
+  rename_to_lower_snake() %>% 
+  select(-hh_roster__id)
 
 ## income loss round 6
 renamed_round6_sec_6 <- round_6_sec6 %>% 
@@ -1701,7 +1670,8 @@ renamed_round6_sec_6 <- round_6_sec6 %>%
 ## hh roster information
 
 hh_roster_info_r6 <- round_6_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
+  filter(s1q03 != 2 | is.na(s1q03)) %>% 
   arrange(hhid, hh_roster__id) %>% 
   group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
@@ -1711,17 +1681,18 @@ hh_roster_info_r6 <- round_6_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
   select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
 
+# merge household roster data and section 6 to the rest
 
 renamed_merged_r6 <- renamed_merged_r6 %>% 
-  left_join(renamed_round6_sec_6, by = "hhid")
-
+  left_join(renamed_round6_sec_6, by = "hhid") %>% 
+  left_join(hh_roster_info_r6, by = "hhid")
 
 
 ## round 7 ---- 
@@ -1912,9 +1883,11 @@ renamed_merged_r7 <- merged_r7 %>%
 ## hh roster information
 
 hh_roster_info_r7 <- round_7_sec1 %>% 
-  filter(s1q02a == 1 & s1q03 == 1) %>% 
-  arrange(HHID, hh_roster__id) %>% 
-  group_by(HHID) %>% 
+  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
+  filter(s1q03 != 2 | is.na(s1q03)) %>% 
+  rename(hhid = HHID) %>% 
+  arrange(hhid, hh_roster__id) %>% 
+  group_by(hhid) %>% 
   add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
   add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
   # Easy version is just to count the number of female heads! We can always make
@@ -1922,15 +1895,22 @@ hh_roster_info_r7 <- round_7_sec1 %>%
   add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
   add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
   add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total houselhold members
+  add_count(name = "hh_total_members") %>% # total household members
   add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
   # All the other counts here using hh_ as prefix of variable names
-  select(HHID, starts_with("hh_"), -hh_roster__id) %>% 
+  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
   slice_head() %>% 
   ungroup()
 
+# merge household roster data to the rest
+
+renamed_merged_r7 <- renamed_merged_r7 %>% 
+  left_join(hh_roster_info_r7, by = "hhid")
+
+
 
 # merging all and saving ----
+
 all_rounds_df <- bind_rows(
   renamed_merged_r1,
   renamed_merged_r2,
@@ -1953,7 +1933,7 @@ all_rounds_df <- bind_rows(
     starts_with("interview"),
     starts_with("weight"),
     region, urban, starts_with("district"), starts_with("county"), 
-    hh_size, # currently only in R1!
+    starts_with("hh_"),  # Household roster information 
     starts_with("food"), # Food insecurity experience scale
     starts_with("soap"),
     starts_with("water"),
