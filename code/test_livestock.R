@@ -71,9 +71,7 @@ round_5_sec5d  <- read_dta(here( "raw_data", "round5", "sec5d.dta" )) %>%
     no_prices       = s5dq14_1__5,
     no_home_prdct   = s5dq14_1__6,
     price_change    = s5dq15
-  )
-
-test <- round_5_sec5d %>% 
+  ) %>% 
   pivot_wider(
     id_cols = hhid,
     names_from = livestock_products__id,
@@ -81,3 +79,33 @@ test <- round_5_sec5d %>%
     values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
   )
 
+
+# Round 6 ----
+
+round_6_sec5d  <- read_dta(here( "raw_data", "round6", "sec5d.dta" )) %>%
+  # No usable responses for following variables
+  select(-s5dq14__n96, -s5dq14_Other, -s5dq14a__n96, -s5dq14a_Other) %>% 
+  rename(
+    produce_any     = s5dq12,
+    change          = s5dq13,
+    decl_local_mrkt = s5dq14__1,
+    decl_hotel_clsd = s5dq14__2,
+    decl_transport  = s5dq14__3,
+    decl_restrict   = s5dq14__4,
+    decl_prices     = s5dq14__5,
+    no_local_mrkt   = s5dq14a__1,
+    no_hotel_clsd   = s5dq14a__2,
+    no_transport    = s5dq14a__3,
+    no_restrict     = s5dq14a__4,
+    no_prices       = s5dq14a__5,
+    no_home_prdct   = s5dq14a__6,
+    price_change    = s5dq15
+  )
+
+test <- round_6_sec5d %>% 
+  pivot_wider(
+    id_cols = hhid,
+    names_from = livestock_products__id,
+    names_glue = "ag_stock_{livestock_products__id}_{.value}",
+    values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
+  )
