@@ -52,6 +52,41 @@ test <- round_2_sec5c_1 %>%
   )
 
 
+# Round 3 ----
+
+round_3_sec5d  <- read_dta(here( "raw_data", "round3", "sec5d.dta" )) %>% 
+  rename(
+    change          = s5cq13,
+    decl_local_mrkt = s5cq14__1,
+    decl_hotel_clsd = s5cq14__2,
+    decl_transport  = s5cq14__3,
+    decl_restrict   = s5cq14__4,
+    decl_prices     = s5cq14__5,
+    decl_home_prdct = s5cq14__6,
+    no_local_mrkt   = s5cq14a__1,
+    no_hotel_clsd   = s5cq14a__2,
+    no_transport    = s5cq14a__3,
+    no_restrict     = s5cq14a__4,
+    no_prices       = s5cq14a__5,
+    no_home_prdct   = s5cq14a__6,
+    price_change    = s5cq15
+  ) %>% 
+  mutate(
+    stock_name = case_when(
+      livestock_products__id == 1 ~ "milk",
+      livestock_products__id == 2 ~ "egg",
+      livestock_products__id == 3 ~ "meat",
+      TRUE ~ NA_character_
+    )
+  ) %>% 
+  pivot_wider(
+    id_cols = hhid,
+    names_from = stock_name,
+    names_glue = "ag_stock_{stock_name}_{.value}",
+    values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
+  )
+
+
 
 # Round 5 ----
 
