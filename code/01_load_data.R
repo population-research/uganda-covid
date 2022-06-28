@@ -530,12 +530,21 @@ round_2_sec5c_1 <- round_2_sec5c_1 %>%
   filter(
     livestock_products__id %in% c(1:3)
   ) %>% 
+  mutate(
+    stock_name = case_when(
+      livestock_products__id == 1 ~ "milk",
+      livestock_products__id == 2 ~ "egg",
+      livestock_products__id == 3 ~ "meat",
+      TRUE ~ NA_character_
+    )
+  ) %>% 
   pivot_wider(
     id_cols = hhid,
-    names_from = livestock_products__id,
-    names_glue = "ag_stock_{livestock_products__id}_{.value}",
+    names_from = stock_name,
+    names_glue = "ag_stock_{stock_name}_{.value}",
     values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
   )
+
 
 ## income loss round 2
 renamed_round2_sec_6 <- round_2_sec6 %>% 
