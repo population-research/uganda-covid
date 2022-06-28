@@ -210,10 +210,6 @@ renamed_merged_r1 <- merged_r1 %>%
     ag_farm_products_sell_need      = s5aq30,
     ag_farm_products_sell_able      = s5aq31,
 
-
-    # income_source                   = s6q01,
-    # income_level_since_march        = s6q02,
-    
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s7q01,
     food_healthy_lack               = s7q02,
@@ -457,9 +453,6 @@ renamed_merged_r2 <- merged_r2 %>%
     ag_stock_sell_unable_travel     = s5cq11__3,
     ag_stock_sale_unable_prices     = s5cq11__4,
     ag_stock_sale_unable_other      = s5cq11__5, ## there is no five hence called it other 
-
-    # income_source                  = s6q01,
-    # income_level_since_march       = s6q02,    
 
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s8q01,
@@ -747,9 +740,6 @@ renamed_merged_r3 <- merged_r3 %>%
     ag_farm_products_sale_day_mrkt  = s5bq27__2,
     ag_farm_products_sale_week_mrkt = s5bq27__3,
     ag_farm_products_sale_other     = s5bq27__n96,
-
-    # income_source = s6q01,
-    # income_level_since_march = s6q02,    
 
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s8q01,
@@ -1052,10 +1042,6 @@ renamed_merged_r4 <- merged_r4 %>%
     ag_farm_products_sale_week_mrkt = s5bq27__3,
     ag_farm_products_sale_other     = s5bq27__n96,
 
-    # income_source = s6q01,
-    # income_level_since_march = s6q02,
-    # income_level_annual = s6q03,
-    
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s8q01,
     food_healthy_lack               = s8q02,
@@ -1262,10 +1248,6 @@ renamed_merged_r5 <- merged_r5 %>%
     ag_farm_products_sale_farm      = s5bq27__1,
     ag_farm_products_sale_day_mrkt  = s5bq27__2,
     ag_farm_products_sale_week_mrkt = s5bq27__3,
-    
-    # income_source = s6q01,
-    # income_level_since_march = s6q02,
-    # income_level_annual = s6q03,
     
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s8q01,
@@ -1538,9 +1520,6 @@ renamed_merged_r6 <- merged_r6 %>%
     ag_farm_products_sale_day_mrkt  = s5bq27__2,
     ag_farm_products_sale_week_mrkt = s5bq27__3,
     
-    # income_source = s6q01,
-    # income_level_since_march = s6q02,    
-
     # Section 8 - Food insecurity experience scale
     food_insufficient_worry         = s8q01,
     food_healthy_lack               = s8q02,
