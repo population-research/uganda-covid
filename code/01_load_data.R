@@ -273,6 +273,7 @@ round_2_sec4  <- read_dta(here( "raw_data", "round2", "SEC4.dta" ))
 round_2_sec5  <- read_dta(here( "raw_data", "round2", "SEC5.dta" )) 
 round_2_sec5a  <- read_dta(here( "raw_data", "round2", "SEC5A.dta" )) 
 round_2_sec5b  <- read_dta(here( "raw_data", "round2", "SEC5B.dta" )) 
+# By product; processed at end of round code
 round_2_sec5c_1  <- read_dta(here( "raw_data", "round2", "SEC5C_1.dta" )) 
 round_2_sec5c  <- read_dta(here( "raw_data", "round2", "SEC5C.dta" ))
 round_2_sec6  <- read_dta(here( "raw_data", "round2", "SEC6.dta" )) 
@@ -287,7 +288,6 @@ merged_r2 <- left_join(round_2_interview_result,round_2_cover, by = c("HHID")) %
   left_join(round_2_sec5, by = c("HHID")) %>% 
   left_join(round_2_sec5a, by = c("HHID")) %>% 
   left_join(round_2_sec5b, by = c("HHID")) %>% 
-  # round_2_sec5c_1 is by product and merged in after the main wrangling  
   left_join(round_2_sec5c, by = c("HHID")) %>% 
   left_join(round_2_sec8, by = c("HHID")) %>% 
   left_join(round_2_sec9, by = c("HHID")) %>% 
@@ -1264,7 +1264,7 @@ renamed_merged_r5 <- merged_r5 %>%
    ) %>% 
    rename_to_lower_snake()
 
-# Livestock product by product - Section 5c
+# Livestock product by product - Section 5d
 round_5_sec5d  <- round_5_sec5d %>% 
   rename(
     produce_any     = s5dq12,
@@ -1341,6 +1341,7 @@ round_6_sec4_1 <- read_dta(here( "raw_data", "round6", "sec4_1.dta" ))
 round_6_sec4_2 <- read_dta(here( "raw_data", "round6", "sec4_2.dta" )) 
 round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
 round_6_sec5b  <- read_dta(here( "raw_data", "round6", "sec5b.dta" )) 
+# By product; processed at end of round code
 round_6_sec5d  <- read_dta(here( "raw_data", "round6", "sec5d.dta" )) 
 # Next two are work-related questions for respondent and one random household
 # member; the random household member data are not incorporated
@@ -1359,8 +1360,6 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_6_sec5_resp, by = c("hhid"))%>% 
   left_join(round_6_sec5_other, by = c("hhid")) %>% 
   left_join(round_6_sec5a, by = c("hhid")) %>% 
-  # This is by product within household currently; remove comment when fixed
-  # left_join(round_5_sec5d, by = c("hhid")) %>% 
   left_join(round_6_sec5b, by = c("hhid")) %>% 
   left_join(round_6_sec8, by = c("hhid")) %>% 
   left_join(round_6_sec9, by = c("hhid")) %>% 
@@ -1497,22 +1496,6 @@ renamed_merged_r6 <- merged_r6 %>%
     ag_farm_products_sale_day_mrkt  = s5bq27__2,
     ag_farm_products_sale_week_mrkt = s5bq27__3,
     
-    # This is by product within household currently; remove comment when fixed
-    # stock_products_produced_since_last_time = s5dq12,
-    # stock_products_sales_level = s5dq13,
-    # stock_products_sales_decline_why_closed_markets =  s5dq14__1,
-    # stock_products_sales_decline_why_restaurants_closed = s5dq14__2,
-    # stock_products_sales_decline_why_limited_transport = s5dq14__3,
-    # stock_products_sales_decline_why_travel_restrictions = s5dq14__4,
-    # stock_products_sales_decline_why_prices_fall = s5dq14__5,
-    # stock_products_no_sales_why_closed_markerts = s5dq14_1__1,
-    # stock_products_no_sales_why_closed_restaurants = s5dq14_1__2,
-    # stock_products_no_sales_why_limited_transport = s5dq14_1__3,
-    # stock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
-    # stock_products_no_sales_why_prices_fall = s5dq14_1__5,
-    # stock_products_no_sales_why_home_consumption = s5dq14_1__6,
-    # stock_products_price_level_since_last_time = s5dq15,
-    
     # income_source = s6q01,
     # income_level_since_march = s6q02,    
 
@@ -1556,6 +1539,42 @@ renamed_merged_r6 <- merged_r6 %>%
    ) %>% 
    rename_to_lower_snake()
 
+# Livestock product by product - Section 5d
+round_6_sec5d  <- round_6_sec5d %>%
+  # No usable/comparable responses for following variables
+  select(-s5dq14__n96, -s5dq14_Other, -s5dq14a__n96, -s5dq14a_Other) %>% 
+  rename(
+    produce_any     = s5dq12,
+    change          = s5dq13,
+    decl_local_mrkt = s5dq14__1,
+    decl_hotel_clsd = s5dq14__2,
+    decl_transport  = s5dq14__3,
+    decl_restrict   = s5dq14__4,
+    decl_prices     = s5dq14__5,
+    no_local_mrkt   = s5dq14a__1,
+    no_hotel_clsd   = s5dq14a__2,
+    no_transport    = s5dq14a__3,
+    no_restrict     = s5dq14a__4,
+    no_prices       = s5dq14a__5,
+    no_home_prdct   = s5dq14a__6,
+    price_change    = s5dq15
+  ) %>% 
+  mutate(
+    stock_name = case_when(
+      livestock_products__id == 1 ~ "milk",
+      livestock_products__id == 2 ~ "egg",
+      livestock_products__id == 3 ~ "meat",
+      TRUE ~ NA_character_
+    )
+  ) %>% 
+  pivot_wider(
+    id_cols = hhid,
+    names_from = stock_name,
+    names_glue = "ag_stock_{stock_name}_{.value}",
+    values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
+  )
+
+
 ## income loss round 6
 renamed_round6_sec_6 <- round_6_sec6 %>% 
   rename(
@@ -1583,7 +1602,8 @@ renamed_round6_sec_6 <- round_6_sec6 %>%
 ## inc_level_12 not in survey
 
 renamed_merged_r6 <- renamed_merged_r6 %>% 
-  left_join(renamed_round6_sec_6, by = "hhid")
+  left_join(renamed_round6_sec_6, by = "hhid") %>% 
+  left_join(round_6_sec5d, by = "hhid")
 
 
 
