@@ -1084,6 +1084,7 @@ round_5_sec4  <- read_dta(here( "raw_data", "round5", "sec4.dta" ))
 round_5_sec5  <- read_dta(here( "raw_data", "round5", "sec5.dta" )) 
 round_5_sec5a  <- read_dta(here( "raw_data", "round5", "sec5a.dta" )) 
 round_5_sec5b  <- read_dta(here( "raw_data", "round5", "sec5b.dta" )) 
+# By product; processed at end of round code
 round_5_sec5d  <- read_dta(here( "raw_data", "round5", "sec5d.dta" )) 
 round_5_sec6  <- read_dta(here( "raw_data", "round5", "sec6.dta" )) 
 # sec 7 as sec8
@@ -1097,8 +1098,6 @@ merged_r5 <- left_join(round_5_interview_result,round_5_cover, by = c("hhid"))%>
   left_join(round_5_sec5, by = c("hhid")) %>% 
   left_join(round_5_sec5a, by = c("hhid")) %>%
   left_join(round_5_sec5b, by = c("hhid")) %>%
-  # This is by product within household currently; remove comment when fixed
-  # left_join(round_5_sec5d, by = c("hhid")) %>%
   left_join(round_5_sec8, by = c("hhid")) %>% # as sec 7
   left_join(round_5_sec9, by = c("hhid")) %>%
   mutate(survey = 5)
@@ -1222,22 +1221,6 @@ renamed_merged_r5 <- merged_r5 %>%
     ag_farm_products_sale_day_mrkt  = s5bq27__2,
     ag_farm_products_sale_week_mrkt = s5bq27__3,
     
-    # This is by product within household currently; remove comment when fixed
-    # stock_products_produced_since_last_time = s5dq12,
-    # stock_products_sales_level_since_last_time = s5dq13,
-    # stock_products_sales_decline_why_closed_markets = s5dq14__1,
-    # stock_products_sales_decline_why_restaurants_closed = s5dq14__2,
-    # stock_products_sales_decline_why_limited_transport = s5dq14__3,
-    # stock_products_sales_decline_why_travel_restrictions = s5dq14__4,
-    # stock_products_sales_decline_why_prices_fall = s5dq14__5,
-    # stock_products_no_sales_why_markets_closed = s5dq14_1__1,
-    # stock_products_no_sales_why_restaurants_closed = s5dq14_1__2,
-    # stock_products_no_sales_why_limited_transport = s5dq14_1__3,
-    # stock_products_no_sales_why_travel_restrictions = s5dq14_1__4,
-    # stock_products_no_sales_why_prices_fall = s5dq14_1__5,
-    # stock_products_no_sales_why_only_consumption = s5dq14_1__6,
-    # stock_product_price_level_since_last_time = s5dq15,
-
     # income_source = s6q01,
     # income_level_since_march = s6q02,
     # income_level_annual = s6q03,
@@ -1281,6 +1264,40 @@ renamed_merged_r5 <- merged_r5 %>%
    ) %>% 
    rename_to_lower_snake()
 
+# Livestock product by product - Section 5c
+round_5_sec5d  <- round_5_sec5d %>% 
+  rename(
+    produce_any     = s5dq12,
+    change          = s5dq13,
+    decl_local_mrkt = s5dq14__1,
+    decl_hotel_clsd = s5dq14__2,
+    decl_transport  = s5dq14__3,
+    decl_restrict   = s5dq14__4,
+    decl_prices     = s5dq14__5,
+    no_local_mrkt   = s5dq14_1__1,
+    no_hotel_clsd   = s5dq14_1__2,
+    no_transport    = s5dq14_1__3,
+    no_restrict     = s5dq14_1__4,
+    no_prices       = s5dq14_1__5,
+    no_home_prdct   = s5dq14_1__6,
+    price_change    = s5dq15
+  ) %>% 
+  mutate(
+    stock_name = case_when(
+      livestock_products__id == 1 ~ "milk",
+      livestock_products__id == 2 ~ "egg",
+      livestock_products__id == 3 ~ "meat",
+      TRUE ~ NA_character_
+    )
+  ) %>% 
+  pivot_wider(
+    id_cols = hhid,
+    names_from = stock_name,
+    names_glue = "ag_stock_{stock_name}_{.value}",
+    values_from = c(change, starts_with("decl_"), starts_with("no_"), price_change)
+  )
+
+
 ## income loss round 5
 renamed_round5_sec_6 <- round_5_sec6 %>% 
   rename(
@@ -1308,8 +1325,8 @@ renamed_round5_sec_6 <- round_5_sec6 %>%
 ## inc_level_12 not in survey
 
 renamed_merged_r5 <- renamed_merged_r5 %>% 
-  left_join(renamed_round5_sec_6, by = "hhid")
-
+  left_join(renamed_round5_sec_6, by = "hhid") %>% 
+  left_join(round_5_sec5d, by = "hhid")
 
 
 
@@ -1325,6 +1342,8 @@ round_6_sec4_2 <- read_dta(here( "raw_data", "round6", "sec4_2.dta" ))
 round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
 round_6_sec5b  <- read_dta(here( "raw_data", "round6", "sec5b.dta" )) 
 round_6_sec5d  <- read_dta(here( "raw_data", "round6", "sec5d.dta" )) 
+# Next two are work-related questions for respondent and one random household
+# member; the random household member data are not incorporated
 round_6_sec5_resp <- read_dta(here( "raw_data", "round6", "sec5_resp.dta" ))
 round_6_sec5_other <- read_dta(here( "raw_data", "round6", "sec5_other.dta" ))
 round_6_sec6  <- read_dta(here( "raw_data", "round6", "sec6.dta" )) 
