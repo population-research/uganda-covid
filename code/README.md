@@ -2,6 +2,10 @@
 
 ## Data considerations
 
+Below is a (incomplete) list of possible data concerns and notes about the
+data. 
+Some of these concerns have more detail provided in the code itself.
+
 ### Children's education
 
 Round 1 asks about any children in school before Covid.
@@ -25,6 +29,12 @@ Round 1 ask how the planting is progressing and changes due
 to Covid in the same question. 
 This is split into two questions in Round 2.
 
+#### Round 3
+
+There is a Section 5c on livestock in the questionnaire, but there is
+no data available for this section (checked across all different formats).
+
+
 #### Round 6 
 
 `ag_crops_plant`, `ag_crops_grown_1`, `ag_crops_grown_2`,
@@ -43,6 +53,6 @@ There is a new option, "Not a farmer," added instead.
 Round 7 follows the skip pattern for sale of agricultural
 products from round 3 on. 
 The household is asked whether it normally sells any agricultural
-products, including crops and lifestock (`ag_farm_products_sell_normally`).
+products, including crops and livestock (`ag_farm_products_sell_normally`).
 If no, the revenue, need to sell, able to sell, and where are all 
 skipped. 
