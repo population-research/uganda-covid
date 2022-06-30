@@ -42,6 +42,8 @@ merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) 
   left_join(round_1_sec8, by = c("HHID")) %>% 
   mutate(survey = 1)
 
+colnames(merged_r1)
+
 ## rename round1 columns
 renamed_merged_r1 <- merged_r1 %>%
   mutate(
@@ -219,10 +221,10 @@ renamed_merged_r1 <- merged_r1 %>%
     food_less_than_expected         = s7q05,
     food_ranout                     = s7q06,
     food_hungry                     = s7q07,
-    food_didnt_eat_all_day          = s7q08
+    food_didnt_eat_all_day          = s7q08,
     
-    #     concerns_covid_hh_serious_illness = s8q01,
-    #     concerns_covid_threat_hh_finances = a8q02
+    concerns_cvd_srs_ill            = s8q01,
+    concerns_cvd_threat_finances    = a8q02
   ) %>% 
   rename_to_lower_snake()
 
@@ -1777,7 +1779,6 @@ merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %
   left_join(round_7_sec9, by = c("HHID")) %>% 
   mutate(survey = 7)
 
-colnames(merged_r7)
 
 ## renaming merged round 7
 renamed_merged_r7 <- merged_r7 %>% 
@@ -1891,7 +1892,7 @@ renamed_merged_r7 <- merged_r7 %>%
 #     work_hours_primary_activity_usually_resp = s5q8c1,
 
   # Section 6E - Agriculture - section 1
-    ag_crops_plant                  = s6eq16,
+    ag_crops_plant                  = s6eq16,  
     
     ag_crops_grown_1                = s5bq18__0, ## crops codes
     ag_crops_grown_2                = s5bq18__1,
