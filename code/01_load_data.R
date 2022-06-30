@@ -42,7 +42,6 @@ merged_r1 <- left_join(round_1_interview_result, round_1_cover, by = c("HHID")) 
   left_join(round_1_sec8, by = c("HHID")) %>% 
   mutate(survey = 1)
 
-colnames(merged_r1)
 
 ## rename round1 columns
 renamed_merged_r1 <- merged_r1 %>%
@@ -407,25 +406,24 @@ renamed_merged_r2 <- merged_r2 %>%
     nfe_rev_less_why_cvd                    = s5aq14_1,
     nfe_rev_less_closure_other_why          = s5aq14_2,
     
-    #     
-    #     challenges_due_to_covid_biz_inputs = s5aq15__1,
-    #     challenges_due_to_covid_biz_operation_money = s5aq15__2,
-    #     challenges_due_to_covid_biz_loans = s5aq15__3,
-    #     challenges_due_to_covid_rent = s5aq15__4,
-    #     challenges_due_to_covid_paying_workers = s5aq15__5,
-    #     challenges_due_to_covid_sales = s5aq15__6,
-    #     challenges_due_to_covid_other = s5aq15__n96,
-    #     
-    #     change_biz_conduct = s5aq15a,
-    #     changes_to_be_made_in_biz_wear_mask = s5aq15b__1,
-    #     changes_to_be_made_in_biz_distancing = s5aq15b__2,
-    #     changes_to_be_made_in_biz_few_customers_at_once = s5aq15b__3,
-    #     changes_to_be_made_in_biz_phone_media_market = s5aq15b__4,
-    #     changes_to_be_made_in_biz_deliveries_only = s5aq15b__5,
-    #     changes_to_be_made_in_biz_product_offering = s5aq15b__6,
-    #     changes_to_be_made_in_biz_other = s5aq15b__n96,
-    #     
-    #     non_farm_biz_temporary_close_status = s5aq11a,
+
+    nfe_cvd_challenges_inputs               = s5aq15__1,
+    nfe_cvd_challenges_op_money             = s5aq15__2,
+    nfe_cvd_challenges_loans                = s5aq15__3,
+    nfe_cvd_challenges_rent                 = s5aq15__4,
+    nfe_cvd_challenges_pay_workers          = s5aq15__5,
+    nfe_cvd_challenges_sales                = s5aq15__6,
+    nfe_cvd_challenges_other                = s5aq15__n96,
+
+    nfe_change_conduct                      = s5aq15a,
+    nfe_changes_wear_mask                   = s5aq15b__1,
+    nfe_changes_distancing                  = s5aq15b__2,
+    nfe_changes_few_customers               = s5aq15b__3,
+    nfe_changes_media_market                = s5aq15b__4,
+    nfe_changes_deliveries                  = s5aq15b__5,
+    nfe_changes_product_offer               = s5aq15b__6,
+    nfe_changes_other                       = s5aq15b__n96,
+    nfe_temporary_close_status              = s5aq11a,
     
     # Section 5b - Agriculture
     ag_crops_plant                  = s5bq01,
@@ -744,16 +742,16 @@ renamed_merged_r3 <- merged_r3 %>%
     work_hh_unable_who_4 = s5q10__4,
     
         
-    nfe_operate = s5aq11,
-    nfe_closure_why_cvd = s5aq11b,
-    nfe_main_activity = s5a11c,
-    nfe_sector = s5aq12,
-    nfe_rev_level = s5aq13,
-    nfe_rev_less_why_cvd = s5aq14_1,
+    nfe_operate                    = s5aq11,
+    nfe_closure_why_cvd            = s5aq11b,
+    nfe_main_activity              = s5a11c,
+    nfe_sector                     = s5aq12,
+    nfe_rev_level                  = s5aq13,
+    nfe_rev_less_why_cvd           = s5aq14_1,
     nfe_rev_less_closure_other_why = s5aq14_2,
-    nfe_biz_another = s5q15a, 
-    nfe_operated_number = s5q15b,
-    nfe_temporary_close_status = s5aq11a,
+    nfe_biz_another                = s5q15a, 
+    nfe_operated_number            = s5q15b,
+    nfe_temporary_close_status     = s5aq11a,
     
     # Section 5b - Agriculture
     ag_crops_plant                  = s5bq16,
@@ -1046,7 +1044,7 @@ renamed_merged_r4 <- merged_r4 %>%
     nfe_sector                           = s5aq12,
     nfe_rev_level                        = s5aq13,
     nfe_rev_less_why_cvd                 = s5aq14_1,
-    nfe_rev_less_closure_other_why.      = s5aq14_2,
+    nfe_rev_less_closure_other_why       = s5aq14_2,
     nfe_rev_sales_level                  = s5aq15,
     nfe_temporary_close_status           = s5aq11a,
     
@@ -1293,7 +1291,7 @@ renamed_merged_r5 <- merged_r5 %>%
     nfe_sector                           = s5aq12,
     nfe_rev_level                        = s5aq13,
     nfe_rev_less_why_cvd                 = s5aq14_1,
-    nfe_rev_less_closure_other_why.      = s5aq14_2,
+    nfe_rev_less_closure_other_why       = s5aq14_2,
     nfe_rev_sales_level                  = s5aq15,
     nfe_temporary_close_status           = s5aq11a,
     
@@ -1501,6 +1499,7 @@ merged_r6 <- left_join(round_6_interview_result,round_6_cover, by = c("hhid")) %
   left_join(round_6_sec9, by = c("hhid")) %>% 
   mutate(survey = 6)
 
+
 ## rename round6 columns
 renamed_merged_r6 <- merged_r6 %>% 
   rename( 
@@ -1604,7 +1603,7 @@ renamed_merged_r6 <- merged_r6 %>%
     nfe_sector                           = s5aq12,
     nfe_rev_level                        = s5aq13,
     nfe_rev_less_why_cvd                 = s5aq14_1,
-    nfe_rev_less_closure_other_why.      = s5aq14_2,
+    nfe_rev_less_closure_other_why       = s5aq14_2,
     nfe_rev_sales_level                  = s5aq15,
     nfe_temporary_close_status           = s5aq11a,
     
@@ -1838,10 +1837,10 @@ renamed_merged_r7 <- merged_r7 %>%
     work_hours_usually = s5q8c1,    
     
     nfe_operate                          = s5aq11,
-    nfe_status                           = s5aq11a,
+    nfe_temporary_close_status           = s5aq11a,
     nfe_closure_why_cvd                  = s5aq11b,
     nfe_other_operating                  = s5aq11b_1,
-    nfe_new_main_activity.               = s5a11c_1,
+    nfe_new_main_activity                = s5a11c_1,
     nfe_other_main_activity              = s5a11c_1,
     #nfe_main_activity                    = s5a11c,
     nfe_sector                           = s5aq12,
@@ -1851,15 +1850,15 @@ renamed_merged_r7 <- merged_r7 %>%
     nfe_rev_sales_level                  = s5aq15,
     
     
-#     change_biz_conduct = s5aq15a,
-#     changes_to_be_made_in_biz_wear_mask = s5aq15b__1,
-#     changes_to_be_made_in_biz_distancing = s5aq15b__2,
-#     changes_to_be_made_in_biz_few_customers_at_once = s5aq15b__3,
-#     changes_to_be_made_in_biz_phone_media_market = s5aq15b__4,
-#     changes_to_be_made_in_biz_deliveries_only = s5aq15b__5,
-#     changes_to_be_made_in_biz_product_offering = s5aq15b__6,
-#     changes_to_be_made_in_biz_no_change = s5aq15b__7,
-#     changes_to_be_made_in_biz_other = s5aq15b__n96,
+    nfe_change_conduct                      = s5aq15a,
+    nfe_changes_wear_mask                   = s5aq15b__1,
+    nfe_changes_distancing                  = s5aq15b__2,
+    nfe_changes_few_customers               = s5aq15b__3,
+    nfe_changes_media_market                = s5aq15b__4,
+    nfe_changes_deliveries                  = s5aq15b__5,
+    nfe_changes_product_offer               = s5aq15b__6,
+    nfe_changes_no_change                   = s5aq15b__7,
+    nfe_changes_other                       = s5aq15b__n96,
 #     
 #     work_done_for_pay_resp = s5q01,
 #     work_return_expect_resp = s5q01a,
@@ -1875,7 +1874,7 @@ renamed_merged_r7 <- merged_r7 %>%
 #     work_main_business_type = s5q06,
 #     
 #     family_products_intentions_resp = s5q06a,
-#     
+#   
 #     safety_measures_by_employer_disinfectants = s5q08f__1,
 #     safety_measures_by_employer_sanitizer = s5q08f__2,
 #     safety_measures_by_employer_preventative = s5q08f__3,
