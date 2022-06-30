@@ -388,22 +388,23 @@ renamed_merged_r2 <- merged_r2 %>%
     work_hh_unable_who_4 = s5q10__4,
     work_hh_unable_who_5 = s5q10__5,
     
-    #     non_farm_biz_operate = s5aq11,
-    #     non_farm_biz_closure_why_covid = s5aq11b__1,
-    #     non_farm_biz_place_closure_other_why = s5aq11b__2,
-    #     non_farm_biz_closure_why_no_customers = s5aq11b__3,
-    #     non_farm_biz_closure_why_no_inputs = s5aq11b__4,
-    #     non_farm_biz_closure_why_travel_restrictions = s5aq11b__5,
-    #     non_farm_biz_closure_why_ill_covid = s5aq11b__6,
-    #     non_farm_biz_closure_why_ill_other_disease = s5aq11b__7,
-    #     non_farm_biz_closure_why_care_family = s5aq11b__8,
-    #     non_farm_biz_closure_why_seasonal = s5aq11b__9,
-    #     non_farm_biz_closure_why_vacation = s5aq11b__10,
-    #     non_farm_biz_closure_why_other = s5aq11b__n96,
-    #     non_farm_biz_sector = s5aq12,
-    #     non_farm_biz_rev_level = s5aq13,
-    #     non_farm_biz_rev_less_why_covid = s5aq14_1,
-    #     non_farm_biz_rev_less_closure_another_why = s5aq14_2,
+    nfe_operate                             = s5aq11,
+    nfe_closure_why_cvd                     = s5aq11b__1,
+    nfe_place_closure_other_why             = s5aq11b__2,
+    nfe_closure_why_no_customers            = s5aq11b__3,
+    nfe_closure_why_no_inputs               = s5aq11b__4,
+    nfe_closure_why_travel_restrict         = s5aq11b__5,
+    nfe_closure_why_ill_cvd                 = s5aq11b__6,
+    nfe_closure_why_ill_other               = s5aq11b__7,
+    nfe_closure_why_care_family             = s5aq11b__8,
+    nfe_closure_why_seasonal                = s5aq11b__9,
+    nfe_closure_why_vacation                = s5aq11b__10,
+    nfe_closure_why_other                   = s5aq11b__n96,
+    nfe_sector                              = s5aq12,
+    nfe_rev_level                           = s5aq13,
+    nfe_rev_less_why_cvd                    = s5aq14_1,
+    nfe_rev_less_closure_other_why          = s5aq14_2,
+    
     #     
     #     challenges_due_to_covid_biz_inputs = s5aq15__1,
     #     challenges_due_to_covid_biz_operation_money = s5aq15__2,
@@ -740,17 +741,17 @@ renamed_merged_r3 <- merged_r3 %>%
     work_hh_unable_who_3 = s5q10__3,
     work_hh_unable_who_4 = s5q10__4,
     
-    #     
-    #     non_farm_biz_operation = s5aq11,
-    #     non_farm_biz_closure_why = s5aq11b,
-    #     non_farm_biz_main_activity = s5a11c,
-    #     non_farm_biz_sector = s5aq12,
-    #     non_farm_biz_rev_sales_compared_feb = s5aq13,
-    #     non_farm_biz_rev_sales_covid = s5aq14_1,
-    #     non_farm_biz_rev_sales_other = s5aq14_2,
-    #     non_farm_biz_another = s5q15a, 
-    #     non_farm_biz_number = s5q15b,
-    #     non_farm_biz_temporary_close_status = s5aq11a,
+        
+    nfe_operate = s5aq11,
+    nfe_closure_why_cvd = s5aq11b,
+    nfe_main_activity = s5a11c,
+    nfe_sector = s5aq12,
+    nfe_rev_level = s5aq13,
+    nfe_rev_less_why_cvd = s5aq14_1,
+    nfe_rev_less_closure_other_why = s5aq14_2,
+    nfe_biz_another = s5q15a, 
+    nfe_operated_number = s5q15b,
+    nfe_temporary_close_status = s5aq11a,
     
     # Section 5b - Agriculture
     ag_crops_plant                  = s5bq16,
@@ -1034,21 +1035,18 @@ renamed_merged_r4 <- merged_r4 %>%
     work_hh_unable_who_4 = s5q10__4,
     
     
-    #     
-    #     non_farm_biz_operation = s5aq11,
-    #     non_farm_biz_closure_why = s5aq11b,
-    #     non_farm_biz_other_operating = s5aq11b_1,
-    #     non_farm_biz_other_main_activity = s5a11c_1,
-    #     non_farm_biz_other_sector = s5aq12_1,
-    #     non_farm_biz_existing_main_activity = s5a11c,
-    #     non_farm_biz_existing_sector = s5aq12,
-    #     
-    #     non_farm_biz_rev_sales_compared_feb = s5aq13,
-    #     non_farm_biz_rev_sales_why_covid = s5aq14_1,
-    #     non_farm_biz_rev_sales_why_other = s5aq14_2,
-    #     non_farm_biz_rev_sales_compared_year = s5aq15,
-    #     
-    #     non_farm_biz_temporary_close_status = s5aq11a,
+    nfe_operate                          = s5aq11,
+    nfe_closure_why_cvd                  = s5aq11b,
+    nfe_other_operating                  = s5aq11b_1,
+    nfe_other_main_activity              = s5a11c_1,
+    nfe_other_sector                     = s5aq12_1,
+    nfe_main_activity                    = s5a11c,
+    nfe_sector                           = s5aq12,
+    nfe_rev_level                        = s5aq13,
+    nfe_rev_less_why_cvd                 = s5aq14_1,
+    nfe_rev_less_closure_other_why.      = s5aq14_2,
+    nfe_rev_sales_level                  = s5aq15,
+    nfe_temporary_close_status           = s5aq11a,
     
     ag_crops_plant                  = s5bq16,
     ag_crops_plant_plan             = s5bq17,
@@ -1284,20 +1282,18 @@ renamed_merged_r5 <- merged_r5 %>%
     work_fam_prod_intentions = s5q06a,
     
     
-    #     non_farm_biz_operation = s5aq11,
-    #     non_farm_biz_closure_why = s5aq11b,
-    #     non_farm_biz_other_operating = s5aq11b_1,
-    #     non_farm_biz_other_main_activity = s5a11c_1,
-    #     non_farm_biz_other_sector = s5aq12_1,
-    #     non_farm_biz_existing_main_activity = s5a11c,
-    #     non_farm_biz_existing_sector = s5aq12,
-    #     
-    #     non_farm_biz_rev_sales_compared_feb = s5aq13,
-    #     non_farm_biz_rev_sales_covid = s5aq14_1,
-    #     non_farm_biz_rev_sales_other = s5aq14_2,
-    #     non_farm_biz_rev_sales_compared_year = s5aq15,
-    #     
-    #     non_farm_biz_temporary_close_status = s5aq11a,
+    nfe_operate                          = s5aq11,
+    nfe_closure_why_cvd                  = s5aq11b,
+    nfe_other_operating                  = s5aq11b_1,
+    nfe_other_main_activity              = s5a11c_1,
+    nfe_other_sector                     = s5aq12_1,
+    nfe_main_activity                    = s5a11c,
+    nfe_sector                           = s5aq12,
+    nfe_rev_level                        = s5aq13,
+    nfe_rev_less_why_cvd                 = s5aq14_1,
+    nfe_rev_less_closure_other_why.      = s5aq14_2,
+    nfe_rev_sales_level                  = s5aq15,
+    nfe_temporary_close_status           = s5aq11a,
     
     # Section 5b - Agriculture
     ag_case_filter                  = agic_case_filter,
@@ -1596,20 +1592,19 @@ renamed_merged_r6 <- merged_r6 %>%
     #     work_hours = s5Oq8b1,
     #     work_hours_usual = s5Oq8c1,
     #     
-    #     non_farm_biz_operation = s5aq11,
-    #     non_farm_biz_closure_why = s5aq11b,
-    #     non_farm_biz_another = s5aq11b_1,
-    #     non_farm_new_biz_main_activity = s5a11c_1,
-    #     non_farm_new_biz_sector = s5aq12_1,
-    #     non_farm_existing_biz_main_activity = s5a11c,
-    #     non_farm_existing_biz_sector = s5aq12,
-    #     
-    #     non_farm_biz_rev_sales_compared_feb = s5aq13,
-    #     non_farm_biz_rev_sales_covid = s5aq14_1,
-    #     non_farm_biz_rev_sales_other = s5aq14_2,
-    #     non_farm_biz_rev_sales_compared_year = s5aq15,
-    #     
-    #     non_farm_biz_temporary_close_status = s5aq11a,
+    
+    nfe_operate                          = s5aq11,
+    nfe_closure_why_cvd                  = s5aq11b,
+    nfe_other_operating                  = s5aq11b_1,
+    nfe_other_main_activity              = s5a11c_1,
+    nfe_other_sector                     = s5aq12_1,
+    nfe_main_activity                    = s5a11c,
+    nfe_sector                           = s5aq12,
+    nfe_rev_level                        = s5aq13,
+    nfe_rev_less_why_cvd                 = s5aq14_1,
+    nfe_rev_less_closure_other_why.      = s5aq14_2,
+    nfe_rev_sales_level                  = s5aq15,
+    nfe_temporary_close_status           = s5aq11a,
     
     # Section 5B - Agriculture
     ag_crops_plant                  = t0_s5bq16_R4,
@@ -1782,6 +1777,7 @@ merged_r7 <- left_join(round_7_interview_result,round_7_cover, by = c("HHID")) %
   left_join(round_7_sec9, by = c("HHID")) %>% 
   mutate(survey = 7)
 
+colnames(merged_r7)
 
 ## renaming merged round 7
 renamed_merged_r7 <- merged_r7 %>% 
@@ -1840,19 +1836,20 @@ renamed_merged_r7 <- merged_r7 %>%
     work_hours = s5q8b1,
     work_hours_usually = s5q8c1,    
     
-#     non_farm_biz_operation = s5aq11,
-#     non_farm_biz_status = s5aq11a,
-#     non_farm_biz_closure_why = s5aq11b,
-#     non_farm_biz_another = s5aq11b_1,
-#     non_farm_new_biz_main_activity = s5a11c_1,
-#     non_farm_new_biz_sector = s5aq12_1,
-#     non_farm_existing_biz_main_activity = s5aq11c,
-#     non_farm_existing_biz_sector = s5aq12,
-#     non_farm_biz_rev_sales_compared_apr = s5aq13,
-#     non_farm_biz_rev_sales_why = s5aq14_1,
-#     non_farm_biz_rev_sales_why_other = s5aq14_2,
-#     non_farm_biz_rev_sales_compared_year = s5aq15,
-#     
+    nfe_operate                          = s5aq11,
+    nfe_status                           = s5aq11a,
+    nfe_closure_why_cvd                  = s5aq11b,
+    nfe_other_operating                  = s5aq11b_1,
+    nfe_new_main_activity.               = s5a11c_1,
+    nfe_other_main_activity              = s5a11c_1,
+    #nfe_main_activity                    = s5a11c,
+    nfe_sector                           = s5aq12,
+    nfe_rev_level                        = s5aq13,
+    nfe_rev_less_why_cvd                 = s5aq14_1,
+    nfe_rev_less_closure_other_why       = s5aq14_2,
+    nfe_rev_sales_level                  = s5aq15,
+    
+    
 #     change_biz_conduct = s5aq15a,
 #     changes_to_be_made_in_biz_wear_mask = s5aq15b__1,
 #     changes_to_be_made_in_biz_distancing = s5aq15b__2,
