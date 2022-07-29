@@ -44,7 +44,7 @@ n_data <- data %>%
 
 ## Uganda data from global dataset
 uganda_data <- n_data[n_data$Country == 'Uganda',]
-uganda_data
+
 ## covid cases by month
 uganda_data %>% 
   group_by(Month) %>%
@@ -53,5 +53,10 @@ uganda_data %>%
 ## covid cases per 100,000
 
 
-### load another dataset
+## load another dataset with more calcilations
+data2 <- read.csv(here("data","WHO-COVID-19-global-table-data.csv"))
+
+## Uganda data
+# data2_uganda <- data2[data2$Name == 'Uganda',]
+# View(data2)
 
