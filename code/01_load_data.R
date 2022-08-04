@@ -22,8 +22,6 @@ round_1_cover  <- read_dta(here( "raw_data", "round1", "Cover.dta"))
 
 
 ## import raw data
-round_1_sec1 <- read_dta(here( "raw_data", "round1", "SEC1.dta" )) 
-
 round_1_sec4  <- read_dta(here( "raw_data", "round1", "SEC4.dta" )) 
 round_1_sec5  <- read_dta(here( "raw_data", "round1", "SEC5.dta" )) 
 round_1_sec5a  <- read_dta(here( "raw_data", "round1", "SEC5A.dta" ))
@@ -253,32 +251,10 @@ renamed_round1_sec_6 <- round_1_sec6 %>%
   rename_with(~ gsub("_9$", "_pension", .x))%>% 
   rename_with(~ gsub("_10$", "_govt", .x))%>% 
   rename_with(~ gsub("_11$", "_ngo", .x))
-
-# hh roster information
-hh_roster_info_r1 <- round_1_sec1 %>% 
-  # drop hh guests ( s1q02a) and s1q03 == 2 no longer hh member
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%
-  filter(s1q03 != 2 | is.na(s1q03)) %>%
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
   
-# merge household roster data and section 6 to the rest
+# merge section 6 to the rest
 renamed_merged_r1 <- renamed_merged_r1 %>% 
-  left_join(renamed_round1_sec_6, by = "hhid") %>% 
-  left_join(hh_roster_info_r1, by = "hhid")
+  left_join(renamed_round1_sec_6, by = "hhid") 
 
 
 ## round 2 ---- 
@@ -287,7 +263,6 @@ round_2_interview_result <- read_dta(here("raw_data", "round2", "interview_resul
   select(c('HHID','Rq09','Rq10'))
 round_2_cover  <- read_dta(here( "raw_data", "round2", "Cover.dta" )) 
 
-round_2_sec1 <- read_dta(here( "raw_data", "round2", "SEC1.dta" )) 
 round_2_sec4  <- read_dta(here( "raw_data", "round2", "SEC4.dta" )) 
 round_2_sec5  <- read_dta(here( "raw_data", "round2", "SEC5.dta" )) 
 round_2_sec5a  <- read_dta(here( "raw_data", "round2", "SEC5A.dta" )) 
@@ -590,32 +565,11 @@ renamed_round2_sec_6 <- round_2_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
-## hh roster information
-hh_roster_info_r2 <- round_2_sec1 %>% 
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
-  filter(s1q03 != 2 | is.na(s1q03)) %>% 
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
 
-# merge household roster data and section 6 to the rest
+# merge sections 5 and 6 to the rest
 renamed_merged_r2 <- renamed_merged_r2 %>% 
   left_join(renamed_round2_sec_6, by = "hhid") %>% 
-  left_join(round_2_sec5c_1, by = "hhid") %>%
-  left_join(hh_roster_info_r2, by = "hhid")
-
+  left_join(round_2_sec5c_1, by = "hhid") 
 
 
 ## round 3 ---- 
@@ -624,7 +578,6 @@ round_3_interview_result <- read_dta(here("raw_data", "round3", "interview_resul
   select(c('hhid','Rq09','Rq10'))
 round_3_cover  <- read_dta(here( "raw_data", "round3", "cover.dta" )) 
 
-round_3_sec1 <- read_dta(here( "raw_data", "round3", "SEC1.dta" )) 
 round_3_sec4  <- read_dta(here( "raw_data", "round3", "sec4.dta" )) 
 round_3_sec5  <- read_dta(here( "raw_data", "round3", "sec5.dta" )) 
 round_3_sec5a  <- read_dta(here( "raw_data", "round3", "sec5a.dta" )) 
@@ -877,32 +830,10 @@ renamed_round3_sec_6 <- round_3_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
-# hh roster information
-hh_roster_info_r3 <- round_3_sec1 %>% 
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
-  filter(s1q03 != 2 | is.na(s1q03)) %>% 
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
-
-# merge household roster data and section 6 to the rest
+# merge sections 5 and 6 to the rest
 renamed_merged_r3 <- renamed_merged_r3 %>% 
   left_join(renamed_round3_sec_6, by = "hhid") %>% 
-  left_join(round_3_sec5d, by = "hhid") %>% 
-  left_join(hh_roster_info_r3, by = "hhid")
-
+  left_join(round_3_sec5d, by = "hhid") 
 
 
 
@@ -912,7 +843,6 @@ round_4_interview_result <- read_dta(here("raw_data", "round4", "interview_resul
   select(c('HHID','Rq09','Rq10'))
 round_4_cover  <- read_dta(here( "raw_data", "round4", "Cover.dta" )) 
 
-round_4_sec1 <- read_dta(here( "raw_data", "round4", "SEC1.dta" )) 
 round_4_sec4  <- read_dta(here( "raw_data", "round4", "SEC4.dta" )) 
 round_4_sec5  <- read_dta(here( "raw_data", "round4", "SEC5.dta" )) 
 round_4_sec5a  <- read_dta(here( "raw_data", "round4", "SEC5A.dta" )) 
@@ -921,10 +851,6 @@ round_4_sec5b  <- read_dta(here( "raw_data", "round4", "SEC5B.dta" ))
 round_4_sec6  <- read_dta(here( "raw_data", "round4", "SEC6.dta" )) 
 round_4_sec8  <- read_dta(here( "raw_data", "round4", "SEC8.dta" )) 
 round_4_sec9  <- read_dta(here( "raw_data", "round4", "SEC9.dta" )) 
-
-## rename hhid to HHID in round4 sec1 data
-round_4_sec1 <- round_4_sec1 %>%
-  rename(HHID = hhid)
 
 ## merge round4 datasets
 merged_r4 <- left_join(round_4_interview_result,round_4_cover, by = c("HHID")) %>% 
@@ -1163,32 +1089,10 @@ renamed_round4_sec_6 <- round_4_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
-## hh roster information
-hh_roster_info_r4 <- round_4_sec1 %>% 
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
-  filter(s1q03 != 2 | is.na(s1q03)) %>% 
-  rename(hhid = HHID) %>%
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
 
 # merge household roster data and section 6 to the rest
 renamed_merged_r4 <- renamed_merged_r4 %>% 
-  left_join(renamed_round4_sec_6, by = "hhid") %>% 
-  left_join(hh_roster_info_r4, by = "hhid")
-
+  left_join(renamed_round4_sec_6, by = "hhid")
 
 ## round 5 ---- 
 
@@ -1196,7 +1100,6 @@ round_5_interview_result <- read_dta(here("raw_data", "round5", "interview_resul
   select(c('hhid','Rq09','Rq10'))
 round_5_cover  <- read_dta(here( "raw_data", "round5", "cover.dta" )) 
 
-round_5_sec1 <- read_dta(here( "raw_data", "round5", "SEC1.dta" )) 
 round_5_sec4  <- read_dta(here( "raw_data", "round5", "sec4.dta" )) 
 round_5_sec5  <- read_dta(here( "raw_data", "round5", "sec5.dta" )) 
 round_5_sec5a  <- read_dta(here( "raw_data", "round5", "sec5a.dta" )) 
@@ -1437,30 +1340,10 @@ renamed_round5_sec_6 <- round_5_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
-## hh roster information
-hh_roster_info_r5 <- round_5_sec1 %>% 
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
-  filter(s1q03 != 2 | is.na(s1q03)) %>% 
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
 
-# merge household roster data and section 6 to the rest
+# merge sections 5 and 6 to the rest
 renamed_merged_r5 <- renamed_merged_r5 %>% 
   left_join(renamed_round5_sec_6, by = "hhid") %>% 
-  left_join(hh_roster_info_r5, by = "hhid") %>% 
   left_join(round_5_sec5d, by = "hhid")
 
 
@@ -1470,7 +1353,6 @@ round_6_interview_result <- read_dta(here("raw_data", "round6", "interview_resul
   select(c('hhid','Rq09','Rq10'))
 round_6_cover  <- read_dta(here( "raw_data", "round6", "cover.dta" )) 
 
-round_6_sec1 <- read_dta(here( "raw_data", "round6", "sec1.dta" )) 
 round_6_sec4_1 <- read_dta(here( "raw_data", "round6", "sec4_1.dta" )) 
 round_6_sec4_2 <- read_dta(here( "raw_data", "round6", "sec4_2.dta" )) 
 round_6_sec5a  <- read_dta(here( "raw_data", "round6", "sec5a.dta" )) 
@@ -1725,30 +1607,10 @@ renamed_round6_sec_6 <- round_6_sec6 %>%
   rename_with(~ gsub("_11$", "_ngo", .x))
 ## inc_level_12 not in survey
 
-## hh roster information
-hh_roster_info_r6 <- round_6_sec1 %>% 
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
-  filter(s1q03 != 2 | is.na(s1q03)) %>% 
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
 
-# merge household roster data and section 6 to the rest
+# merge sections 5 and 6 to the rest
 renamed_merged_r6 <- renamed_merged_r6 %>% 
   left_join(renamed_round6_sec_6, by = "hhid") %>% 
-  left_join(hh_roster_info_r6, by = "hhid") %>% 
   left_join(round_6_sec5d, by = "hhid")
 
 
@@ -1758,7 +1620,6 @@ round_7_interview_result <- read_dta(here("raw_data", "round7", "interview_resul
   select(c('HHID','Rq09','Rq10'))
 round_7_cover  <- read_dta(here( "raw_data", "round7", "Cover.dta" )) 
 
-round_7_sec1    <- read_dta(here( "raw_data", "round7", "SEC1.dta" )) 
 round_7_sec4    <- read_dta(here( "raw_data", "round7", "SEC4_1.dta" )) 
 round_7_sec5a   <- read_dta(here( "raw_data", "round7", "SEC5A.dta" )) 
 round_7_sec5    <- read_dta(here( "raw_data", "round7", "SEC5.dta" )) #3 respondent
@@ -2019,32 +1880,10 @@ round_7_sec6e2  <- round_7_sec6e2 %>%
     values_from = c("id", area, starts_with("expect"))
   )  
 
-## hh roster information
-hh_roster_info_r7 <- round_7_sec1 %>% 
-  filter(s1q02a != 2 | is.na(s1q02a)) %>%   
-  filter(s1q03 != 2 | is.na(s1q03)) %>% 
-  rename(hhid = HHID) %>% 
-  arrange(hhid, hh_roster__id) %>% 
-  group_by(hhid) %>% 
-  add_tally((s1q05 == 1 & s1q06 >= 18), name = "hh_adult_males") %>% 
-  add_tally((s1q05 == 2 & s1q06 >= 18), name = "hh_adult_females") %>% 
-  # Easy version is just to count the number of female heads! We can always make
-  # it a factor later
-  add_tally((s1q05 == 2 & s1q07 == 1),  name = "hh_head_female") %>% 
-  add_tally(s1q05 == 1, name = "hh_total_males") %>%   # total hh males
-  add_tally((s1q05 == 2), name = "hh_total_females") %>% # total hh females
-  add_count(name = "hh_total_members") %>% # total household members
-  add_tally((s1q06 < 5), name = "hh_younger_five") %>% 
-  # All the other counts here using hh_ as prefix of variable names
-  select(hhid, starts_with("hh_"), -hh_roster__id) %>% 
-  slice_head() %>% 
-  ungroup()
 
 # merge household roster data and Section 6 to the rest
 renamed_merged_r7 <- renamed_merged_r7 %>% 
-  left_join(round_7_sec6e2, by = "hhid") %>%
-  left_join(hh_roster_info_r7, by = "hhid")
-
+  left_join(round_7_sec6e2, by = "hhid") 
 
 
 # merging all and saving ----
@@ -2071,7 +1910,6 @@ all_rounds_df <- bind_rows(
     starts_with("interview"),
     starts_with("weight"),
     region, urban, starts_with("district"), starts_with("county"), 
-    starts_with("hh_"),  # Household roster information 
     starts_with("food"), # Food insecurity experience scale
     starts_with("soap"),
     starts_with("water"),
@@ -2088,8 +1926,4 @@ all_rounds_df <- bind_rows(
 all_rounds_df %>% 
   write_rds(here("data", "base.rds"))
 
-all_rounds_df %>% 
-  write_dta(
-    here("data", "base.dta"),
-    version = 14,
-  )
+
