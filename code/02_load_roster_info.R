@@ -100,13 +100,13 @@ roster_prior <- roster %>%
 
 # Merge into main data and save ----
 
-all_rounds_df <- read_rds(here("data", "base.rds")) %>% 
+all_rounds_df <- read_rds(here("data", "load_1.rds")) %>% 
   left_join(roster, by = c("hhid", "survey")) %>% 
   left_join(roster_prior, by = c("hhid", "survey")) %>% 
   relocate( # Relocate roster information to after region information
     starts_with("hh_"), .before = starts_with("food")
   ) %>% 
-  select(-hh_size) %>%  # do not need this anymore
+  select(-hh_size)  # do not need this anymore
 
 all_rounds_df %>% 
   write_rds(here("data", "base.rds"))
