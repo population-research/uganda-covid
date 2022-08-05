@@ -22,9 +22,8 @@ mutate(year = year(date), month = month(date), day = day(date)) # splitting date
 ## getting cases data by month and cases per 100,000 per month
 new_cases_monthly <- ug_data %>%
   group_by(year,month) %>% 
-    summarize(new_mon_cases = sum(new_cases, population), mean(stringency_index), mean(reproduction_rate)) %>%
+    summarize(new_mon_cases = sum(new_cases), population, mean(stringency_index), mean(reproduction_rate)) %>%
        mutate(
            monthly_per_100000 = (new_mon_cases/ug_data$population[1]) * 100000
   )
-
 
