@@ -12,20 +12,19 @@ library(lubridate)
 ## Data URL: https://covid.ourworldindata.org/data/owid-covid-data.csv
 
 ## load data 
-data <- read.csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv"))
+data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv"))
 
 # Getting data for Uganda
 ug_data = data[data$iso_code == 'UGA',] %>%
-mutate(Year = year(date), Month = month(date), Day = day(date)) # splitting date into year month and day
+mutate(year = year(date), month = month(date), day = day(date)) # splitting date into year month and day
 
 
-## getting cases data by month
-tot_monthly <- ug_data %>%
-group_by(Month) %>%
-summarize(tot_mon_cases = sum(total_cases))
+## getting cases data by month and cases per 100,000 per month
+new_cases_monthly <- ug_data %>%
+  group_by(year,month) %>% 
+    summarize(new_mon_cases = sum(new_cases, population), mean(stringency_index), mean(reproduction_rate)) %>%
+       mutate(
+           monthly_per_100000 = (new_mon_cases/ug_data$population[1]) * 100000
+  )
 
-## cases per 100,000 per month
-mon_per_hundred <- tot_monthly %>%
-mutate(
-monthly_per_100000 = tot_mon_cases/100000
-)
+
