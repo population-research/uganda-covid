@@ -109,11 +109,5 @@ all_rounds_df <- read_rds(here("data", "load_1.rds")) %>%
   select(-hh_size)  # do not need this anymore
 
 all_rounds_df %>% 
-  write_rds(here("data", "base.rds"))
-
-all_rounds_df %>% 
-  write_dta(
-    here("data", "base.dta"),
-    version = 14,
-  )
+  write_rds(here("data", "load_2.rds"))
 
