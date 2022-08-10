@@ -6,6 +6,7 @@ library(janitor) # For data checking
 library(vtable) # For data checking
 library(labelled) # For data checking
 library(lubridate)
+library(zoo)
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -51,6 +52,25 @@ covid_cases <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-da
     cases_month_per_100000 = (cases_month / population) * 100000
   ) %>%
   select(-population)
+
+
+covid_cases_by_day <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>%
+  rename_to_lower_snake() %>%
+  filter(iso_code == "UGA") %>%
+  mutate( # splitting date into year month and day
+    year  = year(date),
+    month = month(date),
+    day   = day(date)
+  ) %>% 
+  arrange(date) %>% 
+  select(date, year, month, day, new_cases, new_cases_smoothed, population, stringency_index, reproduction_rate) %>% 
+  mutate(
+    cases_last_30 = rollapply(new_cases, list(seq(-30, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
+    cases_last_30_per_100000 = (cases_last_30 / population) * 100000,
+    stringency_last_30 = rollapply(stringency_index, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+    reproduction_rate_last_30 = rollapply(reproduction_rate, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+  ) %>% 
+  select(-population, -date)
 
 # Oxford Covid restriction measures ----
 
