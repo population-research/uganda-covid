@@ -31,9 +31,11 @@ Mode <- function(x, na.rm = FALSE) {
 ## Data URL: https://covid.ourworldindata.org/data/owid-covid-data.csv
 
 ## load data
-covid_cases <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>%
+covid_cases_base <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>%
   rename_to_lower_snake() %>%
-  filter(iso_code == "UGA") %>%
+  filter(iso_code == "UGA")
+
+covid_cases <- covid_cases_base %>%
   mutate( # splitting date into year month and day
     year  = year(date),
     month = month(date),
@@ -54,17 +56,12 @@ covid_cases <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-da
   ) %>%
   select(-population)
 
-
-covid_cases_by_day <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>%
-  rename_to_lower_snake() %>%
-  filter(iso_code == "UGA") %>%
-  mutate( # splitting date into year month and day
-    year  = year(date),
-    month = month(date),
-    day   = day(date)
+covid_cases_by_day <- covid_cases_base %>% 
+  mutate(
+    date = ymd(date)
   ) %>% 
   arrange(date) %>% 
-  select(date, year, month, day, new_cases, new_cases_smoothed, population, stringency_index, reproduction_rate) %>% 
+  select(date, new_cases, new_cases_smoothed, population, stringency_index, reproduction_rate) %>% 
   mutate(
     cases = rollapply(new_cases, list(seq(-30, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
     cases_smooth = rollapply(new_cases_smoothed, list(seq(-30, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
@@ -73,8 +70,9 @@ covid_cases_by_day <- read_csv(url("https://covid.ourworldindata.org/data/owid-c
     stringency = rollapply(stringency_index, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
     reproduction_rate = rollapply(reproduction_rate, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
   ) %>% 
-  select(-population, -date)
+  select(-new_cases, -new_cases_smoothed, -population, -stringency_index, -reproduction_rate)
 
+  
 # Oxford Covid restriction measures ----
 
 # Documentation on coding
@@ -133,10 +131,8 @@ oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-poli
   rename_to_lower_snake() %>%
   filter(country_code == "UGA") %>%
   select(date, matches("[ce]\\d")) %>%
-  filter(date < 20220725) %>% # No information available
-  mutate(year = year(ymd(date)), month = month(ymd(date)), day = day(ymd(date))) %>% # splitting date into year month and day
+  filter(date < 20220725) %>% # No information available after
   arrange(date) %>% 
-  select(-date) %>% # no longer needed
   select(-starts_with("c8"), -starts_with("e4")) %>% # do not care about international
   select(-starts_with("e3")) %>% # minimal variation
   select(-matches("c[1234]m_flag"), -e1_flag) %>% # No action for these flags, so drop
@@ -173,6 +169,8 @@ oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-poli
   )
 
 oxford <- oxford_base %>%
+  # splitting date into year month and day for grouping
+  mutate(year = year(ymd(date)), month = month(ymd(date)), day = day(ymd(date))) %>% 
   group_by(year, month) %>%
   summarise(
     across(starts_with("gov_"),
@@ -186,9 +184,9 @@ oxford <- oxford_base %>%
   ) %>% 
   ungroup()
 
-
 oxford_by_day <- oxford_base %>%
   mutate(
+    date = ymd(date), 
     across(starts_with("gov_"),
       list(
         mode = ~ rollapply(.x, list(seq(-30, -1)), Mode, na.rm = TRUE, align = "right", fill = NA),
@@ -198,11 +196,14 @@ oxford_by_day <- oxford_base %>%
       .names = "{.col}_{.fn}"
     )
   ) %>% 
-  select(year, month, day, starts_with("gov_") & (ends_with("_mode") | ends_with("_min") | ends_with("_max")))
+  select(
+    date, (starts_with("gov_") & (ends_with("_mode") | ends_with("_min") | ends_with("_max")))
+  )
 
 
-# Combine data frames ----
+# Combine data frames and save ----
 
+# By month measures - not merged into base data
 covid_oxford <- full_join(covid_cases, oxford, by = c("year", "month"))
 
 covid_oxford %>% 
@@ -214,4 +215,21 @@ covid_oxford %>%
     version = 14,
   )
   
+# Prior 30 days measures - merged into base data
+
+covid_oxford_by_day <- 
+  full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
+  arrange(date)
+
+base <- read_rds(here("data", "load_3.rds")) %>% 
+  left_join(covid_oxford_by_day, by = c("interview_date" = "date")) 
+
+base %>%   
+  write_rds(here("data", "base.rds"))
+
+base %>% 
+  write_dta(
+    here("data", "base.dta"),
+    version = 14,
+  )
 
