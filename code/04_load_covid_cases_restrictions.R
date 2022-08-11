@@ -48,6 +48,7 @@ covid_cases <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-da
     stringency_index  = mean(stringency_index, na.rm = TRUE),
     reproduction_rate = mean(reproduction_rate)
   ) %>%
+  ungroup() %>% 
   mutate(
     cases_month_per_100000 = (cases_month / population) * 100000
   ) %>%
@@ -65,10 +66,12 @@ covid_cases_by_day <- read_csv(url("https://covid.ourworldindata.org/data/owid-c
   arrange(date) %>% 
   select(date, year, month, day, new_cases, new_cases_smoothed, population, stringency_index, reproduction_rate) %>% 
   mutate(
-    cases_last_30 = rollapply(new_cases, list(seq(-30, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
-    cases_last_30_per_100000 = (cases_last_30 / population) * 100000,
-    stringency_last_30 = rollapply(stringency_index, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
-    reproduction_rate_last_30 = rollapply(reproduction_rate, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+    cases = rollapply(new_cases, list(seq(-30, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
+    cases_smooth = rollapply(new_cases_smoothed, list(seq(-30, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
+    cases_per_100000 = (cases / population) * 100000,
+    cases_smooth_per_100000 = (cases_smooth / population) * 100000,
+    stringency = rollapply(stringency_index, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+    reproduction_rate = rollapply(reproduction_rate, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
   ) %>% 
   select(-population, -date)
 
@@ -126,12 +129,13 @@ covid_cases_by_day <- read_csv(url("https://covid.ourworldindata.org/data/owid-c
 #   select(ends_with("flag")) %>%
 #   map(~tabyl(.))
 
-oxford <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
   rename_to_lower_snake() %>%
   filter(country_code == "UGA") %>%
   select(date, matches("[ce]\\d")) %>%
   filter(date < 20220725) %>% # No information available
   mutate(year = year(ymd(date)), month = month(ymd(date)), day = day(ymd(date))) %>% # splitting date into year month and day
+  arrange(date) %>% 
   select(-date) %>% # no longer needed
   select(-starts_with("c8"), -starts_with("e4")) %>% # do not care about international
   select(-starts_with("e3")) %>% # minimal variation
@@ -166,7 +170,9 @@ oxford <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tr
   ) %>%
   rename_with(
     ~ str_replace(., "_flag", "_target")
-  ) %>%
+  )
+
+oxford <- oxford_base %>%
   group_by(year, month) %>%
   summarise(
     across(starts_with("gov_"),
@@ -177,7 +183,23 @@ oxford <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tr
       ),
       .names = "{.col}_{.fn}"
     )
-  )
+  ) %>% 
+  ungroup()
+
+
+oxford_by_day <- oxford_base %>%
+  mutate(
+    across(starts_with("gov_"),
+      list(
+        mode = ~ rollapply(.x, list(seq(-30, -1)), Mode, na.rm = TRUE, align = "right", fill = NA),
+        min = ~ rollapply(.x, list(seq(-30, -1)), min, na.rm = TRUE, align = "right", fill = NA),
+        max = ~ rollapply(.x, list(seq(-30, -1)), max, na.rm = TRUE, align = "right", fill = NA)
+      ),
+      .names = "{.col}_{.fn}"
+    )
+  ) %>% 
+  select(year, month, day, starts_with("gov_") & (ends_with("_mode") | ends_with("_min") | ends_with("_max")))
+
 
 # Combine data frames ----
 
