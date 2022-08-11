@@ -2,6 +2,7 @@
 library(tidyverse)
 library(haven)
 library(here)
+library(lubridate)
 library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(labelled)  # For data checking
@@ -254,7 +255,11 @@ renamed_round1_sec_6 <- round_1_sec6 %>%
   
 # merge section 6 to the rest
 renamed_merged_r1 <- renamed_merged_r1 %>% 
-  left_join(renamed_round1_sec_6, by = "hhid") 
+  left_join(renamed_round1_sec_6, by = "hhid") %>% 
+  filter(interview_date != "##N/A##") %>% 
+  mutate(
+    interview_date = ymd(interview_date)
+  ) 
 
 
 ## round 2 ---- 
@@ -569,7 +574,12 @@ renamed_round2_sec_6 <- round_2_sec6 %>%
 # merge sections 5 and 6 to the rest
 renamed_merged_r2 <- renamed_merged_r2 %>% 
   left_join(renamed_round2_sec_6, by = "hhid") %>% 
-  left_join(round_2_sec5c_1, by = "hhid") 
+  left_join(round_2_sec5c_1, by = "hhid") %>% 
+  filter(interview_date != "##N/A##") %>% 
+  mutate(
+    interview_date = ymd(interview_date)
+  ) 
+
 
 
 ## round 3 ---- 
@@ -833,7 +843,11 @@ renamed_round3_sec_6 <- round_3_sec6 %>%
 # merge sections 5 and 6 to the rest
 renamed_merged_r3 <- renamed_merged_r3 %>% 
   left_join(renamed_round3_sec_6, by = "hhid") %>% 
-  left_join(round_3_sec5d, by = "hhid") 
+  left_join(round_3_sec5d, by = "hhid") %>% 
+  filter(interview_date != "##N/A##") %>%
+  mutate(
+    interview_date = ymd(interview_date)
+  ) 
 
 
 
@@ -1092,7 +1106,12 @@ renamed_round4_sec_6 <- round_4_sec6 %>%
 
 # merge household roster data and section 6 to the rest
 renamed_merged_r4 <- renamed_merged_r4 %>% 
-  left_join(renamed_round4_sec_6, by = "hhid")
+  left_join(renamed_round4_sec_6, by = "hhid") %>% 
+  filter(interview_date != "##N/A##") %>%
+  mutate(
+    interview_date = ymd(interview_date)
+  ) 
+
 
 ## round 5 ---- 
 
@@ -1344,7 +1363,11 @@ renamed_round5_sec_6 <- round_5_sec6 %>%
 # merge sections 5 and 6 to the rest
 renamed_merged_r5 <- renamed_merged_r5 %>% 
   left_join(renamed_round5_sec_6, by = "hhid") %>% 
-  left_join(round_5_sec5d, by = "hhid")
+  left_join(round_5_sec5d, by = "hhid") %>% 
+  filter(interview_date != "##N/A##") %>%
+  mutate(
+    interview_date = ymd(interview_date)
+  ) 
 
 
 ## round 6 ----
@@ -1611,7 +1634,11 @@ renamed_round6_sec_6 <- round_6_sec6 %>%
 # merge sections 5 and 6 to the rest
 renamed_merged_r6 <- renamed_merged_r6 %>% 
   left_join(renamed_round6_sec_6, by = "hhid") %>% 
-  left_join(round_6_sec5d, by = "hhid")
+  left_join(round_6_sec5d, by = "hhid") %>% 
+  filter(interview_date != "##N/A##") %>%
+  mutate(
+    interview_date = ymd(interview_date)
+  ) 
 
 
 ## round 7 ---- 
@@ -1646,11 +1673,16 @@ renamed_merged_r7 <- merged_r7 %>%
     # Medicine question went from unable to able in R7, so swap yes/no
     s4q15, "1" = 2, "2" = 1 
   )) %>% 
+  # Round 7 has interview date as string with time in addition to YMD
+  mutate(
+    Sq02 = ymd(as.Date(Sq02))
+  ) %>% 
+  filter(!is.na(Sq02)) %>% # For consistency with prior rounds
   rename(
     # basic survey information  
-    interview_resp           = Rq09,
-    interview_language         = Rq10,
-    interview_date           = Sq02,
+    interview_resp         = Rq09,
+    interview_language     = Rq10,
+    interview_date         = Sq02,
     weight_final           = wfinal, # R7 does not have R1 weight
     
     # Section 4 - Access

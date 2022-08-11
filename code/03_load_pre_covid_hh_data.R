@@ -144,16 +144,13 @@ panel_19_20 <- poverty %>%
   relocate(hhid) %>% 
   rename_with(~str_c("precovid_", .), -hhid)
 
-base <- read_rds(here("data", "load_2.rds")) %>% 
-  left_join(panel_19_20, by = "hhid")
+all_rounds_df <- read_rds(here("data", "load_2.rds")) %>% 
+  left_join(panel_19_20, by = "hhid") 
 
-base %>%   
-  write_rds(here("data", "base.rds"))
+all_rounds_df %>%   
+  write_rds(here("data", "load_3.rds"))
 
-base %>% 
-  write_dta(
-    here("data", "base.dta"),
-    version = 14,
-  )
+
+
 
 
