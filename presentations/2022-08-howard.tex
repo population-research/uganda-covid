@@ -12,6 +12,8 @@
 
 \usepackage{amsmath}
 
+\usepackage{tcolorbox}
+
 \usepackage{dcolumn}
 \usepackage{booktabs}
 \usepackage{threeparttable}
@@ -42,8 +44,38 @@ Ishraq Ahmed
 
 \section{Introduction}
 
-\begin{frame}{Strictest Lockdowns in Sub-Saharan Africa}
+\begin{frame}{Main Question}
 
+\begin{tcolorbox}
+How did Covid lockdowns affect food insecurity? 
+\end{tcolorbox}
+
+\end{frame}
+
+
+\begin{frame}{Why Interesting?}
+
+
+Welfare effects
+
+\bigskip
+
+Understand Uganda's long-term development prospects
+
+\bigskip
+
+Exogenous systematic shock (as opposed to idiosyncratic) 
+
+
+\end{frame}
+
+
+\begin{frame}{One of the Strictest Lockdowns in Sub-Saharan Africa}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth, keepaspectratio]{bbc-headline.png}
+\end{figure}
 
 
 \end{frame}
@@ -80,14 +112,14 @@ no public gatherings or school;
 
 \begin{frame}{Estimation Strategy}
 
-Fixed effects on longitudinal data (household/individual)
+Linear Fixed effects on longitudinal data (household/individual)
 
 \bigskip
 
 Identification: Temporal variation in lockdowns, $L_t$
 
 \begin{multline}
-Y_{i,t} = \beta_0 + \beta_1 L_t + \sum_{r = 1}^7 \beta_{2r}  Round_r  \\
+Y_{i,t} = \beta_0 + \beta_1 L_t + \sum_{r} \beta_{2r}  Round_r  \\
 + \beta_3 Cases_{i,t} + \beta_4 Size_{i,t-1}  + \delta_i + \epsilon_{i,t}
 \end{multline}
 
@@ -97,7 +129,19 @@ Y_{i,t} = \beta_0 + \beta_1 L_t + \sum_{r = 1}^7 \beta_{2r}  Round_r  \\
 
 Aim: understand effects of Covid
 
+\bigskip
+
 Sampling: Uganda National Panel Survey 2019/20 households
+
+\bigskip
+
+Sample size: 2,227 (3,098 households in 2019/20 survey)
+
+
+\end{frame}
+
+
+\begin{frame}{Survey Timing}
 
 Rounds:
 \begin{itemize}
@@ -115,7 +159,7 @@ Rounds:
 
 \section{Food Insecurity}
 
-\begin{frame}{Significant Increase in Food Insecurity with Lockdowns}
+\begin{frame}{Lockdowns Significant Increases Food Insecurity}
 
 \begin{center}
 \begin{tabular}{@{} l D{.}{.}{2.6}  D{.}{.}{1.3} @{}}
@@ -219,7 +263,7 @@ Working in same job as before & -0.118^{\textrm{***}}	\\
 
 \section{Outside Assistance and Household Responses}
 
-\begin{frame}{Declining Income from Outside Source}
+\begin{frame}{Declining Income From Outside Source}
 
 Same set-up as for income sources above
 
@@ -277,7 +321,7 @@ Any food insecurity	& 0.274^{\textrm{***}} &  -0.001  & -0.081^{\textrm{***}} \\
 
 \end{frame}
 
-\begin{frame}{Is Agriculture Better? II}
+\begin{frame}{Is Agriculture Better? -- 1}
 
 \begin{center}
 \begin{tabular}{@{} l D{.}{.}{2.5}  D{.}{.}{2.5} D{.}{.}{2.5} @{}}
@@ -300,7 +344,7 @@ Had to skip a meal 					& 0.223^{\textrm{***}}	& -0.011	& -0.027^{\textrm{**}} 	
 \end{frame}
 
 
-\begin{frame}{Is Agriculture Better? III}
+\begin{frame}{Is Agriculture Better? -- 2}
 
 
 \begin{center}
@@ -319,18 +363,6 @@ No eating whole day 		& 0.094^{\textrm{***}} 	& -0.014^{\textrm{**}}	& -0.042^{\
 \bottomrule
 \end{tabular}
 \end{center}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 \end{frame}
@@ -432,10 +464,16 @@ Severe increases in food insecurity
 
 Agriculture likely less productive than non-farm work but better than nothing
 
+\bigskip
+
 Potentially severe long-term negative effects 
 on the development of Uganda from slow switching back from agriculture
 
-Illustrate limits of informal insurance/self-insurance strategies with general shock
+\bigskip
+
+Illustrate limits of informal insurance/self-insurance strategies with systematic shock
+
+\bigskip
 
 State capacity lacking
 
