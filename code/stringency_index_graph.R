@@ -50,19 +50,19 @@ ggplot(data,aes(x=date, y=stringency_index)) +
   xlab("Date") +
   ylab("Daily Stringency Index") +
   annotate("rect", xmin = ymd("2020-06-01"), xmax = ymd("2020-06-30"),
-           ymin = -Inf, ymax = Inf, alpha = .2) +
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = ymd("2020-08-01"), xmax = ymd("2020-08-31"),
-           ymin = -Inf, ymax = Inf, alpha = .2) +
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = ymd("2020-09-01"), xmax = ymd("2020-09-30"),
-           ymin = -Inf, ymax = Inf, alpha = .2) +
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = ymd("2020-10-01"), xmax = ymd("2020-10-31"),
-           ymin = -Inf, ymax = Inf, alpha = .2) +
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = ymd("2021-02-01"), xmax = ymd("2021-02-28"),
-           ymin = -Inf, ymax = Inf, alpha = .2) +
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = ymd("2021-03-01"), xmax = ymd("2021-03-31"),
-           ymin = -Inf, ymax = Inf, alpha = .2) +
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = ymd("2021-10-01"), xmax = ymd("2021-10-31"),
-           ymin = -Inf, ymax = Inf, alpha = .2) 
+           ymin = -Inf, ymax = Inf, alpha = 0.4) 
 
 ggsave(here("figures", "stringency_index.pdf"))  
 
