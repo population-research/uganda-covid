@@ -1,3 +1,7 @@
+# Descriptive stats/graphs
+
+# So far only the original stringency index by day for presentation to Howard
+
 # Load data
 library(tidyverse)
 library(haven)
