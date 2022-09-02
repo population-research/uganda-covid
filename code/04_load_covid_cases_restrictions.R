@@ -201,6 +201,37 @@ oxford_by_day <- oxford_base %>%
   )
 
 
+# Google Mobility data ----
+
+## Data source: Google Mobility Data
+## Description Link: https://www.google.com/covid19/mobility/
+## Data URL: https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv
+
+## load data 
+google <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")) %>% 
+  rename_to_lower_snake() %>%
+  filter(country_region_code == "UG") %>% # Uses only the 2 letter code
+  select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
+  filter(date < ymd("2021-12-01")) %>% 
+  rename_with(
+    ~ str_replace(., "_percent_change_from_baseline", "")
+  ) %>% 
+  filter(is.na(sub_region_1)) %>% 
+  select(-sub_region_1, -sub_region_2, -iso_3166_2_code) %>% 
+  arrange(date) %>% 
+  mutate(
+    across(retail_and_recreation:residential, 
+           list(
+             pre_01_30  = ~ rollapply(.x, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+             pre_31_60 = ~ rollapply(.x, list(seq(-60, -31)), mean, na.rm = TRUE, align = "right", fill = NA)
+           ),
+           .names = "{.col}_{.fn}"
+    )
+  ) %>% 
+  select(date, contains("_pre_"))
+
+
+
 # Combine data frames and save ----
 
 # By month measures - not merged into base data
@@ -219,6 +250,7 @@ covid_oxford %>%
 
 covid_oxford_by_day <- 
   full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
+  full_join(google, by = "date") %>% 
   arrange(date)
 
 base <- read_rds(here("data", "load_3.rds")) %>% 
