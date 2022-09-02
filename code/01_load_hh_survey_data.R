@@ -1678,6 +1678,7 @@ renamed_merged_r7 <- merged_r7 %>%
     Sq02 = ymd(as.Date(Sq02))
   ) %>% 
   filter(!is.na(Sq02)) %>% # For consistency with prior rounds
+  filter(Sq02 > ymd("2021-10-01")) %>%  # Some are coded as surveyed in 2020
   rename(
     # basic survey information  
     interview_resp         = Rq09,
