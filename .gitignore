@@ -37,3 +37,6 @@ figures/*.tex
 *.nav
 *.snm
 *.toc
+*.log
+*.aux
+*.gz
