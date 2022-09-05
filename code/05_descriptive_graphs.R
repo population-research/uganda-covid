@@ -1,7 +1,5 @@
 # Descriptive stats/graphs
 
-# So far only the original stringency index by day for presentation to Howard
-
 # Load data
 library(tidyverse)
 library(haven)
@@ -48,7 +46,7 @@ base <- read_rds(here("data", "base.rds")) %>%
 ## Data URL: https://covid.ourworldindata.org/data/owid-covid-data.csv
 
 ## load data 
-data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>% 
+our_world_data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>% 
   rename_to_lower_snake() %>%
   filter(iso_code == "UGA") %>% 
   select(date, stringency_index) %>% 
@@ -60,7 +58,7 @@ data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv"
 
 ## Time series graph of stringency measure
 
-ggplot(data,aes(x=date, y=stringency_index)) + 
+ggplot(our_world_data, aes(x=date, y=stringency_index)) + 
   geom_line() + 
   xlab("Date") +
   ylab("Daily Stringency Index") +
@@ -77,9 +75,85 @@ ggplot(data,aes(x=date, y=stringency_index)) +
   annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
-           ymin = -Inf, ymax = Inf, alpha = 0.4) 
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) 
+
 
 ggsave(here("figures", "stringency_index.pdf"),
+       width = 20, height = 15, units = "cm")  
+
+
+# Our version of the stringency index ----
+
+oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+  rename_to_lower_snake() %>%
+  filter(country_code == "UGA") %>%
+  # select(date, matches("[ce]\\d")) %>%
+  mutate(
+    date = ymd(date)
+  ) %>% 
+  filter(date < ymd("2021-12-01")) %>%  # Does not need information after that
+  arrange(date) 
+
+calculate_index <- function(part_name, part_max) {
+  var_number <- str_which(names(oxford_base), paste0(part_name, "_(?!flag)"))
+  flag_number <- str_which(names(oxford_base), paste0(part_name, "_(?=flag)"))
+  oxford_base %>% 
+    transmute(
+      index = case_when(
+        oxford_base[[var_number]] == 0 ~ 0,
+        oxford_base[[var_number]] != 0 ~ 100 * ((oxford_base[[var_number]] - 0.5*(1 - oxford_base[[flag_number]])) / part_max),
+        TRUE ~ NA_real_
+      ) 
+    ) %>% 
+    # rename(!!part_name := index)
+    rename(!!paste0("index_", part_name) := index)
+}
+
+vec_names <- c("c1m", "c2m", "c3m", "c4m", "c5m", "c6m", "c7m", "h1")
+vec_max <- c(3, 3, 2, 4, 2, 3, 2, 2)
+
+oxford <- map2_dfc(vec_names, vec_max, ~ calculate_index(.x, .y)) %>% 
+  bind_cols(oxford_base) %>% 
+  mutate(
+    index_c8ev = 100 * (c8ev_international_travel_controls / 4)
+  ) %>% 
+  select(date, stringency_index_average, contains(vec_names), index_c8ev, c8ev_international_travel_controls) %>% 
+  mutate(
+    # test_index = rowSums(across((starts_with("index") & !contains("c1") & !contains("c3") & !contains("c4") & !contains("c8") & !contains("h1") ))) / 4
+    index_4 = rowSums(across(c(index_c2m, index_c5m, index_c6m, index_c7m))) / 4,
+    index_3 = rowSums(across(c(index_c2m, index_c5m, index_c6m))) / 3
+  ) %>% 
+  relocate(date, stringency_index_average, index_4, index_3)
+
+ggplot(oxford, aes(x=date, y=index_4)) + 
+  geom_line() + 
+  xlab("Date") +
+  ylab("Daily Stringency Index (restricted version)") +
+  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) 
+
+
+ggsave(here("figures", "stringency_index_restricted.pdf"),
        width = 20, height = 15, units = "cm")  
 
 
@@ -91,7 +165,7 @@ ggsave(here("figures", "stringency_index.pdf"),
 ## Data URL: https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv
 
 ## load data 
-df <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")) %>% 
+google <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")) %>% 
   rename_to_lower_snake() %>%
   filter(country_region_code == "UG") %>% # Uses only the 2 letter code
   select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
@@ -102,7 +176,7 @@ df <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility_Rep
 
 # National Level mobility ----
 
-national_level <- df %>% filter(is.na(sub_region_1))
+national_level <- google %>% filter(is.na(sub_region_1))
 
 ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = residential)) + 
@@ -122,14 +196,17 @@ ggplot(national_level,aes(x = date)) +
   annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
-           ymin = -Inf, ymax = Inf, alpha = 0.4) 
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
 ggsave(here("figures", "google_mobility_national.pdf"),
        width = 20, height = 15, units = "cm")
 
 # Regional level mobility ----
 
-regional <- df %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
+regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
 
 ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = residential, color = sub_region_1)) + 
