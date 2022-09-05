@@ -127,78 +127,123 @@ covid_cases_by_day <- covid_cases_base %>%
 #   select(ends_with("flag")) %>%
 #   map(~tabyl(.))
 
+# oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+#   rename_to_lower_snake() %>%
+#   filter(country_code == "UGA") %>%
+#   select(date, matches("[ce]\\d")) %>%
+#   filter(date < 20220725) %>% # No information available after
+#   arrange(date) %>% 
+#   select(-starts_with("c8"), -starts_with("e4")) %>% # do not care about international
+#   select(-starts_with("e3")) %>% # minimal variation
+#   select(-matches("c[1234]m_flag"), -e1_flag) %>% # No action for these flags, so drop
+#   # Shorten names
+#   rename(
+#     gov_close_transport_flag = c5m_flag,
+#     gov_stay_home_flag       = c6m_flag,
+#     gov_restrict_move_flag   = c7m_flag
+#   ) %>%
+#   rename_with(
+#     ~ str_replace(., "[ce]\\d.*?_", "gov_") # Change prefix for easier reading
+#   ) %>%
+#   rename(
+#     gov_close_transport = gov_close_public_transport,
+#     gov_restrict_gather = gov_restrictions_on_gatherings,
+#     gov_restrict_move   = gov_restrictions_on_internal_movement,
+#     gov_stay_home       = gov_stay_at_home_requirements
+#   ) %>%
+#   # Indicator for whether any restriction is targeted to a specific group/area.
+#   # No information on which areas are targeted. 1: targeted 0: Not targeted/no
+#   # restriction
+#   mutate(
+#     across(
+#       ends_with("_flag"),
+#       ~ case_when(
+#         .x == 0 ~ 1,
+#         .x == 1 ~ 0,
+#         TRUE ~ 0
+#       )
+#     )
+#   ) %>%
+#   rename_with(
+#     ~ str_replace(., "_flag", "_target")
+#   )
+# 
+# oxford <- oxford_base %>%
+#   # splitting date into year month and day for grouping
+#   mutate(year = year(ymd(date)), month = month(ymd(date)), day = day(ymd(date))) %>% 
+#   group_by(year, month) %>%
+#   summarise(
+#     across(starts_with("gov_"),
+#       list(
+#         mode = ~ Mode(.x, na.rm = TRUE),
+#         min  = ~ min(.x, na.rm = TRUE),
+#         max  = ~ max(.x, na.rm = TRUE)
+#       ),
+#       .names = "{.col}_{.fn}"
+#     )
+#   ) %>% 
+#   ungroup()
+# 
+# oxford_by_day <- oxford_base %>%
+#   mutate(
+#     date = ymd(date), 
+#     across(starts_with("gov_"),
+#       list(
+#         mode = ~ rollapply(.x, list(seq(-30, -1)), Mode, na.rm = TRUE, align = "right", fill = NA),
+#         min = ~ rollapply(.x, list(seq(-30, -1)), min, na.rm = TRUE, align = "right", fill = NA),
+#         max = ~ rollapply(.x, list(seq(-30, -1)), max, na.rm = TRUE, align = "right", fill = NA)
+#       ),
+#       .names = "{.col}_{.fn}"
+#     )
+#   ) %>% 
+#   select(
+#     date, (starts_with("gov_") & (ends_with("_mode") | ends_with("_min") | ends_with("_max")))
+#   )
+
 oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
   rename_to_lower_snake() %>%
   filter(country_code == "UGA") %>%
-  select(date, matches("[ce]\\d")) %>%
+  # select(date, matches("[ce]\\d")) %>%
   filter(date < 20220725) %>% # No information available after
-  arrange(date) %>% 
-  select(-starts_with("c8"), -starts_with("e4")) %>% # do not care about international
-  select(-starts_with("e3")) %>% # minimal variation
-  select(-matches("c[1234]m_flag"), -e1_flag) %>% # No action for these flags, so drop
-  # Shorten names
-  rename(
-    gov_close_transport_flag = c5m_flag,
-    gov_stay_home_flag       = c6m_flag,
-    gov_restrict_move_flag   = c7m_flag
-  ) %>%
-  rename_with(
-    ~ str_replace(., "[ce]\\d.*?_", "gov_") # Change prefix for easier reading
-  ) %>%
-  rename(
-    gov_close_transport = gov_close_public_transport,
-    gov_restrict_gather = gov_restrictions_on_gatherings,
-    gov_restrict_move   = gov_restrictions_on_internal_movement,
-    gov_stay_home       = gov_stay_at_home_requirements
-  ) %>%
-  # Indicator for whether any restriction is targeted to a specific group/area.
-  # No information on which areas are targeted. 1: targeted 0: Not targeted/no
-  # restriction
+  arrange(date) 
+
+calculate_index <- function(part_name, part_max) {
+  var_number <- str_which(names(oxford_base), paste0(part_name, "_(?!flag)"))
+  flag_number <- str_which(names(oxford_base), paste0(part_name, "_(?=flag)"))
+  oxford_base %>% 
+    transmute(
+      index = case_when(
+        oxford_base[[var_number]] == 0 ~ 0,
+        oxford_base[[var_number]] != 0 ~ 100 * ((oxford_base[[var_number]] - 0.5*(1 - oxford_base[[flag_number]])) / part_max),
+        TRUE ~ NA_real_
+      ) 
+    ) %>% 
+    # rename(!!part_name := index)
+    rename(!!paste0("index_", part_name) := index)
+}
+
+# Each restriction has a different max so make two lists to loop over
+vec_names <- c("c1m", "c2m", "c3m", "c4m", "c5m", "c6m", "c7m", "h1")
+vec_max <- c(3, 3, 2, 4, 2, 3, 2, 2)
+
+oxford_by_day <- map2_dfc(vec_names, vec_max, ~ calculate_index(.x, .y)) %>% 
+  bind_cols(oxford_base) %>% 
   mutate(
-    across(
-      ends_with("_flag"),
-      ~ case_when(
-        .x == 0 ~ 1,
-        .x == 1 ~ 0,
-        TRUE ~ 0
-      )
-    )
-  ) %>%
-  rename_with(
-    ~ str_replace(., "_flag", "_target")
+    date = ymd(date)
+  ) %>% 
+  filter(date < ymd("2021-12-01")) %>% 
+  mutate(
+    index_c8ev = 100 * (c8ev_international_travel_controls / 4)
+  ) %>% 
+  select(date, stringency_index_average, contains(vec_names), index_c8ev, c8ev_international_travel_controls) %>% 
+  mutate(
+    index_4 = rowSums(across(c(index_c2m, index_c5m, index_c6m, index_c7m))) / 4,
+  ) %>% 
+  select(date, index_4) %>% 
+  mutate(
+    index_4 = rollapply(index_4, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
   )
 
-oxford <- oxford_base %>%
-  # splitting date into year month and day for grouping
-  mutate(year = year(ymd(date)), month = month(ymd(date)), day = day(ymd(date))) %>% 
-  group_by(year, month) %>%
-  summarise(
-    across(starts_with("gov_"),
-      list(
-        mode = ~ Mode(.x, na.rm = TRUE),
-        min  = ~ min(.x, na.rm = TRUE),
-        max  = ~ max(.x, na.rm = TRUE)
-      ),
-      .names = "{.col}_{.fn}"
-    )
-  ) %>% 
-  ungroup()
-
-oxford_by_day <- oxford_base %>%
-  mutate(
-    date = ymd(date), 
-    across(starts_with("gov_"),
-      list(
-        mode = ~ rollapply(.x, list(seq(-30, -1)), Mode, na.rm = TRUE, align = "right", fill = NA),
-        min = ~ rollapply(.x, list(seq(-30, -1)), min, na.rm = TRUE, align = "right", fill = NA),
-        max = ~ rollapply(.x, list(seq(-30, -1)), max, na.rm = TRUE, align = "right", fill = NA)
-      ),
-      .names = "{.col}_{.fn}"
-    )
-  ) %>% 
-  select(
-    date, (starts_with("gov_") & (ends_with("_mode") | ends_with("_min") | ends_with("_max")))
-  )
 
 
 # Google Mobility data ----
@@ -234,17 +279,17 @@ google <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility
 
 # Combine data frames and save ----
 
-# By month measures - not merged into base data
-covid_oxford <- full_join(covid_cases, oxford, by = c("year", "month"))
-
-covid_oxford %>% 
-  write_rds(here("data", "covid_oxford.rds"))
-
-covid_oxford %>% 
-  write_dta(
-    here("data", "covid_oxford.dta"),
-    version = 14,
-  )
+# # By month measures - not merged into base data
+# covid_oxford <- full_join(covid_cases, oxford, by = c("year", "month"))
+# 
+# covid_oxford %>% 
+#   write_rds(here("data", "covid_oxford.rds"))
+# 
+# covid_oxford %>% 
+#   write_dta(
+#     here("data", "covid_oxford.dta"),
+#     version = 14,
+#   )
   
 # Prior 30 days measures - merged into base data
 
