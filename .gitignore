@@ -40,3 +40,6 @@ figures/*.tex
 *.log
 *.aux
 *.gz
+
+# Retain submissions, even if pdf
+!submissions/DEVEC-S-22-01867.pdf
