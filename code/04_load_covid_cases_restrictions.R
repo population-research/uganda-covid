@@ -7,6 +7,7 @@ library(vtable) # For data checking
 library(labelled) # For data checking
 library(lubridate)
 library(zoo)
+library(curl)
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -253,7 +254,7 @@ oxford_by_day <- map2_dfc(vec_names, vec_max, ~ calculate_index(.x, .y)) %>%
 ## Data URL: https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv
 
 ## load data 
-google <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")) %>% 
+google <- read_csv(curl("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")) %>%
   rename_to_lower_snake() %>%
   filter(country_region_code == "UG") %>% # Uses only the 2 letter code
   select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
