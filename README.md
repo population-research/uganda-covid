@@ -40,7 +40,14 @@ intended use of the data.
 
 For the code to run, download the data in Stata format from
 [https://microdata.worldbank.org/index.php/catalog/3765/get-microdata](https://microdata.worldbank.org/index.php/catalog/3765/get-microdata).
-Each round should be a separate directory:
+
+Furthermore, the paper uses some data from Uganda National Panel Survey 2019-2020,
+which can be found at https://doi.org/10.48529/nqzx-f196.
+
+Uganda National Panel Survey 2018-2019
+https://doi.org/10.48529/ttyg-m774
+
+Each round and the UNPS should be a separate directory:
 
 ```
 ./raw_data
@@ -51,6 +58,7 @@ Each round should be a separate directory:
 |-- round5
 |-- round6
 |-- round7
+|-- panel_19_20
 ```
 
 The documentation for the individual rounds is available at:
