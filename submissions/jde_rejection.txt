@@ -1,0 +1,59 @@
+Manuscript Number: DEVEC-D-22-01612   
+
+Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda 
+
+Dear Claus,
+
+Thank you for submitting your manuscript to the Journal of Development Economics. I have now heard back from two reviewers, who unfortunately both recommend rejection. Across the two reports, some common themes include a narrow study frame, an insufficient effort to connect your results to the broader literature on shocks, the lack of baseline data, and the insufficient attention to seasonality.
+
+I read the paper alongside their reports, and although I think there is much to learn from descriptive analysis of the COVID pandemic like this one, I agree with their concerns and do not see a path forward at the JDE. I am sorry to not have better news this time, but I hope you will continue to send your work to the JDE in the future.
+
+Kind regards,   
+Tom Vogl   
+Co-Editor  
+
+Journal of Development Economics 
+
+Editor and Reviewer comments:   
+  
+  
+  Reviewer #1: The paper looks at the impact of lockdowns as a result of Covid-19 on food insecurity in Uganda. They document an increase in food insecurity as a result of both lockdowns. They find agricultural households experience smaller impacts and households make some changes in household labour allocations in order to cope. It is nice that the authors use additional data to measure the extent of the lockdown to check robustness of their results
+
+The authors argue that the previous literature has a narrow geographical focus but the sample size of just a little over 2,000 households used in this study is not very large which makes representativeness in their study also not very convincing. In addition, they look at a very narrow set of outcomes and provide an explanation for their results that is not different from other published studies.
+
+Specific comments:
+  1. It is surprising that all of the literature that the authors cite is on the covid-19 pandemic. They make no effort to link their work to previous literature on other shocks. It would be beneficial to refer to that literature to also map out the kind of coping strategies you would expect people to adopt.
+2. The authors mention that they could identify only four studies that use panel data. They do not mention Mahmud & Riley (2022) that uses primary data panel from Uganda.
+3. It would be helpful to know more about the composition of the sample. For example, what percentage are rural versus urban? I am not sure I understand what being an agricultural households in Table A1 means. Is this if you grow anything or if this is your primary source of income? I worry that this is just capturing rural versus urban areas and the results are then hardly surprising. Table notes with variable definitions would help.
+4. It is hard to understand/interpret the size of the impacts on work in Table 2 without non-lockdown period means.
+5. A discussion on what intra-year fluctuations in these outcomes look like in 'normal' years would be helpful to benchmark the results you find.
+
+Small points:
+  1. It would be helpful to include reference to tables in the appendix that show the results for alternative specification of the lockdown variable
+2. It might be better to have a separate robustness section where you introduce the checks. The present ordering is does not work very well and distracts from the core results.
+3. The variable definitions should be included in all table notes.
+
+References
+Mahmud, M., & Riley, E. (2022). Adapting to an aggregate shock: The impact of the Covid-19 crisis on rural households. Review of Economics of the Household, 1-18.
+
+
+
+
+Reviewer #2: This paper mainly documents the changes in food security in the midst of COVID-related lockdowns in Uganda, while it also examines labor market outcomes and potential coping mechanisms (e.g. assistance from family/friends). The data is from seven rounds of panel phone survey collected between June 2020 and October 2021. The main empirical strategy is household-level fixed effects across the phone survey rounds.
+
+During the data collection period, there were rounds when the government-issued lockdowns were more stringent and rounds when they were lifted. Compared to "non-lockdown" periods, the authors find very large increase in food insecurity during lockdown periods. They also find decreases in paid work and income. They also find evidence that agricultural households were less affected and that people were switching to agricultural work during the lockdown periods.
+
+This paper documents very interesting, and policy-wise very important, findings regarding how food security was affected during COVID-related lockdowns. Also, although it's a subset of those who have working phone numbers, the study sample is drawn from a nationally representative data set (Uganda UPS 2019/2020).
+
+However, the empirical strategy seems not sufficient for building a causal relationship. Below is a short list of comments on the analyses.
+
+- The main limitation of the analyses is that no data collected *before* the lockdowns were used. The regressions include data only collected *after* the lockdown, so the reference periods are basically all post-COVID. Could the authors use the Uganda UPS in 2019/20 as some kind of baseline?
+
+- While the authors say the attrition rate was 12.4 percent (in p.6), this seems to be only for round 7? What about the earlier rounds? Was the analysis not done on a balanced panel? What was the attrition rate there?
+
+- The household fixed-effects seem to be not sufficient for making the findings "causal." HH size, which is already controlled for in the regressions, is just one example of time-variant factors that's possibly confounding the results.
+
+- There are definitely seasonal patterns that need to be accounted for, especially given that more than half of the sample are "agricultural households" (Table A1). From a quick google search, the FAO's crop calendar for Uganda says the lean season is April-May and Nov-Dec. For example, would this be relevant for the sharp increase in food insecurity (and increase in agricultural work) in L1 (which was in June)? At a minimum, the authors could do something like comparing between the same calendar months--e.g. L4 (Oct 2020) vs. L7 (Oct 2021).
+ 
+
+
