@@ -15,21 +15,21 @@ Co-Editor  
 Journal of Development Economics 
 
 Editor and Reviewer comments:   
-  
-  
-  Reviewer #1: The paper looks at the impact of lockdowns as a result of Covid-19 on food insecurity in Uganda. They document an increase in food insecurity as a result of both lockdowns. They find agricultural households experience smaller impacts and households make some changes in household labour allocations in order to cope. It is nice that the authors use additional data to measure the extent of the lockdown to check robustness of their results
+
+
+Reviewer #1: The paper looks at the impact of lockdowns as a result of Covid-19 on food insecurity in Uganda. They document an increase in food insecurity as a result of both lockdowns. They find agricultural households experience smaller impacts and households make some changes in household labour allocations in order to cope. It is nice that the authors use additional data to measure the extent of the lockdown to check robustness of their results
 
 The authors argue that the previous literature has a narrow geographical focus but the sample size of just a little over 2,000 households used in this study is not very large which makes representativeness in their study also not very convincing. In addition, they look at a very narrow set of outcomes and provide an explanation for their results that is not different from other published studies.
 
 Specific comments:
-  1. It is surprising that all of the literature that the authors cite is on the covid-19 pandemic. They make no effort to link their work to previous literature on other shocks. It would be beneficial to refer to that literature to also map out the kind of coping strategies you would expect people to adopt.
+1. It is surprising that all of the literature that the authors cite is on the covid-19 pandemic. They make no effort to link their work to previous literature on other shocks. It would be beneficial to refer to that literature to also map out the kind of coping strategies you would expect people to adopt.
 2. The authors mention that they could identify only four studies that use panel data. They do not mention Mahmud & Riley (2022) that uses primary data panel from Uganda.
 3. It would be helpful to know more about the composition of the sample. For example, what percentage are rural versus urban? I am not sure I understand what being an agricultural households in Table A1 means. Is this if you grow anything or if this is your primary source of income? I worry that this is just capturing rural versus urban areas and the results are then hardly surprising. Table notes with variable definitions would help.
 4. It is hard to understand/interpret the size of the impacts on work in Table 2 without non-lockdown period means.
 5. A discussion on what intra-year fluctuations in these outcomes look like in 'normal' years would be helpful to benchmark the results you find.
 
 Small points:
-  1. It would be helpful to include reference to tables in the appendix that show the results for alternative specification of the lockdown variable
+1. It would be helpful to include reference to tables in the appendix that show the results for alternative specification of the lockdown variable
 2. It might be better to have a separate robustness section where you introduce the checks. The present ordering is does not work very well and distracts from the core results.
 3. The variable definitions should be included in all table notes.
 
@@ -55,5 +55,4 @@ However, the empirical strategy seems not sufficient for building a causal relat
 
 - There are definitely seasonal patterns that need to be accounted for, especially given that more than half of the sample are "agricultural households" (Table A1). From a quick google search, the FAO's crop calendar for Uganda says the lean season is April-May and Nov-Dec. For example, would this be relevant for the sharp increase in food insecurity (and increase in agricultural work) in L1 (which was in June)? At a minimum, the authors could do something like comparing between the same calendar months--e.g. L4 (Oct 2020) vs. L7 (Oct 2021).
  
-
 
