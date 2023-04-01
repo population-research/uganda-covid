@@ -121,13 +121,14 @@ assets <- read_dta(here("raw_data", "panel_19_20", "HH", "gsec14.dta")) %>%
       h14q02 == 20 ~ "Other assets",
       TRUE ~ NA_character_
     )
-  ) %>%
-  select(baseline_hhid, own, asset_type) %>%
+  ) %>% 
+  rename(value = h14q05) %>% 
+  select(baseline_hhid, own, value, asset_type) %>%
   pivot_wider(
     id_cols = baseline_hhid,
     names_from = asset_type,
-    values_from = own,
-    names_prefix = "asset_",
+    values_from = c(own, value),
+    # names_prefix = "asset_",
     names_sort = TRUE,
     values_fill = 0
   ) %>%
