@@ -42,4 +42,5 @@ figures/*.tex
 *.gz
 
 # Retain submissions, even if pdf
-!submissions/DEVEC-S-22-01867.pdf
+!submissions/jde/DEVEC-S-22-01867.pdf
+!submissions/wber/*.pdf
