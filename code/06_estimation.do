@@ -137,15 +137,84 @@ bysort hhid: gen lockdown`i' = lockdown[_n-`i']      // Creating lagged lockdown
 
 bysort hhid: egen wt = mean(weight_final)
 local       wt = "[pw=wt]"  
-local controls = "cases_smooth_per_100000 hh_total_members_prior"   
+local controls = "cases_smooth_per_100000 "   
 svyset  [pweight = wt]
 
-keep if hh_total_members_prior~=.
+*keep if hh_total_members_prior~=.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*************************************************************************************************************************************************************************
+* Differences by education and assets
+*************************************************************************************************************************************************************************
+bysort hhid: egen educ3=mean(s5q01a)
+gen school=0  if educ3~=.
+
+replace school=1  if educ3>=2 & educ3<=3                            // School=1 means completed primary but not secondary
+replace school=2  if educ3>=4 & educ3<=6 | educ3>=9 & educ3<=10       // School=2 means completed secondary
+
+xtreg anyfood_insec c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.school c.lockdown_2#i.school c.lockdown_3#i.school `controls' `wt', fe    
+	outreg2 using "`input'\FIES1.xml", e(N df_m F r2) excel replace dec(3)
+
+foreach i in  food_insufficient_worry food_healthy_lack food_few_kinds food_less_than_expected food_skipped_meal food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.school c.lockdown_2#i.school c.lockdown_3#i.school `controls' `wt', fe    
+	outreg2 using "`input'\FIES1.xml", e(N df_m F r2) excel append dec(3)
+}
+
+
+gen mem = hh_total_members_prior if survey==1
+bysort hhid: egen hhmem = max(mem)
+
+gen assets=0
+foreach i in precovid_value_appliances precovid_value_bicycle precovid_value_boat precovid_value_computer_tablets precovid_value_cooker precovid_value_dvd precovid_value_fixed_phone precovid_value_furniture precovid_value_generators precovid_value_internet_access precovid_value_jewelry precovid_value_mobile_phone precovid_value_motorcycle precovid_value_motorvehicle precovid_value_music_system precovid_value_non_ag_land precovid_value_other_assets precovid_value_other_buildings precovid_value_other_electronic precovid_value_other_transport precovid_value_owner_house precovid_value_radio precovid_value_refrigerator precovid_value_solar_panel precovid_value_television {
+
+		replace assets = assets + `i'
+}
+replace assets = assets / hhmem
+
+xtile asset_cat=assets, nquantiles(4)
+
+xtreg anyfood_insec c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.asset_cat c.lockdown_2#i.asset_cat c.lockdown_3#i.asset_cat `controls' `wt', fe    
+	outreg2 using "`input'\FIES2.xml", e(N df_m F r2) excel replace dec(3)
+
+foreach i in  food_insufficient_worry food_healthy_lack food_few_kinds food_less_than_expected food_skipped_meal food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.asset_cat c.lockdown_2#i.asset_cat c.lockdown_3#i.asset_cat `controls' `wt', fe    
+	outreg2 using "`input'\FIES2.xml", e(N df_m F r2) excel append dec(3)
+}
 exit
 
+xtreg work_for_pay c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.school c.lockdown_2#i.school c.lockdown_3#i.school `controls' `wt', fe    
+	outreg2 using "`input'\FIES3.xml", e(N df_m F r2) excel replace dec(3)
+
+foreach i in inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets {
+	sum `i' 
+	feologit  `i'   c.lockdown c.lockdown_2 c.lockdown#i.school c.lockdown_2#i.school `controls' `wt'
+	outreg2 using "`input'\FIES3.xml", e(N df_m F r2) excel append dec(3) 
+}
+
+exit
+*gen lean=0
+*replace lean=1 if survey==4 | survey==6 
+
+
+*/
 
 
 
@@ -176,7 +245,7 @@ foreach i in inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets inc_l
 	feologit  `i'   lockdown lockdown_2  `controls' `wt'
 	outreg2 using "`input'\Est3.xml", e(N df_m F r2) excel append dec(3) 
 }
-exit
+
 
 *************************************************************************************************************************************************************************
 * Estimations on Migration
@@ -205,9 +274,6 @@ foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_ki
 }
 
 
-exit
-
-
 *************************************************************************************************************************************************************************
 * Estimations on employment
 *************************************************************************************************************************************************************************
@@ -216,10 +282,11 @@ outreg2 using "`input'\Est2.xml", e(N df_m F r2) excel replace dec(3)
 
 tab work_stop_why if lockdown==1
 
-foreach i in work_same_before nfe {
-	xtreg work_same_before lockdown lockdown_2 lockdown_3 `controls' `wt', fe 
+foreach i in nfe work_same_before {
+	xtreg `i' lockdown lockdown_2 lockdown_3 `controls' `wt', fe 
 	outreg2 using "`input'\Est2.xml", e(N df_m F r2) excel append dec(3) 
 }
+
 
 tab survey concerns_cvd_srs_ill if hh_total_members_prior~=. , row
 
@@ -242,6 +309,7 @@ xtmlogit agri i.lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 [pw=wt2],
 outreg2 using "`input'\Est2.xml", e(N df_m F r2) excel append dec(3) 
 exit
 drop if survey==0
+tab agri
 */
 
 
@@ -262,6 +330,20 @@ foreach i in ag_plant_change  ag_plant_what_area_reduce ag_plant_what_area_incre
 
 
 *************************************************************************************************************************************************************************
+* Lockdown index measures
+*************************************************************************************************************************************************************************
+xtreg anyfood_insec index_4 `controls', fe 
+outreg2 using "`input'\Est7.xml", e(N df_m F r2) excel replace dec(3) 
+
+foreach j in index_4 residential_pre_01_30 {
+foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' `j'  `controls' `wt', fe    
+	outreg2 using "`input'\Est7.xml", e(N df_m F r2) excel append dec(3)
+}
+}
+
+
+*************************************************************************************************************************************************************************
 * Appendix tables - conditional logit
 *************************************************************************************************************************************************************************
 xtlogit anyfood_insec lockdown lockdown_2 lockdown_3 `controls', fe 
@@ -271,27 +353,72 @@ foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipp
 	xtlogit `i' lockdown lockdown_2 lockdown_3 `controls', fe    
 	outreg2 using "`input'\A1.xml", e(N df_m F r2) excel append dec(3)
 }
+*/
 
 
 *************************************************************************************************************************************************************************
-* Lockdown index and mobility measures
+* Appendix tables - comparing lean seasons: R1, R2 vs R4 and R4 vs R7
 *************************************************************************************************************************************************************************
-xtreg anyfood_insec index_4 `controls', fe 
+xtreg anyfood_insec lockdown lockdown_2 lockdown_3  `controls' `wt' if survey==1 | survey==2 | survey==6, fe 
+outreg2 using "`input'\A2.xml", e(N df_m F r2) excel replace dec(3) 
+
+foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' lockdown lockdown_2 lockdown_3 `controls' `wt' if survey==1 | survey==2 | survey==6, fe    
+	outreg2 using "`input'\A2.xml", e(N df_m F r2) excel append dec(3)
+}
+
+
+xtreg anyfood_insec lockdown lockdown_2 lockdown_3  `controls' `wt' if survey==4 | survey==7, fe 
+outreg2 using "`input'\A3.xml", e(N df_m F r2) excel replace dec(3) 
+
+foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' lockdown lockdown_2 lockdown_3 `controls' `wt' if survey==4 | survey==7, fe    
+	outreg2 using "`input'\A3.xml", e(N df_m F r2) excel append dec(3)
+}
+
+
+*************************************************************************************************************************************************************************
+* Appendix tables - Food insecurity in urban areas
+*************************************************************************************************************************************************************************
+xtreg anyfood_insec lockdown lockdown_2 lockdown_3 `controls' `wt' if urban==1, fe 
 outreg2 using "`input'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
 
-foreach j in index_4 residential_pre_01_30 {
-foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
-	xtreg `i' `j'  `controls' `wt', fe    
+foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' lockdown lockdown_2 lockdown_3  `controls' `wt' if urban==1, fe    
 	outreg2 using "`input'\Est1.xml", e(N df_m F r2) excel append dec(3)
 }
+
+
+/*************************************************************************************************************************************************************************
+* Identifying number of original and new households in each round
+*************************************************************************************************************************************************************************
+drop if wt==.
+tab survey
+foreach i in 1 2 3 4 5 6 {
+	bysort hhid: gen lag_pd`i'= survey[_n-`i']        // Creating a variable that generates whether a household was present in prior round
 }
 
+// If a hh was present in round 1, the hh will show up in one of the lagged variables as '1' which rep round 1, so correcting for that here
+replace lag_pd2=1 if survey==3 & lag_pd1==1                 
+replace lag_pd3=1 if survey==4 & (lag_pd2==1 | lag_pd1==1)
+replace lag_pd4=1 if survey==5 & (lag_pd3==1 | lag_pd2==1 | lag_pd1==1)
+replace lag_pd5=1 if survey==6 & (lag_pd4==1 | lag_pd3==1 | lag_pd2==1 | lag_pd1==1)
+replace lag_pd6=1 if survey==7 & (lag_pd5==1 | lag_pd4==1 | lag_pd3==1 | lag_pd2==1 | lag_pd1==1)
+
+tab lag_pd1 if survey==2, missing
+tab lag_pd2 if survey==3, missing
+tab lag_pd3 if survey==4, missing
+tab lag_pd4 if survey==5, missing
+tab lag_pd5 if survey==6, missing
+tab lag_pd6 if survey==7, missing
 */
 
 
 *************************************************************************************************************************************************************************
 * Summary estimations
 *************************************************************************************************************************************************************************
+tab anyfood_insec if wt~=.
+
 gen survey2=survey
 replace survey2=8 if survey==3 | survey==4 | survey==5 | survey==6 
 
@@ -310,6 +437,7 @@ foreach i in  anyfood_insec food_insufficient_worry food_healthy_lack food_few_k
 	mean `i' [pw=wt]
 	outreg2 using "`input'\Est11.xml", e(N) excel append noaster nose dec(3)
 }
+exit
 
 
 *************************************************************************************************************************************************************************
