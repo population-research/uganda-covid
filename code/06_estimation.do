@@ -1,8 +1,48 @@
-local input = "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Tables"
+* local output = "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Tables"
+local output = "~/projects/population/uganda_covid\tables"
 
-use "C:\Users\alams\Dropbox\Uganda\stata\base.dta", clear
+* use "C:\Users\alams\Dropbox\Uganda\stata\base.dta", clear
+use "~/projects/population/uganda_covid/data/base.dta", clear
 
-drop medical_access_lack_why_spec medical_need_2019_04_2020_04 medical_access__2019_04_2020_04 medical_need_fp medical_need_vac medical_need_maternal medical_need_child_health medical_need_adult_health medical_need_emergency_care medical_need_pharmacy medical_type_1 medical_access_1 medical_access_lack_why_1 medical_type_2 medical_access_2 medical_access_lack_why_2 medical_type_3 medical_access_3 medical_access_lack_why_3     	ag_crops_plant_plan ag_no_grow_home     ag_seeds_why_shops_no_stock ag_seeds_why_markets_closed ag_seeds_why_limited_transport ag_seeds_why_travel_restrict ag_seeds_why_price_increase ag_seeds_why_money_lack ag_seeds_why_other ag_fertil_no_trans_why ag_fertil_no_trans_why_other ag_input_no_trans_why ag_input_no_trans_why_other    ag_crops_progress ag_plant_what_covid_measures ag_plant_what_no_workers_hired ag_plant_what_fewer_workers ag_plant_safety_mask ag_plant_safety_no_hand_shakes ag_plant_safety_gloves ag_plant_safety_distance ag_plant_safety_others ag_plant_why_not_hire_workers ag_expected_output ag_expected_harvest_quantity ag_expected_harvest_unit ag_expected_harvest_kg     ag_price_small_banana ag_price_medium_banana ag_price_large_banana ag_price_100kg_cassava_bag ag_price_basin_dry_casava_chips ag_price_kg_dry_cassava_flour ag_price_kg_dry_beans ag_price_basin_fresh_beans ag_price_kg_maize_grains    ag_no_grow_less_labor ag_no_grow_restrict ag_no_grow_no_seeds ag_no_grow_no_fertilizer ag_no_grow_no_other ag_no_grow_no_outputs ag_no_grow_family_ill ag_plant_what_area_increased ag_plant_how_delay_sell_outputs ag_plant_how_care_ill_fammily ag_plant_what_area_reduced ag_main_crop ag_main_crop_completed_plant ag_main_crop_area_acres ag_main_crop_expect_output         educ_any_child_3_to_18 educ_attend_pre_covid educ_engage_after educ_engage_assigs_completed educ_engage_mobile_learning educ_engage_tv_programs educ_engage_radio_programs educ_engage_tutor educ_engage_gov_materials educ_engage_other s4q15_other educ_teacher_contact educ_teacher_contact_sms educ_teacher_contact_online educ_teacher_contact_email educ_teacher_contact_mail educ_teacher_contact_phone educ_teacher_contact_whatsapp educ_teacher_contact_facebook educ_teacher_contact_physically educ_teacher_contact_others s4q17_other financial_access financial_access_success financial_access_why financial_access_why_spec      nfe_place_closure_other_why nfe_closure_why_no_customers nfe_closure_why_no_inputs nfe_closure_why_travel_restrict nfe_closure_why_ill_cvd nfe_closure_why_ill_other nfe_closure_why_care_family nfe_closure_why_seasonal nfe_closure_why_vacation nfe_closure_why_other nfe_cvd_challenges_inputs nfe_cvd_challenges_op_money nfe_cvd_challenges_loans nfe_cvd_challenges_rent nfe_cvd_challenges_pay_workers nfe_cvd_challenges_sales nfe_cvd_challenges_other
+drop medical_access_lack_why_spec medical_need_2019_04_2020_04 ///
+    medical_access__2019_04_2020_04 medical_need_fp medical_need_vac ///
+    medical_need_maternal medical_need_child_health medical_need_adult_health ///
+    medical_need_emergency_care medical_need_pharmacy medical_type_1 ///
+    medical_access_1 medical_access_lack_why_1 medical_type_2 medical_access_2 ///
+    medical_access_lack_why_2 medical_type_3 medical_access_3 medical_access_lack_why_3 ///
+    ag_crops_plant_plan ag_no_grow_home ag_seeds_why_shops_no_stock ///
+    ag_seeds_why_markets_closed ag_seeds_why_limited_transport ///
+    ag_seeds_why_travel_restrict ag_seeds_why_price_increase ag_seeds_why_money_lack ///
+    ag_seeds_why_other ag_fertil_no_trans_why ag_fertil_no_trans_why_other ///
+    ag_output_no_trans_why ag_output_no_trans_why_other ag_crops_progress ///
+    ag_plant_what_covid_measures ag_plant_what_no_workers_hired ///
+    ag_plant_what_fewer_workers ag_plant_safety_mask ag_plant_safety_no_hand_shakes ///
+    ag_plant_safety_gloves ag_plant_safety_distance ag_plant_safety_others ///
+    ag_plant_why_not_hire_workers ag_expected_output ag_expected_harvest_quantity ///
+    ag_expected_harvest_unit ag_expected_harvest_kg ag_price_small_banana ///
+    ag_price_medium_banana ag_price_large_banana ag_price_100kg_cassava_bag ///
+    ag_price_basin_dry_casava_chips ag_price_kg_dry_cassava_flour ///
+    ag_price_kg_dry_beans ag_price_basin_fresh_beans ag_price_kg_maize_grains ///
+    ag_no_grow_less_labor ag_no_grow_restrict ag_no_grow_no_seeds ///
+    ag_no_grow_no_fertilizer ag_no_grow_no_other ag_no_grow_no_outputs ///
+    ag_no_grow_family_ill ag_plant_what_area_increased ag_plant_how_delay_sell_outputs ///
+    ag_plant_how_care_ill_fammily ag_plant_what_area_reduced ag_main_crop ///
+    ag_main_crop_completed_plant ag_main_crop_area_acres ag_main_crop_expect_output ///
+    educ_any_child_3_to_18 educ_attend_pre_covid educ_engage_after ///
+    educ_engage_assigs_completed educ_engage_mobile_learning educ_engage_tv_programs ///
+    educ_engage_radio_programs educ_engage_tutor educ_engage_gov_materials ///
+    educ_engage_other s4q15_other educ_teacher_contact educ_teacher_contact_sms ///
+    educ_teacher_contact_online educ_teacher_contact_email educ_teacher_contact_mail ///
+    educ_teacher_contact_phone educ_teacher_contact_whatsapp ///
+    educ_teacher_contact_facebook educ_teacher_contact_physically ///
+    educ_teacher_contact_others s4q17_other financial_access financial_access_success ///
+    financial_access_why financial_access_why_spec nfe_place_closure_other_why ///
+    nfe_closure_why_no_customers nfe_closure_why_no_outputs ///
+    nfe_closure_why_travel_restrict nfe_closure_why_ill_cvd nfe_closure_why_ill_other ///
+    nfe_closure_why_care_family nfe_closure_why_seasonal nfe_closure_why_vacation ///
+    nfe_closure_why_other nfe_cvd_challenges_outputs nfe_cvd_challenges_op_money ///
+    nfe_cvd_challenges_loans nfe_cvd_challenges_rent nfe_cvd_challenges_pay_workers ///
+    nfe_cvd_challenges_sales nfe_cvd_challenges_other
 
 
 tsset hhid survey
@@ -142,25 +182,6 @@ svyset  [pweight = wt]
 
 *keep if hh_total_members_prior~=.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*************************************************************************************************************************************************************************
 * Differences by education and assets
 *************************************************************************************************************************************************************************
@@ -171,11 +192,11 @@ replace school=1  if educ3>=2 & educ3<=3                            // School=1 
 replace school=2  if educ3>=4 & educ3<=6 | educ3>=9 & educ3<=10       // School=2 means completed secondary
 
 xtreg anyfood_insec c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.school c.lockdown_2#i.school c.lockdown_3#i.school `controls' `wt', fe    
-	outreg2 using "`input'\FIES1.xml", e(N df_m F r2) excel replace dec(3)
+	outreg2 using "`output'\FIES1.xml", e(N df_m F r2) excel replace dec(3)
 
 foreach i in  food_insufficient_worry food_healthy_lack food_few_kinds food_less_than_expected food_skipped_meal food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.school c.lockdown_2#i.school c.lockdown_3#i.school `controls' `wt', fe    
-	outreg2 using "`input'\FIES1.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\FIES1.xml", e(N df_m F r2) excel append dec(3)
 }
 
 
@@ -192,21 +213,21 @@ replace assets = assets / hhmem
 xtile asset_cat=assets, nquantiles(4)
 
 xtreg anyfood_insec c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.asset_cat c.lockdown_2#i.asset_cat c.lockdown_3#i.asset_cat `controls' `wt', fe    
-	outreg2 using "`input'\FIES2.xml", e(N df_m F r2) excel replace dec(3)
+	outreg2 using "`output'\FIES2.xml", e(N df_m F r2) excel replace dec(3)
 
 foreach i in  food_insufficient_worry food_healthy_lack food_few_kinds food_less_than_expected food_skipped_meal food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.asset_cat c.lockdown_2#i.asset_cat c.lockdown_3#i.asset_cat `controls' `wt', fe    
-	outreg2 using "`input'\FIES2.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\FIES2.xml", e(N df_m F r2) excel append dec(3)
 }
 exit
 
 xtreg work_for_pay c.lockdown c.lockdown_2 c.lockdown_3 c.lockdown#i.school c.lockdown_2#i.school c.lockdown_3#i.school `controls' `wt', fe    
-	outreg2 using "`input'\FIES3.xml", e(N df_m F r2) excel replace dec(3)
+	outreg2 using "`output'\FIES3.xml", e(N df_m F r2) excel replace dec(3)
 
 foreach i in inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets {
 	sum `i' 
 	feologit  `i'   c.lockdown c.lockdown_2 c.lockdown#i.school c.lockdown_2#i.school `controls' `wt'
-	outreg2 using "`input'\FIES3.xml", e(N df_m F r2) excel append dec(3) 
+	outreg2 using "`output'\FIES3.xml", e(N df_m F r2) excel append dec(3) 
 }
 
 exit
@@ -218,19 +239,15 @@ exit
 
 
 
-
-
-
-
 *************************************************************************************************************************************************************************
 * Estimations on food insecurity
 *************************************************************************************************************************************************************************
 xtreg anyfood_insec lockdown lockdown_2 lockdown_3 `controls' `wt', fe 
-outreg2 using "`input'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' lockdown lockdown_2 lockdown_3  `controls' `wt', fe    
-	outreg2 using "`input'\Est1.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel append dec(3)
 }
 
 
@@ -238,12 +255,12 @@ foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipp
 * Estimations on income
 *************************************************************************************************************************************************************************
 feologit  inc_level_farm   lockdown lockdown_2  `controls' `wt'
-outreg2 using "`input'\Est3.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\Est3.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets inc_level_pension inc_level_remittance inc_level_family inc_level_non_family inc_level_ngo inc_level_govt {
 	sum `i' 
 	feologit  `i'   lockdown lockdown_2  `controls' `wt'
-	outreg2 using "`input'\Est3.xml", e(N df_m F r2) excel append dec(3) 
+	outreg2 using "`output'\Est3.xml", e(N df_m F r2) excel append dec(3) 
 }
 
 
@@ -251,13 +268,13 @@ foreach i in inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets inc_l
 * Estimations on Migration
 *************************************************************************************************************************************************************************
 xtreg  hhmem_change lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 `wt', fe    
-outreg2 using "`input'\Est4.xml", e(N df_m F r2) excel replace dec(3)
+outreg2 using "`output'\Est4.xml", e(N df_m F r2) excel replace dec(3)
 
 sum hhmem_change 
 
 foreach i in adult_change child_change urban {
 	xtreg `i' lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 `wt', fe    
-	outreg2 using "`input'\Est4.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\Est4.xml", e(N df_m F r2) excel append dec(3)
 	sum `i'
 }
 
@@ -266,11 +283,11 @@ foreach i in adult_change child_change urban {
 * Differences in effects by agricultural household
 *************************************************************************************************************************************************************************
 xtreg work_for_pay c.lockdown c.lockdown_2 c.lockdown_3 ag c.lockdown#c.ag c.lockdown_2#c.ag c.lockdown_3#c.ag `controls' `wt', fe    
-	outreg2 using "`input'\Est5.xml", e(N df_m F r2) excel replace dec(3)
+	outreg2 using "`output'\Est5.xml", e(N df_m F r2) excel replace dec(3)
 
 foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' c.lockdown c.lockdown_2 c.lockdown_3 ag c.lockdown#c.ag c.lockdown_2#c.ag c.lockdown_3#c.ag `controls' `wt', fe    
-	outreg2 using "`input'\Est5.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\Est5.xml", e(N df_m F r2) excel append dec(3)
 }
 
 
@@ -278,13 +295,13 @@ foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_ki
 * Estimations on employment
 *************************************************************************************************************************************************************************
 xtreg work_for_pay lockdown lockdown_2 lockdown_3  `controls' `wt', fe     
-outreg2 using "`input'\Est2.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\Est2.xml", e(N df_m F r2) excel replace dec(3) 
 
 tab work_stop_why if lockdown==1
 
 foreach i in nfe work_same_before {
 	xtreg `i' lockdown lockdown_2 lockdown_3 `controls' `wt', fe 
-	outreg2 using "`input'\Est2.xml", e(N df_m F r2) excel append dec(3) 
+	outreg2 using "`output'\Est2.xml", e(N df_m F r2) excel append dec(3) 
 }
 
 
@@ -306,7 +323,7 @@ replace agri=1 if work_area==11111 & work_for_pay==1 & survey>=1 & survey<=7
 replace agri=2 if                    work_for_pay==0 & survey>=1 & survey<=7
 
 xtmlogit agri i.lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 [pw=wt2], fe rrr baseoutcome(0)    
-outreg2 using "`input'\Est2.xml", e(N df_m F r2) excel append dec(3) 
+outreg2 using "`output'\Est2.xml", e(N df_m F r2) excel append dec(3) 
 exit
 drop if survey==0
 tab agri
@@ -317,11 +334,11 @@ tab agri
 * Estimations on agriculture
 *************************************************************************************************************************************************************************
 xtreg ag_crops_plant lockdown lockdown_2 lockdown_3 `controls' `wt', fe     
-outreg2 using "`input'\Est6.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\Est6.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in  ag_plant_change ag_farm_products_sell_able {
 	xtreg `i' lockdown lockdown_2 lockdown_3  `controls' `wt', fe     
-	outreg2 using "`input'\Est6.xml", e(N df_m F r2) excel append dec(3) 
+	outreg2 using "`output'\Est6.xml", e(N df_m F r2) excel append dec(3) 
 }	
 
 foreach i in ag_plant_change  ag_plant_what_area_reduce ag_plant_what_area_increase  ag_plant_what_less_variety ag_plant_what_more_variety ag_plant_what_delayed ag_plant_what_fast_crops ag_plant_what_abandoned {
@@ -333,12 +350,12 @@ foreach i in ag_plant_change  ag_plant_what_area_reduce ag_plant_what_area_incre
 * Lockdown index measures
 *************************************************************************************************************************************************************************
 xtreg anyfood_insec index_4 `controls', fe 
-outreg2 using "`input'\Est7.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\Est7.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach j in index_4 residential_pre_01_30 {
 foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' `j'  `controls' `wt', fe    
-	outreg2 using "`input'\Est7.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\Est7.xml", e(N df_m F r2) excel append dec(3)
 }
 }
 
@@ -347,11 +364,11 @@ foreach i in anyfood_insec food_insufficient_worry food_healthy_lack food_few_ki
 * Appendix tables - conditional logit
 *************************************************************************************************************************************************************************
 xtlogit anyfood_insec lockdown lockdown_2 lockdown_3 `controls', fe 
-outreg2 using "`input'\A1.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\A1.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtlogit `i' lockdown lockdown_2 lockdown_3 `controls', fe    
-	outreg2 using "`input'\A1.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\A1.xml", e(N df_m F r2) excel append dec(3)
 }
 */
 
@@ -360,20 +377,20 @@ foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipp
 * Appendix tables - comparing lean seasons: R1, R2 vs R4 and R4 vs R7
 *************************************************************************************************************************************************************************
 xtreg anyfood_insec lockdown lockdown_2 lockdown_3  `controls' `wt' if survey==1 | survey==2 | survey==6, fe 
-outreg2 using "`input'\A2.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\A2.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' lockdown lockdown_2 lockdown_3 `controls' `wt' if survey==1 | survey==2 | survey==6, fe    
-	outreg2 using "`input'\A2.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\A2.xml", e(N df_m F r2) excel append dec(3)
 }
 
 
 xtreg anyfood_insec lockdown lockdown_2 lockdown_3  `controls' `wt' if survey==4 | survey==7, fe 
-outreg2 using "`input'\A3.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\A3.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' lockdown lockdown_2 lockdown_3 `controls' `wt' if survey==4 | survey==7, fe    
-	outreg2 using "`input'\A3.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\A3.xml", e(N df_m F r2) excel append dec(3)
 }
 
 
@@ -381,11 +398,11 @@ foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipp
 * Appendix tables - Food insecurity in urban areas
 *************************************************************************************************************************************************************************
 xtreg anyfood_insec lockdown lockdown_2 lockdown_3 `controls' `wt' if urban==1, fe 
-outreg2 using "`input'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
+outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
 
 foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
 	xtreg `i' lockdown lockdown_2 lockdown_3  `controls' `wt' if urban==1, fe    
-	outreg2 using "`input'\Est1.xml", e(N df_m F r2) excel append dec(3)
+	outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel append dec(3)
 }
 
 
@@ -426,16 +443,16 @@ gen     agri2=0 if work_area~=11111 & work_for_pay==1 & survey>=1 & survey<=7
 replace agri2=1 if work_area==11111 & work_for_pay==1 & survey>=1 & survey<=7
 
 mean anyfood_insec [pw=wt], over(survey2)
-outreg2 using "`input'\Est11.xml", e(N) excel replace noaster nose dec(3)
+outreg2 using "`output'\Est11.xml", e(N) excel replace noaster nose dec(3)
 
 foreach i in  anyfood_insec food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day  work_for_pay nfe work_same_before agri2 inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets inc_level_pension inc_level_remittance inc_level_family inc_level_non_family inc_level_ngo inc_level_govt hh_total_members hh_adults hh_child urban {
 	mean `i' [pw=wt], over(survey2)
-	outreg2 using "`input'\Est11.xml", e(N) excel append noaster nose dec(3)
+	outreg2 using "`output'\Est11.xml", e(N) excel append noaster nose dec(3)
 }
 
 foreach i in  anyfood_insec food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day  work_for_pay nfe work_same_before agri2 inc_level_farm inc_level_nfe inc_level_wage  inc_level_assets inc_level_pension inc_level_remittance inc_level_family inc_level_non_family inc_level_ngo inc_level_govt hh_total_members hh_adults hh_child urban {
 	mean `i' [pw=wt]
-	outreg2 using "`input'\Est11.xml", e(N) excel append noaster nose dec(3)
+	outreg2 using "`output'\Est11.xml", e(N) excel append noaster nose dec(3)
 }
 exit
 
