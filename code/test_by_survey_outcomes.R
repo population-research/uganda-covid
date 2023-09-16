@@ -14,7 +14,7 @@ library(cowplot)
 library(ggfittext)
 
 # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
-color_palette <- c("black", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+color_palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -68,12 +68,35 @@ base <- read_rds(here("data", "base.rds")) %>%
 # Plot ----
 
 base %>% 
-  ggplot(aes(x = value, group = type, color = type)) +
+  ggplot(aes(x = value, color = type)) +
   geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
   coord_flip(xlim = c(0, 65), expand = FALSE) +
   scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
-  theme(axis.text.x=element_text(angle=60, hjust=1)) 
-
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Lack of Healthy food",
+      "Few kinds of food",
+      "Worry about food",
+      "Less than expected",
+      "Skipped meal",
+      "Hungry",
+      "Ran out of food",
+      "Didn't eat all day")
+  ) +
+  labs(
+    x = "Percent",
+    y = "Survey dates",
+    title = "Food insecurity by survey round"
+  ) +
+  guides(color = guide_legend(ncol = 2)) +
+  theme(legend.position = c(0.5, 0.8)) 
+  
+  
+  
+  
+  
 
 
