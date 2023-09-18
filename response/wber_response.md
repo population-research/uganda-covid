@@ -42,6 +42,10 @@ level of food insecurity for the survey period)
 Should we do this with household fixed effects and number of Covid cases controlled for
 or simple proportions?]
 
+2. What are the household fixed effects doing?
+
+
+
 5. Why isn't the 8th wave of the NPS used as the baseline?
 
 The only food security related question in UNPS 2019/20 asks whether there have been a 
@@ -100,20 +104,18 @@ long for including in the paper]
 measure of local covid exposure?
 
 It is certainly possible that there are systematic differences in local Covid exposure,
-but, unfortunately, we have been unable to identify any data sources that could address
-this (the exception is the regional differences for the Google mobility data discussed
-below).
+but, unfortunately, we have been unable to identify any external data sources that could 
+address regional differences in Covid exposure and lockdown behavior (the exception is the 
+regional differences for the Google mobility data discussed below).
 
 While we normally think of cities as having a higher disease load than rural areas,
 this might not hold in the case of Covid. 
 Rather, large and poorer rural households may be more exposed to Covid infections,
 especially if lockdowns are enforced in rural areas.
-
-The United States is clearly an imperfect comparison, but in the U.S. the rate of
-death has been substantially higher in rural than in urban areas.
-
-Furthermore, people may be moving from urban to rural areas to "escape" the increasing
-level of Covid infections and bring with them to rural areas.
+In the U.S. the rate of death has been substantially higher in rural than in urban areas,
+although the United States is clearly an imperfect comparison.
+Furthermore, people may be moving from urban to rural areas to "escape" increasing levels 
+of Covid infections and bring with them to rural areas.
 
 
 
