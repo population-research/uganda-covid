@@ -96,6 +96,25 @@ In that case, the UNPS might well be higher than the UHFS data.
 [Still need to find a place to change this in the paper; the current write-up here is too
 long for including in the paper]
 
+6. What do we think of the national cases in the 30 days before the survey date as a 
+measure of local covid exposure?
+
+It is certainly possible that there are systematic differences in local Covid exposure,
+but, unfortunately, we have been unable to identify any data sources that could address
+this (the exception is the regional differences for the Google mobility data discussed
+below).
+
+While we normally think of cities as having a higher disease load than rural areas,
+this might not hold in the case of Covid. 
+Rather, large and poorer rural households may be more exposed to Covid infections,
+especially if lockdowns are enforced in rural areas.
+
+The United States is clearly an imperfect comparison, but in the U.S. the rate of
+death has been substantially higher in rural than in urban areas.
+
+Furthermore, people may be moving from urban to rural areas to "escape" the increasing
+level of Covid infections and bring with them to rural areas.
+
 
 
 # Referee 1 Comments
