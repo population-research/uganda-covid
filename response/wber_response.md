@@ -20,6 +20,10 @@ suggestions, which we believe have significantly improved the paper.
 [reference our AJTMH paper; could use NPS 8th wave because there is a treatment consulting 
 question—did we do that?]
 
+[If we keep the estimation approach we should remove X_1 in eq 1. Currently we have no
+other explanatory variables than lockdown dummies and number of cases.]
+
+
 
 We list below our responses to the individual comments and suggestions.
 
@@ -44,6 +48,40 @@ or simple proportions?]
 
 2. What are the household fixed effects doing?
 
+
+We can think of a household's food insecurity status as described by
+$$
+Y_{i, t}  = \alpha + \beta X_{i, t} + \epsilon_{i, t}
+$$
+
+Each household has some underlying risk of food insecurity, which presumably vary over
+seasons. 
+However, we instead model this as an average food insecurity, which gives us
+$$
+Y_{i, t}  = \alpha + \beta X_{i, t} + \rho_{i} + \epsilon_{i, t}.
+$$
+
+Normally, the idea would be that $X_{i, t}$ is correlated with both $Y_{i, t}$ and 
+$\rho_{i}$ and because $\rho_{i}$ is unobserved and, therefore, end up in the error
+term, we end up with biased estimates of $\beta$. 
+However, here we are interested in the effects of a variable that varies over time but
+not over individuals, namely lockdown dummies.
+Hence, what we estimate currently is
+$$
+Y_{i, t}  = \beta_1 L_{1} + \beta_2 L_{2} + \beta_7 L_{7}+ \rho_{i} + \epsilon_{i, t}.
+$$
+This means that our deviation from mean setup is
+$$
+(Y_{i, t} - \bar{Y}_{i})  = \beta_1 (L_{1} - \bar{L_1}) 
++ \beta_2 (L_{2} - \bar{L_2}) + \beta_7 (L_{7} - \bar{L_7}) 
++ \rho_{i} + \epsilon_{i, t}.
+$$
+
+
+
+
+[how binding is the lockdown and does that vary with unobservable, time-invariant 
+characteristics, $\rho_{i}$?]
 
 
 5. Why isn't the 8th wave of the NPS used as the baseline?
