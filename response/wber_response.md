@@ -68,20 +68,28 @@ However, here we are interested in the effects of a variable that varies over ti
 not over individuals, namely lockdown dummies.
 Hence, what we estimate currently is
 $$
-Y_{i, t}  = \beta_1 L_{1} + \beta_2 L_{2} + \beta_7 L_{7}+ \rho_{i} + \epsilon_{i, t}.
+Y_{i, t}  = \beta_1 L_{1} + \beta_2 L_{2} + \beta_3 L_{7}+ \rho_{i} + \beta_4 Cases_t + \epsilon_{i, t}.
 $$
 This means that our deviation from mean setup is
 $$
-(Y_{i, t} - \bar{Y}_{i})  = \beta_1 (L_{1} - \bar{L_1}) 
-+ \beta_2 (L_{2} - \bar{L_2}) + \beta_7 (L_{7} - \bar{L_7}) 
+(Y_{i, t} - \bar{Y}_{i})  = \beta_1 (L_{1} - \bar{L}_1) 
++ \beta_2 (L_{2} - \bar{L}_2) + \beta_3 (L_{7} - \bar{L}_7) 
++ \beta_4 (Cases_t - \bar{Cases})
 + \rho_{i} + \epsilon_{i, t}.
 $$
 
-
+[If a household drops out after, say 4, rounds then $\bar{L}_1 will be 0.25. 
+This means that for period one the difference to the mean will be 0.75, while the
+difference to the mean for the remaining three periods will be -0.25.
+Hence, there is always a 1 difference between the lockdown period and the non-lockdown
+periods.
+Is this how fixed effects help with bias from sample selection over time?]
 
 
 [how binding is the lockdown and does that vary with unobservable, time-invariant 
-characteristics, $\rho_{i}$?]
+characteristics, $\rho_{i}$?
+If that is the case, that could be an argument for why we should use household fixed 
+effects.]
 
 
 5. Why isn't the 8th wave of the NPS used as the baseline?
