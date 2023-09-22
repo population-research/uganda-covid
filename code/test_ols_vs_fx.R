@@ -64,9 +64,10 @@ ols_vs_fx <- ols %>%
     diff = ols_estimate - fx_estimate,
     se = sqrt(ols_std.error^2 + fx_std.error^2),
     z = diff / se,
-    p.value = 2 * pnorm(-abs(z))
+    p.value = 2 * pnorm(-abs(z)),
+    # Calculate differences in ols_std.error and fx_std.error
+    diff_se = ols_std.error - fx_std.error
   ) 
 
-# Next steps: plot differences in coefficients
 
 
