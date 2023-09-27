@@ -92,6 +92,8 @@ If that is the case, that could be an argument for why we should use household f
 effects.]
 
 
+
+
 5. Why isn't the 8th wave of the NPS used as the baseline?
 
 The only food security related question in UNPS 2019/20 asks whether there have been a 
