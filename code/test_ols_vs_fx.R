@@ -24,7 +24,8 @@ food_vars <- base %>% select(starts_with("food")) %>% names()
 #  OLS Regress each of the food variables against survey dummies and cases
 ols <- map(
   food_vars, 
-  ~ lm(as.formula(paste0(.x, " ~ lockdown_1 + lockdown_2 + lockdown_7 + cases_smooth_per_100000")), data = base) %>% 
+  ~ lm(as.formula(paste0(.x, " ~ lockdown_1 + lockdown_2 + lockdown_7 + cases_smooth_per_100000")), 
+       data = base) %>% 
     tidy() %>%
     select(term, estimate, std.error, p.value) %>%
     mutate(variable = .x) %>%
