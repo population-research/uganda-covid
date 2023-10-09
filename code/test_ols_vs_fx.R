@@ -25,7 +25,10 @@ food_vars <- base %>% select(starts_with("food")) %>% names()
 ols <- map(
   food_vars, 
   ~ lm(as.formula(paste0(.x, " ~ lockdown_1 + lockdown_2 + lockdown_7 + cases_smooth_per_100000")), 
-       data = base) %>% 
+       data = base,
+       # weighting using weight_final
+       weights = weight_final
+       ) %>% 
     tidy() %>%
     select(term, estimate, std.error, p.value) %>%
     mutate(variable = .x) %>%
@@ -39,7 +42,9 @@ fx <- map(
   ~ plm(as.formula(paste0(.x, " ~ lockdown_1 + lockdown_2 + lockdown_7 + cases_smooth_per_100000")), 
         data = base, 
         index = c("hhid", "survey"), 
-        model = "within"
+        model = "within",
+        # weighting using weight_final
+        weights = weight_final
         ) %>% 
     tidy() %>% 
     select(term, estimate, std.error, p.value) %>% 
@@ -54,7 +59,9 @@ re <- map(
   ~ plm(as.formula(paste0(.x, " ~ lockdown_1 + lockdown_2 + lockdown_7 + cases_smooth_per_100000")), 
         data = base, 
         index = c("hhid", "survey"), 
-        model = "random"
+        model = "random",
+        # weighting using weight_final
+        weights = weight_final
   ) %>% 
     tidy() %>% 
     select(term, estimate, std.error, p.value) %>% 
@@ -103,9 +110,9 @@ ols_vs_fx <- ols %>%
 # There are no statistically significant differences between the fixed effects
 # and OLS estimates, but the standard errors for the fixed effects are smaller
 # than for OLS.There is also no statistically significant difference between
-# fixed effects and randome effects, but the standard errors for fixed effects
-# are slightly higher, although this difference is miniscule.
+# fixed effects and random effects, but the standard errors for fixed effects
+# are slightly higher, although this difference is minuscule.
 
-# Currently do not incorporate weights.
+
 
 
