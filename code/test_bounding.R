@@ -49,9 +49,11 @@ test_base <- base %>%
     lockdown_7 = survey_factor %in% c("7")
   )
 
-
-# Still need to include the missing COVID-19 cases data
-
+# Things that I need to address:
+# - There is no survey date for missing households
+# - The missing COVID-19 cases data is not included and might have to be averaged within rounds since no survey date is available
+# - There are no weights for missing households; use average within survey round?
+#
 # Also need to include fill in missing values for food security variables 
 
 
