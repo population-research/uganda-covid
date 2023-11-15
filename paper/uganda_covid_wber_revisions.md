@@ -1,41 +1,45 @@
-**Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
-Household Coping Mechanisms: Evidence from Uganda**
-
-Shamma Adeeb Alam\*
-
-Claus C. Pörtner\*\*
-
-Ishraq Ahmed\*\*\*
-
-**Abstract**
-
-> We examine the short- and medium-run impacts of two of the strictest
-> Covid-19 lockdowns in the developing world, employing longitudinal
-> data from Uganda. Household fixed-effects estimations show
-> significant, immediate increases in food insecurity after the first
-> lockdown and a continued negative impact three months after its
-> lifting. The second lockdown's medium-term impact was even worse,
-> likely because of a compounding effect of a concurrent drought. The
-> rising food insecurity was partly the result of the lockdown-related
-> reductions in the availability of paid work. Agricultural households
-> were more likely to continue working and consequently saw smaller
-> increases in food insecurity. Furthermore, the likelihood of engaging
-> in agricultural work increased after the first lockdown, suggesting a
-> switch to agriculture as a coping mechanism. The other coping
-> mechanisms that households typically rely on for idiosyncratic shocks
-> failed in the face of a worldwide shock, contributing to the sizeable
-> increase in food insecurity.
-
-\* Shamma A. Alam, Associate Professor, Department of International
-Studies, Dickinson College, Carlisle, PA. Email: <alams@dickinson.edu>.
-
-\*\* Claus C. Pörtner, Associate Professor, Albers School of Business
-and Economics, Seattle University, Seattle, WA, and Center for Studies
-in Demography and Ecology, University of Washington, Seattle, WA. Email:
-<cportner@seattleu.edu>.
-
-\*\*\*Ishraq Ahmed, Economist, Public Utility Commission, State of
-Oregon, Salem, Oregon.
+---
+title: 'Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
+		Household Coping Mechanisms: Evidence from Uganda'
+date: November 2023
+author:
+- Shamma Adeeb Alam^[Associate Professor, Department of International
+	Studies, Dickinson College, Carlisle, PA.
+	\href{mailto:alams@dickinson.edu}{\texttt{alams@dickinson.edu}}]
+- Claus C. Pörtner^[Associate Professor, 
+	Albers School of Business and Economics, 
+	Seattle University, Seattle, WA, and Center for Studies
+	in Demography and Ecology, University of Washington, Seattle, WA. 
+	\href{mailto:cportner@seattleu.edu}{\texttt{cportner@seattleu.edu}},
+    \href{http://www.clausportner.com}{\texttt{www.clausportner.com}}]
+- Ishraq Ahmed^[Economist, Public Utility Commission, State of
+	Oregon, Salem, Oregon]
+thanks: |
+  Partial support for this research came from a Eunice Kennedy Shriver National
+  Institute of Child Health and Human Development research infrastructure grant,
+  5R24HD042828, to the Center for Studies in Demography and Ecology at the
+  University of Washington.
+abstract: |
+  \noindent We examine the short- and medium-run impacts of two of the strictest
+  Covid-19 lockdowns in the developing world, employing longitudinal
+  data from Uganda. Household fixed-effects estimations show
+  significant, immediate increases in food insecurity after the first
+  lockdown and a continued negative impact three months after its
+  lifting. The second lockdown's medium-term impact was even worse,
+  likely because of a compounding effect of a concurrent drought. The
+  rising food insecurity was partly the result of the lockdown-related
+  reductions in the availability of paid work. Agricultural households
+  were more likely to continue working and consequently saw smaller
+  increases in food insecurity. Furthermore, the likelihood of engaging
+  in agricultural work increased after the first lockdown, suggesting a
+  switch to agriculture as a coping mechanism. The other coping
+  mechanisms that households typically rely on for idiosyncratic shocks
+  failed in the face of a worldwide shock, contributing to the sizeable
+  increase in food insecurity.
+bibliography: uganda_covid.bib
+csl: journal-of-development-economics.csl
+link-citations: true
+---
 
 1.  **Introduction**
 
