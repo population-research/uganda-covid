@@ -15,10 +15,16 @@ author:
 - Ishraq Ahmed^[Economist, Public Utility Commission, State of
 	Oregon, Salem, Oregon]
 thanks: |
+  We would like to thank seminar participants at Howard University, Alex
+  Henke, and two anonymous referees for their helpful comments and
+  suggestions on an earlier version of this paper. We would also like to
+  thank Pascal Ntaganda for his research assistance.
+  
   Partial support for this research came from a Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
   5R24HD042828, to the Center for Studies in Demography and Ecology at the
   University of Washington.
+  
 abstract: |
   \noindent We examine the short- and medium-run impacts of two of the strictest
   Covid-19 lockdowns in the developing world, employing longitudinal
@@ -41,7 +47,7 @@ csl: journal-of-development-economics.csl
 link-citations: true
 ---
 
-1.  **Introduction**
+# Introduction
 
 Uganda had some of the strictest Covid-19 lockdowns in Sub-Saharan
 Africa, one in 2020 and another in 2021 (BBC, 2020; Birner et al., 2021;
@@ -173,7 +179,7 @@ effect on food insecurity. Finally, we find evidence of a net increase
 in household members, suggesting that lockdowns forced individuals
 living elsewhere to join/rejoin the household.
 
-**2. Lockdown Context**
+# Lockdown Context
 
 On March 18, 2020, the Ugandan government started imposing restrictions,
 including travel restrictions and cancellation of public gatherings,
@@ -197,7 +203,7 @@ government of Uganda imposed a second lockdown from June 2021 (Atamanov
 et al., 2022; Athumani, 2021). This second lockdown was partly eased by
 the end of July 2021 (Biryabarema, 2021).
 
-**3.** **Estimation Strategy and Data**
+# Estimation Strategy and Data
 
 To establish the causal effects of Covid-19 lockdowns, we use household
 fixed-effects models on a nationally representative longitudinal
@@ -244,7 +250,7 @@ households. The number of original households that remained in each
 round and the cumulative number of new households in the follow-up
 rounds are presented in Appendix Table A1.
 
-*3.1 Empirical Specification*
+## Empirical Specification
 
 Our main specification regresses outcomes, *Y,* discussed below, on a
 set of variables using a linear fixed-effects model:[^3]
@@ -284,7 +290,7 @@ employment. In these cases, the models are individual fixed-effects
 models, as the same individual from the household is followed over the
 rounds.
 
-*3.2 Robustness Checks*
+## Robustness Checks
 
 Using indicator variables to capture the impact of lockdowns has the
 advantage of straightforward interpretation. Still, the binary approach
@@ -327,7 +333,7 @@ comparable from previous rounds of UNPS and estimate our main model on
 alternative samples to show that seasonal variation is unlikely to
 explain our results.
 
-*3.3 Main Outcomes: Food Insecurity*
+## Main Outcomes: Food Insecurity
 
 The survey measures food insecurity based on the Food Insecurity
 Experience Scale (FIES) developed by the FAO (FAO, 2016). FIES uses
@@ -347,14 +353,14 @@ we create another variable to capture whether a household experienced
 any food insecurity, with 1 for answering "Yes" to at least one of the
 eight FIES questions and 0 otherwise.
 
-*3.4 Mechanisms that Affect Food Insecurity*
+## Mechanisms that Affect Food Insecurity
 
 To understand how the government lockdowns affected food insecurity and
 how households responded to the lockdowns, we examine three broad
 categories: labor market outcomes, changes in income across sources, and
 whether households received assistance from outside sources.
 
-[Labor Market Outcomes]{.underline}
+### Labor Market Outcomes
 
 Lockdowns may affect the availability of employment, both because
 workplaces close and because of the overall reduction in economic
@@ -423,7 +429,7 @@ planting activities because of Covid-19. If yes, they are asked how they
 changed their activities. This allows us to examine whether households
 changed their agricultural strategy in response to the lockdowns.
 
-[Income]{.underline}
+### Income
 
 Households were asked questions related to income in rounds 1 through 6.
 Instead of the monetary value of their income, households were asked
@@ -450,7 +456,7 @@ increase in household income, a negative coefficient represents a
 decrease, and a coefficient near 0 indicates that income remained
 stable.
 
-[Outside Assistance]{.underline}
+### Outside Assistance
 
 In rounds 1 through 6, the UHFS asked households whether they received
 assistance from the following sources: (i) remittance from abroad, (ii)
@@ -471,7 +477,7 @@ the impact on household structure, we calculate the change in the number
 of household members by subtracting the number in the prior round from
 the current round's number.
 
-*3.5 Summary Statistics*
+## Summary Statistics
 
 Figure 1 shows the daily stringency index, the daily Google Mobility
 measure of time spent at residential locations, the 7-day average number
@@ -515,9 +521,9 @@ of households reported any food insecurity during the first lockdown
 (round 1) as opposed to 47.2 percent for the non-lockdown period, a
 difference of 24.6 percent.
 
-**4. Results**
+# Results
 
-*4.1 Food Insecurity*
+## Food Insecurity
 
 Table 2 shows the impact of the Covid-19 lockdowns in Uganda on the
 likelihood of food insecurity using a linear model with household fixed
@@ -547,7 +553,7 @@ insecurity measures. This suggests that the second lockdown, combined
 with a drought, had a worse impact on food insecurity than the first
 lockdown, at least in the medium run.
 
-*4.2 Impact on Work*
+## Impact on Work
 
 One way lockdowns can affect food insecurity is by lowering people's
 ability to work. Table 3, column 1, shows that the likelihood of any
@@ -621,7 +627,7 @@ cope with the effects of the first lockdown, the negative impact of the
 drought on agriculture meant that this was a less attractive coping
 mechanism during the second lockdown.
 
-*4.3 Impact on Income*
+## Impact on Income
 
 As shown in Panel B of Table 3, the first lockdown significantly
 decreased farm income, non-farm family business income, wage income, and
@@ -633,7 +639,7 @@ over time, we also examine the impact on pension income. Not
 surprisingly, we do not find any changes in pension income during the
 lockdowns.[^10]
 
-*4.4 Coping Mechanisms*
+## Coping Mechanisms 
 
 Given the reductions in household income with the lockdowns, we examine
 potential coping mechanisms in Table 4 (Morduch, 1995; Townsend, 1994).
@@ -687,7 +693,7 @@ migration into the households and a switch to agricultural work,
 suggesting that some household members return to the family for farm
 work.
 
-*4.5 Agricultural vs. Non-agricultural households*
+## Agricultural vs. Non-agricultural households
 
 Given the increase in agricultural work with the first lockdown, Table 5
 examines whether agricultural households fared better than
@@ -717,7 +723,7 @@ This is likely because of the concurrent drought during and after the
 second lockdown in Uganda that affected the agricultural households\'
 employment and food production.
 
-**5. Robustness Checks**
+# Robustness Checks
 
 As a consistency check on our use of indicator variables to capture
 lockdowns, we use the average of the revised daily lockdown stringency
@@ -794,7 +800,7 @@ the same or larger when we restrict the sample to urban households.
 Hence, our results are qualitatively the same, no matter how we account
 for seasonality.
 
-**6. Conclusion**
+# Conclusion
 
 Using country-wide panel data with a household fixed-effects model, we
 examine the impact of two Covid-19 lockdowns in Uganda on food
@@ -840,22 +846,7 @@ potential long-term cost of the lockdowns potentially significantly
 outweighs the benefits. Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
-**Funding**
 
-This work was supported, in part, by a Eunice Kennedy Shriver National
-Institute of Child Health and Human Development research infrastructure
-grant, P2C HD042828, to the Center for Studies in Demography & Ecology
-at the University of Washington.
-
-**Acknowledgements**
-
-We would like to thank seminar participants at Howard University, Alex
-Henke, and two anonymous referees for their helpful comments and
-suggestions on an earlier version of this paper. We would also like to
-thank Pascal Ntaganda for his research assistance.
-
-**\
-**
 
 **References:**
 
