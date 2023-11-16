@@ -10,6 +10,7 @@ library(labelled)  # For data checking
 library(lubridate)
 library(cowplot)
 library(ggfittext)
+library(modelsummary)
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -140,6 +141,22 @@ ggsave(here("figures", paste0("regional_", .x , ".pdf")),
 
 }   
 )
+
+
+# What we are interested in is whether the change in mobility is different
+# across regions and across mobility measures (e.g. retail and recreation vs.
+# grocery, etc.). 
+
+# We start with simple correlation across mobility measures, without date
+
+datasummary_correlation(national[, -1])
+
+cor(national[, -1], use = "pairwise.complete.obs")
+
+
+
+
+
 
 
 
