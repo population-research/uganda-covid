@@ -245,7 +245,7 @@ ggsave(here("figures", "stringency_index_restricted.pdf"),
 #     ~ str_replace(., "_percent_change_from_baseline", "")
 #   )
 
-google <- read_csv(here("raw_data", "Global_Mobility_Report.csv")) %>% 
+google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv")) %>% 
   rename_to_lower_snake() %>%
   filter(country_region_code == "UG") %>% # Uses only the 2 letter code
   select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
