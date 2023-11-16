@@ -11,6 +11,7 @@ library(lubridate)
 library(cowplot)
 library(ggfittext)
 library(modelsummary)
+library(corrr)
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -55,20 +56,20 @@ google_global <- read_csv(here("raw_data", "external_data", "Global_Mobility_Rep
     ~ str_replace(., "_percent_change_from_baseline", "")
   )
 
-google_uganda_2020 <- read_csv(here("raw_data", "external_data", "2020_UG_Region_Mobility_Report.csv")) %>% 
-  rename_to_lower_snake() 
-
-google_uganda_2021 <- read_csv(here("raw_data", "external_data", "2021_UG_Region_Mobility_Report.csv")) %>% 
-  rename_to_lower_snake() %>% 
-  filter(date < ymd("2021-12-01")) 
-
-google_uganda <- bind_rows(google_uganda_2020, google_uganda_2021) %>% 
-  select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
-  rename_with(
-    ~ str_replace(., "_percent_change_from_baseline", "")
-  )
-
-all_equal(google_uganda, google_global) # TRUE
+# google_uganda_2020 <- read_csv(here("raw_data", "external_data", "2020_UG_Region_Mobility_Report.csv")) %>% 
+#   rename_to_lower_snake() 
+# 
+# google_uganda_2021 <- read_csv(here("raw_data", "external_data", "2021_UG_Region_Mobility_Report.csv")) %>% 
+#   rename_to_lower_snake() %>% 
+#   filter(date < ymd("2021-12-01")) 
+# 
+# google_uganda <- bind_rows(google_uganda_2020, google_uganda_2021) %>% 
+#   select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
+#   rename_with(
+#     ~ str_replace(., "_percent_change_from_baseline", "")
+#   )
+# 
+# all_equal(google_uganda, google_global) # TRUE
 
 
 # Separate out nationwide and regional data ----
@@ -152,6 +153,13 @@ ggsave(here("figures", paste0("regional_", .x , ".pdf")),
 datasummary_correlation(national[, -1])
 
 cor(national[, -1], use = "pairwise.complete.obs")
+
+cor(regional[, -1], use = "pairwise.complete.obs")
+
+regional %>% 
+  select(-date) %>% 
+  group_by(region) %>% 
+  group_map(~ correlate(.x))
 
 
 
