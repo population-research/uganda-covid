@@ -91,6 +91,8 @@ characteristics, $\rho_{i}$?
 If that is the case, that could be an argument for why we should use household fixed 
 effects.]
 
+3. Use mediation analysis to explain lockdown effects instead of Tables 6 and 7
+
 
 
 
