@@ -54,14 +54,8 @@
     },
     "KernSmooth": {
       "Package": "KernSmooth",
-      "Version": "2.23-21",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "stats"
-      ],
-      "Hash": "6314fc110e09548ba889491db6ae67fb"
+      "Version": "2.23-22",
+      "Source": "Repository"
     },
     "MASS": {
       "Package": "MASS",
