@@ -1,7 +1,7 @@
 ---  
 title: 'Response to Editor and Referee Comments — Impact of Twin Lockdowns on Hunger, 
         Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda'
-date: September 2023
+date: January 2024
 bibliography: uganda_covid.bib
 csl: journal-of-development-economics.csl
 link-citations: true
@@ -78,7 +78,7 @@ $$
 + \rho_{i} + \epsilon_{i, t}.
 $$
 
-[If a household drops out after, say 4, rounds then $\bar{L}_1 will be 0.25. 
+[If a household drops out after, say 4, rounds then $\bar{L}_1$ will be 0.25. 
 This means that for period one the difference to the mean will be 0.75, while the
 difference to the mean for the remaining three periods will be -0.25.
 Hence, there is always a 1 difference between the lockdown period and the non-lockdown
