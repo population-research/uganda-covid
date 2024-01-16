@@ -1,7 +1,7 @@
 ---
 title: 'Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
 		Household Coping Mechanisms: Evidence from Uganda'
-date: November 2023
+date: January 2024
 author:
 - Shamma Adeeb Alam^[Associate Professor, Department of International
 	Studies, Dickinson College, Carlisle, PA.
@@ -50,8 +50,8 @@ link-citations: true
 # Introduction
 
 Uganda had some of the strictest Covid-19 lockdowns in Sub-Saharan
-Africa, one in 2020 and another in 2021 (BBC, 2020; Birner et al., 2021;
-Mahmud & Riley, 2021). Using longitudinal data and household fixed
+Africa, one in 2020 and another in 2021 [@BBC2020;@Birner2021;@Mahmud2021]. 
+Using longitudinal data and household fixed
 effects, we examine the impact of the twin lockdowns in Uganda on food
 insecurity, labor market outcomes, and how households attempted to cope
 with the lockdowns.
@@ -64,29 +64,32 @@ or having a narrow geographical focus covering only one or two villages
 or states in a country. These studies also suggest that households try
 to cope with the lockdowns through behavior changes, such as reducing
 non-food expenditure, drawing down savings, leaving savings and loan
-groups, increasing borrowing, and selling assets (Ceballos et al., 2021;
-Headey et al., 2020; Kansiime et al., 2021; Mahmud & Riley, 2023; Rönkkö
-et al., 2022; Ruszczyk et al., 2021). In addition, there is evidence
-that remittances declined, and there was insufficient government support
-to help households cope with the shock (Ceballos et al., 2021;
-Curi-Quinto et al., 2021).
+groups, increasing borrowing, and selling assets 
+[@Ceballos2021;@Headey2020;@Kansiime2021;@Mahmud2023;@Ronkko2022;@Ruszczyk2021]. 
+In addition, there is evidence that remittances declined, and there was insufficient 
+government support to help households cope with the shock 
+[@Ceballos2021;@Curi-Quinto2021].
 
 Only four studies we could identify used household fixed-effects models
 to control for household-specific time-invariant factors when examining
 food insecurity.[^2] Contrary to the cross-sectional studies, three of
 these studies found no effect of lockdowns on food consumption across
-Liberia, Malawi, Kenya, and Ethiopia (Aggarwal et al., 2022; Hirvonen et
-al., 2021; Janssens et al., 2021). Only the Nigerian lockdown appeared
-to increase food insecurity (Amare et al., 2021).
+Liberia, Malawi, Kenya, and Ethiopia 
+[@Aggarwal2022;@Hirvonen2021;@Janssens2021]. 
+Only the Nigerian lockdown appeared to increase food insecurity [@Amare2021].
 
 These studies do, however, also have limitations. The Liberia survey had
 completion rates as low as 49% and evidence of a non-random attrition
-(Aggarwal et al., 2022). The Kenya study focused only on households with
+[@Aggarwal2022]. 
+The Kenya study focused only on households with
 pregnant women or mothers with children below age four in one county
-(Janssens et al., 2021). Ethiopia never went into a complete lockdown,
-and the study covers only Addis Ababa (Hirvonen et al., 2021). Finally,
-the Nigeria study only examined the immediate effect of the lockdown on
-a limited set of food insecurity questions (Amare et al., 2021).
+[@Janssens2021]. 
+Ethiopia never went into a complete lockdown,
+and the study covers only Addis Ababa 
+[@Hirvonen2021]. 
+Finally, the Nigeria study only examined the immediate effect of the lockdown on
+a limited set of food insecurity questions 
+[@Amare2021].
 
 Our study contributes to two strands of the literature. First, we
 contribute to the literature on understanding the impacts of the
@@ -101,7 +104,8 @@ medium-run effects of lockdowns to understand the persistence of the
 impact of lockdowns in the months following their lifting. Moreover, the
 second lockdown coincided with a prolonged dry spell, which allows us to
 investigate whether a weather shock compounds the effect of the lockdown
-(Atamanov et al., 2022). Finally, rather than relying solely on reported
+[@Atamanov2022]. 
+Finally, rather than relying solely on reported
 lockdowns like in prior studies, we use additional data on the
 stringency of lockdowns and Google mobility data to conduct robustness
 checks of our analysis.
@@ -110,14 +114,15 @@ Second, we contribute to the small but growing body of research on the
 effects of aggregate shocks and how households cope with these shocks.
 There is a long-standing literature on how households in developing
 countries smooth consumption in response to idiosyncratic shocks through
-self-insurance approaches (Case, 1995). However, we know less about how
+self-insurance approaches 
+[@Case1995]. 
+However, we know less about how
 these coping mechanisms fare when households are exposed to aggregate
 shocks. Most of the research on aggregate shocks has focused on
 financial shocks and natural disasters and has found varying degrees of
 ability to smooth consumption, although wealthier households are
-generally better able to deal with the shock (Del Ninno et al., 2003;
-Fallon & Lucas, 2002; Glewwe & Hall, 1998; Hallegatte et al., 2020;
-McKenzie, 2003; Skoufias, 2003; Thomas & Frankenberg, 2007).
+generally better able to deal with the shock 
+[@Del-Ninno2003; @Fallon2002;@Glewwe1998;@Hallegatte2020;@McKenzie2003;@Skoufias2003;@Thomas2007].
 
 We contribute to the literature on coping with aggregate shocks in two
 ways. First, we examine a repeated systemic shock, which was almost
@@ -255,8 +260,10 @@ rounds are presented in Appendix Table A1.
 Our main specification regresses outcomes, *Y,* discussed below, on a
 set of variables using a linear fixed-effects model:[^3]
 
-*Y~i,\ t~ = β~0~ +* *β~1~ L~1~ + β~2~ L~2~ + β~3~ L~7~ + β~4~
-Cases~i,t~ + β~5~ X~1\ i,t-1~ + δ~i~ + ε~i,t\ ~*, (1)
+$$
+Y_{i,t} = β~0~ + β~1~ L~1~ + β~2~ L~2~ + β~3~ L~7~ + β~4~
+Cases~i,t~ + β~5~ X~1\ i,t-1~ + δ~i~ + ε~i,t\ ~, (1)
+$$
 
 where *i* denote household and *t* survey rounds. We use three indicator
 variables, *L~1~*, *L~2~*, and *L~7~*, to represent lockdown-related
