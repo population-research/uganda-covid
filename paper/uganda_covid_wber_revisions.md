@@ -131,13 +131,14 @@ panel data to directly analyze four broad categories of coping
 mechanisms that households may use to mitigate the effects of these
 shocks. The categories are changes in labor market participation,
 diversification of income sources, transfers and remittances, and
-changes in household structure through migration (Foster & Rosenzweig,
-2002; Jayachandran, 2006; Kochar, 1999; McKenzie, 2003; Morduch, 1995;
-Townsend, 1994; Yang & Choi, 2007). Our paper complements recent work
-showing that rural households in Uganda, especially non-farm business
-owners, experienced significant asset decline and increased likelihood
+changes in household structure through migration 
+[@Foster2002; @Jayachandran2006; @Kochar1999; @McKenzie2003; @Morduch1995;
+@Townsend1994; @Yang2007]. 
+Our paper complements recent work showing that rural households in Uganda, especially 
+non-farm business owners, experienced significant asset decline and increased likelihood
 of net borrowing, presumably as a coping mechanism after the first
-lockdown (Mahmud & Riley, 2023).
+lockdown 
+[@Mahmud2023].
 
 Using the Food and Agriculture Organization's (FAO) eight-question food
 insecurity experience scale to measure food insecurity, we find that
@@ -188,25 +189,27 @@ living elsewhere to join/rejoin the household.
 
 On March 18, 2020, the Ugandan government started imposing restrictions,
 including travel restrictions and cancellation of public gatherings,
-such as religious services, weddings, and music events (Uganda Bureau of
-Statistics, 2022). A total lockdown was imposed on March 30 with a
+such as religious services, weddings, and music events 
+[@Uganda-Bureau-of-Statistics2022]. 
+A total lockdown was imposed on March 30 with a
 nationwide curfew from 7 pm to 6:30 am, banning of public
 transportation, strict regulations on the movement of vehicles, and
-closure of all non-essential businesses, which extended till the end of
-May (Alfonsi et al., 2021; Margini et al., 2020).
+closure of all non-essential businesses, which extended till the end of May 
+[@Alfonsi2021; @Margini2020].
 
 Lockdowns were eased at the beginning of June 2020 with the resumption
-of public transportation and the opening of businesses (Guloba et al.,
-2021; Monitor, 2020; Schwartz et al., 2021; Wagner et al., 2022). Most
-small and medium businesses were back open by July-August 2020 (Alfonsi
-et al., 2021). International travel restrictions remained until the end
+of public transportation and the opening of businesses 
+[@Guloba2021; @Monitor2020; @Schwartz2021; @Wagner2022]. 
+Most small and medium businesses were back open by July-August 2020 
+[@Alfonsi2021]. 
+International travel restrictions remained until the end
 of September, when land borders reopened, and international flights
-resumed (Guloba et al., 2021).
+resumed [@Guloba2021].
 
 In response to the resurgence of Covid-19 infections in 2021, the
-government of Uganda imposed a second lockdown from June 2021 (Atamanov
-et al., 2022; Athumani, 2021). This second lockdown was partly eased by
-the end of July 2021 (Biryabarema, 2021).
+government of Uganda imposed a second lockdown from June 2021 
+[@Atamanov2022; @Athumani2021]. 
+This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
 
 # Estimation Strategy and Data
 
@@ -221,14 +224,15 @@ collaboration with the World Bank. The survey was conducted in seven
 waves, with four waves in 2020 (June, August, September, and October)
 and three in 2021 (February, March, and October). The goal was to
 understand the economic and social impacts of the Covid-19 pandemic by
-collecting high-frequency data on individuals and households (Uganda
-Bureau of Statistics, 2022). To this end, the survey asked detailed
+collecting high-frequency data on individuals and households 
+[@Uganda-Bureau-of-Statistics2022]. 
+To this end, the survey asked detailed
 questions on food insecurity, employment, income, outside assistance,
 and agricultural practices.
 
 The UHFS sample is a subset of the 3,098 households interviewed in the
-8^th^ wave of the Uganda National Panel Survey in 2019/20 (UNPS
-2019/20). In UNPS 2019/20, respondents were asked to provide a phone
+8th wave of the Uganda National Panel Survey in 2019/20 (UNPS 2019/20). 
+In UNPS 2019/20, respondents were asked to provide a phone
 number where they could be reached, either their own or that of a friend
 or neighbor. Originally, the goal was to ensure households could be
 reached in case they moved, but with the Covid lockdowns, the phone
@@ -244,8 +248,8 @@ is, for example, possible that phone surveys have a higher likelihood of
 reaching wealthier households, who typically have better access to
 phones, than poorer households. This would bias our results. To avoid
 any biases to the extent possible, we use the UHFS-provided survey
-weights to ensure that the data is nationally representative (Uganda
-Bureau of Statistics, 2022).
+weights to ensure that the data is nationally representative 
+[@Uganda-Bureau-of-Statistics2022].
 
 Over the seven rounds, the cumulative attrition rate was 15.7 percent,
 with 1,875 households from the baseline interviewed in round 7 (October
@@ -257,42 +261,43 @@ rounds are presented in Appendix Table A1.
 
 ## Empirical Specification
 
-Our main specification regresses outcomes, *Y,* discussed below, on a
+Our main specification regresses outcomes, $Y,$ discussed below, on a
 set of variables using a linear fixed-effects model:[^3]
 
 $$
-Y_{i,t} = β~0~ + β~1~ L~1~ + β~2~ L~2~ + β~3~ L~7~ + β~4~
-Cases~i,t~ + β~5~ X~1\ i,t-1~ + δ~i~ + ε~i,t\ ~, (1)
+Y_{i,t} = \beta_0 + \beta_1 L_1 + \beta_2 L_2 + \beta_3 L_7 + \beta_4 Cases_{i,t} 
++ \omega_i + \epsilon_{i,t}, 
 $$
 
-where *i* denote household and *t* survey rounds. We use three indicator
-variables, *L~1~*, *L~2~*, and *L~7~*, to represent lockdown-related
-periods, with 1 for a lockdown-related period and 0 otherwise. L~1~
-represents the first survey round in June 2020, which was towards the
+where $i$ denote household and $t$ survey rounds. 
+We use three indicator variables, $L_1$, $L_2$, and $L_7$, to represent lockdown-related
+periods, with 1 for a lockdown-related period and 0 otherwise. 
+$L_1$ represents the first survey round in June 2020, which was towards the
 end of the first lockdown, and thus captures the immediate/short-run
-effect of that lockdown. L~2~ represents the second survey round in
+effect of that lockdown. 
+$L_2$ represents the second survey round in
 August 2020 and captures the medium-run impact of the first lockdown.
-*L~7~* represents the seventh round in October 2021, which was two to
+$L_7$ represents the seventh round in October 2021, which was two to
 three months after the lifting of the second lockdown end-July 2021.
-Thus, *L~7~* captures the medium-term impact of the second lockdown. In
+Thus, $L_7$ captures the medium-term impact of the second lockdown. In
 our estimations, we compare the periods during or soon-after lockdowns
 to the other periods with no lockdowns in rounds 3, 4, 5, and 6.
 
 In addition to government-imposed lockdowns, individuals may be ill,
 decide to self-isolate, or take other steps to avoid contact with others
 if they perceive a high risk of contracting Covid-19, which may increase
-food insecurity. To capture the severity of the Covid situation*,* the
-*Cases* variable measures the number of new Covid-19 cases per 100,000
+food insecurity. To capture the severity of the Covid situation, the
+$Cases$ variable measures the number of new Covid-19 cases per 100,000
 persons in the 30 days before the household's survey date. The number of
 Covid cases comes from "Our World in Data."[^4]
 
-The household fixed-effects, *δ~i~*~,~ control for unobserved
+The household fixed-effects, $\omega_i$, control for unobserved
 household-level time-invariant factors that may bias the results. This
 approach allows us to control for time-invariant characteristics
 associated with the individual/household, such as gender, race and
 religion, constant preferences, household characteristics, area
-characteristics, and other time-invariant factors.[^5] For some
-estimations, we use individual-level dependent variables, like
+characteristics, and other time-invariant factors.[^5] 
+For some estimations, we use individual-level dependent variables, like
 employment. In these cases, the models are individual fixed-effects
 models, as the same individual from the household is followed over the
 rounds.
@@ -326,12 +331,14 @@ Neither the lockdown indicator variables nor the stringency index
 captures the extent to which the lockdown policies were enforced or
 adhered to. We, therefore, also use Google Mobility data on the percent
 change in time spent at residential locations relative to the pre-Covid
-behavior (Google, 2022).[^6] Our measure is the average of this percent
+behavior [@Google2022].[^6] 
+Our measure is the average of this percent
 change over the 30 days before each household's survey date.
 
 A final concern is that seasonal agricultural patterns may bias our
 results. Uganda has two lean seasons, one in April and May and another
-in November and December (FAO, 2022). Hence, with the first survey round
+in November and December [@FAO2022]. 
+Hence, with the first survey round
 fielded in June 2020, it is possible that part of what we capture with
 the round 1 indicator variable is the effect of the April/May lean
 season on food security. To examine the role of seasonal variation, we
@@ -343,11 +350,13 @@ explain our results.
 ## Main Outcomes: Food Insecurity
 
 The survey measures food insecurity based on the Food Insecurity
-Experience Scale (FIES) developed by the FAO (FAO, 2016). FIES uses
+Experience Scale (FIES) developed by the FAO [@FAO2016]. 
+FIES uses
 eight questions with dichotomous (yes/no) responses to understand the
 different challenges related to food insecurity. This measure has been
-empirically validated for cross-cultural use (Ballard et al., 2013;
-Kansiime et al., 2021). FIES asks whether, during the last 30 days,
+empirically validated for cross-cultural use 
+[@Ballard2013; @Kansiime2021]. 
+FIES asks whether, during the last 30 days,
 there was any time when any adult in the household experienced the
 following because of lack of money or other resources: (i) were worried
 about not having enough food to eat; (ii) were unable to eat healthy and
@@ -457,8 +466,8 @@ typical conditional logit model works by applying a fixed-effects logit
 model for households that see a change in the dependent variable over
 time. For the conditional *ordered* logit model, the actual values of
 the dependent variable are irrelevant. Instead, greater values
-correspond to higher-value outcomes (Baetschmann et al., 2015). Hence,
-for our regressions, a positive coefficient for lockdowns represents an
+correspond to higher-value outcomes [@Baetschmann2015]. 
+Hence, for our regressions, a positive coefficient for lockdowns represents an
 increase in household income, a negative coefficient represents a
 decrease, and a coefficient near 0 indicates that income remained
 stable.
@@ -660,9 +669,9 @@ the effect is statistically insignificant. These results suggest that
 households\' standard coping mechanisms were unavailable during the
 lockdowns. This is in line with the substantial decline in remittances
 across the world in the second quarter of 2020, as lockdowns worldwide
-led to the closure of workplaces and limited people's movements (Cardozo
-Silva et al., 2022; Guha et al., 2021; Kpodar et al., 2021; Shimizutani
-& Yamada, 2021; Zhang et al., 2021). The failure of these coping
+led to the closure of workplaces and limited people's movements 
+[@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
+The failure of these coping
 mechanisms in the face of reductions in income likely contributed
 substantially to the large effects of lockdowns on food insecurity.
 
@@ -846,388 +855,13 @@ better understanding of systemic shocks and how households respond is
 still lacking. Finally, the case of Uganda illustrates well the issues
 with the wholesale lockdown of economies in response to Covid-19 in
 situations with low state capacity. Uganda has been hailed as a leading
-example of curbing Covid-19 (Adams et al., 2021). However, the
+example of curbing Covid-19 [@Adams2021]. 
+However, the
 mitigation efforts failed to reach those most affected by the lockdown.
 With the low mortality rate in Sub-Saharan Africa, including Uganda, the
 potential long-term cost of the lockdowns potentially significantly
 outweighs the benefits. Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
-
-
-
-**References:**
-
-Adams, J., MacKenzie, M. J., Amegah, A. K., Ezeh, A., Gadanya, M. A.,
-Omigbodun, A., Sarki, A. M., Thistle, P., Ziraba, A. K., Stranges, S., &
-Silverman, M. (2021). The Conundrum of Low COVID-19 Mortality Burden in
-sub-Saharan Africa: Myth or Reality? *Global Health: Science and
-Practice*, *9*(3), 433--443. https://doi.org/10.9745/GHSP-D-21-00172
-
-Agamile, P. (2022). *COVID-19 Lockdown and Exposure of Households to
-Food Insecurity in Uganda: Insights from a National High Frequency Phone
-Survey*. https://link.springer.com/article/10.1057/s41287-022-00510-8
-
-Aggarwal, S., Jeong, D., Kumar, N., Park, D. S., Robinson, J., &
-Spearot, A. (2022). COVID-19 market disruptions and food security:
-Evidence from households in rural Liberia and Malawi. *PloS One*,
-*17*(8), e0271488. https://doi.org/10.1371/journal.pone.0271488
-
-Alam, S. A., & Bose, B. (2020). Did the Great Recession Affect
-Fertility? Examining the Impact of Job Displacements on the Timing of
-Births in the United States. *Southern Economic Journal*, *86*(3),
-873--909. https://doi.org/10.1002/soej.12408
-
-Alam, S. A., & Pörtner, C. C. (2018). Income shocks, contraceptive use,
-and timing of fertility. *Journal of Development Economics*, *131*,
-96--103. https://doi.org/10.1016/j.jdeveco.2017.10.007
-
-Alfonsi, L., Bandiera, O., Bassi, V., Burgess, R., Rasul, I., Veroux,
-O., & Vitali, A. (2021). COVID-19 and Ugandan SMEs: Impacts and Speed of
-Recovery. *Centre for Economic Policy Research*, 7.
-
-Amare, M., Abay, K. A., Tiberti, L., & Chamberlin, J. (2021). COVID-19
-and food security: Panel data evidence from Nigeria. *Food Policy*,
-*101*, 102099. https://doi.org/10.1016/j.foodpol.2021.102099
-
-Atamanov, A., Cochinard, F., Ilukor, J., Kilic, T., & Ponzini, G. (2022,
-March 15). *Economic impact of a second lockdown in Uganda: Results from
-the seventh round of the High-Frequency Phone Survey*.
-https://blogs.worldbank.org/opendata/economic-impact-second-lockdown-uganda-results-seventh-round-high-frequency-phone-survey
-
-Athumani, H. (2021). *Uganda Lifts Some COVID-19 Restrictions*. VOA
-News.
-https://www.voanews.com/a/covid-19-pandemic_uganda-lifts-some-covid-19-restrictions/6208989.html
-
-Baetschmann, G., Staub, K. E., & Winkelmann, R. (2015). Consistent
-estimation of the fixed effects ordered logit model. *Journal of the
-Royal Statistical Society. Series A (Statistics in Society)*, *178*(3),
-685--703.
-
-Balde, R., Boly, M., & Avenyo, E. (2020). Labour market effects of
-COVID-19 in sub-Saharan Africa: An informality lens from Burkina Faso,
-Mali and Senegal. In *MERIT Working Papers* (No. 2020--022; MERIT
-Working Papers). United Nations University - Maastricht Economic and
-Social Research Institute on Innovation and Technology (MERIT).
-https://ideas.repec.org/p/unm/unumer/2020022.html
-
-Ballard, T. J., Kepple, A. W., Cafiero, C., & Statistics Division.
-(2013). *The Food insecurity experience scale: Development of a global
-standard for monitoring hunger worldwide*. FAO.
-https://www.fao.org/publications/card/fr/c/1f25bb40-7c4e-49e0-b79b-4d8b5e6354b5/
-
-BBC. (2020, July 23). *Uganda---Where security forces may be more deadly
-than coronavirus*. BBC News.
-https://www.bbc.com/news/world-africa-53450850
-
-Birner, R., Blaschke, N., Bosch, C., Daum, T., Graf, S., Güttler, D.,
-Heni, J., Kariuki, J., Katusiime, R., Seidel, A., Senon, Z. N., & Woode,
-G. (2021). 'We would rather die from Covid-19 than from
-hunger'---Exploring lockdown stringencies in five African countries.
-*Global Food Security*, *31*, 100571.
-https://doi.org/10.1016/j.gfs.2021.100571
-
-Biryabarema, E. (2021, July 31). Uganda partially eases COVID-19
-containment measures. *Reuters*.
-https://www.reuters.com/world/africa/uganda-partially-eases-covid-19-containment-measures-2021-07-30/
-
-Cardozo Silva, A. R., Diaz Pavez, L. R., Martínez‐Zarzoso, I., &
-Nowak‐Lehmann, F. (2022). The impact of COVID‐19 government responses on
-remittances in Latin American countries. *Journal of International
-Development*, *34*(4), 803--822. https://doi.org/10.1002/jid.3606
-
-Case, A. (1995). Symposium on Consumption Smoothing in Developing
-Countries. *Journal of Economic Perspectives*, *9*(3), 81--82.
-https://doi.org/10.1257/jep.9.3.81
-
-Ceballos, F., Hernandez, M. A., & Paz, C. (2021). Short‐term impacts of
-COVID‐19 on food security and nutrition in rural Guatemala: Phone‐based
-farm household survey evidence. *Agricultural Economics*, *52*(3),
-Article 3. https://doi.org/10.1111/agec.12629
-
-Ceballos, F., Kannan, S., & Kramer, B. (2020). Impacts of a national
-lockdown on smallholder farmers' income and food security: Empirical
-evidence from two states in India. *World Development*, *136*, 105069.
-https://doi.org/10.1016/j.worlddev.2020.105069
-
-Charles, K. K., & DeCicca, P. (2008). Local labor market fluctuations
-and health: Is there a connection and for whom? *Journal of Health
-Economics*, *27*(6), 1532--1550.
-https://doi.org/10.1016/j.jhealeco.2008.06.004
-
-Curi-Quinto, K., Sánchez, A., Lago-Berrocal, N., Penny, M. E., Murray,
-C., Nunes, R., Favara, M., Wijeyesekera, A., Lovegrove, J. A.,
-Soto-Cáceres, V., & Vimaleswaran, K. S. (2021). Role of Government
-Financial Support and Vulnerability Characteristics Associated with Food
-Insecurity during the COVID-19 Pandemic among Young Peruvians.
-*Nutrients*, *13*(10), Article 10. https://doi.org/10.3390/nu13103546
-
-Dasgupta, S., & Robinson, E. J. Z. (2021). Food Insecurity, Safety Nets,
-and Coping Strategies during the COVID-19 Pandemic: Multi-Country
-Evidence from Sub-Saharan Africa. *International Journal of
-Environmental Research and Public Health*, *18*(19), Article 19.
-https://doi.org/10.3390/ijerph18199997
-
-Del Ninno, C., Dorosh, P. A., & Smith, L. C. (2003). Public Policy,
-Markets and Household Coping Strategies in Bangladesh: Avoiding a Food
-Security Crisis Following the 1998 Floods. *Economic Crises, Natural
-Disasters, and Poverty*, *31*(7), 1221--1238.
-https://doi.org/10.1016/S0305-750X(03)00071-8
-
-Deshpande, A. (2020). The Covid-19 Pandemic and Lockdown: First Order
-Effects on Gender Gaps in Employment and Domestic Time Use in India. In
-*GLO Discussion Paper Series* (No. 607; GLO Discussion Paper Series,
-Issue 607). Global Labor Organization (GLO).
-https://ideas.repec.org/p/zbw/glodps/607.html
-
-Egger, D., Miguel, E., Warren, S. S., Shenoy, A., Collins, E., Karlan,
-D., Parkerson, D., Mobarak, A. M., Fink, G., Udry, C., Walker, M.,
-Haushofer, J., Larreboure, M., Athey, S., Lopez-Pena, P., Benhachmi, S.,
-Humphreys, M., Lowe, L., Meriggi, N. F., ... Vernot, C. (2022). Falling
-living standards during the COVID-19 crisis: Quantitative evidence from
-nine developing countries. *Science Advances*, *7*(6), Article 6.
-https://doi.org/10.1126/sciadv.abe0997
-
-Fallon, P. R., & Lucas, R. E. B. (2002). The Impact of Financial Crises
-on Labor Markets, Household Incomes, and Poverty: A Review of Evidence.
-*The World Bank Research Observer*, *17*(1), 21--45.
-https://doi.org/10.1093/wbro/17.1.21
-
-FAO. (2016). *Global Food Insecurity Experience Scale Survey Modules*.
-
-FAO. (2022). *GIEWS Country Brief---Uganda*. Food and Agricultural
-Organization of the United Nations.
-https://www.fao.org/giews/countrybrief/country/UGA/pdf/UGA.pdf
-
-Foster, A. D., & Rosenzweig, M. R. (2002). Household Division and Rural
-Economic Growth. *The Review of Economic Studies*, *69*(4), 839--869.
-https://doi.org/10.1111/1467-937X.00228
-
-Gaitán-Rossi, P., Vilar-Compte, M., Teruel, G., & Pérez-Escamilla, R.
-(2021). Food insecurity measurement and prevalence estimates during the
-COVID-19 pandemic in a repeated cross-sectional survey in Mexico.
-*Public Health Nutrition*, *24*(3), Article 3.
-https://doi.org/10.1017/S1368980020004000
-
-Giacoman, C., Herrera, M. S., & Ayala Arancibia, P. (2021). Household
-food insecurity before and during the COVID-19 pandemic in Chile.
-*Public Health*, *198*, 332--339.
-https://doi.org/10.1016/j.puhe.2021.07.032
-
-Glewwe, P., & Hall, G. (1998). Are some groups more vulnerable to
-macroeconomic shocks than others? Hypothesis tests based on panel data
-from Peru. *Journal of Development Economics*, *56*(1), 181--206.
-https://doi.org/10.1016/S0304-3878(98)00058-3
-
-Google. (2022). *COVID-19 Community Mobility Report*. COVID-19 Community
-Mobility Report. https://www.google.com/covid19/mobility?hl=en
-
-Guha, P., Islam, B., & Hussain, M. A. (2021). COVID-19 lockdown and
-penalty of joblessness on income and remittances: A study of inter-state
-migrant labourers from Assam, India. *Journal of Public Affairs*,
-*21*(4), e2470. https://doi.org/10.1002/pa.2470
-
-Guloba, M. M., Kakuru, M., & Ssewanyana, S. N. (2021). *The impact of
-COVID-19 on industries without smokestacks in Uganda*. Africa Growth
-Initiative at Brookings.
-https://www.brookings.edu/research/the-impact-of-covid-19-on-industries-without-smokestacks-in-uganda/
-
-Gupta, A., Malani, A., & Woda, B. (2021). *Explaining the Income and
-Consumption Effects of COVID in India* (Working Paper No. 28935; Working
-Paper Series, Issue 28935). National Bureau of Economic Research.
-https://doi.org/10.3386/w28935
-
-Hale, T., Angrist, N., Goldszmidt, R., Kira, B., Petherick, A.,
-Phillips, T., Webster, S., Cameron-Blake, E., Hallas, L., Majumdar, S.,
-& Tatlow, H. (2021). A global panel database of pandemic policies
-(Oxford COVID-19 Government Response Tracker). *Nature Human Behaviour*,
-*5*(4), 529--538. https://doi.org/10.1038/s41562-021-01079-8
-
-Hallegatte, S., Vogt-Schilb, A., Rozenberg, J., Bangalore, M., &
-Beaudet, C. (2020). From Poverty to Disaster and Back: A Review of the
-Literature. *Economics of Disasters and Climate Change*, *4*(1),
-223--247. https://doi.org/10.1007/s41885-020-00060-5
-
-Hamadani, J. D., Hasan, M. I., Baldi, A. J., Hossain, S. J., Shiraji,
-S., Bhuiyan, M. S. A., Mehrin, S. F., Fisher, J., Tofail, F., Tipu, S.
-M. M. U., Grantham-McGregor, S., Biggs, B.-A., Braat, S., & Pasricha,
-S.-R. (2020). Immediate impact of stay-at-home orders to control
-COVID-19 transmission on socioeconomic conditions, food insecurity,
-mental health, and intimate partner violence in Bangladeshi women and
-their families: An interrupted time series. *The Lancet. Global Health*,
-*8*(11), Article 11. https://doi.org/10.1016/S2214-109X(20)30366-1
-
-Harris, J., Depenbusch, L., Pal, A. A., Nair, R. M., & Ramasamy, S.
-(2020). Food system disruption: Initial livelihood and dietary effects
-of COVID-19 on vegetable producers in India. *Food Security*, *12*(4),
-Article 4. https://doi.org/10.1007/s12571-020-01064-5
-
-Headey, D. D., Goudet, S., Lambrecht, I., Oo, T. Z., Maffioli, E. M., &
-Toth, R. (2020). *Poverty and food insecurity during COVID-19: Telephone
-survey evidence from mothers in rural and urban Myanmar* (0 ed.).
-International Food Policy Research Institute.
-https://doi.org/10.2499/p15738coll2.134036
-
-Hirvonen, K., de Brauw, A., & Abate, G. T. (2021). Food Consumption and
-Food Security during the COVID-19 Pandemic in Addis Ababa. *American
-Journal of Agricultural Economics*, *103*(3), Article 3.
-https://doi.org/10.1111/ajae.12206
-
-Jaacks, L. M., Veluguri, D., Serupally, R., Roy, A., Prabhakaran, P., &
-Ramanjaneyulu, G. (2021). Impact of the COVID-19 pandemic on
-agricultural production, livelihoods, and food security in India:
-Baseline results of a phone survey. *Food Security*, *13*(5), Article 5.
-https://doi.org/10.1007/s12571-021-01164-w
-
-Janssens, W., Pradhan, M., de Groot, R., Sidze, E., Donfouet, H. P. P.,
-& Abajobir, A. (2021). The short-term economic effects of COVID-19 on
-low-income households in rural Kenya: An analysis using weekly financial
-household data. *World Development*, *138*, 105280.
-https://doi.org/10.1016/j.worlddev.2020.105280
-
-Jayachandran, S. (2006). Selling Labor Low: Wage Responses to
-Productivity Shocks in Developing Countries. *Journal of Political
-Economy*, *114*(3), 538\--575.
-
-Kang, Y., Baidya, A., Aaron, A., Wang, J., Chan, C., & Wetzler, E.
-(2021). Differences in the early impact of COVID-19 on food security and
-livelihoods in rural and urban areas in the Asia Pacific Region. *Global
-Food Security*, *31*, 100580. https://doi.org/10.1016/j.gfs.2021.100580
-
-Kansiime, M. K., Tambo, J. A., Mugambi, I., Bundi, M., Kara, A., &
-Owuor, C. (2021). COVID-19 implications on household income and food
-security in Kenya and Uganda: Findings from a rapid assessment. *World
-Development*, *137*, 105199.
-https://doi.org/10.1016/j.worlddev.2020.105199
-
-Kesar, S., Abraham, R., Lahoti, R., Nath, P., & Basole, A. (2021).
-Pandemic, informality, and vulnerability: Impact of COVID-19 on
-livelihoods in India. *Canadian Journal of Development Studies / Revue
-Canadienne d'études Du Développement*, *42*(1--2), Article 1--2.
-https://doi.org/10.1080/02255189.2021.1890003
-
-Kochar, A. (1999). Smoothing Consumption by Smoothing Income:
-Hours-of-Work Responses to Idiosyncratic Agricultural Shocks in Rural
-India. *The Review of Economics and Statistics*, *81*(1), 50--61.
-https://doi.org/10.1162/003465399767923818
-
-Komin, W., Thepparp, R., Subsing, B., & Engstrom, D. (2021). Covid-19
-and its impact on informal sector workers: A case study of Thailand.
-*Asia Pacific Journal of Social Work and Development*, *31*(1--2),
-Article 1--2. https://doi.org/10.1080/02185385.2020.1832564
-
-Kpodar, K., Mlachila, M., Quayyum, S., & Gammadigbe, V. (2021). *Defying
-the Odds: Remittances During the COVID-19 Pandemic*. International
-Monetary Fund.
-https://www.imf.org/en/Publications/WP/Issues/2021/07/16/Defying-the-Odds-Remittances-During-the-COVID-19-Pandemic-461321
-
-Kundu, S., Banna, M. H. A., Sayeed, A., Sultana, M. S., Brazendale, K.,
-Harris, J., Mandal, M., Jahan, I., Abid, M. T., & Khan, M. S. I. (2021).
-Determinants of household food security and dietary diversity during the
-COVID-19 pandemic in Bangladesh. *Public Health Nutrition*, *24*(5),
-Article 5. https://doi.org/10.1017/S1368980020005042
-
-Lee, Kenneth, Sahai, H., Baylis, P., & Greenstone, Michael. (2022, April
-9). Job Loss and Behavioral Change: The Unprecedented Effects of the
-India Lockdown in Delhi. *BFI*.
-https://bfi.uchicago.edu/working-paper/job-loss-and-behavioral-change-the-unprecedented-effects-of-the-india-lockdown-in-delhi/
-
-Mahmud, M., & Riley, E. (2021). Household response to an extreme shock:
-Evidence on the immediate impact of the Covid-19 lockdown on economic
-outcomes and well-being in rural Uganda. *World Development*, *140*,
-105318. https://doi.org/10.1016/j.worlddev.2020.105318
-
-Mahmud, M., & Riley, E. (2023). Adapting to an aggregate shock: The
-impact of the Covid-19 crisis on rural households. *Review of Economics
-of the Household*, *21*(1), 19--36.
-https://doi.org/10.1007/s11150-022-09625-7
-
-Margini, F., Pattnaik, A., Jordanwood, T., Nakyanzi, A., & Byakika, S.
-(2020). *Case study: The Initial COVID-19 response in Uganda*. ThinkWell
-and Ministry of Health Uganda.
-
-McKenzie, D. J. (2003). How do Households Cope with Aggregate Shocks?
-Evidence from the Mexican Peso Crisis. *Economic Crises, Natural
-Disasters, and Poverty*, *31*(7), 1179--1199.
-https://doi.org/10.1016/S0305-750X(03)00064-0
-
-Monitor. (2020, July 19). *Gulu District lockdown to be lifted on
-Monday*.
-https://www.monitor.co.ug/uganda/news/national/gulu-district-lockdown-to-be-lifted-on-monday-1896922
-
-Morduch, J. (1995). Income Smoothing and Consumption Smoothing. *Journal
-of Economic Perspectives*, *9*(3), 103--114.
-
-Nguyen, P. H., Kachwaha, S., Pant, A., Tran, L. M., Ghosh, S., Sharma,
-P. K., Shastri, V. D., Escobar-Alegria, J., Avula, R., & Menon, P.
-(2021). Impact of COVID-19 on household food insecurity and
-interlinkages with child feeding practices and coping strategies in
-Uttar Pradesh, India: A longitudinal community-based study. *BMJ Open*,
-*11*(4), Article 4. https://doi.org/10.1136/bmjopen-2021-048738
-
-Rönkkö, R., Rutherford, S., & Sen, K. (2022). The impact of the COVID-19
-pandemic on the poor: Insights from the Hrishipara diaries. *World
-Development*, *149*, 105689.
-https://doi.org/10.1016/j.worlddev.2021.105689
-
-Ruszczyk, H. A., Rahman, M. F., Bracken, L. J., & Sudha, S. (2021).
-Contextualizing the COVID-19 pandemic's impact on food security in two
-small cities in Bangladesh. *Environment and Urbanization*, *33*(1),
-Article 1. https://doi.org/10.1177/0956247820965156
-
-Schotte, S., Danquah, M., Osei, R. D., & Sen, K. (2021). *The Labour
-Market Impact of COVID-19 Lockdowns: Evidence from Ghana* (SSRN
-Scholarly Paper No. 3917307; Issue 3917307). Social Science Research
-Network. https://doi.org/10.2139/ssrn.3917307
-
-Schwartz, J. I., Muddu, M., Kimera, I., Mbuliro, M., Ssennyonjo, R.,
-Ssinabulya, I., & Semitala, F. C. (2021). Impact of a COVID-19 National
-Lockdown on Integrated Care for Hypertension and HIV. *Global Heart*,
-*16*(1), 9. https://doi.org/10.5334/gh.928
-
-Shimizutani, S., & Yamada, E. (2021). Resilience against the pandemic:
-The impact of COVID-19 on migration and household welfare in Tajikistan.
-*PLOS ONE*, *16*(9 September).
-https://doi.org/10.1371/journal.pone.0257469
-
-Skoufias, E. (2003). Economic Crises and Natural Disasters: Coping
-Strategies and Policy Implications. *Economic Crises, Natural Disasters,
-and Poverty*, *31*(7), 1087--1102.
-https://doi.org/10.1016/S0305-750X(03)00069-X
-
-Thomas, D., & Frankenberg, E. (2007). Household Responses to the
-Financial Crisis in Indonesia: Longitudinal Evidence on Poverty,
-Resources, and Well-Being. In *Globalization and Poverty* (pp.
-517--560). University of Chicago Press.
-http://www.nber.org/chapters/c0116
-
-Townsend, R. M. (1994). Risk and Insurance in Village India.
-*Econometrica*, *62*(3), 539--591.
-
-Uganda Bureau of Statistics. (2022). *Uganda High-Frequency Phone Survey
-on COVID-19 -- Basic Information Document*.
-https://microdata.worldbank.org/index.php/catalog/3765/related-materials
-
-Wagner, G. J., Wagner, Z., Gizaw, M., Saya, U., MacCarthy, S., Mukasa,
-B., Wabukala, P., & Linnemayr, S. (2022). Increased Depression during
-COVID-19 Lockdown Associated with Food Insecurity and Antiretroviral
-Non-Adherence among People Living with HIV in Uganda. *AIDS and
-Behavior*, *26*(7), 2182--2190.
-https://doi.org/10.1007/s10461-021-03371-0
-
-Wild, I., Gedge, A., Burridge, J., & Burford, J. (2021). The Impact of
-COVID-19 on the Working Equid Community: Responses from 1530 Individuals
-Accessing NGO Support in 14 Low- and Middle-Income Countries. *Animals :
-An Open Access Journal from MDPI*, *11*(5), Article 5.
-https://doi.org/10.3390/ani11051363
-
-Yang, D., & Choi, H. (2007). Are Remittances Insurance? Evidence from
-Rainfall Shocks in the Philippines. *World Bank Economic Review*,
-*21*(2), 219\--248.
-
-Zhang, Y., Zhan, Y., Diao, X., Chen, K. Z., & Robinson, S. (2021). The
-Impacts of COVID-19 on Migrants, Remittances, and Poverty in China: A
-Microsimulation Analysis. *China and World Economy*, *29*(6), 4--33.
-https://doi.org/10.1111/cwe.12392
 
 ![](media/image1.emf){width="6.23in" height="8.19in"}
 
@@ -2450,30 +2084,28 @@ at 10%.
   ---------------------------------------------------------------------------------------------
 
 [^1]: One set of studies examines the impact of Covid-19 lockdowns on
-    food insecurity (Agamile, 2022; Ceballos et al., 2020, 2021;
-    Dasgupta & Robinson, 2021; Egger et al., 2022; Gaitán-Rossi et al.,
-    2021; Giacoman et al., 2021; Hamadani et al., 2020; Harris et al.,
-    2020; Headey et al., 2020; Jaacks et al., 2021; Kansiime et al.,
-    2021; Kesar et al., 2021; Kundu et al., 2021; Lee, Kenneth et al.,
-    2022; Nguyen et al., 2021). Another part of the literature examine
-    the impact on income, employment, or agricultural production (Balde
-    et al., 2020; Deshpande, 2020; Egger et al., 2022; Harris et al.,
-    2020; Headey et al., 2020; Jaacks et al., 2021; Kang et al., 2021;
-    Kesar et al., 2021; Komin et al., 2021; Rönkkö et al., 2022;
-    Ruszczyk et al., 2021; Wild et al., 2021).
+    food insecurity [@Agamile2022; @Ceballos2020; @Ceballos2021;
+    @Dasgupta2021; @Egger2022; @Gaitan-Rossi2021; @Giacoman2021; 
+    @Hamadani2020; @Harris2020; @Headey2020; @Jaacks2021; @Kansiime2021; 
+    @Kesar2021; @Kundu2021; @Lee2022; @Nguyen2021]. 
+    Another part of the literature examine
+    the impact on income, employment, or agricultural production 
+    [@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; @Headey2020; 
+    @Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
+    @Ruszczyk2021; @Wild2021].
 
 [^2]: Two studies examine the impact on income and employment using
     panel data. Results for Ghana show that lockdowns significantly
-    decreased employment and earnings (Schotte et al., 2021). In rural
-    Uganda, household income declined sharply during the initial
+    decreased employment and earnings [@Schotte2021]. 
+    In rural Uganda, household income declined sharply during the initial
     lockdown. However, a year later, those without a business mostly
     recovered, while business-owning households still had significantly
-    lower incomes (Mahmud & Riley, 2023).
+    lower incomes [@Mahmud2023].
 
 [^3]: A linear model has two advantages over non-linear models, such as
-    conditional logit, and has often been used in recent studies (Alam &
-    Bose, 2020; Alam & Pörtner, 2018; Charles & DeCicca, 2008). First,
-    coefficients are easier to interpret. Second, a linear model allows
+    conditional logit, and has often been used in recent studies 
+    [@Alam2020; @Alam2018; @Charles2008]. 
+    First, coefficients are easier to interpret. Second, a linear model allows
     a more straightforward comparison of coefficients across regressions
     where some dependent variables are binary and some non-binary.
     Robustness checks, presented in Appendix Tables A1 show that
@@ -2505,11 +2137,11 @@ at 10%.
     present the mean of outcome variables in non-lockdown periods at the
     bottom of each column.
 
-[^9]: While not focusing on lockdowns, one prior study, Gupta et al.
-    (2021), finds evidence that the pandemic itself led to a switch in
+[^9]: While not focusing on lockdowns, one prior study 
+	finds evidence that the pandemic itself led to a switch in
     occupations, particularly among salaried and business persons, with
     agriculture seeing the biggest inflow of labor compared to other
-    industries.
+    industries [@Gupta2021].
 
 [^10]: We do not have income data for round 7 and thus cannot examine
     the medium-term impact of the second lockdown.
