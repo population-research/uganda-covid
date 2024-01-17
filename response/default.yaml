@@ -1,0 +1,25 @@
+---
+geometry: margin=1in
+fontsize: 12pt
+
+header-includes:
+ - \usepackage{setspace}
+ - \usepackage{dcolumn}
+ - \usepackage[flushleft]{threeparttable}
+ - \usepackage{booktabs}
+ - \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+ 
+figPrefix:
+ - "Figure"
+ - "Figures"
+
+pairDelim: "and"
+
+lastDelim: "and"
+ 
+refDelim: "and"
+ 
+output:
+    pdf_document
+---
+

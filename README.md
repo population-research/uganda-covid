@@ -47,7 +47,10 @@ which can be found at https://doi.org/10.48529/nqzx-f196.
 Uganda National Panel Survey 2018-2019
 https://doi.org/10.48529/ttyg-m774
 
-Each round and the UNPS should be a separate directory:
+Uganda National Panel Survey 2015-2016
+https://doi.org/10.48529/hm2z-2k12
+
+Each round and the UNPS rounds should be separate directories:
 
 ```
 ./raw_data
@@ -59,6 +62,7 @@ Each round and the UNPS should be a separate directory:
 |-- round6
 |-- round7
 |-- panel_19_20
+|-- panel_15_16
 ```
 
 The documentation for the individual rounds is available at:
