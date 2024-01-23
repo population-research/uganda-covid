@@ -109,7 +109,7 @@ base %>%
   )%>%
   ggplot(aes(x = value, color = type)) +
   geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
-  coord_flip(xlim = c(0, 65), expand = FALSE) +
+  coord_flip(xlim = c(0, 100), expand = FALSE) +
   scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) +
