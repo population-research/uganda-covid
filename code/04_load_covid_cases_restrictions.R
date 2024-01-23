@@ -300,20 +300,9 @@ google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv
   
 # Prior 30 days measures - merged into base data
 
-covid_oxford_by_day <- 
-  full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
+full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
   full_join(google, by = "date") %>% 
-  arrange(date)
+  arrange(date) %>% 
+  write_rds(here("data", "temp_covid_cases_restrictions.rds"))
 
-base <- read_rds(here("data", "load_3.rds")) %>% 
-  left_join(covid_oxford_by_day, by = c("interview_date" = "date")) 
-
-base %>%   
-  write_rds(here("data", "base.rds"))
-
-base %>% 
-  write_dta(
-    here("data", "base.dta"),
-    version = 14,
-  )
 
