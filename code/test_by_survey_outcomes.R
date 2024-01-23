@@ -41,33 +41,33 @@ theme_set(theme_uft)
 # Interview dates by round ----
 
 base <- read_rds(here("data", "base.rds")) %>% 
-  select(survey, interview_date, starts_with("food")) %>% 
-  # recode all variables that begin with food so 2 becomes 0
-  mutate(
-    across(starts_with("food"), ~ case_match(., 2 ~ 0, 1 ~ 1))
-  ) %>%
+  select(survey, interview_date, starts_with(c("food", "insecure"))) %>% 
+  select(-insecure_sum) %>% 
   group_by(survey) %>% 
   summarise(
     first_date = min(interview_date),
     last_date = max(interview_date),
     # find average across all variables that begin with food
-    across(starts_with("food"), \(x) mean(x, na.rm = TRUE) * 100)
+    across(starts_with(c("food", "insecure")), \(x) mean(x, na.rm = TRUE) * 100)
   )  %>% 
   # Pivot longer over all variables that begin with food
-  pivot_longer(-c(survey, first_date, last_date), names_to = "type", values_to = "value") %>% 
-  # remove food_ from variable 
-  mutate(type = str_remove(type, "food_")) %>% 
-  # make type a factor and specify order
-  mutate(type = factor(
-    type, 
-    levels = c("healthy_lack", "few_kinds", "insufficient_worry", "less_than_expected", "skipped_meal", "hungry", "ranout", "didnt_eat_all_day")
-    )
-  )
-  
+  pivot_longer(-c(survey, first_date, last_date), names_to = "type", values_to = "value") 
+
 
 # Plot ----
 
+# Individual food insecurity outcomes
 base %>% 
+  filter(str_detect(type, "food_")) %>%
+  # remove food_ from variable 
+  mutate(type = str_remove(type, "food_")) %>% 
+  # make type a factor and specify order
+  mutate(
+    type = factor(
+      type, 
+      levels = c("healthy_lack", "few_kinds", "insufficient_worry", "less_than_expected", "skipped_meal", "hungry", "ranout", "didnt_eat_all_day")
+    )
+  )%>%
   ggplot(aes(x = value, color = type)) +
   geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
   coord_flip(xlim = c(0, 65), expand = FALSE) +
@@ -93,7 +93,42 @@ base %>%
   ) +
   guides(color = guide_legend(ncol = 2)) +
   theme(legend.position = c(0.5, 0.8)) 
-  
+
+
+# Cumulative food insecurity outcomes
+base %>% 
+  filter(str_detect(type, "insecure_")) %>%
+  # remove food_ from variable 
+  mutate(type = str_remove(type, "insecure_")) %>% 
+  # make type a factor and specify order
+  mutate(
+    type = factor(
+      type, 
+      levels = c("any", "moderate", "severe")
+    )
+  )%>%
+  ggplot(aes(x = value, color = type)) +
+  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  coord_flip(xlim = c(0, 65), expand = FALSE) +
+  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Any food insecurity",
+      "Moderate or severe food insecurity",
+      "Severe food insecurity")
+  ) +
+  labs(
+    x = "Percent",
+    y = "Survey dates",
+    title = "Food insecurity by survey round"
+  ) +
+  guides(color = guide_legend(ncol = 2)) +
+  theme(legend.position = c(0.5, 0.8)) 
+
+
   
   
   
