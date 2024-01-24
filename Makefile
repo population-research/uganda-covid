@@ -69,6 +69,10 @@ paper: $(TEXT)/$(PAPER).pdf
 $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(TEXT)/default.yaml
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
+
+.PHONY: view
+view: $(TEXT)/$(PAPER).pdf
+	$(PDFAPP) $(TEXT)/$(PAPER).pdf
 	
 .PHONY: word
 word: $(TEXT)/$(PAPER).docx
