@@ -33,6 +33,7 @@ data/unzip_temp/*
 data/unzip_mics_temp/*
 tables/*.tex
 figures/*.tex
+figures/*.png
 
 # LaTeX
 *.nav
