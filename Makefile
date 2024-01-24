@@ -2,6 +2,7 @@
 
 PAPER = uganda_covid_wber_revisions
 TEXT   = ./paper
+REP    = ./response
 FIG    = ./figures
 TAB    = ./tables
 CODE   = ./code
@@ -75,4 +76,11 @@ word: $(TEXT)/$(PAPER).docx
 $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(TEXT)/default.yaml
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
+
+.PHONY: response
+response: $(REP)/wber_response.pdf
+
+$(REP)/wber_response.pdf: $(REP)/wber_response.md $(TEXT)/uganda_covid.bib \
+ $(REP)/default.yaml
+	cd $(REP); pandoc default.yaml wber_response.md -o wber_response.pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
