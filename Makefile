@@ -1,6 +1,6 @@
-### Makefile for [Project Title]       ###
+### Makefile for Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda       ###
 
-PAPER = [file_name for md/LaTeX file]
+PAPER = uganda_covid_wber_revisions
 TEXT   = ./paper
 FIG    = ./figures
 TAB    = ./tables
@@ -58,5 +58,21 @@ $(DAT)/temp_covid_cases_restrictions.rds: $(CODE)/04_load_covid_cases_restrictio
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
 
 
+###################################################################
+### Paper Production                                            ###
+###################################################################
 
+.PHONY: paper
+paper: $(TEXT)/$(PAPER).pdf
+
+$(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
+ $(TEXT)/default.yaml
+	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
+	
+.PHONY: word
+word: $(TEXT)/$(PAPER).docx
+
+$(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
+ $(TEXT)/default.yaml
+	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
 
