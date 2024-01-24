@@ -24,6 +24,7 @@
 *.SAV
 *.csv
 *.xlsx
+*.docx
 
 # Generated files the data, tables, and figures directories - it can always
 # be regenerated
