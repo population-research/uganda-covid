@@ -67,19 +67,21 @@ $(DAT)/temp_covid_cases_restrictions.rds: $(CODE)/04_load_covid_cases_restrictio
 paper: $(TEXT)/$(PAPER).pdf
 
 $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
- $(TEXT)/default.yaml
+ $(TEXT)/default.yaml \
+ $(FIG)/food_insecurity_by_survey_round.png
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
-.PHONY: view
-view: $(TEXT)/$(PAPER).pdf
-	$(PDFAPP) $(TEXT)/$(PAPER).pdf
-	
 .PHONY: word
 word: $(TEXT)/$(PAPER).docx
 
 $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
- $(TEXT)/default.yaml
+ $(TEXT)/default.yaml \
+ $(FIG)/food_insecurity_by_survey_round.png
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
+
+.PHONY: view
+view: $(TEXT)/$(PAPER).pdf
+	$(PDFAPP) $(TEXT)/$(PAPER).pdf
 
 .PHONY: response
 response: $(REP)/wber_response.pdf
