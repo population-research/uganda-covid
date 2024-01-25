@@ -16,11 +16,10 @@ author:
 	Oregon, Salem, Oregon]
 thanks: |
   We would like to thank seminar participants at Howard University, Alex
-  Henke, and two anonymous referees for their helpful comments and
-  suggestions on an earlier version of this paper. We would also like to
-  thank Pascal Ntaganda for his research assistance.
+  Henke, and four anonymous referees for their helpful comments and suggestions. 
+  We would also like to thank Pascal Ntaganda for his research assistance.
   
-  Partial support for this research came from a Eunice Kennedy Shriver National
+  Partial support for this research came from an Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
   5R24HD042828, to the Center for Studies in Demography and Ecology at the
   University of Washington.
@@ -51,15 +50,23 @@ link-citations: true
 
 Uganda had some of the strictest Covid-19 lockdowns in Sub-Saharan
 Africa, one in 2020 and another in 2021 [@BBC2020;@Birner2021;@Mahmud2021]. 
-Using longitudinal data and household fixed
-effects, we examine the impact of the twin lockdowns in Uganda on food
-insecurity, labor market outcomes, and how households attempted to cope
-with the lockdowns.
+Using longitudinal data and household fixed effects, we examine the impact of the 
+twin lockdowns in Uganda on food insecurity, labor market outcomes, and how households 
+attempted to cope with the lockdowns.
+This examination is motivated by the substantial changes in food insecurity over time
+in Uganda, shown in [@fig:description].[^definition]
+
+[^definition]: The definition of food insecurity is described in detail below 
+[@FAO0]
+
+
+![Caption](../figures/food_insecurity_by_survey_round.png){#fig:description}
+
 
 Early assessments of the impact of the pandemic in developing countries
 generally find a negative effect of lockdowns on food insecurity,
-income, employment, and agricultural production.[^1] However, these
-studies have limitations, such as using only cross-sectional type data
+income, employment, and agricultural production.[^1] 
+However, these studies have limitations, such as using only cross-sectional type data
 or having a narrow geographical focus covering only one or two villages
 or states in a country. These studies also suggest that households try
 to cope with the lockdowns through behavior changes, such as reducing
@@ -69,6 +76,9 @@ groups, increasing borrowing, and selling assets
 In addition, there is evidence that remittances declined, and there was insufficient 
 government support to help households cope with the shock 
 [@Ceballos2021;@Curi-Quinto2021].
+
+
+
 
 Only four studies we could identify used household fixed-effects models
 to control for household-specific time-invariant factors when examining
