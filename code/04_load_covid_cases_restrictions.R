@@ -31,8 +31,15 @@ Mode <- function(x, na.rm = FALSE) {
 ## Description Link: https://docs.owid.io/projects/covid/en/latest/dataset.html
 ## Data URL: https://covid.ourworldindata.org/data/owid-covid-data.csv
 
+# We use locally saved data as the new online data is per week rather than per day
+
+
 ## load data
-covid_cases_base <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>%
+# covid_cases_base <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>%
+#   rename_to_lower_snake() %>%
+#   filter(iso_code == "UGA")
+
+covid_cases_base <- read_csv(here("raw_data", "external_data", "owid-covid-data.csv")) %>%
   rename_to_lower_snake() %>%
   filter(iso_code == "UGA")
 
@@ -201,7 +208,14 @@ covid_cases_by_day <- covid_cases_base %>%
 #     date, (starts_with("gov_") & (ends_with("_mode") | ends_with("_min") | ends_with("_max")))
 #   )
 
-oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+# oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+#   rename_to_lower_snake() %>%
+#   filter(country_code == "UGA") %>%
+#   # select(date, matches("[ce]\\d")) %>%
+#   filter(date < 20220725) %>% # No information available after
+#   arrange(date) 
+
+oxford_base <- read_csv(here("raw_data", "external_data", "OxCGRT_nat_latest.csv")) %>%
   rename_to_lower_snake() %>%
   filter(country_code == "UGA") %>%
   # select(date, matches("[ce]\\d")) %>%
