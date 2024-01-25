@@ -18,7 +18,7 @@ rename_to_lower_snake <- function(df) {
     rename_with(~ tolower(gsub("[ /]+", "_", .x))) # Converts to lower and substitutes _ for spaces and /
 }
 
-# Theme changes ----
+# Graph theme set-up ----
 theme_uft <- theme_classic() +
   theme(
     axis.text = element_text(
@@ -33,9 +33,14 @@ theme_uft <- theme_classic() +
 
 theme_set(theme_uft)
 
-# Interview dates by round ----
+# http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
+color_palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
-base <- read_rds(here("data", "base.rds")) %>% 
+
+
+# Load survey_dates data to get interview dates by round ----
+
+survey_dates <- read_rds(here("data", "base.rds")) %>% 
   select(survey, interview_date) %>% 
   group_by(survey) %>% 
   summarise(
@@ -44,8 +49,9 @@ base <- read_rds(here("data", "base.rds")) %>%
   )
 
 
+# Our World In Data ----
 
-## Data source: OUR WORLDIN DATA
+## Data source: OUR WORLD IN DATA
 ## Description Link: https://docs.owid.io/projects/covid/en/latest/dataset.html
 ## Data URL: https://covid.ourworldindata.org/data/owid-covid-data.csv
 
@@ -62,25 +68,25 @@ our_world_data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid
   filter(date < ymd("2021-12-01"))
   
 
-## Time series graph of stringency measure
+## Time series graph of OWID stringency measure ----
 
 ggplot(our_world_data, aes(x=date, y=stringency_index)) + 
   geom_line() + 
   xlab("Date") +
   ylab("Daily Stringency Index") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -97,19 +103,19 @@ ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) +
   geom_line() + 
   xlab("Date") +
   ylab("New Cases Per 100,000 (Smooth)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_y_continuous(expand = c(0, 0)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -125,19 +131,19 @@ ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) +
   geom_line() + 
   xlab("Date") +
   ylab("New Deaths Per 100,000 (Smooth)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_y_continuous(expand = c(0, 0)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -153,7 +159,7 @@ ggsave(here("figures", "deaths.pdf"),
 
 # Our version of the stringency index ----
 
-oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+oxford_survey_dates <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
   rename_to_lower_snake() %>%
   filter(country_code == "UGA") %>%
   # select(date, matches("[ce]\\d")) %>%
@@ -164,13 +170,13 @@ oxford_base <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-poli
   arrange(date) 
 
 calculate_index <- function(part_name, part_max) {
-  var_number <- str_which(names(oxford_base), paste0(part_name, "_(?!flag)"))
-  flag_number <- str_which(names(oxford_base), paste0(part_name, "_(?=flag)"))
-  oxford_base %>% 
+  var_number <- str_which(names(oxford_survey_dates), paste0(part_name, "_(?!flag)"))
+  flag_number <- str_which(names(oxford_survey_dates), paste0(part_name, "_(?=flag)"))
+  oxford_survey_dates %>% 
     transmute(
       index = case_when(
-        oxford_base[[var_number]] == 0 ~ 0,
-        oxford_base[[var_number]] != 0 ~ 100 * ((oxford_base[[var_number]] - 0.5*(1 - oxford_base[[flag_number]])) / part_max),
+        oxford_survey_dates[[var_number]] == 0 ~ 0,
+        oxford_survey_dates[[var_number]] != 0 ~ 100 * ((oxford_survey_dates[[var_number]] - 0.5*(1 - oxford_survey_dates[[flag_number]])) / part_max),
         TRUE ~ NA_real_
       ) 
     ) %>% 
@@ -182,7 +188,7 @@ vec_names <- c("c1m", "c2m", "c3m", "c4m", "c5m", "c6m", "c7m", "h1")
 vec_max <- c(3, 3, 2, 4, 2, 3, 2, 2)
 
 oxford <- map2_dfc(vec_names, vec_max, ~ calculate_index(.x, .y)) %>% 
-  bind_cols(oxford_base) %>% 
+  bind_cols(oxford_survey_dates) %>% 
   mutate(
     index_c8ev = 100 * (c8ev_international_travel_controls / 4)
   ) %>% 
@@ -198,19 +204,19 @@ ggplot(oxford, aes(x=date, y=index_4)) +
   geom_line() + 
   xlab("Date") +
   ylab("Daily Stringency Index (restricted version)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -239,10 +245,10 @@ ggsave(here("figures", "stringency_index_restricted.pdf"),
 # google <- read_csv(url("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")) %>% 
 #   rename_to_lower_snake() %>%
 #   filter(country_region_code == "UG") %>% # Uses only the 2 letter code
-#   select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_baseline")) %>% 
+#   select(date, sub_region_1, sub_region_2, iso_3166_2_code, ends_with("from_survey_datesline")) %>% 
 #   filter(date < ymd("2021-12-01")) %>% 
 #   rename_with(
-#     ~ str_replace(., "_percent_change_from_baseline", "")
+#     ~ str_replace(., "_percent_change_from_survey_datesline", "")
 #   )
 
 google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv")) %>% 
@@ -255,6 +261,7 @@ google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv
   )
 
 
+
 # National Level mobility ----
 
 national_level <- google %>% filter(is.na(sub_region_1))
@@ -264,19 +271,19 @@ ggplot(national_level,aes(x = date)) +
   # geom_line(aes(y = grocery_and_pharmacy)) + 
   # geom_line(aes(y = transit_stations)) +
   xlab("Date") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
@@ -292,19 +299,19 @@ regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
 ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = residential, color = sub_region_1)) + 
   xlab("Date") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) 
 
 ggsave(here("figures", "google_mobility_regional.pdf"),
@@ -317,33 +324,33 @@ ggsave(here("figures", "google_mobility_regional.pdf"),
 p_index <- ggplot(oxford, aes(x=date, y=index_4)) + 
   geom_line() + 
   ylab("Daily Stringency Index \n (restricted version)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "1", xmin = base$first_date[1], xmax = base$last_date[1],
+  geom_fit_text(aes(label = "1", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
                     ymin = 80, ymax = 100)) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "2", xmin = base$first_date[2], xmax = base$last_date[2],
+  geom_fit_text(aes(label = "2", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
                     ymin = 80, ymax = 100)) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "3", xmin = base$first_date[3], xmax = base$last_date[3],
+  geom_fit_text(aes(label = "3", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
                     ymin = 80, ymax = 100)) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "4", xmin = base$first_date[4], xmax = base$last_date[4],
+  geom_fit_text(aes(label = "4", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
                     ymin = 80, ymax = 100)) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "5", xmin = base$first_date[5], xmax = base$last_date[5],
+  geom_fit_text(aes(label = "5", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
                     ymin = 80, ymax = 100)) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "6", xmin = base$first_date[6], xmax = base$last_date[6],
+  geom_fit_text(aes(label = "6", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
                     ymin = 80, ymax = 100)) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  geom_fit_text(aes(label = "7", xmin = base$first_date[7], xmax = base$last_date[7],
+  geom_fit_text(aes(label = "7", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
                     ymin = 80, ymax = 100)) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -356,20 +363,20 @@ p_mobility <- ggplot(national_level,aes(x = date)) +
   geom_line(aes(y = residential)) + 
   # geom_line(aes(y = grocery_and_pharmacy)) + 
   # geom_line(aes(y = transit_stations)) +
-  ylab("Time Spent at Residencies \n (Base: 01/03-02/06, 2020)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  ylab("Time Spent at Residencies \n (survey_dates: 01/03-02/06, 2020)") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
@@ -380,19 +387,19 @@ p_mobility <- ggplot(national_level,aes(x = date)) +
 p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) + 
   geom_line() + 
   ylab("New Cases Per \n 100,000 (Smooth)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_y_continuous(expand = c(0, 0)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -404,19 +411,19 @@ p_deaths <- ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) +
   geom_line() + 
   xlab("Date") +
   ylab("New Deaths Per \n 100,000 (Smooth)") +
-  annotate("rect", xmin = base$first_date[1], xmax = base$last_date[1],
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[2], xmax = base$last_date[2],
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[3], xmax = base$last_date[3],
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[4], xmax = base$last_date[4],
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[5], xmax = base$last_date[5],
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[6], xmax = base$last_date[6],
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  annotate("rect", xmin = base$first_date[7], xmax = base$last_date[7],
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   scale_y_continuous(expand = c(0, 0)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
@@ -430,4 +437,100 @@ plot_grid(p_index, p_mobility, p_cases, p_deaths, ncol = 1, align = "v")
 ggsave(here("figures", "combined.pdf"),
        width = 19, height = 25, units = "cm")
 
+
+# Food security and interview dates by round ----
+
+base <- read_rds(here("data", "base.rds")) %>% 
+  select(survey, interview_date, starts_with(c("food", "insecure"))) %>% 
+  select(-insecure_sum) %>% 
+  group_by(survey) %>% 
+  summarise(
+    first_date = min(interview_date),
+    last_date = max(interview_date),
+    # find average across all variables that begin with food
+    across(starts_with(c("food", "insecure")), \(x) mean(x, na.rm = TRUE) * 100)
+  )  %>% 
+  # Pivot longer over all variables that begin with food
+  pivot_longer(-c(survey, first_date, last_date), names_to = "type", values_to = "value") 
+
+
+# Plot ----
+
+# Individual food insecurity outcomes
+base %>% 
+  filter(str_detect(type, "food_")) %>%
+  # remove food_ from variable 
+  mutate(type = str_remove(type, "food_")) %>% 
+  # make type a factor and specify order
+  mutate(
+    type = factor(
+      type, 
+      levels = c("healthy_lack", "few_kinds", "insufficient_worry", "less_than_expected", "skipped_meal", "hungry", "ranout", "didnt_eat_all_day")
+    )
+  )%>%
+  ggplot(aes(x = value, color = type)) +
+  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  coord_flip(xlim = c(0, 65), expand = FALSE) +
+  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Lack of Healthy food",
+      "Few kinds of food",
+      "Worry about food",
+      "Less than expected",
+      "Skipped meal",
+      "Hungry",
+      "Ran out of food",
+      "Didn't eat all day")
+  ) +
+  labs(
+    x = "Percent",
+    y = "Survey dates",
+    title = "Food insecurity by survey round"
+  ) +
+  guides(color = guide_legend(ncol = 2)) +
+  theme(legend.position = c(0.5, 0.8)) 
+
+# Save plot
+ggsave(here("figures", "food_insecurity_by_survey_round_8_questions.pdf"), width = 8, height = 6, units = "in")
+
+
+# Cumulative food insecurity outcomes
+base %>% 
+  filter(str_detect(type, "insecure_")) %>%
+  # remove food_ from variable 
+  mutate(type = str_remove(type, "insecure_")) %>% 
+  # make type a factor and specify order
+  mutate(
+    type = factor(
+      type, 
+      levels = c("any", "moderate", "severe")
+    )
+  )%>%
+  ggplot(aes(x = value, color = type)) +
+  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  coord_flip(xlim = c(0, 100), expand = FALSE) +
+  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Any food insecurity",
+      "Moderate or severe food insecurity",
+      "Severe food insecurity")
+  ) +
+  labs(
+    x = "Percent",
+    y = "Survey dates",
+    title = "Food insecurity by survey round"
+  ) +
+  guides(color = guide_legend(ncol = 2)) +
+  theme(legend.position = c(0.5, 0.8)) 
+
+# Save plot
+ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
 
