@@ -19,7 +19,7 @@ thanks: |
   Henke, and four anonymous referees for their helpful comments and suggestions. 
   We would also like to thank Pascal Ntaganda for his research assistance.
   
-  Partial support for this research came from an Eunice Kennedy Shriver National
+  Partial support for this research came from a Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
   5R24HD042828, to the Center for Studies in Demography and Ecology at the
   University of Washington.
@@ -48,19 +48,21 @@ link-citations: true
 
 # Introduction
 
-Uganda had some of the strictest Covid-19 lockdowns in Sub-Saharan
-Africa, one in 2020 and another in 2021 [@BBC2020;@Birner2021;@Mahmud2021]. 
-Using longitudinal data and household fixed effects, we examine the impact of the 
-twin lockdowns in Uganda on food insecurity, labor market outcomes, and how households 
-attempted to cope with the lockdowns.
-This examination is motivated by the substantial changes in food insecurity over time
-in Uganda, shown in [@fig:description].[^definition]
+Uganda had two of the strictest Covid-19 lockdowns in Sub-Saharan Africa, 
+with the most severe parts of these lockdowns covering April through June 2020 
+and July through August 2021 [@BBC2020;@Birner2021;@Mahmud2021].
+As [@fig:raw-insecurity] shows, Uganda also experienced substantially higher food
+insecurity during or immediately following these lockdowns than at any other time
+during the pandemic.[^definition]
+Using longitudinal household data, we aim to understand the extent to which
+these changes arose from the twin lockdowns in Uganda by examining food insecurity, 
+labor market outcomes, and how households attempted to cope with the lockdowns.
 
-[^definition]: The definition of food insecurity is described in detail below 
-[@FAO0]
+[^definition]: The definitions of the three levels of food insecurity are described 
+in detail below [@FAO0].
 
-
-![Caption](../figures/food_insecurity_by_survey_round.png){#fig:description}
+![Food Insecurity by Survey Round of the Uganda High-Frequency Phone Survey on 
+Covid-19](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
 
 
 Early assessments of the impact of the pandemic in developing countries
