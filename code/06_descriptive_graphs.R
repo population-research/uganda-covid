@@ -55,8 +55,11 @@ survey_dates <- read_rds(here("data", "base.rds")) %>%
 ## Description Link: https://docs.owid.io/projects/covid/en/latest/dataset.html
 ## Data URL: https://covid.ourworldindata.org/data/owid-covid-data.csv
 
+# We use locally saved data as the new online data is per week rather than per day
+
 ## load data 
-our_world_data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>% 
+# our_world_data <- read_csv(url("https://covid.ourworldindata.org/data/owid-covid-data.csv")) %>% 
+our_world_data <- read_csv(here("raw_data", "external_data", "owid-covid-data.csv")) %>%
   rename_to_lower_snake() %>%
   filter(iso_code == "UGA") %>% 
   select(date, stringency_index, new_cases_smoothed, new_deaths_smoothed, population) %>% 
@@ -102,7 +105,7 @@ ggsave(here("figures", "stringency_index.pdf"),
 ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) + 
   geom_line() + 
   xlab("Date") +
-  ylab("New Cases Per 100,000 (Smooth)") +
+  ylab("Daily New Cases Per 100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -130,7 +133,7 @@ ggsave(here("figures", "cases.pdf"),
 ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) + 
   geom_line() + 
   xlab("Date") +
-  ylab("New Deaths Per 100,000 (Smooth)") +
+  ylab("Daily New Deaths Per 100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -159,7 +162,8 @@ ggsave(here("figures", "deaths.pdf"),
 
 # Our version of the stringency index ----
 
-oxford_survey_dates <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+# oxford_survey_dates <- read_csv(url("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_nat_latest.csv")) %>%
+oxford_survey_dates <- read_csv(here("raw_data", "external_data", "OxCGRT_nat_latest.csv")) %>%
   rename_to_lower_snake() %>%
   filter(country_code == "UGA") %>%
   # select(date, matches("[ce]\\d")) %>%
@@ -363,7 +367,7 @@ p_mobility <- ggplot(national_level,aes(x = date)) +
   geom_line(aes(y = residential)) + 
   # geom_line(aes(y = grocery_and_pharmacy)) + 
   # geom_line(aes(y = transit_stations)) +
-  ylab("Time Spent at Residencies \n (survey_dates: 01/03-02/06, 2020)") +
+  ylab("Time Spent at Residencies \n (Base: 01/03-02/06, 2020)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -386,7 +390,7 @@ p_mobility <- ggplot(national_level,aes(x = date)) +
 
 p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) + 
   geom_line() + 
-  ylab("New Cases Per \n 100,000 (Smooth)") +
+  ylab("Daily New Cases Per \n 100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -410,7 +414,7 @@ p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) +
 p_deaths <- ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) + 
   geom_line() + 
   xlab("Date") +
-  ylab("New Deaths Per \n 100,000 (Smooth)") +
+  ylab("Daily New Deaths Per \n 100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
