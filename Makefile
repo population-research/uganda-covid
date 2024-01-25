@@ -90,3 +90,11 @@ $(REP)/wber_response.pdf: $(REP)/wber_response.md $(TEXT)/uganda_covid.bib \
  $(REP)/default.yaml
 	cd $(REP); pandoc default.yaml wber_response.md -o wber_response.pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
+.PHONY: response_word
+response_word: $(REP)/wber_response.docx
+
+$(REP)/wber_response.docx: $(REP)/wber_response.md $(TEXT)/uganda_covid.bib \
+ $(REP)/default.yaml
+	cd $(REP); pandoc default.yaml wber_response.md -o wber_response.docx -N -s --filter pandoc-crossref --citeproc
+
+
