@@ -128,6 +128,8 @@ base %>%
   guides(color = guide_legend(ncol = 2)) +
   theme(legend.position = c(0.5, 0.8)) 
 
+# Save plot
+ggsave(here("figures", "food_insecurity_by_survey_round.png"), width = 8, height = 6, units = "in")
 
   
   
