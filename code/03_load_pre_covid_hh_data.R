@@ -138,18 +138,13 @@ assets <- read_dta(here("raw_data", "panel_19_20", "HH", "gsec14.dta")) %>%
 
 # Combine all data and save ----
 
-panel_19_20 <- poverty %>%
+poverty %>%
   left_join(land, by = "hhid") %>%
   left_join(nfe, by = "hhid") %>%
   left_join(assets, by = "hhid") %>%
   relocate(hhid) %>% 
-  rename_with(~str_c("precovid_", .), -hhid)
-
-all_rounds_df <- read_rds(here("data", "load_2.rds")) %>% 
-  left_join(panel_19_20, by = "hhid") 
-
-all_rounds_df %>%   
-  write_rds(here("data", "load_3.rds"))
+  rename_with(~str_c("precovid_", .), -hhid) %>%   
+  write_rds(here("data", "temp_pre_covid_hh_data.rds"))
 
 
 

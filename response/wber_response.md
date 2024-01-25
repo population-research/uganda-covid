@@ -2,7 +2,7 @@
 title: 'Response to Editor and Referee Comments — Impact of Twin Lockdowns on Hunger, 
         Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda'
 date: January 2024
-bibliography: uganda_covid.bib
+bibliography: ../paper/uganda_covid.bib
 csl: journal-of-development-economics.csl
 link-citations: true
 ...
@@ -24,34 +24,40 @@ question—did we do that?]
 other explanatory variables than lockdown dummies and number of cases.]
 
 
+Important changes:
+
+To ease the interpretation of the results, to address potential multiple comparisons
+issues, and in response to Referee 1's comment on the measurement approach, we now use 
+three food insecurity measures: any, moderate or severe, and severe
+food insecurity, based on the sum of the eight food insecurity questions.
+"Any" corresponds to having answered yes to any of the questions, "moderate or severe" to 
+having answered yes to 4 or more, and "severe" if answered yes to 7 or 8 questions.
+These definitions are based on @FAO2016 and @FAO0. 
+[Something on Rasch here]
+
 
 We list below our responses to the individual comments and suggestions.
 
 # Editor Comments
-
 
 1. The paper is just reporting 3 out of a possible 7 survey round effects and
 interpreting those as lockdown effects. I don’t understand that. Why not just
 report all 7 survey round effects (graphically) and think of the paper as trying
 to understand why the survey round effects vary.
 
+    **Response:** We have added a figure with the raw percentage of households that 
+    report any, moderate to severe, and severe food insecurity by survey round.
+    Furthermore, we have recast the introductory paragraph to follow the suggestion
+    and rewritten the paper accordingly.
 
-Graph of all 7 survey round and recast paper as trying to understand survey round effects
 
-[We actually already did something along these lines for the seasonality analyses (Fig 2);
-we could graph each of the food insecurity outcomes with shading for the lockdowns.
 
-It would probably make sense to ignore the month of survey for now and just use the
-period collected (either using the mid-point of the survey period or a line to indicate
-level of food insecurity for the survey period)
 
-Should we do this with household fixed effects and number of Covid cases controlled for
-or simple proportions?]
 
-2. What are the household ﬁxed effects doing? In a world where the household’s
+2. What are the household fixed effects doing? In a world where the household’s
 latent characteristics associated with food security are independent of what
 survey round they are interviewed in, they would have no impact on the survey
-round effects. Hence, the household ﬁxed effects are meant to improve efﬁciency
+round effects. Hence, the household ﬁxed effects are meant to improve efficiency
 or address sample selection issues. That should be explained and justiﬁed. I
 don’t see a “bias” argument unless you have a sample selection problem, and I
 cannot imagine that type of problem is time invariant.
@@ -123,7 +129,7 @@ about attriters, even if the answer is "super sensitive".
 
 
 5. Why isn’t the 8th wave of the NPS used as the baseline? To me, that really
-inﬂuences the interpretation of your counterfactuals to your survey round
+influences the interpretation of your counterfactuals to your survey round
 effects. You don’t need to add this additional data, but you should explain to
 your reader why you do not.
 
@@ -138,7 +144,7 @@ situations where there was not enough food.
 
 The reason we did not use the UNPS 2019/20 as the baseline was that this food security 
 questions in UNPS 2019/20 differ from the ones asked in UHFS in four ways that would 
-likely introduce substantial noice.
+likely introduce substantial noise.
 There are four main differences as described below.
 Furthermore, as, mentioned by Referee 2, focusing on the survey rounds where we have
 consistent measures of food insecurity, is a potential strength because it means that we 
@@ -226,7 +232,7 @@ this identification issue more directly.
 
 2. Second, and relatedly, the paper uses a fixed effects regression “to control for
 unobservable household characteristics”. It would be helpful for the authors to
-explain what including household- or individuallevel fixed effects does when the
+explain what including household- or individual-level fixed effects does when the
 identification is based on comparing different points in time. Is this really
 about controlling for differences in the sample composition between different
 waves of the survey? Is this improving the efficiency of the estimates? Or is
@@ -254,7 +260,7 @@ aggregate shocks would be particularly important.
 
 A few smaller suggestions may also strengthen the paper.
 
-The paper would benefit from explaining why it does not use the “raw score” –
+1. The paper would benefit from explaining why it does not use the “raw score” –
 potentially with some cutoff à la Wambogo et al. (2018, see
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6121128/) – to aggregate across the
 FIES questions. Following Food and Agriculture Organization guidelines (see
@@ -262,7 +268,7 @@ https://www.fao.org/3/i4830e/i4830e.pdf) this would also depend on checking the
 Rasch model infit statistics, to ensure it is valid. This would be slightly more
 standard than just taking the maximum across the eights FIES questions.
 
-The paper at various points refers to “unemployment”. Unemployment has a very
+2. The paper at various points refers to “unemployment”. Unemployment has a very
 clear definition, meaning someone who is not working (or not employed, more
 accurately), who is actively searching, and who is available for
 work/employment. If this is what the authors mean, then it would be helpful to
@@ -289,7 +295,7 @@ other periods during the pandemic, rather than to pre-pandemic periods.
 ## Essential Points
 
 1. The authors are actually comparing lockdowns to other periods during
-COVID-19, as the data is ﬁrst gathered in June 2020 (well after the ﬁrst
+COVID-19, as the data is first gathered in June 2020 (well after the first
 lockdown initiated). This could be more clearly articulated earlier so that it
 is not a surprise to the reader.
 
@@ -298,7 +304,7 @@ holding COVID-19 (relatively) constant, and indeed cases are actually higher
 during some non-lockdown periods allowing them to look more precisely at
 lockdowns, as opposed to the disease. I would recommend the authors make this
 distinction clearer, as well as to discuss more explicitly which parts of the
-relevant literature are speciﬁcally able to focus on lockdowns vs. merely the
+relevant literature are specifically able to focus on lockdowns vs. merely the
 aggregate effect of the pandemic and lockdowns.
 
 2. It is not clear to me why reductions in paid work seems to be in the authors’
@@ -308,11 +314,11 @@ assistance from non-family individuals, and assistance from NGOs. I would like
 to see the authors better justify why they believe paid work speciﬁcally to be
 the main pathway.
 
-In particular, Table 5 suggests that agricultural households saw no decrease in
-market work at all (comparing the coefﬁcient on “First lockdown: short run” and
-“Ag household x First lockdown: short run”) yet still had roughly a 14pp
-increase in facing any food insecurity in that same period. This seems at odds
-with the authors’ primary explanation.
+    In particular, Table 5 suggests that agricultural households saw no decrease in
+    market work at all (comparing the coefficient on “First lockdown: short run” and
+    “Ag household x First lockdown: short run”) yet still had roughly a 14pp
+    increase in facing any food insecurity in that same period. This seems at odds
+    with the authors’ primary explanation.
 
 3. One point which is severely underdiscussed are the changes in household size.
 There are increases in both adult and child members; how much of the results on
@@ -325,15 +331,15 @@ this channel is not considered a primary one.
 
 ## Suggestions
 
-4. How do the speciﬁc numeric estimations of food insecurity in this paper –
+4. How do the specific numeric estimations of food insecurity in this paper –
 which seem to be based on fairly standard measures – compare to other papers in
-the literature? The authors make speciﬁc comparisons to other household ﬁxed
+the literature? The authors make specific comparisons to other household fixed
 effects models, but not to the broader literature, or even to the subset of
 literature that focuses on Uganda (Kansiime et al. focuses on Uganda; as does
 Agamile (2022), who actually uses much of the same dataset). Is the 25 pp
 estimate found by the authors large, small, or average relative to these papers?
 
-5. How much should we expect the household ﬁxed effects to deal with in this
+5. How much should we expect the household fixed effects to deal with in this
 estimation? My main concern about omitted variable bias would be something like
 “vulnerability.” Yet given the wide-ranging effects of the shock, many aspects
 of vulnerability would likely be affected by COVID-19 and the lockdowns (income
@@ -348,9 +354,9 @@ would be helpful.
 
 6. On page 21, the authors note that they interact lockdown variables with
 “whether the household was engaged in agricultural production in the prior
-round.” This makes it very difﬁcult to interpret Table 5; why not use engagement
+round.” This makes it very difficult to interpret Table 5; why not use engagement
 in agricultural production from the 2019/20 UNPS data? At the least, I’d like to
-see the authors justify making this variable dynamic in more speciﬁc detail.
+see the authors justify making this variable dynamic in more specific detail.
 
 7. The authors’ choices about how to deﬁne short-run, medium-run and
 non-lockdown are unclear. Based on Figure 1, it’s hard to understand why period

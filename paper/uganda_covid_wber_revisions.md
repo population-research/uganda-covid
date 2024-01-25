@@ -16,9 +16,8 @@ author:
 	Oregon, Salem, Oregon]
 thanks: |
   We would like to thank seminar participants at Howard University, Alex
-  Henke, and two anonymous referees for their helpful comments and
-  suggestions on an earlier version of this paper. We would also like to
-  thank Pascal Ntaganda for his research assistance.
+  Henke, and four anonymous referees for their helpful comments and suggestions. 
+  We would also like to thank Pascal Ntaganda for his research assistance.
   
   Partial support for this research came from a Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
@@ -49,17 +48,27 @@ link-citations: true
 
 # Introduction
 
-Uganda had some of the strictest Covid-19 lockdowns in Sub-Saharan
-Africa, one in 2020 and another in 2021 [@BBC2020;@Birner2021;@Mahmud2021]. 
-Using longitudinal data and household fixed
-effects, we examine the impact of the twin lockdowns in Uganda on food
-insecurity, labor market outcomes, and how households attempted to cope
-with the lockdowns.
+Uganda had two of the strictest Covid-19 lockdowns in Sub-Saharan Africa, 
+with the most severe parts of these lockdowns covering April through June 2020 
+and July through August 2021 [@BBC2020;@Birner2021;@Mahmud2021].
+As [@fig:raw-insecurity] shows, Uganda also experienced substantially higher food
+insecurity during or immediately following these lockdowns than at any other time
+during the pandemic.[^definition]
+Using longitudinal household data, we aim to understand the extent to which
+these changes arose from the twin lockdowns in Uganda by examining food insecurity, 
+labor market outcomes, and how households attempted to cope with the lockdowns.
+
+[^definition]: The definitions of the three levels of food insecurity are described 
+in detail below [@FAO0].
+
+![Food Insecurity by Survey Round of the Uganda High-Frequency Phone Survey on 
+Covid-19](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
+
 
 Early assessments of the impact of the pandemic in developing countries
 generally find a negative effect of lockdowns on food insecurity,
-income, employment, and agricultural production.[^1] However, these
-studies have limitations, such as using only cross-sectional type data
+income, employment, and agricultural production.[^1] 
+However, these studies have limitations, such as using only cross-sectional type data
 or having a narrow geographical focus covering only one or two villages
 or states in a country. These studies also suggest that households try
 to cope with the lockdowns through behavior changes, such as reducing
@@ -69,6 +78,9 @@ groups, increasing borrowing, and selling assets
 In addition, there is evidence that remittances declined, and there was insufficient 
 government support to help households cope with the shock 
 [@Ceballos2021;@Curi-Quinto2021].
+
+
+
 
 Only four studies we could identify used household fixed-effects models
 to control for household-specific time-invariant factors when examining
