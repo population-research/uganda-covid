@@ -20,20 +20,20 @@ suggestions, which we believe have significantly improved the paper.
 [reference our AJTMH paper; could use NPS 8th wave because there is a treatment consulting 
 question—did we do that?]
 
-[If we keep the estimation approach we should remove X_1 in eq 1. Currently we have no
-other explanatory variables than lockdown dummies and number of cases.]
 
+Changes:
 
-Important changes:
-
-To ease the interpretation of the results, to address potential multiple comparisons
-issues, and in response to Referee 1's comment on the measurement approach, we now use 
-three food insecurity measures: any, moderate or severe, and severe
+1. To ease the interpretation of the results, to address the potential multiple comparisons
+issues raised by Referee 1, and in response to Referee 1's comment on the measurement 
+approach, we now use three food insecurity measures: any, moderate or severe, and severe
 food insecurity, based on the sum of the eight food insecurity questions.
 "Any" corresponds to having answered yes to any of the questions, "moderate or severe" to 
 having answered yes to 4 or more, and "severe" if answered yes to 7 or 8 questions.
 These definitions are based on @FAO2016 and @FAO0. 
 [Something on Rasch here]
+
+[Results by individual food insecurity question are now in the online appendix]
+
 
 
 We list below our responses to the individual comments and suggestions.
@@ -57,10 +57,12 @@ to understand why the survey round effects vary.
 2. What are the household fixed effects doing? In a world where the household’s
 latent characteristics associated with food security are independent of what
 survey round they are interviewed in, they would have no impact on the survey
-round effects. Hence, the household ﬁxed effects are meant to improve efficiency
-or address sample selection issues. That should be explained and justiﬁed. I
+round effects. Hence, the household fixed effects are meant to improve efficiency
+or address sample selection issues. That should be explained and justified. I
 don’t see a “bias” argument unless you have a sample selection problem, and I
 cannot imagine that type of problem is time invariant.
+
+    **Response:** 
 
 
 We can think of a household's food insecurity status as described by
@@ -276,10 +278,23 @@ understand how those individuals out of the labor force are being treated in
 these regressions. If not, a different term like “not employed” or “not working”
 would be more accurate.
 
-The paper uses a multinomial logit approach to look at switches between labor
+3. The paper uses a multinomial logit approach to look at switches between labor
 market statuses. This is an interesting approach, but it might be helpful to
 complement this by looking at use transition matrices to better understand labor
 market switches.
+
+4. In Table 5 the paper is interacting the impact of lockdowns with a dummy
+variable capturing whether the household was an agricultural household. It would
+be helpful for the authors to explain how the paper avoids the critiques of
+including interactions or doing sub-group comparisons in linear probability
+models, as outlined in Holm et al. (2015, see
+https://link.springer.com/article/10.1007/s11135-014-0057-0).
+
+5. It would be useful for the authors to show how the results would be affected by
+multiple hypothesis testing corrections, since there are many outcome variables
+being considered. Alternatively, the authors should provide a qualitative
+explanation of why this is not needed.
+
 
 # Referee 2 Comments
 
@@ -299,13 +314,13 @@ COVID-19, as the data is first gathered in June 2020 (well after the first
 lockdown initiated). This could be more clearly articulated earlier so that it
 is not a surprise to the reader.
 
-I would also argue it is potentially a strength of the paper – the authors are
-holding COVID-19 (relatively) constant, and indeed cases are actually higher
-during some non-lockdown periods allowing them to look more precisely at
-lockdowns, as opposed to the disease. I would recommend the authors make this
-distinction clearer, as well as to discuss more explicitly which parts of the
-relevant literature are specifically able to focus on lockdowns vs. merely the
-aggregate effect of the pandemic and lockdowns.
+    I would also argue it is potentially a strength of the paper – the authors are
+    holding COVID-19 (relatively) constant, and indeed cases are actually higher
+    during some non-lockdown periods allowing them to look more precisely at
+    lockdowns, as opposed to the disease. I would recommend the authors make this
+    distinction clearer, as well as to discuss more explicitly which parts of the
+    relevant literature are specifically able to focus on lockdowns vs. merely the
+    aggregate effect of the pandemic and lockdowns.
 
 2. It is not clear to me why reductions in paid work seems to be in the authors’
 preferred channel. Based on Table 3, paid work is certainly decreasing, but so
