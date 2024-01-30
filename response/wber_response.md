@@ -32,7 +32,7 @@ having answered yes to 4 or more, and "severe" if answered yes to 7 or 8 questio
 These definitions are based on @FAO2016 and @FAO0. 
 [Something on Rasch here]
 
-[Results by individual food insecurity question are now in the online appendix]
+[Results by individual food insecurity questions are now in the online appendix]
 
 
 
@@ -62,7 +62,30 @@ or address sample selection issues. That should be explained and justified. I
 don’t see a “bias” argument unless you have a sample selection problem, and I
 cannot imagine that type of problem is time invariant.
 
-    **Response:** 
+    **Response:** In the absence of individual-level explanatory variables, it is 
+    correct that the standard bias argument for fixed effects is less compelling.
+    A prior version of our paper did include household-level explanatory variables, 
+    and we failed to adequately rewrite the motivation for fixed effects when
+    those variables were removed.
+    
+    However, there are three important remaining motivations for using fixed effects
+    here.
+    First, the fixed effects estimates are more conservative than pooled OLS in the 
+    sense that fixed effects models have a lower likelihood of type I errors and
+    potential attenuation bias toward zero with classical measurement error.
+    Second, fixed effects models are more robust to measurement errors that vary 
+    systematically across individuals than pooled OLS.
+    For food insecurity questions that are more "value-oriented," such as those that
+    refer to healthy food, the diversity of foods available, and eating less than
+    desired, there may be individual-specific threshold levels.
+    The within-household fixed effects estimation reduces the potential bias from 
+    this type of measurement error. 
+    Finally, the fixed effects model allows us to easily control for time-invariant
+    characteristics.
+    
+    We have rewritten the paper to reflect these arguments for fixed effects.
+    
+
 
 
 We can think of a household's food insecurity status as described by
@@ -116,6 +139,9 @@ round effects at the same time (depending on the distribution dates and
 geographic heterogeneity, of course). I think this type of mediation style
 analysis would be more informative than current Table 6 & 7 which I do not know
 how to compare to earlier tables.
+
+    **Response:** [should we interact region dummies with survey dummies to 
+    try to understand regional effects of lockdowns?]
 
 
 4. Attrition is large. Is it correlated with food security? It seems like it
@@ -373,7 +399,7 @@ round.” This makes it very difficult to interpret Table 5; why not use engagem
 in agricultural production from the 2019/20 UNPS data? At the least, I’d like to
 see the authors justify making this variable dynamic in more specific detail.
 
-7. The authors’ choices about how to deﬁne short-run, medium-run and
+7. The authors’ choices about how to define short-run, medium-run and
 non-lockdown are unclear. Based on Figure 1, it’s hard to understand why period
 2 (August 2020) is medium-run, but period 3 (September 2020, one month later,
 with the same stringency index and similar time spent at residence) is
