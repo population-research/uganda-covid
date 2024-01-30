@@ -65,6 +65,8 @@ in detail below [@FAO0].
 Covid-19](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
 
 
+
+
 Early assessments of the impact of the pandemic in developing countries
 generally find a negative effect of lockdowns on food insecurity,
 income, employment, and agricultural production.[^1] 
@@ -304,8 +306,8 @@ persons in the 30 days before the household's survey date. The number of
 Covid cases comes from "Our World in Data."[^4]
 
 The household fixed-effects, $\omega_i$, control for unobserved
-household-level time-invariant factors that may bias the results. This
-approach allows us to control for time-invariant characteristics
+household-level time-invariant factors that may bias the results. 
+This approach allows us to control for time-invariant characteristics
 associated with the individual/household, such as gender, race and
 religion, constant preferences, household characteristics, area
 characteristics, and other time-invariant factors.[^5] 
