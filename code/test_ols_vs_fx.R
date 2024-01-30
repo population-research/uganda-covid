@@ -11,7 +11,6 @@ library(tidymodels) # For extracting model coefficients
 # Load data
 base <- read_rds(here("data", "base.rds")) %>% 
   mutate(
-    across(starts_with("food"), ~ case_match(., 2 ~ 0, 1 ~ 1)),
     survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7")),
     lockdown_1 = survey %in% c("1"),
     lockdown_2 = survey %in% c("2"),
