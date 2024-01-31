@@ -27,12 +27,13 @@ thanks: |
 abstract: |
   \noindent We examine the short- and medium-run impacts of two of the strictest
   Covid-19 lockdowns in the developing world, employing longitudinal
-  data from Uganda. Household fixed-effects estimations show
-  significant, immediate increases in food insecurity after the first
+  data from Uganda. 
+  We find significant, immediate increases in food insecurity after the first
   lockdown and a continued negative impact three months after its
-  lifting. The second lockdown's medium-term impact was even worse,
-  likely because of a compounding effect of a concurrent drought. The
-  rising food insecurity was partly the result of the lockdown-related
+  lifting. 
+  The second lockdown's medium-term impact was even worse, likely because 
+  of a compounding effect of a concurrent drought. 
+  The rising food insecurity was partly the result of the lockdown-related
   reductions in the availability of paid work. Agricultural households
   were more likely to continue working and consequently saw smaller
   increases in food insecurity. Furthermore, the likelihood of engaging
@@ -72,7 +73,8 @@ generally find a negative effect of lockdowns on food insecurity,
 income, employment, and agricultural production.[^1] 
 However, these studies have limitations, such as using only cross-sectional type data
 or having a narrow geographical focus covering only one or two villages
-or states in a country. These studies also suggest that households try
+or states in a country. 
+These studies also suggest that households try
 to cope with the lockdowns through behavior changes, such as reducing
 non-food expenditure, drawing down savings, leaving savings and loan
 groups, increasing borrowing, and selling assets 
@@ -81,16 +83,35 @@ In addition, there is evidence that remittances declined, and there was insuffic
 government support to help households cope with the shock 
 [@Ceballos2021;@Curi-Quinto2021].
 
+[^1]: One set of studies examines the impact of Covid-19 lockdowns on
+    food insecurity [@Agamile2022; @Ceballos2020; @Ceballos2021;
+    @Dasgupta2021; @Egger2022; @Gaitan-Rossi2021; @Giacoman2021; 
+    @Hamadani2020; @Harris2020; @Headey2020; @Jaacks2021; @Kansiime2021; 
+    @Kesar2021; @Kundu2021; @Lee2022; @Nguyen2021]. 
+    Another part of the literature examine
+    the impact on income, employment, or agricultural production 
+    [@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; @Headey2020; 
+    @Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
+    @Ruszczyk2021; @Wild2021].
 
 
-
-Only four studies we could identify used household fixed-effects models
-to control for household-specific time-invariant factors when examining
-food insecurity.[^2] Contrary to the cross-sectional studies, three of
+Only four studies we could identify used longitudinal data to examine the
+effects of lockdowns on food insecurity.[^2] 
+Contrary to the cross-sectional studies, three of
 these studies found no effect of lockdowns on food consumption across
 Liberia, Malawi, Kenya, and Ethiopia 
 [@Aggarwal2022;@Hirvonen2021;@Janssens2021]. 
 Only the Nigerian lockdown appeared to increase food insecurity [@Amare2021].
+
+[^2]: Two studies examine the impact on income and employment using
+    panel data. Results for Ghana show that lockdowns significantly
+    decreased employment and earnings [@Schotte2021]. 
+    In rural Uganda, household income declined sharply during the initial
+    lockdown. However, a year later, those without a business mostly
+    recovered, while business-owning households still had significantly
+    lower incomes [@Mahmud2023].
+
+
 
 These studies do, however, also have limitations. The Liberia survey had
 completion rates as low as 49% and evidence of a non-random attrition
@@ -227,7 +248,7 @@ This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021]
 
 # Estimation Strategy and Data
 
-To establish the causal effects of Covid-19 lockdowns, we use household
+To establish the effects of Covid-19 lockdowns, we use household
 fixed-effects models on a nationally representative longitudinal
 household data set, relying on the changes over time in
 government-imposed lockdowns to identify the effect.
@@ -275,7 +296,7 @@ rounds are presented in Appendix Table A1.
 
 ## Empirical Specification
 
-Our main specification regresses outcomes, $Y,$ discussed below, on a
+Our main specification regresses outcomes, $Y$, discussed below, on a
 set of variables using a linear fixed-effects model:[^3]
 
 $$
@@ -305,12 +326,23 @@ $Cases$ variable measures the number of new Covid-19 cases per 100,000
 persons in the 30 days before the household's survey date. The number of
 Covid cases comes from "Our World in Data."[^4]
 
-The household fixed-effects, $\omega_i$, control for unobserved
-household-level time-invariant factors that may bias the results. 
-This approach allows us to control for time-invariant characteristics
-associated with the individual/household, such as gender, race and
-religion, constant preferences, household characteristics, area
-characteristics, and other time-invariant factors.[^5] 
+Although we do not include any household-level variables in the 
+model, there are still three advantages to using a fixed effects model.
+First, the household fixed-effects, $\omega_i$, allows us to easily control 
+for time-invariant characteristics associated with the individual/household, 
+such as gender, race and religion, constant preferences, household 
+characteristics, and area characteristics.
+Second, the fixed effects estimates are more conservative than pooled OLS in the 
+sense that fixed effects models have a lower likelihood of type I errors and
+potential attenuation bias toward zero with classical measurement error.
+Finally, fixed effects models are more robust to measurement errors that vary 
+systematically across individuals than pooled OLS.
+For certain food insecurity questions, such as, for example, those that refer to 
+healthy food, the diversity of foods available, and eating less than desired, 
+there may be individual-specific threshold levels.
+The within-household fixed effects model reduces the potential bias from 
+this type of measurement error because it relies only on within-household 
+variation. 
 For some estimations, we use individual-level dependent variables, like
 employment. In these cases, the models are individual fixed-effects
 models, as the same individual from the household is followed over the
@@ -2097,24 +2129,6 @@ at 10%.
                                                                                              
   ---------------------------------------------------------------------------------------------
 
-[^1]: One set of studies examines the impact of Covid-19 lockdowns on
-    food insecurity [@Agamile2022; @Ceballos2020; @Ceballos2021;
-    @Dasgupta2021; @Egger2022; @Gaitan-Rossi2021; @Giacoman2021; 
-    @Hamadani2020; @Harris2020; @Headey2020; @Jaacks2021; @Kansiime2021; 
-    @Kesar2021; @Kundu2021; @Lee2022; @Nguyen2021]. 
-    Another part of the literature examine
-    the impact on income, employment, or agricultural production 
-    [@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; @Headey2020; 
-    @Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
-    @Ruszczyk2021; @Wild2021].
-
-[^2]: Two studies examine the impact on income and employment using
-    panel data. Results for Ghana show that lockdowns significantly
-    decreased employment and earnings [@Schotte2021]. 
-    In rural Uganda, household income declined sharply during the initial
-    lockdown. However, a year later, those without a business mostly
-    recovered, while business-owning households still had significantly
-    lower incomes [@Mahmud2023].
 
 [^3]: A linear model has two advantages over non-linear models, such as
     conditional logit, and has often been used in recent studies 
@@ -2130,11 +2144,6 @@ at 10%.
     at <https://covid.ourworldindata.org/data/owid-covid-data.csv>, and
     a complete listing of underlying sources is
     at <https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv>.
-
-[^5]: This means that any variable that does not change over time that
-    are likely to influence our outcome variables would be controlled by
-    the household fixed and would consequently drop out of the
-    estimations.
 
 [^6]: Each day of the week is scaled relative to a "baseline day," which
     is the median value from the five weeks, January 3 -- February 6,
