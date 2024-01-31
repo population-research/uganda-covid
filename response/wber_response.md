@@ -69,66 +69,13 @@ cannot imagine that type of problem is time invariant.
     those variables were removed.
     
     However, there are three important remaining motivations for using fixed effects
-    here.
-    First, the fixed effects estimates are more conservative than pooled OLS in the 
-    sense that fixed effects models have a lower likelihood of type I errors and
-    potential attenuation bias toward zero with classical measurement error.
-    Second, fixed effects models are more robust to measurement errors that vary 
-    systematically across individuals than pooled OLS.
-    For food insecurity questions that are more "value-oriented," such as those that
-    refer to healthy food, the diversity of foods available, and eating less than
-    desired, there may be individual-specific threshold levels.
-    The within-household fixed effects estimation reduces the potential bias from 
-    this type of measurement error. 
-    Finally, the fixed effects model allows us to easily control for time-invariant
-    characteristics.
+    over pooled OLS here: the estimates are more conservative, estimates are more
+    robust to measurement errors that vary systematically across individuals, 
+    and we can easily control for time-invariant individual characteristics 
+    that may affect food insecurity but which are difficult to capture well.
+    We have rewritten the paper to reflect these arguments for fixed effects
+    and provide more detail on each there.
     
-    We have rewritten the paper to reflect these arguments for fixed effects.
-    
-
-
-
-We can think of a household's food insecurity status as described by
-$$
-Y_{i, t}  = \alpha + \beta X_{i, t} + \epsilon_{i, t}
-$$
-
-Each household has some underlying risk of food insecurity, which presumably vary over
-seasons. 
-However, we instead model this as an average food insecurity, which gives us
-$$
-Y_{i, t}  = \alpha + \beta X_{i, t} + \rho_{i} + \epsilon_{i, t}.
-$$
-
-Normally, the idea would be that $X_{i, t}$ is correlated with both $Y_{i, t}$ and 
-$\rho_{i}$ and because $\rho_{i}$ is unobserved and, therefore, end up in the error
-term, we end up with biased estimates of $\beta$. 
-However, here we are interested in the effects of a variable that varies over time but
-not over individuals, namely lockdown dummies.
-Hence, what we estimate currently is
-$$
-Y_{i, t}  = \beta_1 L_{1} + \beta_2 L_{2} + \beta_3 L_{7}+ \rho_{i} + \beta_4 Cases_t + \epsilon_{i, t}.
-$$
-This means that our deviation from mean setup is
-$$
-(Y_{i, t} - \bar{Y}_{i})  = \beta_1 (L_{1} - \bar{L}_1) 
-+ \beta_2 (L_{2} - \bar{L}_2) + \beta_3 (L_{7} - \bar{L}_7) 
-+ \beta_4 (Cases_t - \bar{Cases})
-+ \rho_{i} + \epsilon_{i, t}.
-$$
-
-[If a household drops out after, say 4, rounds then $\bar{L}_1$ will be 0.25. 
-This means that for period one the difference to the mean will be 0.75, while the
-difference to the mean for the remaining three periods will be -0.25.
-Hence, there is always a 1 difference between the lockdown period and the non-lockdown
-periods.
-Is this how fixed effects help with bias from sample selection over time?]
-
-
-[how binding is the lockdown and does that vary with unobservable, time-invariant 
-characteristics, $\rho_{i}$?
-If that is the case, that could be an argument for why we should use household fixed 
-effects.]
 
 3. Beyond the survey effects, you have lockdown measures that depend on the
 household’s survey date interacted with some disaggregated geography. These
@@ -274,6 +221,8 @@ to this, then perhaps one idea for shortening the paper would be to frame it
 more as conducting a descriptive exercise – well done descriptive statistics can
 still be extremely useful. This would also alleviate some of the difficulties
 including fixed effects in the multinomial/ordered logit models.
+
+	**Response:** 
 
 3. Third, as hinted at in the “Contribution” section of this report, it would be
 useful for the paper to explain what additional points we learn from looking at
