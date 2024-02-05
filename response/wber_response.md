@@ -76,6 +76,10 @@ cannot imagine that type of problem is time invariant.
     We have rewritten the paper to reflect these arguments for fixed effects
     and provide more detail on each there.
     
+    [The fixed effects and random effects are identical, and there are no
+    potentially endogenous explanatory variables, so probably just go with
+    random effects.]
+    
 
 3. Beyond the survey effects, you have lockdown measures that depend on the
 household’s survey date interacted with some disaggregated geography. These
