@@ -7,7 +7,7 @@ library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(plm)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
-library(clubSandwich) # For robust standard errors
+
 
 # Load data
 base <- read_rds(here("data", "base.rds")) %>% 
