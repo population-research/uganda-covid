@@ -1,4 +1,4 @@
-# Compare fixed effects with OLS
+# Graph results on lockdowns and food insecurity
 
 library(tidyverse)
 library(here)
@@ -6,80 +6,95 @@ library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(plm)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
-library(clubSandwich) # For robust standard errors
 
 
 # Load data
 base <- read_rds(here("data", "base.rds")) %>% 
   mutate(
-    survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7")),
-    lockdown_1 = survey %in% c("1"),
-    lockdown_2 = survey %in% c("2"),
-    lockdown_7 = survey %in% c("7")
+    survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7"))
   ) 
 
 # extract all variable names from base that begins with "food"
-food_vars <- base %>% select(starts_with("insecure")) %>% names()
-
-# Random effects estimations with cluster-robust standard errors
-re <- map(
+food_vars <- base %>% 
+  select(starts_with("insecure")) %>%
+  select(-ends_with("sum")) %>%
+  names()
+  
+# Run fixed effects model for each food insecurity variable
+fx <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ lockdown_1 + lockdown_2 + lockdown_7 + cases_smooth_per_100000")), 
+  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
         data = base, 
         index = c("hhid", "survey"), 
-        model = "random",
+        model = "within",
         effect = "individual",
         # weighting using weight_final
         weights = weight_final
   ) %>% 
-    vcovCR(type = "CR2") %>%
-    tidy() %>% 
-    select(term, estimate, std.error, p.value) %>% 
-    mutate(variable = .x) %>% 
-    select(variable, everything()) %>% 
-    rename(re_estimate = estimate, re_std.error = std.error, re_p.value = p.value)
+    tidy(conf.int = TRUE) %>% 
+  #   # select(term, estimate, std.error, p.value) %>% 
+  mutate(variable = .x) %>% 
+  select(variable, everything())
 )
 
-
-insecure_moderate <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, 
-                         data = base, 
-                         index = c("hhid", "survey"), 
-                         model = "random",
-                         effect = "individual",
-                         # weighting using weight_final
-                         weights = weight_final
+# Plot the coefficients from fx
+walk(fx, ~ {
+  y_variable <- .x$variable[1]
+  
+  .x %>% 
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+    geom_pointrange() +
+    labs(
+      title = y_variable,
+      x = "Survey",
+      y = "Coefficient"
+    ) +
+    theme_minimal()
+  
+  ggsave(here("figures", paste0(y_variable, ".pdf")), width = 8, height = 6, units = "in")
+}
 )
 
-summary(insecure_moderate)
-
-coef_test(insecure_moderate, vcov = "CR2")
-
-insecure_moderate <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, 
-                         data = base, 
-                         index = c("hhid", "survey"), 
-                         model = "within",
-                         effect = "individual",
-                         # weighting using weight_final
-                         weights = weight_final
+# Estimate models using index_4 as the stringency measure
+fx_index_4 <- map(
+  food_vars, 
+  ~ plm(as.formula(paste0(.x, " ~ index_4 + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+  #   # select(term, estimate, std.error, p.value) %>% 
+  mutate(variable = .x) %>% 
+  select(variable, everything())
 )
 
-summary(insecure_moderate)
+# Need to find a way to plot these results; possibly as predictions per day
 
-# Plot the coefficients from the regression model insecure_moderate
-insecure_moderate %>% 
-  tidy(conf.int = TRUE) %>% 
-  filter(term != "survey4") %>% 
-  filter(term != "cases_smooth_per_100000") %>% 
-  add_row(term = "survey4", estimate = 0, std.error = 0) %>% 
-  arrange(term) %>%
-  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_pointrange() +
-  labs(
-    title = "Insecure moderate",
-    x = "Survey",
-    y = "Coefficient"
-  ) +
-  theme_minimal()
-
-
+# Plot the coefficients from fx
+walk(fx_index_4, ~ {
+  y_variable <- .x$variable[1]
+  
+  .x %>% 
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+    geom_pointrange() +
+    labs(
+      title = y_variable,
+      x = "Survey",
+      y = "Coefficient"
+    ) +
+    theme_minimal()
+  
+  ggsave(here("figures", paste0("index_", y_variable, ".pdf")), width = 8, height = 6, units = "in")
+}
+)
 
