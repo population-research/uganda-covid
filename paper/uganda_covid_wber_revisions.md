@@ -552,8 +552,7 @@ nearly as strict as the first.
 Furthermore, the four months after each lockdown show similar stringency 
 levels, with stringency only dropping in September 2020.
 
-![Revised Stringency Index, Time Spent at Residential Locations,
-Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
+![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
 and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
 
 
