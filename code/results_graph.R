@@ -107,4 +107,9 @@ test <- plm(insecure_moderate ~ index_4 + cases_smooth_per_100000,
     weights = weight_final
 )
 
+test_data <- base %>% 
+  select(insecure_moderate, index_4, cases_smooth_per_100000, survey) %>%
+  group_by(survey) %>% 
+  summarise(across(everything(), mean))
+
 predicted <- predict(test, interval = "confidence")
