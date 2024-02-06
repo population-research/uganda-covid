@@ -541,15 +541,21 @@ the current round's number.
 
 ## Summary Statistics
 
-Figure 1 shows the daily stringency index, the daily Google Mobility
+[@fig:combined] shows the daily stringency index, the daily Google Mobility
 measure of time spent at residential locations, the 7-day average number
 of new Covid-19 cases and deaths per 100,000 persons, and the data
 collection window for each of the UHFS rounds in shaded grey. The
 strictest restrictions are just before round 1, where there is an almost
-complete lockdown. Although, according to the stringency measure, the
-second lockdown was nearly as strict as the first. Furthermore, the four
-months after each lockdown show similar stringency levels, with
-stringency only dropping in September 2020.
+complete lockdown. 
+Although, according to the stringency measure, the second lockdown was 
+nearly as strict as the first. 
+Furthermore, the four months after each lockdown show similar stringency 
+levels, with stringency only dropping in September 2020.
+
+![Revised Stringency Index, Time Spent at Residential Locations,
+Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
+and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
+
 
 That the lockdown policies were enforced is shown by the substantial
 increases in the amount of time spent at residential locations during
@@ -621,7 +627,7 @@ One way lockdowns can affect food insecurity is by lowering people's
 ability to work. Table 3, column 1, shows that the likelihood of any
 market work decreased by a significant 18.6 percentage points during the
 first lockdown. These employment effects were driven mainly by lockdowns
-rather than being ill from Covid-19. As shown in Figure 1, there were
+rather than being ill from Covid-19. As shown in [@fig:combined] , there were
 almost no cases during the first lockdown. Furthermore, UHSF asked
 individuals the reason for not working, and the top three reasons
 reported are that the place of work is closed (62%), being ill from any
@@ -822,12 +828,19 @@ and went without eating for a whole day.
 For the UNPS question, we combined all observations by month and
 calculate the percentage who reported not having enough food to feed the
 household. For the UHFS questions, we calculate the percentages food
-insecure by interview month. Figure 2 shows the food insecurity
+insecure by interview month. 
+[@fig:seasonality] shows the food insecurity
 percentages with the UNPS question shown in black for comparison.
 Despite FAO listing April/May and November/December as the lean periods,
 the UNPS data show that April, May, and June were the three months with
 the highest proportion of food insecurity, while November and December
 were the months with the lowest proportion.[^13]
+
+![Projected Seasonality in Food Insecurity from UNPS and
+Observed Food Insecurity for Three UHFS 
+Outcomes](../figures/seasonality.pdf){#fig:seasonality}
+
+
 
 All three UHFS questions follow the same general pattern as the UNPS
 question outside the lockdown periods, September 2020 through April
@@ -909,16 +922,7 @@ potential long-term cost of the lockdowns potentially significantly
 outweighs the benefits. Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
-![](media/image1.emf){width="6.23in" height="8.19in"}
 
-Figure 1: Revised Stringency Index, Time Spent at Residential Locations,
-Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
-and Data Collection Window for Each UHFS Survey Round.
-
-![](media/image2.emf){width="6.5in" height="4.939583333333333in"}
-
-Figure 2: Projected Seasonality in Food Insecurity from UNPS and
-Observed Food Insecurity for Three UHFS Outcomes
 
   -------------------------------------------------------------------------------------------
   Table 1: Summary statistics of                                               
