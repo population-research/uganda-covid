@@ -98,3 +98,13 @@ walk(fx_index_4, ~ {
 }
 )
 
+test <- plm(insecure_moderate ~ index_4 + cases_smooth_per_100000, 
+    data = base, 
+    index = c("hhid", "survey"), 
+    model = "within",
+    effect = "individual",
+    # weighting using weight_final
+    weights = weight_final
+)
+
+predicted <- predict(test, interval = "confidence")
