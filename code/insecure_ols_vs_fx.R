@@ -8,6 +8,7 @@ library(vtable)    # For data checking
 library(plm)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
 
+
 # Load data
 base <- read_rds(here("data", "base.rds")) %>% 
   mutate(
@@ -18,7 +19,7 @@ base <- read_rds(here("data", "base.rds")) %>%
   ) 
 
 # extract all variable names from base that begins with "food"
-food_vars <- base %>% select(starts_with("food")) %>% names()
+food_vars <- base %>% select(starts_with("insecure")) %>% names()
 
 #  OLS Regress each of the food variables against survey dummies and cases
 ols <- map(
@@ -27,7 +28,7 @@ ols <- map(
        data = base,
        # weighting using weight_final
        weights = weight_final
-       ) %>% 
+  ) %>% 
     tidy() %>%
     select(term, estimate, std.error, p.value) %>%
     mutate(variable = .x) %>%
@@ -42,9 +43,10 @@ fx <- map(
         data = base, 
         index = c("hhid", "survey"), 
         model = "within",
+        effect = "individual",
         # weighting using weight_final
         weights = weight_final
-        ) %>% 
+  ) %>% 
     tidy() %>% 
     select(term, estimate, std.error, p.value) %>% 
     mutate(variable = .x) %>% 
@@ -105,13 +107,29 @@ ols_vs_fx <- ols %>%
     # Calculate differences in fx_std.error and re_std.error
     diff_se_fx_re = fx_std.error - re_std.error
   ) 
-  
+
 # There are no statistically significant differences between the fixed effects
 # and OLS estimates, but the standard errors for the fixed effects are smaller
 # than for OLS.There is also no statistically significant difference between
 # fixed effects and random effects, but the standard errors for fixed effects
 # are slightly higher, although this difference is minuscule.
 
+# Hausman tests
+
+fx_any <- plm(insecure_any ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "within", effect = "individual", weights = weight_final)
+re_any <- plm(insecure_any ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "random", weights = weight_final)
+
+phtest(re_any, fx_any)
+
+fx_moderate <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "within", effect = "individual", weights = weight_final)
+re_moderate <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "random", weights = weight_final)
+
+phtest(re_moderate, fx_moderate)
+
+fx_severe <- plm(insecure_severe ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "within", effect = "individual", weights = weight_final)
+re_severe <- plm(insecure_severe ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "random", weights = weight_final)
+
+phtest(re_severe, fx_severe)
 
 
 
