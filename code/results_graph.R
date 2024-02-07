@@ -75,29 +75,6 @@ fx_index_4 <- map(
   select(variable, everything())
 )
 
-# Need to find a way to plot these results; possibly as predictions per day
-
-# Plot the coefficients from fx
-walk(fx_index_4, ~ {
-  y_variable <- .x$variable[1]
-  
-  .x %>% 
-    filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-    arrange(term) %>% 
-    ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
-    geom_pointrange() +
-    labs(
-      title = y_variable,
-      x = "Survey",
-      y = "Coefficient"
-    ) +
-    theme_minimal()
-  
-  ggsave(here("figures", paste0("index_", y_variable, ".pdf")), width = 8, height = 6, units = "in")
-}
-)
-
 test <- plm(insecure_moderate ~ index_4 + cases_smooth_per_100000, 
     data = base, 
     index = c("hhid", "survey"), 
@@ -112,4 +89,28 @@ test_data <- base %>%
   group_by(survey) %>% 
   summarise(across(everything(), mean))
 
-predicted <- predict(test, interval = "confidence")
+predicted <- test_data %>% 
+  mutate(
+   prediction = predict(test, newdata = test_data, interval = "confidence")
+  )
+
+# Estimate models using residential mobility measure
+res_test <- plm(insecure_moderate ~ residential_pre_01_30 + cases_smooth_per_100000, 
+    data = base, 
+    index = c("hhid", "survey"), 
+    model = "within",
+    effect = "individual",
+    # weighting using weight_final
+    weights = weight_final
+)
+summary(res_test)
+
+res_test_data <- base %>% 
+  select(insecure_moderate, residential_pre_01_30, cases_smooth_per_100000, survey) %>%
+  group_by(survey) %>% 
+  summarise(across(everything(), mean))
+
+res_predicted <- res_test_data %>%
+  mutate(
+    prediction = predict(res_test, newdata = res_test_data, interval = "confidence")
+  )
