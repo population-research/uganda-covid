@@ -114,6 +114,22 @@ ols_vs_fx <- ols %>%
 # fixed effects and random effects, but the standard errors for fixed effects
 # are slightly higher, although this difference is minuscule.
 
+# Hausman tests
+
+fx_any <- plm(insecure_any ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "within", effect = "individual", weights = weight_final)
+re_any <- plm(insecure_any ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "random", weights = weight_final)
+
+phtest(re_any, fx_any)
+
+fx_moderate <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "within", effect = "individual", weights = weight_final)
+re_moderate <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "random", weights = weight_final)
+
+phtest(re_moderate, fx_moderate)
+
+fx_severe <- plm(insecure_severe ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "within", effect = "individual", weights = weight_final)
+re_severe <- plm(insecure_severe ~ survey + cases_smooth_per_100000, data = base, index = c("hhid", "survey"), model = "random", weights = weight_final)
+
+phtest(re_severe, fx_severe)
 
 
 
