@@ -71,14 +71,15 @@ cannot imagine that type of problem is time invariant.
     However, there are three important remaining motivations for using fixed effects
     over pooled OLS here: the estimates are more conservative, estimates are more
     robust to measurement errors that vary systematically across individuals, 
-    and we can easily control for time-invariant individual characteristics 
+    and allows us to easily control for time-invariant individual characteristics 
     that may affect food insecurity but which are difficult to capture well.
     We have rewritten the paper to reflect these arguments for fixed effects
     and provide more detail on each there.
     
-    Furthermore, the standard Hausman test handily rejects the null for the basic 
+    Finally, the standard Hausman test handily rejects the null for the basic 
     model with survey dummies and Covid cases, for all three cumulative
-    food insecurity outcomes.
+    food insecurity outcomes, indicating that fixed effects models are 
+    preferred to random effects models.
     
 
 3. Beyond the survey effects, you have lockdown measures that depend on the
@@ -209,6 +210,8 @@ across space (such as different districts having different lockdown policies)
 and time for identification. It would be important for the authors to address
 this identification issue more directly.
 
+    **Response:**
+
 2. Second, and relatedly, the paper uses a fixed effects regression “to control for
 unobservable household characteristics”. It would be helpful for the authors to
 explain what including household- or individual-level fixed effects does when the
@@ -226,7 +229,8 @@ more as conducting a descriptive exercise – well done descriptive statistics c
 still be extremely useful. This would also alleviate some of the difficulties
 including fixed effects in the multinomial/ordered logit models.
 
-	**Response:** 
+	**Response:** We have updated our discussion of why we use a fixed effects
+	model. Please see our response to Editor comment 2 above for more detail.
 
 3. Third, as hinted at in the “Contribution” section of this report, it would be
 useful for the paper to explain what additional points we learn from looking at
@@ -236,6 +240,8 @@ Africa. Is there something particularly revealing about the Uganda case,
 especially now the lockdowns in question are almost two years in the past?
 Additionally, explaining how the Uganda lockdowns provide extra information on
 aggregate shocks would be particularly important.
+
+    **Response:**
 
 ## Suggestions
 
