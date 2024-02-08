@@ -21,7 +21,7 @@ suggestions, which we believe have significantly improved the paper.
 question—did we do that?]
 
 
-Changes:
+**Major changes:**
 
 1. To ease the interpretation of the results, to address the potential multiple comparisons
 issues raised by Referee 1, and in response to Referee 1's comment on the measurement 
@@ -33,6 +33,20 @@ These definitions are based on @FAO2016 and @FAO0.
 [Something on Rasch here]
 
 [Results by individual food insecurity questions are now in the online appendix]
+
+2. In response to the overall comments from both the editor and referees, we have 
+substantially restructured the paper.
+We now begin with a more in-depth analyses of the lockdowns, which include the
+figure on the stringency measure, mobility measure, and Covid deaths and cases.
+This is followed by an examination of the extent to which the lockdowns explain 
+the changes in food insecurity.
+We do this using a full set of survey indicator variables, the stringency measure,
+and Google mobility measures.
+We also include the original robustness analyses here.
+[mediation analysis and regional mobility analyses here]
+
+After having examined the relationship between lockdowns and food insecurity, 
+we analyze how households/individuals respond to the lockdowns.
 
 
 
