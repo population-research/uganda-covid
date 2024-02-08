@@ -43,26 +43,26 @@ covid_cases_base <- read_csv(here("raw_data", "external_data", "owid-covid-data.
   rename_to_lower_snake() %>%
   filter(iso_code == "UGA")
 
-covid_cases <- covid_cases_base %>%
-  mutate( # splitting date into year month and day
-    year  = year(date),
-    month = month(date),
-    day   = day(date)
-  ) %>%
-  select(-date) %>%
-  # getting new cases by month and new cases per 100,000 per month
-  group_by(year, month) %>%
-  summarize(
-    cases_month       = sum(new_cases, na.rm = TRUE),
-    population        = mean(population, na.rm = TRUE),
-    stringency_index  = mean(stringency_index, na.rm = TRUE),
-    reproduction_rate = mean(reproduction_rate)
-  ) %>%
-  ungroup() %>% 
-  mutate(
-    cases_month_per_100000 = (cases_month / population) * 100000
-  ) %>%
-  select(-population)
+# covid_cases <- covid_cases_base %>%
+#   mutate( # splitting date into year month and day
+#     year  = year(date),
+#     month = month(date),
+#     day   = day(date)
+#   ) %>%
+#   select(-date) %>%
+#   # getting new cases by month and new cases per 100,000 per month
+#   group_by(year, month) %>%
+#   summarize(
+#     cases_month       = sum(new_cases, na.rm = TRUE),
+#     population        = mean(population, na.rm = TRUE),
+#     stringency_index  = mean(stringency_index, na.rm = TRUE),
+#     reproduction_rate = mean(reproduction_rate)
+#   ) %>%
+#   ungroup() %>% 
+#   mutate(
+#     cases_month_per_100000 = (cases_month / population) * 100000
+#   ) %>%
+#   select(-population)
 
 covid_cases_by_day <- covid_cases_base %>% 
   mutate(
@@ -77,6 +77,7 @@ covid_cases_by_day <- covid_cases_base %>%
     cases_smooth_per_100000 = (cases_smooth / population) * 100000,
     stringency = rollapply(stringency_index, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
     reproduction_rate = rollapply(reproduction_rate, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+    stringency_daily = stringency_index
   ) %>% 
   select(-new_cases, -new_cases_smoothed, -population, -stringency_index, -reproduction_rate)
 
@@ -252,11 +253,11 @@ oxford_by_day <- map2_dfc(vec_names, vec_max, ~ calculate_index(.x, .y)) %>%
   ) %>% 
   select(date, stringency_index_average, contains(vec_names), index_c8ev, c8ev_international_travel_controls) %>% 
   mutate(
-    index_4 = rowSums(across(c(index_c2m, index_c5m, index_c6m, index_c7m))) / 4,
+    index_4_daily = rowSums(across(c(index_c2m, index_c5m, index_c6m, index_c7m))) / 4,
   ) %>% 
-  select(date, index_4) %>% 
+  select(date, index_4_daily) %>% 
   mutate(
-    index_4 = rollapply(index_4, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
+    index_4 = rollapply(index_4_daily, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
   )
 
 
@@ -288,13 +289,14 @@ google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv
   mutate(
     across(retail_and_recreation:residential, 
            list(
+             daily = ~ .x,
              pre_01_30  = ~ rollapply(.x, list(seq(-30, -1)), mean, na.rm = TRUE, align = "right", fill = NA),
              pre_31_60 = ~ rollapply(.x, list(seq(-60, -31)), mean, na.rm = TRUE, align = "right", fill = NA)
            ),
            .names = "{.col}_{.fn}"
     )
   ) %>% 
-  select(date, contains("_pre_"))
+  select(date, contains(c("_pre_", "_daily")))
 
 
 
@@ -318,5 +320,25 @@ full_join(covid_cases_by_day, oxford_by_day, by = "date") %>%
   full_join(google, by = "date") %>% 
   arrange(date) %>% 
   write_rds(here("data", "temp_covid_cases_restrictions.rds"))
+
+
+test <- full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
+  full_join(google, by = "date") %>% 
+  arrange(date) %>% 
+  # Find first and last day of lockdowns
+  mutate(
+    index_4_above_75 = if_else(index_4_daily >= 75, 1, 0),
+    prior_7_days = rollapply(index_4_above_75, list(seq(-7, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
+    next_7_days = rollapply(index_4_above_75, list(seq(1, 7)), sum, na.rm = TRUE, align = "left", fill = NA),
+    first_75_index = if_else(
+      index_4_above_75 == TRUE & prior_7_days == 0  & next_7_days > 0, date, as_date(NA)
+    ),
+    last_75_index = if_else(
+      index_4_above_75 == TRUE & prior_7_days > 0  & next_7_days == 0, date, as_date(NA)
+    )
+  ) %>% 
+  fill(first_75_index, last_75_index) %>%
+  select(date, contains(c("index", "7_days")))
+  
 
 
