@@ -220,46 +220,17 @@ effect on food insecurity. Finally, we find evidence of a net increase
 in household members, suggesting that lockdowns forced individuals
 living elsewhere to join/rejoin the household.
 
-# Lockdown Context
 
-On March 18, 2020, the Ugandan government started imposing restrictions,
-including travel restrictions and cancellation of public gatherings,
-such as religious services, weddings, and music events 
-[@Uganda-Bureau-of-Statistics2022]. 
-A total lockdown was imposed on March 30 with a
-nationwide curfew from 7 pm to 6:30 am, banning of public
-transportation, strict regulations on the movement of vehicles, and
-closure of all non-essential businesses, which extended till the end of May 
-[@Alfonsi2021; @Margini2020].
+# Data
 
-Lockdowns were eased at the beginning of June 2020 with the resumption
-of public transportation and the opening of businesses 
-[@Guloba2021; @Monitor2020; @Schwartz2021; @Wagner2022]. 
-Most small and medium businesses were back open by July-August 2020 
-[@Alfonsi2021]. 
-International travel restrictions remained until the end
-of September, when land borders reopened, and international flights
-resumed [@Guloba2021].
-
-In response to the resurgence of Covid-19 infections in 2021, the
-government of Uganda imposed a second lockdown from June 2021 
-[@Atamanov2022; @Athumani2021]. 
-This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
-
-# Estimation Strategy and Data
-
-To establish the effects of Covid-19 lockdowns, we use household
-fixed-effects models on a nationally representative longitudinal
-household data set, relying on the changes over time in
-government-imposed lockdowns to identify the effect.
-
-Household data come from the *Uganda High-Frequency Phone Survey on
-Covid-19* (UHFS), conducted by the Uganda Bureau of Statistics in
-collaboration with the World Bank. The survey was conducted in seven
-waves, with four waves in 2020 (June, August, September, and October)
-and three in 2021 (February, March, and October). The goal was to
-understand the economic and social impacts of the Covid-19 pandemic by
-collecting high-frequency data on individuals and households 
+Household and individual data come from the *Uganda High-Frequency 
+Phone Survey on Covid-19* (UHFS), conducted by the Uganda Bureau of Statistics in
+collaboration with the World Bank. 
+The survey was conducted in seven waves, with four waves in 2020 
+(June, August, September, and October) and three in 2021 (February, 
+March, and October). 
+The goal was to understand the economic and social impacts of the Covid-19 
+pandemic by collecting high-frequency data on individuals and households 
 [@Uganda-Bureau-of-Statistics2022]. 
 To this end, the survey asked detailed
 questions on food insecurity, employment, income, outside assistance,
@@ -287,14 +258,112 @@ weights to ensure that the data is nationally representative
 [@Uganda-Bureau-of-Statistics2022].
 
 Over the seven rounds, the cumulative attrition rate was 15.7 percent,
-with 1,875 households from the baseline interviewed in round 7 (October
-2021). However, replacement households were added to the sample
-following the first round. This brings our total sample size to 2,302
-households. The number of original households that remained in each
+with 1,875 households from the baseline interviewed in round 7 (October 2021). 
+However, replacement households were added to the sample
+following the first round. 
+This brings our total sample size to 2,302 households. 
+The number of original households that remained in each
 round and the cumulative number of new households in the follow-up
 rounds are presented in Appendix Table A1.
 
-## Empirical Specification
+
+
+# Lockdown Context and Enforcement
+
+On March 18, 2020, the Ugandan government started imposing restrictions,
+including travel restrictions and cancellation of public gatherings,
+such as religious services, weddings, and music events 
+[@Uganda-Bureau-of-Statistics2022]. 
+A total lockdown was imposed on March 30 with a
+nationwide curfew from 7 pm to 6:30 am, banning of public
+transportation, strict regulations on the movement of vehicles, and
+closure of all non-essential businesses, which extended till the end of May 
+[@Alfonsi2021; @Margini2020].
+
+Lockdowns were eased at the beginning of June 2020 with the resumption
+of public transportation and the opening of businesses 
+[@Guloba2021; @Monitor2020; @Schwartz2021; @Wagner2022]. 
+Most small and medium businesses were back open by July-August 2020 
+[@Alfonsi2021]. 
+International travel restrictions remained until the end
+of September, when land borders reopened, and international flights
+resumed [@Guloba2021].
+
+In response to the resurgence of Covid-19 infections in 2021, the
+government of Uganda imposed a second lockdown from June 2021 
+[@Atamanov2022; @Athumani2021]. 
+This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
+
+[@fig:combined] shows the daily stringency index, the daily Google Mobility
+measure of time spent at residential locations, the 7-day average number
+of new Covid-19 cases and deaths per 100,000 persons, and the data
+collection window for each of the UHFS rounds in shaded grey. 
+The number of Covid cases and deaths comes from "Our World in Data."[^4]
+
+To capture the stringency of the lockdowns, we employ a modified version
+of the lockdown stringency index developed at the Blavatnik School of
+Government, University of Oxford (Hale et al., 2021). 
+The original index is a daily composite measure of how strict the lockdowns 
+were based on nine indicators, including school closures, workplace closures, and
+travel bans, rescaled to a value from 0 to 100, where 100 is the
+strictest response. 
+As some of the restrictions in the original index, such as school closure 
+and international entry restrictions, are likely to have minimal immediate 
+impacts on food insecurity, we recalculate the index using workplace 
+closings, limits on public transport, stay-at-home requirements, 
+and any restrictions on internal movement. 
+We use the variation in the average of this revised index over the 30 days before
+the households were surveyed to capture the impact of the lockdowns.
+
+Neither the lockdown indicator variables nor the stringency index
+captures the extent to which the lockdown policies were enforced or
+adhered to. We, therefore, also use Google Mobility data on the percent
+change in time spent at residential locations relative to the pre-Covid
+behavior [@Google2022].[^6] 
+Our measure is the average of this percent
+change over the 30 days before each household's survey date.
+
+The strictest restrictions are just before round 1, where there is an almost
+complete lockdown. 
+Although, according to the stringency measure, the second lockdown was 
+nearly as strict as the first. 
+Furthermore, the four months after each lockdown show similar stringency 
+levels, with stringency only dropping in September 2020.
+
+![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
+and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
+
+
+That the lockdown policies were enforced is shown by the substantial
+increases in the amount of time spent at residential locations during
+the April through June 2020 and the June through August 2021 periods.
+Despite some remaining restrictions during the second and third rounds,
+the time spent at residential locations had returned to almost the
+baseline by the end of the second round's data collection in mid-August
+2020, which is why we did not include the third round as a lockdown
+round. Through the non-lockdown periods, the time spent at home remained
+relatively stable except for the Christmas and New Year's celebrations.
+
+The number of confirmed infections and deaths from Covid remained low in
+Uganda until halfway through 2021. For context, even with the spike in
+cases in 2021, Uganda's cumulative number of cases per 100,000 at the
+end of 2021 was only 306.9 compared with 16,294.5 in the US.
+Furthermore, as in many other developing countries, the number of Covid
+deaths was low.
+Even with the increase in cases and deaths by the end of 2021, Uganda 
+had only 7.2 deaths per 100,000 persons, while, for
+comparison, the US had 245.1 deaths per 100,000 persons.
+
+
+
+
+# Empirical Specification
+
+To establish the effects of Covid-19 lockdowns, we use household
+fixed-effects models on a nationally representative longitudinal
+household data set, relying on the changes over time in
+government-imposed lockdowns to identify the effect.
+
 
 Our main specification regresses outcomes, $Y$, discussed below, on a
 set of variables using a linear fixed-effects model:[^3]
@@ -323,8 +392,7 @@ decide to self-isolate, or take other steps to avoid contact with others
 if they perceive a high risk of contracting Covid-19, which may increase
 food insecurity. To capture the severity of the Covid situation, the
 $Cases$ variable measures the number of new Covid-19 cases per 100,000
-persons in the 30 days before the household's survey date. The number of
-Covid cases comes from "Our World in Data."[^4]
+persons in the 30 days before the household's survey date. 
 
 Although we do not include any household-level variables in the 
 model, there are still three advantages to using a fixed effects model.
@@ -358,28 +426,6 @@ over time. As consistency checks on our use of indicator variables to
 capture the impact of lockdowns, we, therefore, also employ two
 alternative measures of lockdowns: stringency of the lockdowns and
 changes in mobility over time.
-
-To capture the stringency of the lockdowns, we employ a modified version
-of the lockdown stringency index developed at the Blavatnik School of
-Government, University of Oxford (Hale et al., 2021). The original index
-is a daily composite measure of how strict the lockdowns were based on
-nine indicators, including school closures, workplace closures, and
-travel bans, rescaled to a value from 0 to 100, where 100 is the
-strictest response. As some of the restrictions in the original index,
-such as school closure and international entry restrictions, are likely
-to have minimal immediate impacts on food insecurity, we recalculate the
-index using workplace closings, limits on public transport, stay-at-home
-requirements, and any restrictions on internal movement. We use the
-variation in the average of this revised index over the 30 days before
-the households were surveyed to capture the impact of the lockdowns.
-
-Neither the lockdown indicator variables nor the stringency index
-captures the extent to which the lockdown policies were enforced or
-adhered to. We, therefore, also use Google Mobility data on the percent
-change in time spent at residential locations relative to the pre-Covid
-behavior [@Google2022].[^6] 
-Our measure is the average of this percent
-change over the 30 days before each household's survey date.
 
 A final concern is that seasonal agricultural patterns may bias our
 results. Uganda has two lean seasons, one in April and May and another
@@ -541,39 +587,6 @@ the current round's number.
 
 ## Summary Statistics
 
-[@fig:combined] shows the daily stringency index, the daily Google Mobility
-measure of time spent at residential locations, the 7-day average number
-of new Covid-19 cases and deaths per 100,000 persons, and the data
-collection window for each of the UHFS rounds in shaded grey. The
-strictest restrictions are just before round 1, where there is an almost
-complete lockdown. 
-Although, according to the stringency measure, the second lockdown was 
-nearly as strict as the first. 
-Furthermore, the four months after each lockdown show similar stringency 
-levels, with stringency only dropping in September 2020.
-
-![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
-and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
-
-
-That the lockdown policies were enforced is shown by the substantial
-increases in the amount of time spent at residential locations during
-the April through June 2020 and the June through August 2021 periods.
-Despite some remaining restrictions during the second and third rounds,
-the time spent at residential locations had returned to almost the
-baseline by the end of the second round's data collection in mid-August
-2020, which is why we did not include the third round as a lockdown
-round. Through the non-lockdown periods, the time spent at home remained
-relatively stable except for the Christmas and New Year's celebrations.
-
-The number of confirmed infections and deaths from Covid remained low in
-Uganda until halfway through 2021. For context, even with the spike in
-cases in 2021, Uganda's cumulative number of cases per 100,000 at the
-end of 2021 was only 306.9 compared with 16,294.5 in the US.
-Furthermore, as in many other developing countries, the number of Covid
-deaths was low. Even with the increase in cases and deaths by the end of
-2021, Uganda had only 7.2 deaths per 100,000 persons, while, for
-comparison, the US had 245.1 deaths per 100,000 persons.
 
 We present the summary statistics of key variables in Table 1. Column 1
 shows the overall sample mean, and columns 2, 3, and 4 show the
@@ -588,7 +601,79 @@ of households reported any food insecurity during the first lockdown
 (round 1) as opposed to 47.2 percent for the non-lockdown period, a
 difference of 24.6 percent.
 
-# Results
+# Did Lockdowns Drive Food Insecurity?
+
+
+
+## The Role of Seasonality
+
+To examine whether seasonality in food security might be behind our
+results, we first compare pre-Covid information on food insecurity with
+a subset of our measures. 
+The UNPS 2015/16 and the UNPS 2019/20 both asked if the households had been 
+faced with a situation when they did not have enough food to feed the 
+household in the last 12 months. 
+If yes, they were asked to list all months when this occurred. 
+Although this question does not directly correspond to any of the food insecurity
+questions asked in the UHFS and the recall period is one year rather
+than the 30 days for the UHFS, it is close to three of our questions:
+ran out of food because of lack of money, went hungry but did not eat,
+and went without eating for a whole day.
+
+For the UNPS question, we combined all observations by month and
+calculate the percentage who reported not having enough food to feed the
+household. For the UHFS questions, we calculate the percentages food
+insecure by interview month. 
+[@fig:seasonality] shows the food insecurity
+percentages with the UNPS question shown in black for comparison.
+Despite FAO listing April/May and November/December as the lean periods,
+the UNPS data show that April, May, and June were the three months with
+the highest proportion of food insecurity, while November and December
+were the months with the lowest proportion.[^13]
+
+![Projected Seasonality in Food Insecurity from UNPS and
+Observed Food Insecurity for Three UHFS 
+Outcomes](../figures/seasonality.pdf){#fig:seasonality}
+
+All three UHFS questions follow the same general pattern as the UNPS
+question outside the lockdown periods, September 2020 through April
+2021. For the initial lockdown, both the short- and medium-run effects
+show clearly in the UHFS questions. Although it is possible that these
+high values were the result of seasonal variation, we consider it
+unlikely for two reasons. First, there is no evidence of the same
+elevation for April 2021, which is also in the lean season but nine
+months after the lockdown. Second, the medium-term effects of the second
+lockdown show even worse medium-term food insecurity outcomes despite
+being in a non-lean period.
+
+Our second approach is to re-estimate our main models on three subsets
+of the data. First, we make use of the fact that round 6 took place
+during the April/May lean season but was the round least affected by
+lockdowns and estimate our main model using only information from rounds
+1, 2, and 6. The results are shown in Appendix Table A4. Compared to the
+main model, the short-run effects are slightly smaller and the medium
+effect larger. Second, the only two rounds collected during almost the
+same calendar month were rounds 4 and 7, and Appendix Table A5 shows the
+results when we restrict to those two rounds. The medium-run effect of
+the second lockdown for this sample is smaller but still statistically
+significant in most cases. Complicating this comparison is that the
+number of new Covid cases was close to constant within each round and
+smaller during round 7 than round 4, resulting in potential
+multicollinearity and statistically significant *negative* effects of
+new cases on food insecurity for some outcomes. 
+Finally, we expect urban households to be less affected by seasonality, 
+and Appendix Table A6, therefore, shows the results using only urban 
+households across all rounds. 
+The short- and medium-run effects of the lockdowns are either
+the same or larger when we restrict the sample to urban households.
+Hence, our results are qualitatively the same, no matter how we account
+for seasonality.
+
+
+
+## Regional Variation 
+
+
 
 ## Food Insecurity
 
@@ -620,13 +705,18 @@ insecurity measures. This suggests that the second lockdown, combined
 with a drought, had a worse impact on food insecurity than the first
 lockdown, at least in the medium run.
 
+
+# How Households Responded
+
+[Explain the analysis]
+
 ## Impact on Work
 
 One way lockdowns can affect food insecurity is by lowering people's
 ability to work. Table 3, column 1, shows that the likelihood of any
 market work decreased by a significant 18.6 percentage points during the
 first lockdown. These employment effects were driven mainly by lockdowns
-rather than being ill from Covid-19. As shown in [@fig:combined] , there were
+rather than being ill from Covid-19. As shown in [@fig:combined], there were
 almost no cases during the first lockdown. Furthermore, UHSF asked
 individuals the reason for not working, and the top three reasons
 reported are that the place of work is closed (62%), being ill from any
@@ -812,67 +902,6 @@ lockdowns. For example, the difference between the non-lockdown and the
 first lockdown in time spent at residences implies a 30 percentage
 points increase in any food insecurity due to the first lockdown.[^12]
 
-To examine whether seasonality in food security might be behind our
-results, we first compare pre-Covid information on food insecurity with
-a subset of our measures. The UNPS 2015/16 and the UNPS 2019/20 both
-asked if the households had been faced with a situation when they did
-not have enough food to feed the household in the last 12 months. If
-yes, they were asked to list all months when this occurred. Although
-this question does not directly correspond to any of the food insecurity
-questions asked in the UHFS and the recall period is one year rather
-than the 30 days for the UHFS, it is close to three of our questions:
-ran out of food because of lack of money, went hungry but did not eat,
-and went without eating for a whole day.
-
-For the UNPS question, we combined all observations by month and
-calculate the percentage who reported not having enough food to feed the
-household. For the UHFS questions, we calculate the percentages food
-insecure by interview month. 
-[@fig:seasonality] shows the food insecurity
-percentages with the UNPS question shown in black for comparison.
-Despite FAO listing April/May and November/December as the lean periods,
-the UNPS data show that April, May, and June were the three months with
-the highest proportion of food insecurity, while November and December
-were the months with the lowest proportion.[^13]
-
-![Projected Seasonality in Food Insecurity from UNPS and
-Observed Food Insecurity for Three UHFS 
-Outcomes](../figures/seasonality.pdf){#fig:seasonality}
-
-
-
-All three UHFS questions follow the same general pattern as the UNPS
-question outside the lockdown periods, September 2020 through April
-2021. For the initial lockdown, both the short- and medium-run effects
-show clearly in the UHFS questions. Although it is possible that these
-high values were the result of seasonal variation, we consider it
-unlikely for two reasons. First, there is no evidence of the same
-elevation for April 2021, which is also in the lean season but nine
-months after the lockdown. Second, the medium-term effects of the second
-lockdown show even worse medium-term food insecurity outcomes despite
-being in a non-lean period.
-
-Our second approach is to re-estimate our main models on three subsets
-of the data. First, we make use of the fact that round 6 took place
-during the April/May lean season but was the round least affected by
-lockdowns and estimate our main model using only information from rounds
-1, 2, and 6. The results are shown in Appendix Table A4. Compared to the
-main model, the short-run effects are slightly smaller and the medium
-effect larger. Second, the only two rounds collected during almost the
-same calendar month were rounds 4 and 7, and Appendix Table A5 shows the
-results when we restrict to those two rounds. The medium-run effect of
-the second lockdown for this sample is smaller but still statistically
-significant in most cases. Complicating this comparison is that the
-number of new Covid cases was close to constant within each round and
-smaller during round 7 than round 4, resulting in potential
-multicollinearity and statistically significant *negative* effects of
-new cases on food insecurity for some outcomes. Finally, we expect urban
-households to be less affected by seasonality, and Appendix Table A6,
-therefore, shows the results using only urban households across all
-rounds. The short- and medium-run effects of the lockdowns are either
-the same or larger when we restrict the sample to urban households.
-Hence, our results are qualitatively the same, no matter how we account
-for seasonality.
 
 # Conclusion
 
