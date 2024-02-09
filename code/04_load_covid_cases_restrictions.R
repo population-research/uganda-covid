@@ -299,58 +299,95 @@ google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv
   select(date, contains(c("_pre_", "_daily")))
 
 
+# Function for generating to/from lockdown variables ----
 
-# Combine data frames and save ----
-
-# # By month measures - not merged into base data
-# covid_oxford <- full_join(covid_cases, oxford, by = c("year", "month"))
-# 
-# covid_oxford %>% 
-#   write_rds(here("data", "covid_oxford.rds"))
-# 
-# covid_oxford %>% 
-#   write_dta(
-#     here("data", "covid_oxford.dta"),
-#     version = 14,
-#   )
+# This code is ugly as sin, but it works!
+add_days_to_from_lockdown <- function(df, var, cutoff) {
+  .org_df <- df
   
-# Prior 30 days measures - merged into base data
+  .df <- df %>% 
+    # Find first and last day of lock-downs based on occurrences 7 days before and after
+    mutate(
+      var_cutoff = if_else(abs({{ var }}) >= abs(cutoff), 1, 0),
+      prior_7_days = rollapply(var_cutoff, list(seq(-7, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
+      next_7_days = rollapply(var_cutoff, list(seq(1, 7)), sum, na.rm = TRUE, align = "left", fill = NA),
+      first = if_else(
+        var_cutoff == 1 & prior_7_days == 0  & next_7_days > 0, date, as_date(NA)
+      ),
+      last = if_else(
+        var_cutoff == 1 & prior_7_days > 0  & next_7_days == 0, date, as_date(NA)
+      )
+    ) %>% 
+    select(date, first, last)
+  
+  # Create data frames for the first and last day of the lockdowns for easier joining
+  lockdown_began <- .df %>% distinct(first) %>% 
+    filter(!is.na(first)) %>%
+    mutate(n = row_number()) %>% 
+    pivot_wider(names_from = n, values_from = first, names_prefix = "lockdown_began_") 
+  
+  lockdown_ended <- .df %>% distinct(last) %>%
+    filter(!is.na(last)) %>%
+    mutate(n = row_number()) %>% 
+    pivot_wider(names_from = n, values_from = last, names_prefix = "lockdown_ended_")
+  
+  # Assign the first and last day of the lockdowns to the data frame
+  .df <- .df %>% 
+    select(date) %>% 
+    add_column(lockdown_began, lockdown_ended) %>% 
+    mutate(
+      time_to_lockdown = case_when(
+        # Before first lock
+        date < lockdown_began_1 ~ lockdown_began_1 - date,
+        # In first or second lockdown
+        date %within% interval(lockdown_began_1, lockdown_ended_1) |
+          date %within% interval(lockdown_began_2, lockdown_ended_2) ~ ddays(0),
+        # Between first and second lockdown
+        date %within% interval(lockdown_ended_1, lockdown_began_2) ~ lockdown_began_2 - date,
+        # After second lockdown or otherwise not calculated
+        TRUE ~ ddays(NA)
+      ),
+      time_from_lockdown = case_when(
+        # Before first lock
+        date < lockdown_began_1 ~ ddays(NA),
+        # In first or second lockdown
+        date %within% interval(lockdown_began_1, lockdown_ended_1) |
+          date %within% interval(lockdown_began_2, lockdown_ended_2) ~ ddays(0),
+        # Between first and second lockdown
+        date %within% interval(lockdown_ended_1, lockdown_began_2) ~ date - lockdown_ended_1,
+        # After second lockdown 
+        date > lockdown_ended_2 ~ date - lockdown_ended_2,
+        # Otherwise not calculated
+        TRUE ~ ddays(NA)
+      )
+    ) %>% 
+    # Convert to days 
+    mutate(
+      "time_to_lockdown_{{ var }}" := as.numeric(time_to_lockdown, "days"),
+      "time_from_lockdown_{{ var }}" := as.numeric(time_from_lockdown, "days")
+    ) %>%
+    select(date, starts_with(c("time_to_lockdown_", "time_from_lockdown_")))
+  
+  # Add the new variables to the original data frame
+  .org_df %>% 
+    left_join(.df, by = "date") 
+}
+
+# Combine data frames, add days to/from lockdown variables, and save ----
 
 full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
   full_join(google, by = "date") %>% 
   arrange(date) %>% 
+  add_days_to_from_lockdown(index_4_daily, 75) %>% 
+  add_days_to_from_lockdown(residential_daily, 30) %>% 
+  # negative, but function set up to do absolute to deal with this
+  add_days_to_from_lockdown(retail_and_recreation_daily, 50) %>%
   write_rds(here("data", "temp_covid_cases_restrictions.rds"))
 
 
-test <- full_join(covid_cases_by_day, oxford_by_day, by = "date") %>% 
-  full_join(google, by = "date") %>% 
-  arrange(date) %>% 
-  # Find first and last day of lockdowns
-  mutate(
-    index_4_above_75 = if_else(index_4_daily >= 75, 1, 0),
-    prior_7_days = rollapply(index_4_above_75, list(seq(-7, -1)), sum, na.rm = TRUE, align = "right", fill = NA),
-    next_7_days = rollapply(index_4_above_75, list(seq(1, 7)), sum, na.rm = TRUE, align = "left", fill = NA),
-    first_75_index = if_else(
-      index_4_above_75 == 1 & prior_7_days == 0  & next_7_days > 0, date, as_date(NA)
-    ),
-    last_75_index = if_else(
-      index_4_above_75 == 1 & prior_7_days > 0  & next_7_days == 0, date, as_date(NA)
-    )
-  ) %>% 
-  # fill(first_75_index, last_75_index) %>%
-  select(date, contains(c("index", "7_days")))
-
-unique(test$first_75_index)[!is.na(unique(test$first_75_index))]
-unique(test$last_75_index)[!is.na(unique(test$last_75_index))]
 
 
 
-
-
-
-# Probably makes more sense to pivot each of these to long and join them to the main data frame
-
-# Then calculate the days since the start and end of the lockdowns
 
 
 
