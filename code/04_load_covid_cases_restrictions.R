@@ -340,30 +340,19 @@ test <- full_join(covid_cases_by_day, oxford_by_day, by = "date") %>%
   # fill(first_75_index, last_75_index) %>%
   select(date, contains(c("index", "7_days")))
 
-first_days <- distinct(test, first_75_index) %>% 
-  filter(!is.na(first_75_index)) 
+unique(test$first_75_index)[!is.na(unique(test$first_75_index))]
+unique(test$last_75_index)[!is.na(unique(test$last_75_index))]
 
-last_days <- distinct(test, last_75_index) %>%
-  filter(!is.na(last_75_index))
+
+
+
+
 
 # Probably makes more sense to pivot each of these to long and join them to the main data frame
 
 # Then calculate the days since the start and end of the lockdowns
 
 
-
-map(first_days$first_75_index, ~ {
-  test %>% 
-    mutate(
-      lockdown
-    ) %>%
-})
-
-%>%
-  mutate(
-    days_since_start_lockdown = date - first_75_index,
-    days_since_end_lockdown = date - last_75_index,
-  )
 
   
 
