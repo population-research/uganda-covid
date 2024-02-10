@@ -63,9 +63,9 @@ base <- base %>%
 base %>%   
   write_rds(here("data", "base.rds"))
 
-# Shorten variable names to maximum of 32 characters
-names(base) <- substr(names(base), 1, 32) 
+# Shorten variable names to maximum of 32 characters and save as .dta file
 base %>% 
+  rename_with(~substr(., 1, 32)) %>%
   write_dta(
     here("data", "base.dta"),
     version = 14,
