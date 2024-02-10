@@ -363,10 +363,14 @@ add_days_to_from_lockdown <- function(df, var, cutoff) {
     ) %>% 
     # Convert to days 
     mutate(
-      "time_to_lockdown_{{ var }}" := as.numeric(time_to_lockdown, "days"),
-      "time_from_lockdown_{{ var }}" := as.numeric(time_from_lockdown, "days")
+      "lockdown_to_{{ var }}" := as.numeric(time_to_lockdown, "days"),
+      "lockdown_from_{{ var }}" := as.numeric(time_from_lockdown, "days")
     ) %>%
-    select(date, starts_with(c("time_to_lockdown_", "time_from_lockdown_")))
+    select(date, starts_with(c("lockdown_to", "lockdown_from"))) %>% 
+    # Remove _daily from variable names
+    rename_with(
+      ~ str_replace(., "_daily", "")
+    )
   
   # Add the new variables to the original data frame
   .org_df %>% 
