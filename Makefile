@@ -65,6 +65,10 @@ $(DAT)/temp_covid_cases_restrictions.rds: $(CODE)/04_load_covid_cases_restrictio
 $(FIG)/food_insecurity_by_survey_round_3_levels.pdf: $(CODE)/06_descriptive_graphs.R \
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
+	
+$(FIG)/food_insecurity_survey.pdf: $(CODE)/07_food_insecurity.R \
+ $(DAT)/base.rds
+	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1	
 
 ###################################################################
 ### Paper Production                                            ###
@@ -76,6 +80,7 @@ paper: $(TEXT)/$(PAPER).pdf
 $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(TEXT)/default.yaml \
  $(FIG)/food_insecurity_by_survey_round_3_levels.pdf
+ $(FIG)/food_insecurity_survey.pdf
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
 .PHONY: word
@@ -84,7 +89,8 @@ word: $(TEXT)/$(PAPER).docx
 $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(TEXT)/default.yaml \
  $(FIG)/food_insecurity_by_survey_round_3_levels.pdf
-	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
+ $(FIG)/food_insecurity_survey.pdf
+ 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
 
 .PHONY: view
 view: $(TEXT)/$(PAPER).pdf

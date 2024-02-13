@@ -1,19 +1,21 @@
 ---
 title: 'Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
 		Household Coping Mechanisms: Evidence from Uganda'
-date: January 2024
+date: February 2024
 author:
-- Shamma Adeeb Alam^[Associate Professor, Department of International
-	Studies, Dickinson College, Carlisle, PA.
-	\href{mailto:alams@dickinson.edu}{\texttt{alams@dickinson.edu}}]
 - Claus C. Pörtner^[Associate Professor, 
 	Albers School of Business and Economics, 
 	Seattle University, Seattle, WA, and Center for Studies
 	in Demography and Ecology, University of Washington, Seattle, WA. 
 	\href{mailto:cportner@seattleu.edu}{\texttt{cportner@seattleu.edu}},
     \href{http://www.clausportner.com}{\texttt{www.clausportner.com}}]
-- Ishraq Ahmed^[Economist, Public Utility Commission, State of
-	Oregon, Salem, Oregon]
+- Shamma Adeeb Alam^[Associate Professor, Department of International
+	Studies, Dickinson College, Carlisle, PA.
+	\href{mailto:alams@dickinson.edu}{\texttt{alams@dickinson.edu}}]
+- Ishraq Ahmed^[Senior Economist, 
+    Policy Development, Office of Tax Policy,
+    Virginia Department of Taxation, Richmond, VA.
+    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{texttt{Ishraq.Ahmed@tax.virginia.gov}}]
 thanks: |
   We would like to thank seminar participants at Howard University, Alex
   Henke, and four anonymous referees for their helpful comments and suggestions. 
@@ -151,9 +153,9 @@ There is a long-standing literature on how households in developing
 countries smooth consumption in response to idiosyncratic shocks through
 self-insurance approaches 
 [@Case1995]. 
-However, we know less about how
-these coping mechanisms fare when households are exposed to aggregate
-shocks. Most of the research on aggregate shocks has focused on
+However, we know less about how these coping mechanisms fare when households 
+are exposed to aggregate shocks. 
+Most of the research on aggregate shocks has focused on
 financial shocks and natural disasters and has found varying degrees of
 ability to smooth consumption, although wealthier households are
 generally better able to deal with the shock 
@@ -169,11 +171,10 @@ diversification of income sources, transfers and remittances, and
 changes in household structure through migration 
 [@Foster2002; @Jayachandran2006; @Kochar1999; @McKenzie2003; @Morduch1995;
 @Townsend1994; @Yang2007]. 
-Our paper complements recent work showing that rural households in Uganda, especially 
-non-farm business owners, experienced significant asset decline and increased likelihood
-of net borrowing, presumably as a coping mechanism after the first
-lockdown 
-[@Mahmud2023].
+Our paper complements recent work showing that rural households in Uganda---especially 
+non-farm business owners---experienced significant asset decline and increased 
+likelihood of net borrowing, presumably as a coping mechanism after the first
+lockdown [@Mahmud2023].
 
 Using the Food and Agriculture Organization's (FAO) eight-question food
 insecurity experience scale to measure food insecurity, we find that
@@ -249,11 +250,12 @@ typically the respondent. If the household head was not present, another
 member of the household over the age of 15 could respond to the survey.
 
 A concern with phone surveys is that households with access to phones
-are fundamentally different from households without access to phones. It
-is, for example, possible that phone surveys have a higher likelihood of
+are fundamentally different from households without access to phones. 
+It is, for example, possible that phone surveys have a higher likelihood of
 reaching wealthier households, who typically have better access to
-phones, than poorer households. This would bias our results. To avoid
-any biases to the extent possible, we use the UHFS-provided survey
+phones, than poorer households. 
+This would bias our results. 
+To avoid any biases to the extent possible, we use the UHFS-provided survey
 weights to ensure that the data is nationally representative 
 [@Uganda-Bureau-of-Statistics2022].
 
@@ -267,10 +269,9 @@ round and the cumulative number of new households in the follow-up
 rounds are presented in Appendix Table A1.
 
 
-
 # Lockdown Context and Enforcement
 
-On March 18, 2020, the Ugandan government started imposing restrictions,
+On March 18, 2020, the Ugandan government began imposing restrictions,
 including travel restrictions and cancellation of public gatherings,
 such as religious services, weddings, and music events 
 [@Uganda-Bureau-of-Statistics2022]. 
@@ -294,13 +295,7 @@ government of Uganda imposed a second lockdown from June 2021
 [@Atamanov2022; @Athumani2021]. 
 This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
 
-[@fig:combined] shows the daily stringency index, the daily Google Mobility
-measure of time spent at residential locations, the 7-day average number
-of new Covid-19 cases and deaths per 100,000 persons, and the data
-collection window for each of the UHFS rounds in shaded grey. 
-The number of Covid cases and deaths comes from "Our World in Data."[^4]
-
-To capture the stringency of the lockdowns, we employ a modified version
+To show the strictness of the lockdowns imposed, we employ a modified version
 of the lockdown stringency index developed at the Blavatnik School of
 Government, University of Oxford (Hale et al., 2021). 
 The original index is a daily composite measure of how strict the lockdowns 
@@ -312,16 +307,26 @@ and international entry restrictions, are likely to have minimal immediate
 impacts on food insecurity, we recalculate the index using workplace 
 closings, limits on public transport, stay-at-home requirements, 
 and any restrictions on internal movement. 
-We use the variation in the average of this revised index over the 30 days before
-the households were surveyed to capture the impact of the lockdowns.
 
-Neither the lockdown indicator variables nor the stringency index
-captures the extent to which the lockdown policies were enforced or
-adhered to. We, therefore, also use Google Mobility data on the percent
-change in time spent at residential locations relative to the pre-Covid
-behavior [@Google2022].[^6] 
-Our measure is the average of this percent
-change over the 30 days before each household's survey date.
+The stringency index cannot capture the extent to which the lockdown 
+policies were enforced or adhered to, and we, therefore, also use Google 
+Mobility data on the percent change in time spent at residential locations 
+relative to the pre-Covid behavior [@Google2022].
+Each day of the week is scaled relative to a "baseline day," which
+is the median value from the five weeks, January 3 -- February 6, 2020.[^6] 
+
+[^6]: Other mobility information, such as the number of visitors to
+    groceries and pharmacies per day, are available but tend to be
+    noisier and give similar results to our time at home measure.
+
+![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
+and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
+
+[@fig:combined] shows the daily stringency index, the daily Google Mobility
+measure of time spent at residential locations, the 7-day average number
+of new Covid-19 cases and deaths per 100,000 persons, and the data
+collection window for each of the UHFS rounds in shaded grey. 
+The number of Covid cases and deaths comes from "Our World in Data."[^4]
 
 The strictest restrictions are just before round 1, where there is an almost
 complete lockdown. 
@@ -330,24 +335,20 @@ nearly as strict as the first.
 Furthermore, the four months after each lockdown show similar stringency 
 levels, with stringency only dropping in September 2020.
 
-![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
-and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
-
-
 That the lockdown policies were enforced is shown by the substantial
 increases in the amount of time spent at residential locations during
 the April through June 2020 and the June through August 2021 periods.
 Despite some remaining restrictions during the second and third rounds,
 the time spent at residential locations had returned to almost the
-baseline by the end of the second round's data collection in mid-August
-2020, which is why we did not include the third round as a lockdown
-round. Through the non-lockdown periods, the time spent at home remained
+baseline by the end of the second round's data collection in mid-August 2020. 
+Through the non-lockdown periods, the time spent at home remained
 relatively stable except for the Christmas and New Year's celebrations.
 
 The number of confirmed infections and deaths from Covid remained low in
-Uganda until halfway through 2021. For context, even with the spike in
-cases in 2021, Uganda's cumulative number of cases per 100,000 at the
-end of 2021 was only 306.9 compared with 16,294.5 in the US.
+Uganda until halfway through 2021. 
+For context, even with the spike in cases in 2021, Uganda's cumulative 
+number of cases per 100,000 at the end of 2021 was only 306.9 compared 
+with 16,294.5 in the US.
 Furthermore, as in many other developing countries, the number of Covid
 deaths was low.
 Even with the increase in cases and deaths by the end of 2021, Uganda 
@@ -355,6 +356,13 @@ had only 7.2 deaths per 100,000 persons, while, for
 comparison, the US had 245.1 deaths per 100,000 persons.
 
 
+[stringency]
+We use the variation in the average of this revised index over the 30 days before
+the households were surveyed to capture the impact of the lockdowns.
+
+[Google mobility]
+Our measure is the average of this percent
+change over the 30 days before each household's survey date.
 
 
 # Empirical Specification
@@ -364,16 +372,16 @@ fixed-effects models on a nationally representative longitudinal
 household data set, relying on the changes over time in
 government-imposed lockdowns to identify the effect.
 
-
 Our main specification regresses outcomes, $Y$, discussed below, on a
 set of variables using a linear fixed-effects model:[^3]
 
 $$
-Y_{i,t} = \beta_0 + \beta_1 L_1 + \beta_2 L_2 + \beta_3 L_7 + \beta_4 Cases_{i,t} 
+Y_{i,t} =  \sum_{t=1}^7 \beta_t 1[Round = t]  + \gamma Cases_{i,t} 
 + \omega_i + \epsilon_{i,t}, 
 $$
 
 where $i$ denote household and $t$ survey rounds. 
+
 We use three indicator variables, $L_1$, $L_2$, and $L_7$, to represent lockdown-related
 periods, with 1 for a lockdown-related period and 0 otherwise. 
 $L_1$ represents the first survey round in June 2020, which was towards the
@@ -604,6 +612,44 @@ difference of 24.6 percent.
 # Did Lockdowns Drive Food Insecurity?
 
 
+![Estimated Changes and 95% Confidence Intervals in Food Insecurity by Survey Round Relative to Survey 4, 
+Controlling for Number of Covid Cases](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
+
+
+[@fig:food_insecurity_survey] shows the estimated changes in the
+three food insecurity measures by survey round, relative to 
+survey round 4, together with the 95% confidence intervals.
+
+
+Table 2 shows the impact of the Covid-19 lockdowns in Uganda on the
+likelihood of food insecurity using a linear model with household fixed
+effects.[^8] Overall, lockdowns caused a substantial increase in all
+types of food insecurity in both the short and medium run.
+
+As shown in column 1, the first lockdown led to a substantial and
+statistically significant short-run increase in the likelihood of having
+any food insecurity by 25.2 percentage points. Furthermore, the
+lockdowns led to a significant increase in all eight food insecurity
+measures, where most of the point estimates are sizeable, with
+magnitudes of over 20 percentage points. Even more concerning, the worst
+forms of food insecurity ("had to skip a meal" and "went hungry but did
+not eat") more than doubled, and "went without eating for a whole day"
+almost tripled.
+
+The effects of the first lockdown persisted in the medium run, with
+significant increases in food insecurity about three months after the
+lockdowns were lifted. Any food insecurity was still 11.9 percentage
+points higher than in non-lockdown periods, and five of the nine
+measures had a point estimate of at least nine percentage points.
+
+Moreover, the medium-run impact of the second lockdown is similar to the
+short-run effect of the first lockdown. The point estimates of the
+second lockdown are over 20 percentage points for six of the nine food
+insecurity measures. This suggests that the second lockdown, combined
+with a drought, had a worse impact on food insecurity than the first
+lockdown, at least in the medium run.
+
+
 
 ## The Role of Seasonality
 
@@ -674,36 +720,32 @@ for seasonality.
 ## Regional Variation 
 
 
+## Robustness Checks
 
-## Food Insecurity
 
-Table 2 shows the impact of the Covid-19 lockdowns in Uganda on the
-likelihood of food insecurity using a linear model with household fixed
-effects.[^8] Overall, lockdowns caused a substantial increase in all
-types of food insecurity in both the short and medium run.
+[attrition bounding exercise]
 
-As shown in column 1, the first lockdown led to a substantial and
-statistically significant short-run increase in the likelihood of having
-any food insecurity by 25.2 percentage points. Furthermore, the
-lockdowns led to a significant increase in all eight food insecurity
-measures, where most of the point estimates are sizeable, with
-magnitudes of over 20 percentage points. Even more concerning, the worst
-forms of food insecurity ("had to skip a meal" and "went hungry but did
-not eat") more than doubled, and "went without eating for a whole day"
-almost tripled.
+As a consistency check on our use of indicator variables to capture
+lockdowns, we use the average of the revised daily lockdown stringency
+measure for the 30 days before the interview in our main specifications.
+The results are presented in Table 6. More stringent restrictions lead
+to significant increases in all food insecurity variables. During the
+first round, the average measure of the stringency index is 77, while
+the index in the non-lockdown rounds (rounds 3 through 6) is 47.
+Therefore, the point estimates imply that "any food insecurity"
+increased by 15 percentage points when comparing the first lockdown to
+the periods with no lockdown.
 
-The effects of the first lockdown persisted in the medium run, with
-significant increases in food insecurity about three months after the
-lockdowns were lifted. Any food insecurity was still 11.9 percentage
-points higher than in non-lockdown periods, and five of the nine
-measures had a point estimate of at least nine percentage points.
+One downside of the stringency measure is that it does not capture the
+extent to which the policies were enforced. Therefore, we also use
+Google mobility data on the amount of time individuals spent at their
+residences. The results are presented in Table 7. The mobility measure
+also shows significant increases in food insecurity due to the
+lockdowns. For example, the difference between the non-lockdown and the
+first lockdown in time spent at residences implies a 30 percentage
+points increase in any food insecurity due to the first lockdown.[^12]
 
-Moreover, the medium-run impact of the second lockdown is similar to the
-short-run effect of the first lockdown. The point estimates of the
-second lockdown are over 20 percentage points for six of the nine food
-insecurity measures. This suggests that the second lockdown, combined
-with a drought, had a worse impact on food insecurity than the first
-lockdown, at least in the medium run.
+
 
 
 # How Households Responded
@@ -880,27 +922,6 @@ This is likely because of the concurrent drought during and after the
 second lockdown in Uganda that affected the agricultural households\'
 employment and food production.
 
-# Robustness Checks
-
-As a consistency check on our use of indicator variables to capture
-lockdowns, we use the average of the revised daily lockdown stringency
-measure for the 30 days before the interview in our main specifications.
-The results are presented in Table 6. More stringent restrictions lead
-to significant increases in all food insecurity variables. During the
-first round, the average measure of the stringency index is 77, while
-the index in the non-lockdown rounds (rounds 3 through 6) is 47.
-Therefore, the point estimates imply that "any food insecurity"
-increased by 15 percentage points when comparing the first lockdown to
-the periods with no lockdown.
-
-One downside of the stringency measure is that it does not capture the
-extent to which the policies were enforced. Therefore, we also use
-Google mobility data on the amount of time individuals spent at their
-residences. The results are presented in Table 7. The mobility measure
-also shows significant increases in food insecurity due to the
-lockdowns. For example, the difference between the non-lockdown and the
-first lockdown in time spent at residences implies a 30 percentage
-points increase in any food insecurity due to the first lockdown.[^12]
 
 
 # Conclusion
@@ -2176,12 +2197,6 @@ at 10%.
     at <https://covid.ourworldindata.org/data/owid-covid-data.csv>, and
     a complete listing of underlying sources is
     at <https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv>.
-
-[^6]: Each day of the week is scaled relative to a "baseline day," which
-    is the median value from the five weeks, January 3 -- February 6,
-    2020. Other mobility information, such as the number of visitors to
-    groceries and pharmacies per day, are available but tend to be
-    noisier and give similar results to our time at home measure.
 
 [^7]: Households were also asked whether they received unemployment
     benefits, but there was only one observation representing a change,
