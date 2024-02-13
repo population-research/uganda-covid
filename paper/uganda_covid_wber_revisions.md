@@ -609,47 +609,47 @@ of households reported any food insecurity during the first lockdown
 (round 1) as opposed to 47.2 percent for the non-lockdown period, a
 difference of 24.6 percent.
 
-# Did Lockdowns Drive Food Insecurity?
+# Did Lockdowns Increase Food Insecurity?
 
-
-![Estimated Changes and 95% Confidence Intervals in Food Insecurity by Survey Round Relative to Survey 4, 
-Controlling for Number of Covid Cases](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
-
+![Estimated Changes in Food Insecurity with 95% Confidence Intervals by Survey Round Relative to Survey 4, 
+Controlling for Number of Covid Cases and Household Fixed Effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
 
 [@fig:food_insecurity_survey] shows the estimated changes in the
 three food insecurity measures by survey round, relative to 
-survey round 4, together with the 95% confidence intervals.
+survey round 4, together with the 95% confidence intervals for 
+a linear model with household fixed effects.[^base_results]
+Overall, Covid-19 lockdowns appear to be associated with substantial 
+increases in all levels of food insecurity.
 
+[^base_results]: The full tables for this and all following
+results presented as tables are available upon request.
 
-Table 2 shows the impact of the Covid-19 lockdowns in Uganda on the
-likelihood of food insecurity using a linear model with household fixed
-effects.[^8] Overall, lockdowns caused a substantial increase in all
-types of food insecurity in both the short and medium run.
+Approximately a month after the end of the first severe lockdown, 
+the proportion of households that report any or moderate to severe food 
+insecurity is more than 20 percentage points higher than in round 4,
+an effect that is very statistically significant. 
+Severe food insecurity in round 1 is just below 10 percentage points 
+higher than in round 4 and also statistically significantly different 
+from round 4.
 
-As shown in column 1, the first lockdown led to a substantial and
-statistically significant short-run increase in the likelihood of having
-any food insecurity by 25.2 percentage points. Furthermore, the
-lockdowns led to a significant increase in all eight food insecurity
-measures, where most of the point estimates are sizeable, with
-magnitudes of over 20 percentage points. Even more concerning, the worst
-forms of food insecurity ("had to skip a meal" and "went hungry but did
-not eat") more than doubled, and "went without eating for a whole day"
-almost tripled.
+About three months after the end of the first severe lockdown, 
+any and moderate to severe food insecurity levels are still statistically 
+significantly higher than in round 4 at approximately 10 percentage points.
+Severe food insecurity is also increased but not statistically significantly
+so.
 
-The effects of the first lockdown persisted in the medium run, with
-significant increases in food insecurity about three months after the
-lockdowns were lifted. Any food insecurity was still 11.9 percentage
-points higher than in non-lockdown periods, and five of the nine
-measures had a point estimate of at least nine percentage points.
+Between six and eleven months (rounds 3 through 6), there is little 
+discernable difference in the levels of food insecurity, and we cannot 
+reject that they all have the same levels. 
 
-Moreover, the medium-run impact of the second lockdown is similar to the
-short-run effect of the first lockdown. The point estimates of the
-second lockdown are over 20 percentage points for six of the nine food
-insecurity measures. This suggests that the second lockdown, combined
-with a drought, had a worse impact on food insecurity than the first
-lockdown, at least in the medium run.
+The final round, round 7, took place 2.5 to 3.5 months after the end
+of the second major lockdown, but in relation to round 4, the levels of
+food insecurity are closer to those of round 1.
+Any and moderate to severe food insecurity are both more than 20 percentage 
+points higher than in round 4, while severe food insecurity is more than 10
+percentage points higher; all three are strongly statistically significant.
 
-
+[summary; drought and round 7; anything else that can explain this?]
 
 ## The Role of Seasonality
 
@@ -2202,10 +2202,6 @@ at 10%.
     benefits, but there was only one observation representing a change,
     so we do not have any variation to conduct a conditional ordered
     logit estimation.
-
-[^8]: As our point estimates are relative to non-lockdown periods, we
-    present the mean of outcome variables in non-lockdown periods at the
-    bottom of each column.
 
 [^9]: While not focusing on lockdowns, one prior study 
 	finds evidence that the pandemic itself led to a switch in
