@@ -91,3 +91,53 @@ fx <- map(
     facet_wrap(~variable, scales = "fixed", ncol = 1) ) %>% 
   ggsave(here("figures", "food_insecurity_survey.pdf"), ., width = 8, height = 6, units = "in")
 
+
+# Regional variation in food insecurity ----
+
+# Run on each region and produce graphs
+base %>% 
+  group_by(region) %>%
+  nest() %>%
+  mutate(
+    fx_regions = map(data, ~ map(
+      food_vars, 
+      ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+            data = .x, 
+            index = c("hhid", "survey"), 
+            model = "within",
+            effect = "individual",
+            # weighting using weight_final
+            weights = weight_final
+      ) %>% 
+        tidy(conf.int = TRUE) %>% 
+        # select(term, estimate, std.error, p.value) %>%
+        filter(term != "cases_smooth_per_100000") %>% 
+        add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+        arrange(term) %>% 
+        mutate(variable = .x) %>% 
+        select(variable, everything())
+    ))
+  )
+
+
+
+fx_regions <- 
+  map(
+    food_vars, 
+    ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+          data = base, 
+          index = c("hhid", "survey"), 
+          model = "within",
+          effect = "individual",
+          # weighting using weight_final
+          weights = weight_final
+    ) %>% 
+      tidy(conf.int = TRUE) %>% 
+      # select(term, estimate, std.error, p.value) %>%
+      filter(term != "cases_smooth_per_100000") %>% 
+      add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+      arrange(term) %>% 
+      mutate(variable = .x) %>% 
+      select(variable, everything())
+  )
+
