@@ -720,6 +720,14 @@ for seasonality.
 ## Regional Variation 
 
 
+![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
+
+
+[@fig:food_insecurity_region] 
+
+
+
+
 ## Robustness Checks
 
 

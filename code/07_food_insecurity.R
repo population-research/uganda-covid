@@ -79,6 +79,10 @@ fx <- map(
 
 # Make fx into one data frame and combine graphs
 (list_rbind(fx) %>% 
+    mutate(
+      term = str_remove(term, "survey"),
+      variable = str_to_title(str_remove(variable, "insecure_"))
+    ) %>% 
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
     # Make 0 line more prominent
     geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -94,50 +98,49 @@ fx <- map(
 
 # Regional variation in food insecurity ----
 
-# Run on each region and produce graphs
-base %>% 
-  group_by(region) %>%
-  nest() %>%
+# Run on each region separately
+fx_regions <- base %>% 
+  nest(.by = region) %>%
   mutate(
-    fx_regions = map(data, ~ map(
-      food_vars, 
-      ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
-            data = .x, 
-            index = c("hhid", "survey"), 
-            model = "within",
-            effect = "individual",
-            # weighting using weight_final
-            weights = weight_final
+    regional_result = map(data, function(df) { 
+      map(
+        food_vars, 
+        ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+              data = df, 
+              index = c("hhid", "survey"), 
+              model = "within",
+              effect = "individual",
+              # weighting using weight_final
+              weights = weight_final
+        ) %>% 
+          tidy(conf.int = TRUE) %>% 
+          # select(term, estimate, std.error, p.value) %>%
+          filter(term != "cases_smooth_per_100000") %>% 
+          add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+          arrange(term) %>% 
+          mutate(variable = .x) %>% 
+          select(variable, everything())
       ) %>% 
-        tidy(conf.int = TRUE) %>% 
-        # select(term, estimate, std.error, p.value) %>%
-        filter(term != "cases_smooth_per_100000") %>% 
-        add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-        arrange(term) %>% 
-        mutate(variable = .x) %>% 
-        select(variable, everything())
-    ))
-  )
+        list_rbind()
+    })
+  ) %>% 
+  select(region, regional_result) %>% 
+  unnest(cols = regional_result)
 
+# Produce graphs
+fx_regions %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  facet_grid(vars(region), vars(variable), scales = "fixed")
 
-
-fx_regions <- 
-  map(
-    food_vars, 
-    ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
-          data = base, 
-          index = c("hhid", "survey"), 
-          model = "within",
-          effect = "individual",
-          # weighting using weight_final
-          weights = weight_final
-    ) %>% 
-      tidy(conf.int = TRUE) %>% 
-      # select(term, estimate, std.error, p.value) %>%
-      filter(term != "cases_smooth_per_100000") %>% 
-      add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-      arrange(term) %>% 
-      mutate(variable = .x) %>% 
-      select(variable, everything())
-  )
-
+ggsave(here("figures", "food_insecurity_region.pdf"), width = 8, height = 10, units = "in")      
