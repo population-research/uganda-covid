@@ -719,7 +719,6 @@ for seasonality.
 
 ## Regional Variation 
 
-![Regional descriptive](../figures/food_insecurity_by_region_survey_round_3_levels.pdf)(#fig:region_descriptive)
 
 ![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
 
@@ -2233,4 +2232,22 @@ at 10%.
     2018/19 shows the same questions in the questionnaire, but the
     responses are not available in the data.
     
-# References {-}
+    
+    
+# References {.unnumbered}
+
+<div id="refs"></div>
+
+
+# Appendix {.unnumbered}
+
+\appendix
+
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
+
+![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
+Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
+
+
+

@@ -62,7 +62,7 @@ $(DAT)/temp_covid_cases_restrictions.rds: $(CODE)/04_load_covid_cases_restrictio
 ### Graphing and Data Analysis                                  ###
 ###################################################################
 
-$(FIG)/food_insecurity_by_survey_round_3_levels.pdf: $(CODE)/06_descriptive_graphs.R \
+$(FIG)/food_insecurity_by_survey_round_3_levels.pdf $(FIG)/food_insecurity_by_region_survey_round_3_levels.pdf: $(CODE)/06_descriptive_graphs.R \
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
 	
