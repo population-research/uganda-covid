@@ -719,6 +719,7 @@ for seasonality.
 
 ## Regional Variation 
 
+![Regional descriptive](../figures/food_insecurity_by_region_survey_round_3_levels.pdf)(#fig:region_descriptive)
 
 ![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
 
@@ -2231,3 +2232,5 @@ at 10%.
     results for the individual surveys are available upon request. UNPS
     2018/19 shows the same questions in the questionnaire, but the
     responses are not available in the data.
+    
+# References {-}

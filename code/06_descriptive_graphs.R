@@ -442,9 +442,9 @@ ggsave(here("figures", "combined.pdf"),
        width = 19, height = 25, units = "cm")
 
 
-# Food security and interview dates by round ----
+# National-level Food security and interview dates by round ----
 
-base <- read_rds(here("data", "base.rds")) %>% 
+national_level <- read_rds(here("data", "base.rds")) %>% 
   select(survey, interview_date, starts_with(c("food", "insecure"))) %>% 
   select(-insecure_sum) %>% 
   group_by(survey) %>% 
@@ -458,10 +458,8 @@ base <- read_rds(here("data", "base.rds")) %>%
   pivot_longer(-c(survey, first_date, last_date), names_to = "type", values_to = "value") 
 
 
-# Plot ----
-
-# Individual food insecurity outcomes
-base %>% 
+# Single type food insecurity
+national_level %>% 
   filter(str_detect(type, "food_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "food_")) %>% 
@@ -498,12 +496,11 @@ base %>%
   guides(color = guide_legend(ncol = 2)) +
   theme(legend.position = c(0.5, 0.8)) 
 
-# Save plot
 ggsave(here("figures", "food_insecurity_by_survey_round_8_questions.pdf"), width = 8, height = 6, units = "in")
 
 
-# Cumulative food insecurity outcomes
-base %>% 
+# Cumulative food insecurity outcomes 
+national_level %>% 
   filter(str_detect(type, "insecure_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "insecure_")) %>% 
@@ -535,6 +532,58 @@ base %>%
   guides(color = guide_legend(ncol = 2)) +
   theme(legend.position = c(0.5, 0.8)) 
 
-# Save plot
 ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
+
+
+# Regional-level food security and interview dates by round ----
+
+regional_level <- read_rds(here("data", "base.rds")) %>% 
+  select(region, survey, interview_date, starts_with(c("food", "insecure"))) %>% 
+  select(-insecure_sum) %>% 
+  group_by(region, survey) %>% 
+  summarise(
+    first_date = min(interview_date),
+    last_date = max(interview_date),
+    # find average across all variables that begin with food
+    across(starts_with(c("food", "insecure")), \(x) mean(x, na.rm = TRUE) * 100)
+  )  %>% 
+  # Pivot longer over all variables that begin with food
+  pivot_longer(-c(region, survey, first_date, last_date), names_to = "type", values_to = "value") 
+
+# Cumulative food insecurity outcomes 
+regional_level %>% 
+  filter(str_detect(type, "insecure_")) %>%
+  # remove food_ from variable 
+  mutate(type = str_remove(type, "insecure_")) %>% 
+  # make type a factor and specify order
+  mutate(
+    type = factor(
+      type, 
+      levels = c("any", "moderate", "severe")
+    )
+  )%>%
+  ggplot(aes(x = value, color = type)) +
+  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  coord_flip(xlim = c(0, 100), expand = FALSE) +
+  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Any",
+      "Moderate or severe",
+      "Severe")
+  ) +
+  labs(
+    x = "Percent",
+    y = "Survey dates",
+    title = "Food insecurity by survey round"
+  ) +
+  guides(color = guide_legend(nrow = 1)) +
+  theme(legend.position = c(0.25, 0.95)) +
+  facet_wrap(~region, scales = "fixed")
+
+ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 8, height = 8, units = "in")
+
 
