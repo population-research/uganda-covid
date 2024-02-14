@@ -719,6 +719,10 @@ for seasonality.
 
 ## Regional Variation 
 
+All of the results above are national-level, which may obscure significant
+variations in both the degree of lockdowns and the effects of lockdowns 
+across regions.
+
 
 ![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
 

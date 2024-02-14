@@ -106,15 +106,16 @@ geographic heterogeneity, of course). I think this type of mediation style
 analysis would be more informative than current Table 6 & 7 which I do not know
 how to compare to earlier tables.
 
-    **Response:**  The two measures of lockdown, stringency and the percentage
-    change in time spent at residential, that we originally used varied only 
+    **Response:**  The two measures of lockdown---stringency and the percentage
+    change in time spent at residential---that we originally used varied only 
     temporally, not spatially. 
     Furthermore, none of the survey rounds took place during the two most severe 
     parts of the lockdowns.
     The implication of this is that the effect of time from severe lockdown 
-    estimated together with survey indicators would only be identified by
+    estimated interacted with survey indicators would only be identified by
     the variation within each survey round of when a household was surveyed.
-    A concern with this approach is that, despite this being a phone survey,
+    In addition to the limited variation within each survey, a concern with 
+    this approach is that, despite this being a phone survey,
     each region did not have the same distribution of interview dates.
     Hence, we unfortunately cannot directly follow this suggestion.
     
