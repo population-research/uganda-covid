@@ -105,7 +105,7 @@ fx_regions <- base %>%
     regional_result = map(data, function(df) { 
       map(
         food_vars, 
-        ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+        ~ plm(as.formula(paste0(.x, " ~ survey ")), 
               data = df, 
               index = c("hhid", "survey"), 
               model = "within",
