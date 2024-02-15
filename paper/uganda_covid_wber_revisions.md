@@ -290,8 +290,8 @@ International travel restrictions remained until the end
 of September, when land borders reopened, and international flights
 resumed [@Guloba2021].
 
-In response to the resurgence of Covid-19 infections in 2021, the
-government of Uganda imposed a second lockdown from June 2021 
+In response to the increasing number of Covid-19 infections in 2021, the
+government of Uganda imposed a second severe lockdown from June 2021 
 [@Atamanov2022; @Athumani2021]. 
 This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
 
@@ -310,8 +310,8 @@ and any restrictions on internal movement.
 
 The stringency index cannot capture the extent to which the lockdown 
 policies were enforced or adhered to, and we, therefore, also use Google 
-Mobility data on the percent change in time spent at residential locations 
-relative to the pre-Covid behavior [@Google2022].
+Mobility data on the percentage change in the number of 
+visitors to retail and recreation location relative to the pre-Covid behavior [@Google2022].
 Each day of the week is scaled relative to a "baseline day," which
 is the median value from the five weeks, January 3 -- February 6, 2020.[^6] 
 
@@ -322,27 +322,34 @@ is the median value from the five weeks, January 3 -- February 6, 2020.[^6]
 ![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
 and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
 
-[@fig:combined] shows the daily stringency index, the daily Google Mobility
-measure of time spent at residential locations, the 7-day average number
-of new Covid-19 cases and deaths per 100,000 persons, and the data
-collection window for each of the UHFS rounds in shaded grey. 
+[@fig:combined] shows the daily stringency index, the daily Google Mobility measure,
+the 7-day average number of new Covid-19 cases and deaths per 100,000 persons, 
+and the data collection window for each of the UHFS rounds in shaded grey. 
 The number of Covid cases and deaths comes from "Our World in Data."[^4]
 
 The strictest restrictions are just before round 1, where there is an almost
 complete lockdown. 
-Although, according to the stringency measure, the second lockdown was 
-nearly as strict as the first. 
+According to the stringency measure, the second lockdown was nearly as strict 
+as the first. 
 Furthermore, the four months after each lockdown show similar stringency 
 levels, with stringency only dropping in September 2020.
 
-That the lockdown policies were enforced is shown by the substantial
-increases in the amount of time spent at residential locations during
-the April through June 2020 and the June through August 2021 periods.
-Despite some remaining restrictions during the second and third rounds,
-the time spent at residential locations had returned to almost the
-baseline by the end of the second round's data collection in mid-August 2020. 
+That the most severe lockdown policies were enforced is evident from the 
+substantial decreases in visits to retail from April through June 2020 
+and June through August 2021, with close to 75% and 50% decreases, respectively.
+Despite the remaining restrictions during the second and third rounds,
+the number of visits to retail locations slowly improved, stabilizing at around
+25% below "normal" during the 4th through 6th survey rounds.
+Only around May/June 2021 had retail visits returned to almost the baseline level.
+
 Through the non-lockdown periods, the time spent at home remained
 relatively stable except for the Christmas and New Year's celebrations.
+[election and violence, internet shutdowns]
+
+[Appendix figures with other mobility measures]
+
+[Explain why using retail rather than residential or the others]
+
 
 The number of confirmed infections and deaths from Covid remained low in
 Uganda until halfway through 2021. 
@@ -719,16 +726,159 @@ for seasonality.
 
 ## Regional Variation 
 
-All of the results above are national-level, which may obscure significant
-variations in both the degree of lockdowns and the effects of lockdowns 
-across regions.
 
+All of the results above are national-level, which may obscure regional
+variations in both the degree and effects of lockdowns.
+Uganda is divided into four regions, Central, Eastern, Northern, 
+and Western, which, although without direct administrative roles, are
+used as units for statistical and planning purposes.
+The regions have approximately the same population size, except for the Northern
+region, which had 20% of the population in the 2014 census.
+
+The Central region is home to Kampala and the most urbanized,
+with the four most populous urban centers in Uganda 
+[@Uganda-Bureau-of-Statistics2016].
+Combined, these four urban centers are home to one-third of the
+entire urban population of Uganda, with almost 2.5 million people.[^small_urban]
+The region has a higher concentration of service and industrial employment 
+opportunities than the other regions and the lowest poverty rates [@Ssewanyana2012]. 
+
+[^small_urban]:
+For comparison, the fifth-largest urban center, the Western region's Mbarara, 
+had fewer than 200,000 people in 2014.
+
+In contrast, employment in the other regions is predominantly agricultural. 
+The Eastern region is characterized by mixed farming, including both crop 
+cultivation and livestock, with a notable focus on cash crops like coffee and tea. 
+The Western region, rich in fertile soils and rainfall, supports intensive 
+agriculture, particularly dairy farming and tea cultivation. 
+The Northern region, historically affected by conflict, has a more 
+subsistence-oriented agricultural system, with lower levels of productivity 
+and a slower pace of urbanization, and consistently has the highest poverty levels.  
+
+![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Location](../figures/regional_retail_and_recreation.pdf){#fig:retail_regional}
+
+
+
+
+We, therefore, next examine changes in food insecurity across the survey 
+rounds for each of the four regions in Uganda.
+[@fig:food_insecurity_region] shows the results by level of food insecurity
+and regions, where each combination is from a separate regression.[^no_covid]
+
+[^no_covid]: Because we do not have information on regional Covid-19
+cases, all models are estimated without this national-level variable.
+The levels of food insecurity by round are 
+shown in Appendix [@fig:region_descriptive].
 
 ![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
 
+Both the Central and Eastern regions follow a pattern very closely 
+aligned with the national-level results.
+All three levels of food insecurity are statistically significantly
+higher in the immediate aftermath of the first lockdown compared to 
+round 4, and food insecurity gradually decrease for the next two 
+survey rounds.
+The levels remain approximately constant until after the second
+lockdown, where food insecurity in round 7 are all statistically significantly
+higher than in round 4.
 
-[@fig:food_insecurity_region] 
+For the Northern region, severe food insecurity follow the national-level
+pattern.
+However, for moderate/severe food insecurity, only round 5 is not
+statistically significantly different from round 4 and levels in 
+rounds 1 and 7 are more than 40 and 30 percentage points higher,
+respectively, than round 4.
+Furthermore, although the changes in any food insecurity are closer 
+to the national-level changes, they are generally smaller.
 
+The Western region is the region that stands out most compared to the
+other region. 
+First, there is little to no change in severe food insecurity, except
+for the last survey round, which is just below 10 percentage points
+higher than round 4.
+Similarly, although rounds 1 and 2 for moderate food insecurity are 
+statistically significantly higher than round 4, the effects are small.
+For any food insecurity, the round 7 level is substantially larger
+than any of the others, despite round 7 further away from the end
+of the lockdowns than rounds 1 and 2.
+
+
+[How to explain these patterns?]
+There are two potentially counteracting effects.
+First, the more urbanized an area is the more it will be possible to 
+police/enforce lockdowns.
+Second, the closer households are to the poverty line the less it
+takes to push those households into food insecurity.
+This is important because even though the lockdowns might not 
+limit movement as much in, say the Eastern region, as in Kampala,
+the households are poorer in the Eastern region and it, therefore,
+takes less to push a household into food insecurity.
+[I guess it is also possible that with high enough poverty, we
+will see little change because only *changes* in status will
+contribute to the results (?)].
+
+
+
+These results are consistent with a situation where more households
+closer to the poverty line is associated with rapid and large
+changes in the levels of food insecurity.
+The high level of poverty in the Northern region may also explain
+the relatively small changes in any food insecurity there over time. 
+
+
+[From Consensus/ChatGPT]
+
+The levels of poverty in Uganda's four regions—Central, Eastern, Northern, and
+Western—exhibit significant disparities, influenced by various factors including
+economic activities, access to resources, and historical and social contexts.
+
+1. **Northern Uganda** experiences the highest levels of chronic poverty, with
+the region's past conflict significantly affecting its economic development and
+livelihoods. The Northern Uganda Social Action Fund (NUSAF) region showed a
+reduction in poverty rates from 64.6% to 52.2% between 2004 and 2008. However,
+about 44.9% of households lived in extreme chronic poverty, with the Karamoja
+sub-region being particularly affected. Agriculture remains the main source of
+income, suggesting that peace and agricultural productivity are critical for
+poverty reduction in the North ([Ssewanyana,
+2010](https://consensus.app/papers/combating-poverty-uganda-towards-strategy-
+ssewanyana/8d1c493f4e1c5401bcf953877d12fc5f/?utm_source=chatgpt)).
+
+2. **Eastern Uganda** is characterized by vulnerability to poverty, particularly
+in agro-ecological zones such as the annual cropping and cattle northern and
+Teso zones. Rural areas in Eastern Uganda, similar to the rest of the country,
+are significantly impacted by poverty, which is exacerbated by reliance on
+agriculture, large household sizes, and lack of access to electricity and
+markets ([Abuka et al.,
+2007](https://consensus.app/papers/determinants-poverty-vulnerability-uganda-
+abuka/7614ec9379f45d669c9d7db39b3e23ca/?utm_source=chatgpt)).
+
+3. **Western Uganda** shows a mix of poverty dynamics, with some households
+escaping poverty while others fall into it. Health-related costs and ill health
+are major reasons for descending into poverty, affecting nearly two-thirds of
+households. Agricultural land issues and urban employment contribute differently
+to escaping poverty across regions, with Western Uganda benefiting slightly more
+from land-related reasons ([Krishna et al.,
+2006](https://consensus.app/papers/escaping-poverty-becoming-villages-central-
+western-krishna/db5b832012e051699d5ce8db89ccec6f/?utm_source=chatgpt)).
+
+4. **Central Uganda**, including the capital city Kampala, is relatively better
+off compared to the other regions, yet it still faces challenges of poverty and
+inequality. Urban areas, in general, have higher rates of inequality, although
+there has been a significant improvement in income distribution over time. The
+Gini coefficient, a measure of income inequality, declined from 0.428 in 2002/03
+to 0.408 in 2005/06, indicating progress in poverty reduction ([Ssewanyana &
+Okidi,
+2007](https://consensus.app/papers/poverty-estimates-uganda-national-household-
+survey-ssewanyana/bc8bff416fe05c25a62574989cd550ad/?utm_source=chatgpt)).
+
+In conclusion, while Uganda has made strides in reducing poverty, the Northern
+region remains the most affected by chronic poverty. Efforts to reduce poverty
+in Uganda must consider the unique challenges and opportunities in each region,
+with a focus on peace, agricultural productivity, and access to markets and
+services.
+
+For more AI-powered insights, go to [consensus.app](https://consensus.app/?utm_source=chatgpt).
 
 
 
@@ -2247,11 +2397,18 @@ at 10%.
 
 \appendix
 
+
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{figure}{0}
 
+## [Region]
+
 ![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
 Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
+
+
+
+
 
 
 
