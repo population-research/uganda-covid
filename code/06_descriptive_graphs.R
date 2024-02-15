@@ -272,8 +272,7 @@ national_level <- google %>% filter(is.na(sub_region_1))
 
 ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = residential)) + 
-  # geom_line(aes(y = grocery_and_pharmacy)) + 
-  # geom_line(aes(y = transit_stations)) +
+  ylab("Percentage Change in Time Spent at\nResidencies (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
@@ -293,15 +292,12 @@ ggplot(national_level,aes(x = date)) +
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
-ggsave(here("figures", "google_mobility_national.pdf"),
+ggsave(here("figures", "mobility_national_residential.pdf"),
        width = 20, height = 15, units = "cm")
 
-# Regional level mobility ----
-
-regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
-
-ggplot(regional, aes(x = date)) + 
-  geom_line(aes(y = residential, color = sub_region_1)) + 
+ggplot(national_level,aes(x = date)) + 
+  geom_line(aes(y = workplaces)) + 
+  ylab("Percentage Change in Visits to\nWorkplaces (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
@@ -316,10 +312,91 @@ ggplot(regional, aes(x = date)) +
   annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
-           ymin = -Inf, ymax = Inf, alpha = 0.4) 
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
-ggsave(here("figures", "google_mobility_regional.pdf"),
+ggsave(here("figures", "mobility_national_workplaces.pdf"),
        width = 20, height = 15, units = "cm")
+
+
+# Regional level mobility ----
+
+regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
+
+
+
+ggplot(regional, aes(x = date)) + 
+  geom_line(aes(y = retail_and_recreation)) + 
+  ylab("Percentage Change in Visitors to\nRetail (Base: 01/03-02/06, 2020)") +
+  xlab("Date") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  facet_wrap(~sub_region_1, scales = "fixed")
+
+ggsave(here("figures", "mobility_regional_retail.pdf"),
+       width = 20, height = 15, units = "cm")
+
+ggplot(regional, aes(x = date)) + 
+  geom_line(aes(y = residential)) + 
+  ylab("Percentage Change in Time Spent at\nResidencies (Base: 01/03-02/06, 2020)") +
+  xlab("Date") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  facet_wrap(~sub_region_1, scales = "fixed")
+
+ggsave(here("figures", "mobility_regional_residential.pdf"),
+       width = 20, height = 15, units = "cm")
+
+
+ggplot(regional, aes(x = date)) + 
+  geom_line(aes(y = workplaces)) +
+  ylab("Percentage Change in Visits to\nWorkplaces (Base: 01/03-02/06, 2020)") +
+  xlab("Date") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  facet_wrap(~sub_region_1, scales = "fixed")
+
+ggsave(here("figures", "mobility_regional_workplaces.pdf"),
+       width = 20, height = 15, units = "cm")
+
 
 
 # Combine graphs ----
