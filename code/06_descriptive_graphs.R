@@ -327,7 +327,7 @@ ggsave(here("figures", "google_mobility_regional.pdf"),
 
 p_index <- ggplot(oxford, aes(x=date, y=index_4)) + 
   geom_line() + 
-  ylab("Daily Stringency Index \n (restricted version)") +
+  ylab("Daily Stringency Index\n(restricted version)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   geom_fit_text(aes(label = "1", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
@@ -363,11 +363,33 @@ p_index <- ggplot(oxford, aes(x=date, y=index_4)) +
         axis.text.x = element_blank())
 
 
+# p_mobility <- ggplot(national_level,aes(x = date)) + 
+#   geom_line(aes(y = residential)) + 
+#   # geom_line(aes(y = grocery_and_pharmacy)) + 
+#   # geom_line(aes(y = transit_stations)) +
+#   ylab("Time Spent at Residencies \n (Base: 01/03-02/06, 2020)") +
+#   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+#                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+#   theme(axis.title.x = element_blank(),
+#         axis.text.x = element_blank())
+
 p_mobility <- ggplot(national_level,aes(x = date)) + 
-  geom_line(aes(y = residential)) + 
-  # geom_line(aes(y = grocery_and_pharmacy)) + 
-  # geom_line(aes(y = transit_stations)) +
-  ylab("Time Spent at Residencies \n (Base: 01/03-02/06, 2020)") +
+  geom_line(aes(y = retail_and_recreation)) + 
+  ylab("Percentage Change in Visitors to\nRetail (Base: 01/03-02/06, 2020)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -390,7 +412,7 @@ p_mobility <- ggplot(national_level,aes(x = date)) +
 
 p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) + 
   geom_line() + 
-  ylab("Daily New Cases Per \n 100,000 (Smooth)") +
+  ylab("Daily New Cases Per\n100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -414,7 +436,7 @@ p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) +
 p_deaths <- ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) + 
   geom_line() + 
   xlab("Date") +
-  ylab("Daily New Deaths Per \n 100,000 (Smooth)") +
+  ylab("Daily New Deaths Per\n100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
