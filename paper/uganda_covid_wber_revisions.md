@@ -20,7 +20,6 @@ thanks: |
   We would like to thank seminar participants at Howard University, Alex
   Henke, and four anonymous referees for their helpful comments and suggestions. 
   We would also like to thank Pascal Ntaganda for his research assistance.
-  
   Partial support for this research came from a Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
   5R24HD042828, to the Center for Studies in Demography and Ecology at the
@@ -47,6 +46,7 @@ abstract: |
 bibliography: uganda_covid.bib
 csl: journal-of-development-economics.csl
 link-citations: true
+
 ---
 
 # Introduction
@@ -271,6 +271,9 @@ rounds are presented in Appendix Table A1.
 
 # Lockdown Context and Enforcement
 
+
+[Still needs a discussion of drought]
+
 On March 18, 2020, the Ugandan government began imposing restrictions,
 including travel restrictions and cancellation of public gatherings,
 such as religious services, weddings, and music events 
@@ -311,15 +314,23 @@ and any restrictions on internal movement.
 The stringency index cannot capture the extent to which the lockdown 
 policies were enforced or adhered to, and we, therefore, also use Google 
 Mobility data on the percentage change in the number of 
-visitors to retail and recreation location relative to the pre-Covid behavior [@Google2022].
+visitors to retail and recreation locations relative to the pre-Covid 
+behavior [@Google2022].
+We use this measure because it captures the closures of shops and has 
+better regional coverage than most other mobility measures.[^other_mobility]
 Each day of the week is scaled relative to a "baseline day," which
-is the median value from the five weeks, January 3 -- February 6, 2020.[^6] 
+is the median value from the five weeks, January 3 -- February 6, 2020. 
 
-[^6]: Other mobility information, such as the number of visitors to
-    groceries and pharmacies per day, are available but tend to be
-    noisier and give similar results to our time at home measure.
-
-![Revised Stringency Index, Time Spent at Residential Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
+[^other_mobility]: Mobility information for two other types of locations, 
+    the percentage change in the number of visitors to workplaces and the
+    percentage change in the time spent at residential locations are 
+    shown in Appendix Figures @fig:mobility_national_workplaces and
+    @fig:mobility_national_residential.
+    The visits to workplaces measure also has good regional coverage
+    but it is unclear how relevant this is given that the majority of 
+    people in Uganda work in agriculture.
+    
+![Revised Stringency Index, Visits to Retail and Recreation Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
 and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
 
 [@fig:combined] shows the daily stringency index, the daily Google Mobility measure,
@@ -342,34 +353,25 @@ the number of visits to retail locations slowly improved, stabilizing at around
 25% below "normal" during the 4th through 6th survey rounds.
 Only around May/June 2021 had retail visits returned to almost the baseline level.
 
-Through the non-lockdown periods, the time spent at home remained
-relatively stable except for the Christmas and New Year's celebrations.
-[election and violence, internet shutdowns]
-
-[Appendix figures with other mobility measures]
-
-[Explain why using retail rather than residential or the others]
-
+Outside of the severe lockdown periods, the time spent at home remained
+relatively stable with three notable exceptions.
+The two most innocuous are the closures around the Christmas and New Year's celebrations.
+The third is the 2021 general election, which took place on 14 January.
+All shops were closed on the day of the election, and nobody appeared to have 
+gone to any retail location immediately following the election.
+Although the election was preceded by widespread violence and internet shutdowns 
+immediately around the time of the election, the reduction in visits to retail 
+and recreation locations appeared to have been relatively short-lived.
 
 The number of confirmed infections and deaths from Covid remained low in
 Uganda until halfway through 2021. 
 For context, even with the spike in cases in 2021, Uganda's cumulative 
 number of cases per 100,000 at the end of 2021 was only 306.9 compared 
 with 16,294.5 in the US.
-Furthermore, as in many other developing countries, the number of Covid
-deaths was low.
+Furthermore, as in many other developing countries, the number of Covid deaths was low.
 Even with the increase in cases and deaths by the end of 2021, Uganda 
 had only 7.2 deaths per 100,000 persons, while, for
 comparison, the US had 245.1 deaths per 100,000 persons.
-
-
-[stringency]
-We use the variation in the average of this revised index over the 30 days before
-the households were surveyed to capture the impact of the lockdowns.
-
-[Google mobility]
-Our measure is the average of this percent
-change over the 30 days before each household's survey date.
 
 
 # Empirical Specification
@@ -389,18 +391,24 @@ $$
 
 where $i$ denote household and $t$ survey rounds. 
 
-We use three indicator variables, $L_1$, $L_2$, and $L_7$, to represent lockdown-related
-periods, with 1 for a lockdown-related period and 0 otherwise. 
-$L_1$ represents the first survey round in June 2020, which was towards the
-end of the first lockdown, and thus captures the immediate/short-run
-effect of that lockdown. 
-$L_2$ represents the second survey round in
-August 2020 and captures the medium-run impact of the first lockdown.
-$L_7$ represents the seventh round in October 2021, which was two to
-three months after the lifting of the second lockdown end-July 2021.
-Thus, $L_7$ captures the medium-term impact of the second lockdown. In
-our estimations, we compare the periods during or soon-after lockdowns
-to the other periods with no lockdowns in rounds 3, 4, 5, and 6.
+We use survey indicator variables to capture the variation over time.
+The first survey round took place between 9 and 27 days after the
+end of the first severe lockdown and, therefore, can be thought of
+as capturing the short-run effect of the first lockdown.
+The second survey took place 63 to 86 days after the first lockdown ended
+and the seventh survey took place 74 to 105 days (with the majority before
+within 87 days) after the second lockdown ended.
+These we refer to as medium-term.
+The third, fourth, fifth, and sixth survey rounds took place
+112--130, 155--176, 253--272, and 281--322 days after the
+first severe lockdown.
+
+We use the fourth survey round as the excluded round because it is
+the round furthest from both lockdowns and before any substantial
+number of Covid cases and before the election begins in earnest.
+[Explain the identification and advantages of our approach]
+- compare *within* lockdowns, more severe vs less severe
+- before covid shows up in substantial numbers; identify effect of lockdown
 
 In addition to government-imposed lockdowns, individuals may be ill,
 decide to self-isolate, or take other steps to avoid contact with others
@@ -431,28 +439,6 @@ employment. In these cases, the models are individual fixed-effects
 models, as the same individual from the household is followed over the
 rounds.
 
-## Robustness Checks
-
-Using indicator variables to capture the impact of lockdowns has the
-advantage of straightforward interpretation. Still, the binary approach
-of comparing periods with lockdowns to periods with no lockdowns might
-miss potentially important nuances in government and individual behavior
-over time. As consistency checks on our use of indicator variables to
-capture the impact of lockdowns, we, therefore, also employ two
-alternative measures of lockdowns: stringency of the lockdowns and
-changes in mobility over time.
-
-A final concern is that seasonal agricultural patterns may bias our
-results. Uganda has two lean seasons, one in April and May and another
-in November and December [@FAO2022]. 
-Hence, with the first survey round
-fielded in June 2020, it is possible that part of what we capture with
-the round 1 indicator variable is the effect of the April/May lean
-season on food security. To examine the role of seasonal variation, we
-compare the changes in food insecurity measures with the closest
-comparable from previous rounds of UNPS and estimate our main model on
-alternative samples to show that seasonal variation is unlikely to
-explain our results.
 
 ## Main Outcomes: Food Insecurity
 
@@ -477,6 +463,260 @@ any food insecurity, with 1 for answering "Yes" to at least one of the
 eight FIES questions and 0 otherwise.
 
 ## Mechanisms that Affect Food Insecurity
+
+
+## Summary Statistics
+
+
+We present the summary statistics of key variables in Table 1. 
+Column 1 shows the overall sample mean, and columns 2, 3, and 4 show the
+respective sample means in round 1 (short-run effect of the first
+lockdown), round 2 (medium-run effect of the first lockdown), and round
+7 (medium run effect of the second lockdown). 
+Column 5 presents the mean for the non-lockdown-related rounds. 
+Overall, the average food insecurity across all rounds is relatively high, 
+with 55.4% reporting at least one type of food insecurity. 
+However, the differences between the lockdown and non-lockdown periods are large. 
+For example, 71.8 percent of households reported any food insecurity during 
+the first lockdown (round 1) as opposed to 47.2 percent for the non-lockdown 
+period, a difference of 24.6 percent.
+
+# Did Lockdowns Increase Food Insecurity?
+
+![Estimated Changes in Food Insecurity with 95% Confidence Intervals by Survey Round Relative to Survey 4, 
+Controlling for Number of Covid Cases and Household Fixed Effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
+
+[@fig:food_insecurity_survey] shows the estimated changes in the
+three food insecurity measures by survey round, relative to 
+survey round 4, together with the 95% confidence intervals for 
+a linear model with household fixed effects.[^base_results]
+Overall, Covid-19 lockdowns appear to be associated with substantial 
+increases in all levels of food insecurity.
+
+[^base_results]: The full tables for this and all following
+results presented as tables are available upon request.
+
+Approximately a month after the end of the first severe lockdown, 
+the proportion of households that report any or moderate to severe food 
+insecurity is more than 20 percentage points higher than in round 4,
+an effect that is very statistically significant. 
+Severe food insecurity in round 1 is just below 10 percentage points 
+higher than in round 4 and also statistically significantly different 
+from round 4.
+
+About three months after the end of the first severe lockdown, 
+any and moderate to severe food insecurity levels are still statistically 
+significantly higher than in round 4 at approximately 10 percentage points.
+Severe food insecurity is also increased but not statistically significantly
+so.
+
+Between six and eleven months (rounds 3 through 6), there is little 
+discernable difference in the levels of food insecurity, and we cannot 
+reject that they all have the same levels. 
+
+The final round, round 7, took place 2.5 to 3.5 months after the end
+of the second major lockdown, but in relation to round 4, the levels of
+food insecurity are closer to those of round 1.
+Any and moderate to severe food insecurity are both more than 20 percentage 
+points higher than in round 4, while severe food insecurity is more than 10
+percentage points higher; all three are strongly statistically significant.
+
+[summary; drought and round 7; anything else that can explain this?]
+
+## The Role of Seasonality
+
+Uganda has two lean seasons, one in April and May and another
+in November and December [@FAO2022]. 
+Hence, with the first survey round
+fielded in June 2020, it is possible that part of what we capture with
+the round 1 indicator variable is the effect of the April/May lean
+season on food security. To examine the role of seasonal variation, we
+compare the changes in food insecurity measures with the closest
+comparable from previous rounds of UNPS and estimate our main model on
+alternative samples to show that seasonal variation is unlikely to
+explain our results.
+
+
+To examine whether seasonality in food security might be behind our
+results, we first compare pre-Covid information on food insecurity with
+a subset of our measures. 
+The UNPS 2015/16 and the UNPS 2019/20 both asked if the households had been 
+faced with a situation when they did not have enough food to feed the 
+household in the last 12 months. 
+If yes, they were asked to list all months when this occurred. 
+Although this question does not directly correspond to any of the food insecurity
+questions asked in the UHFS and the recall period is one year rather
+than the 30 days for the UHFS, it is close to three of our questions:
+ran out of food because of lack of money, went hungry but did not eat,
+and went without eating for a whole day.
+
+For the UNPS question, we combined all observations by month and
+calculate the percentage who reported not having enough food to feed the
+household. For the UHFS questions, we calculate the percentages food
+insecure by interview month. 
+[@fig:seasonality] shows the food insecurity
+percentages with the UNPS question shown in black for comparison.
+Despite FAO listing April/May and November/December as the lean periods,
+the UNPS data show that April, May, and June were the three months with
+the highest proportion of food insecurity, while November and December
+were the months with the lowest proportion.[^13]
+
+![Projected Seasonality in Food Insecurity from UNPS and
+Observed Food Insecurity for Three UHFS 
+Outcomes](../figures/seasonality.pdf){#fig:seasonality}
+
+All three UHFS questions follow the same general pattern as the UNPS
+question outside the lockdown periods, September 2020 through April
+2021. For the initial lockdown, both the short- and medium-run effects
+show clearly in the UHFS questions. Although it is possible that these
+high values were the result of seasonal variation, we consider it
+unlikely for two reasons. First, there is no evidence of the same
+elevation for April 2021, which is also in the lean season but nine
+months after the lockdown. Second, the medium-term effects of the second
+lockdown show even worse medium-term food insecurity outcomes despite
+being in a non-lean period.
+
+Our second approach is to re-estimate our main models on three subsets
+of the data. First, we make use of the fact that round 6 took place
+during the April/May lean season but was the round least affected by
+lockdowns and estimate our main model using only information from rounds
+1, 2, and 6. The results are shown in Appendix Table A4. Compared to the
+main model, the short-run effects are slightly smaller and the medium
+effect larger. Second, the only two rounds collected during almost the
+same calendar month were rounds 4 and 7, and Appendix Table A5 shows the
+results when we restrict to those two rounds. The medium-run effect of
+the second lockdown for this sample is smaller but still statistically
+significant in most cases. Complicating this comparison is that the
+number of new Covid cases was close to constant within each round and
+smaller during round 7 than round 4, resulting in potential
+multicollinearity and statistically significant *negative* effects of
+new cases on food insecurity for some outcomes. 
+Finally, we expect urban households to be less affected by seasonality, 
+and Appendix Table A6, therefore, shows the results using only urban 
+households across all rounds. 
+The short- and medium-run effects of the lockdowns are either
+the same or larger when we restrict the sample to urban households.
+Hence, our results are qualitatively the same, no matter how we account
+for seasonality.
+
+
+
+## Regional Variation 
+
+[differences in drought; lockdown severity]
+
+All of the results above are national-level, which may obscure regional
+variations in both the degree and effects of lockdowns.
+Uganda is divided into four regions, Central, Eastern, Northern, 
+and Western, which, although without direct administrative roles, are
+used as units for statistical and planning purposes.
+The regions have approximately the same population size, except for the Northern
+region, which had 20% of the population in the 2014 census.
+
+The Central region is home to Kampala and the most urbanized,
+with the four most populous urban centers in Uganda 
+[@Uganda-Bureau-of-Statistics2016].
+Combined, these four urban centers are home to one-third of the
+entire urban population of Uganda, with almost 2.5 million people.[^small_urban]
+The region has a higher concentration of service and industrial employment 
+opportunities than the other regions and the lowest poverty rates [@Ssewanyana2012]. 
+
+[^small_urban]:
+For comparison, the fifth-largest urban center, the Western region's Mbarara, 
+had fewer than 200,000 people in 2014.
+
+In contrast, employment in the other regions is predominantly agricultural. 
+The Eastern region is characterized by mixed farming, including both crop 
+cultivation and livestock, with a notable focus on cash crops like coffee and tea. 
+The Western region, rich in fertile soils and rainfall, supports intensive 
+agriculture, particularly dairy farming and tea cultivation. 
+The Northern region, historically affected by conflict, has a more 
+subsistence-oriented agricultural system, with lower levels of productivity 
+and a slower pace of urbanization, and consistently has the highest poverty levels.  
+
+![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Location](../figures/regional_retail_and_recreation.pdf){#fig:retail_regional}
+
+
+
+
+We, therefore, next examine changes in food insecurity across the survey 
+rounds for each of the four regions in Uganda.
+[@fig:food_insecurity_region] shows the results by level of food insecurity
+and regions, where each combination is from a separate regression.[^no_covid]
+
+[^no_covid]: Because we do not have information on regional Covid-19
+cases, all models are estimated without this national-level variable.
+The levels of food insecurity by round are 
+shown in Appendix [@fig:region_descriptive].
+
+![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
+
+Both the Central and Eastern regions follow a pattern very closely 
+aligned with the national-level results.
+All three levels of food insecurity are statistically significantly
+higher in the immediate aftermath of the first lockdown compared to 
+round 4, and food insecurity gradually decrease for the next two 
+survey rounds.
+The levels remain approximately constant until after the second
+lockdown, where food insecurity in round 7 are all statistically significantly
+higher than in round 4.
+
+For the Northern region, severe food insecurity follow the national-level
+pattern.
+However, for moderate/severe food insecurity, only round 5 is not
+statistically significantly different from round 4 and levels in 
+rounds 1 and 7 are more than 40 and 30 percentage points higher,
+respectively, than round 4.
+Furthermore, although the changes in any food insecurity are closer 
+to the national-level changes, they are generally smaller.
+
+The Western region is the region that stands out most compared to the
+other region. 
+First, there is little to no change in severe food insecurity, except
+for the last survey round, which is just below 10 percentage points
+higher than round 4.
+Similarly, although rounds 1 and 2 for moderate food insecurity are 
+statistically significantly higher than round 4, the effects are small.
+For any food insecurity, the round 7 level is substantially larger
+than any of the others, despite round 7 further away from the end
+of the lockdowns than rounds 1 and 2.
+
+
+[How to explain these patterns?]
+There are two potentially counteracting effects.
+First, the more urbanized an area is the more it will be possible to 
+police/enforce lockdowns.
+Second, the closer households are to the poverty line the less it
+takes to push those households into food insecurity.
+This is important because even though the lockdowns might not 
+limit movement as much in, say the Eastern region, as in Kampala,
+the households are poorer in the Eastern region and it, therefore,
+takes less to push a household into food insecurity.
+[I guess it is also possible that with high enough poverty, we
+will see little change because only *changes* in status will
+contribute to the results (?)].
+
+
+
+These results are consistent with a situation where more households
+closer to the poverty line is associated with rapid and large
+changes in the levels of food insecurity.
+The high level of poverty in the Northern region may also explain
+the relatively small changes in any food insecurity there over time. 
+
+
+
+## The Role of Attrition 
+
+
+[attrition bounding exercise]
+
+
+
+
+# How Households Responded
+
+[Explain the analysis]
 
 To understand how the government lockdowns affected food insecurity and
 how households responded to the lockdowns, we examine three broad
@@ -600,319 +840,8 @@ the impact on household structure, we calculate the change in the number
 of household members by subtracting the number in the prior round from
 the current round's number.
 
-## Summary Statistics
 
 
-We present the summary statistics of key variables in Table 1. Column 1
-shows the overall sample mean, and columns 2, 3, and 4 show the
-respective sample means in round 1 (short-run effect of the first
-lockdown), round 2 (medium-run effect of the first lockdown), and round
-7 (medium run effect of the second lockdown). Column 5 presents the mean
-for the non-lockdown-related rounds. Overall, the average food
-insecurity across all rounds is relatively high, with 55.4% reporting at
-least one type of food insecurity. However, the differences between the
-lockdown and non-lockdown periods are large. For example, 71.8 percent
-of households reported any food insecurity during the first lockdown
-(round 1) as opposed to 47.2 percent for the non-lockdown period, a
-difference of 24.6 percent.
-
-# Did Lockdowns Increase Food Insecurity?
-
-![Estimated Changes in Food Insecurity with 95% Confidence Intervals by Survey Round Relative to Survey 4, 
-Controlling for Number of Covid Cases and Household Fixed Effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
-
-[@fig:food_insecurity_survey] shows the estimated changes in the
-three food insecurity measures by survey round, relative to 
-survey round 4, together with the 95% confidence intervals for 
-a linear model with household fixed effects.[^base_results]
-Overall, Covid-19 lockdowns appear to be associated with substantial 
-increases in all levels of food insecurity.
-
-[^base_results]: The full tables for this and all following
-results presented as tables are available upon request.
-
-Approximately a month after the end of the first severe lockdown, 
-the proportion of households that report any or moderate to severe food 
-insecurity is more than 20 percentage points higher than in round 4,
-an effect that is very statistically significant. 
-Severe food insecurity in round 1 is just below 10 percentage points 
-higher than in round 4 and also statistically significantly different 
-from round 4.
-
-About three months after the end of the first severe lockdown, 
-any and moderate to severe food insecurity levels are still statistically 
-significantly higher than in round 4 at approximately 10 percentage points.
-Severe food insecurity is also increased but not statistically significantly
-so.
-
-Between six and eleven months (rounds 3 through 6), there is little 
-discernable difference in the levels of food insecurity, and we cannot 
-reject that they all have the same levels. 
-
-The final round, round 7, took place 2.5 to 3.5 months after the end
-of the second major lockdown, but in relation to round 4, the levels of
-food insecurity are closer to those of round 1.
-Any and moderate to severe food insecurity are both more than 20 percentage 
-points higher than in round 4, while severe food insecurity is more than 10
-percentage points higher; all three are strongly statistically significant.
-
-[summary; drought and round 7; anything else that can explain this?]
-
-## The Role of Seasonality
-
-To examine whether seasonality in food security might be behind our
-results, we first compare pre-Covid information on food insecurity with
-a subset of our measures. 
-The UNPS 2015/16 and the UNPS 2019/20 both asked if the households had been 
-faced with a situation when they did not have enough food to feed the 
-household in the last 12 months. 
-If yes, they were asked to list all months when this occurred. 
-Although this question does not directly correspond to any of the food insecurity
-questions asked in the UHFS and the recall period is one year rather
-than the 30 days for the UHFS, it is close to three of our questions:
-ran out of food because of lack of money, went hungry but did not eat,
-and went without eating for a whole day.
-
-For the UNPS question, we combined all observations by month and
-calculate the percentage who reported not having enough food to feed the
-household. For the UHFS questions, we calculate the percentages food
-insecure by interview month. 
-[@fig:seasonality] shows the food insecurity
-percentages with the UNPS question shown in black for comparison.
-Despite FAO listing April/May and November/December as the lean periods,
-the UNPS data show that April, May, and June were the three months with
-the highest proportion of food insecurity, while November and December
-were the months with the lowest proportion.[^13]
-
-![Projected Seasonality in Food Insecurity from UNPS and
-Observed Food Insecurity for Three UHFS 
-Outcomes](../figures/seasonality.pdf){#fig:seasonality}
-
-All three UHFS questions follow the same general pattern as the UNPS
-question outside the lockdown periods, September 2020 through April
-2021. For the initial lockdown, both the short- and medium-run effects
-show clearly in the UHFS questions. Although it is possible that these
-high values were the result of seasonal variation, we consider it
-unlikely for two reasons. First, there is no evidence of the same
-elevation for April 2021, which is also in the lean season but nine
-months after the lockdown. Second, the medium-term effects of the second
-lockdown show even worse medium-term food insecurity outcomes despite
-being in a non-lean period.
-
-Our second approach is to re-estimate our main models on three subsets
-of the data. First, we make use of the fact that round 6 took place
-during the April/May lean season but was the round least affected by
-lockdowns and estimate our main model using only information from rounds
-1, 2, and 6. The results are shown in Appendix Table A4. Compared to the
-main model, the short-run effects are slightly smaller and the medium
-effect larger. Second, the only two rounds collected during almost the
-same calendar month were rounds 4 and 7, and Appendix Table A5 shows the
-results when we restrict to those two rounds. The medium-run effect of
-the second lockdown for this sample is smaller but still statistically
-significant in most cases. Complicating this comparison is that the
-number of new Covid cases was close to constant within each round and
-smaller during round 7 than round 4, resulting in potential
-multicollinearity and statistically significant *negative* effects of
-new cases on food insecurity for some outcomes. 
-Finally, we expect urban households to be less affected by seasonality, 
-and Appendix Table A6, therefore, shows the results using only urban 
-households across all rounds. 
-The short- and medium-run effects of the lockdowns are either
-the same or larger when we restrict the sample to urban households.
-Hence, our results are qualitatively the same, no matter how we account
-for seasonality.
-
-
-
-## Regional Variation 
-
-
-All of the results above are national-level, which may obscure regional
-variations in both the degree and effects of lockdowns.
-Uganda is divided into four regions, Central, Eastern, Northern, 
-and Western, which, although without direct administrative roles, are
-used as units for statistical and planning purposes.
-The regions have approximately the same population size, except for the Northern
-region, which had 20% of the population in the 2014 census.
-
-The Central region is home to Kampala and the most urbanized,
-with the four most populous urban centers in Uganda 
-[@Uganda-Bureau-of-Statistics2016].
-Combined, these four urban centers are home to one-third of the
-entire urban population of Uganda, with almost 2.5 million people.[^small_urban]
-The region has a higher concentration of service and industrial employment 
-opportunities than the other regions and the lowest poverty rates [@Ssewanyana2012]. 
-
-[^small_urban]:
-For comparison, the fifth-largest urban center, the Western region's Mbarara, 
-had fewer than 200,000 people in 2014.
-
-In contrast, employment in the other regions is predominantly agricultural. 
-The Eastern region is characterized by mixed farming, including both crop 
-cultivation and livestock, with a notable focus on cash crops like coffee and tea. 
-The Western region, rich in fertile soils and rainfall, supports intensive 
-agriculture, particularly dairy farming and tea cultivation. 
-The Northern region, historically affected by conflict, has a more 
-subsistence-oriented agricultural system, with lower levels of productivity 
-and a slower pace of urbanization, and consistently has the highest poverty levels.  
-
-![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Location](../figures/regional_retail_and_recreation.pdf){#fig:retail_regional}
-
-
-
-
-We, therefore, next examine changes in food insecurity across the survey 
-rounds for each of the four regions in Uganda.
-[@fig:food_insecurity_region] shows the results by level of food insecurity
-and regions, where each combination is from a separate regression.[^no_covid]
-
-[^no_covid]: Because we do not have information on regional Covid-19
-cases, all models are estimated without this national-level variable.
-The levels of food insecurity by round are 
-shown in Appendix [@fig:region_descriptive].
-
-![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
-
-Both the Central and Eastern regions follow a pattern very closely 
-aligned with the national-level results.
-All three levels of food insecurity are statistically significantly
-higher in the immediate aftermath of the first lockdown compared to 
-round 4, and food insecurity gradually decrease for the next two 
-survey rounds.
-The levels remain approximately constant until after the second
-lockdown, where food insecurity in round 7 are all statistically significantly
-higher than in round 4.
-
-For the Northern region, severe food insecurity follow the national-level
-pattern.
-However, for moderate/severe food insecurity, only round 5 is not
-statistically significantly different from round 4 and levels in 
-rounds 1 and 7 are more than 40 and 30 percentage points higher,
-respectively, than round 4.
-Furthermore, although the changes in any food insecurity are closer 
-to the national-level changes, they are generally smaller.
-
-The Western region is the region that stands out most compared to the
-other region. 
-First, there is little to no change in severe food insecurity, except
-for the last survey round, which is just below 10 percentage points
-higher than round 4.
-Similarly, although rounds 1 and 2 for moderate food insecurity are 
-statistically significantly higher than round 4, the effects are small.
-For any food insecurity, the round 7 level is substantially larger
-than any of the others, despite round 7 further away from the end
-of the lockdowns than rounds 1 and 2.
-
-
-[How to explain these patterns?]
-There are two potentially counteracting effects.
-First, the more urbanized an area is the more it will be possible to 
-police/enforce lockdowns.
-Second, the closer households are to the poverty line the less it
-takes to push those households into food insecurity.
-This is important because even though the lockdowns might not 
-limit movement as much in, say the Eastern region, as in Kampala,
-the households are poorer in the Eastern region and it, therefore,
-takes less to push a household into food insecurity.
-[I guess it is also possible that with high enough poverty, we
-will see little change because only *changes* in status will
-contribute to the results (?)].
-
-
-
-These results are consistent with a situation where more households
-closer to the poverty line is associated with rapid and large
-changes in the levels of food insecurity.
-The high level of poverty in the Northern region may also explain
-the relatively small changes in any food insecurity there over time. 
-
-
-[From Consensus/ChatGPT]
-
-The levels of poverty in Uganda's four regions—Central, Eastern, Northern, and
-Western—exhibit significant disparities, influenced by various factors including
-economic activities, access to resources, and historical and social contexts.
-
-1. **Northern Uganda** experiences the highest levels of chronic poverty, with
-the region's past conflict significantly affecting its economic development and
-livelihoods. The Northern Uganda Social Action Fund (NUSAF) region showed a
-reduction in poverty rates from 64.6% to 52.2% between 2004 and 2008. However,
-about 44.9% of households lived in extreme chronic poverty, with the Karamoja
-sub-region being particularly affected. Agriculture remains the main source of
-income, suggesting that peace and agricultural productivity are critical for
-poverty reduction in the North ([Ssewanyana,
-2010](https://consensus.app/papers/combating-poverty-uganda-towards-strategy-
-ssewanyana/8d1c493f4e1c5401bcf953877d12fc5f/?utm_source=chatgpt)).
-
-2. **Eastern Uganda** is characterized by vulnerability to poverty, particularly
-in agro-ecological zones such as the annual cropping and cattle northern and
-Teso zones. Rural areas in Eastern Uganda, similar to the rest of the country,
-are significantly impacted by poverty, which is exacerbated by reliance on
-agriculture, large household sizes, and lack of access to electricity and
-markets ([Abuka et al.,
-2007](https://consensus.app/papers/determinants-poverty-vulnerability-uganda-
-abuka/7614ec9379f45d669c9d7db39b3e23ca/?utm_source=chatgpt)).
-
-3. **Western Uganda** shows a mix of poverty dynamics, with some households
-escaping poverty while others fall into it. Health-related costs and ill health
-are major reasons for descending into poverty, affecting nearly two-thirds of
-households. Agricultural land issues and urban employment contribute differently
-to escaping poverty across regions, with Western Uganda benefiting slightly more
-from land-related reasons ([Krishna et al.,
-2006](https://consensus.app/papers/escaping-poverty-becoming-villages-central-
-western-krishna/db5b832012e051699d5ce8db89ccec6f/?utm_source=chatgpt)).
-
-4. **Central Uganda**, including the capital city Kampala, is relatively better
-off compared to the other regions, yet it still faces challenges of poverty and
-inequality. Urban areas, in general, have higher rates of inequality, although
-there has been a significant improvement in income distribution over time. The
-Gini coefficient, a measure of income inequality, declined from 0.428 in 2002/03
-to 0.408 in 2005/06, indicating progress in poverty reduction ([Ssewanyana &
-Okidi,
-2007](https://consensus.app/papers/poverty-estimates-uganda-national-household-
-survey-ssewanyana/bc8bff416fe05c25a62574989cd550ad/?utm_source=chatgpt)).
-
-In conclusion, while Uganda has made strides in reducing poverty, the Northern
-region remains the most affected by chronic poverty. Efforts to reduce poverty
-in Uganda must consider the unique challenges and opportunities in each region,
-with a focus on peace, agricultural productivity, and access to markets and
-services.
-
-For more AI-powered insights, go to [consensus.app](https://consensus.app/?utm_source=chatgpt).
-
-
-
-## Robustness Checks
-
-
-[attrition bounding exercise]
-
-As a consistency check on our use of indicator variables to capture
-lockdowns, we use the average of the revised daily lockdown stringency
-measure for the 30 days before the interview in our main specifications.
-The results are presented in Table 6. More stringent restrictions lead
-to significant increases in all food insecurity variables. During the
-first round, the average measure of the stringency index is 77, while
-the index in the non-lockdown rounds (rounds 3 through 6) is 47.
-Therefore, the point estimates imply that "any food insecurity"
-increased by 15 percentage points when comparing the first lockdown to
-the periods with no lockdown.
-
-One downside of the stringency measure is that it does not capture the
-extent to which the policies were enforced. Therefore, we also use
-Google mobility data on the amount of time individuals spent at their
-residences. The results are presented in Table 7. The mobility measure
-also shows significant increases in food insecurity due to the
-lockdowns. For example, the difference between the non-lockdown and the
-first lockdown in time spent at residences implies a 30 percentage
-points increase in any food insecurity due to the first lockdown.[^12]
-
-
-
-
-# How Households Responded
-
-[Explain the analysis]
 
 ## Impact on Work
 
@@ -1230,111 +1159,6 @@ avenues of mitigation are critical future areas of research.
   Number of observations         14,818    2,225       2,189       1,930       8,474
   -------------------------------------------------------------------------------------------
 
-  --------------------------------------------------------------------------------------------
-  Table 2: Impact of                                                                        
-  lockdowns on food                                                                         
-  insecurity                                                                                
-  ------------------- ------------- ------------- ------------- ------------- ------------- --
-                                                                                            
-
-                                                                                            
-
-                      \(1\)         \(2\)         \(3\)         \(4\)         \(5\)         
-
-  Outcome variables:  Any food      Worry about   Unable to eat Had to eat    Had to skip a 
-                      insecurity    not having    healthy and   only a few    meal          
-                                    enough food   nutritious    kinds of food               
-                                    to eat        food                                      
-
-  First lockdown:     0.252\*\*\*   0.314\*\*\*   0.221\*\*\*   0.204\*\*\*   0.194\*\*\*   
-  short run                                                                                 
-
-                      (0.016)       (0.017)       (0.017)       (0.017)       (0.014)       
-
-  First lockdown:     0.123\*\*\*   0.155\*\*\*   0.121\*\*\*   0.070\*\*\*   0.103\*\*\*   
-  medium run                                                                                
-
-                      (0.015)       (0.017)       (0.017)       (0.016)       (0.013)       
-
-  Second lockdown:    0.215\*\*\*   0.251\*\*\*   0.224\*\*\*   0.214\*\*\*   0.204\*\*\*   
-  medium run                                                                                
-
-                      (0.017)       (0.017)       (0.017)       (0.018)       (0.016)       
-
-  Covid-19            0.002         0.003         0.001         0.000         -0.003\*\*    
-  cases/100,000                                                                             
-
-                      (0.001)       (0.002)       (0.002)       (0.002)       (0.001)       
-
-                                                                                            
-
-  No of observations  14,818        14,818        14,818        14,817        14,818        
-
-  Number of           2,302         2,302         2,302         2,302         2,302         
-  households                                                                                
-
-  Mean of outcome at  47.5%         27.8%         37.2%         37.4%         13.4%         
-  non-lockdown period                                                                       
-
-                                                                                            
-
-                      \(6\)         \(7\)         \(8\)         \(9\)                       
-
-  Outcome variables:  Ate less than Ran out of    Went hungry   Went without                
-                      they thought  food          but did not   eating for a                
-                      they should                 eat           whole day                   
-
-  First lockdown:     0.212\*\*\*   0.145\*\*\*   0.154\*\*\*   0.063\*\*\*                 
-  short run                                                                                 
-
-                      (0.016)       (0.013)       (0.013)       (0.009)                     
-
-  First lockdown:     0.101\*\*\*   0.067\*\*\*   0.085\*\*\*   0.027\*\*\*                 
-  medium run                                                                                
-
-                      (0.016)       (0.011)       (0.012)       (0.008)                     
-
-  Second lockdown:    0.264\*\*\*   0.133\*\*\*   0.180\*\*\*   0.103\*\*\*                 
-  medium run                                                                                
-
-                      (0.018)       (0.015)       (0.015)       (0.011)                     
-
-  Covid-19            -0.002        -0.000        -0.001        -0.001                      
-  cases/100,000                                                                             
-
-                      (0.002)       (0.001)       (0.001)       (0.001)                     
-
-                                                                                            
-
-  No of observations  14,818        14,818        14,818        14,818                      
-
-  Number of           2,302         2,302         2,302         2,302                       
-  households                                                                                
-
-  Mean of outcome at  19.9%         9.3%          9.2%          3.1%                        
-  non-lockdown period                                                                       
-
-  Note: Linear Model                                                                        
-  with household                                                                            
-  fixed effects.                                                                            
-  Standard errors are                                                                       
-  in parentheses.                                                                           
-  \*\*\* indicates                                                                          
-  significance at 1%                                                                        
-  level; \*\* at 5%;                                                                        
-  \* at 10%. All                                                                            
-  dependent variables                                                                       
-  are dummy                                                                                 
-  variables. As point                                                                       
-  estimates are                                                                             
-  relative to                                                                               
-  non-lockdown                                                                              
-  periods, we present                                                                       
-  the mean of outcome                                                                       
-  variables in                                                                              
-  non-lockdown                                                                              
-  periods.                                                                                  
-  --------------------------------------------------------------------------------------------
 
   -----------------------------------------------------------------------------------------------------------
   Table 3: Impact of                                                                                       
@@ -1703,158 +1527,6 @@ avenues of mitigation are critical future areas of research.
   \* at 10%.                                                                       
   -----------------------------------------------------------------------------------------------
 
-  ----------------------------------------------------------------------------------------------
-  Table 6: Impact                                                                             
-  of stringency                                                                               
-  index on food                                                                               
-  insecurity                                                                                  
-  ----------------- -------------- -------------- -------------- ------------- -------------- --
-                                                                                              
-
-                                                                                              
-
-                    \(1\)          \(2\)          \(3\)          \(4\)         \(5\)          
-
-  Outcome           Any food       Worry about    Unable to eat  Had to eat    Had to skip a  
-  variables:        insecurity     not having     healthy and    only a few    meal           
-                                   enough food to nutritious     kinds of food                
-                                   eat            food                                        
-
-  Stringency index  0.006\*\*\*    0.007\*\*\*    0.005\*\*\*    0.005\*\*\*   0.005\*\*\*    
-
-                    (0.000)        (0.000)        (0.000)        (0.000)       (0.000)        
-
-  Covid-19          -0.004\*\*\*   -0.006\*\*\*   -0.004\*\*\*   -0.002        -0.007\*\*\*   
-  cases/100,000                                                                               
-
-                    (0.001)        (0.001)        (0.001)        (0.001)       (0.001)        
-
-                                                                                              
-
-  No of             14,818         14,818         14,818         14,817        14,818         
-  observations                                                                                
-
-  Number of         2,302          2,302          2,302          2,302         2,302          
-  households                                                                                  
-
-                                                                                              
-
-                    \(6\)          \(7\)          \(8\)          \(9\)                        
-
-  Outcome           Ate less than  Ran out of     Went hungry    Went without                 
-  variables:        they thought   food           but did not    eating for a                 
-                    they should                   eat            whole day                    
-
-  Stringency index  0.006\*\*\*    0.003\*\*\*    0.004\*\*\*    0.002\*\*\*                  
-
-                    (0.000)        (0.000)        (0.000)        (0.000)                      
-
-  Covid-19          -0.004\*\*\*   -0.003\*\*\*   -0.003\*\*\*   -0.001                       
-  cases/100,000                                                                               
-
-                    (0.001)        (0.001)        (0.001)        (0.001)                      
-
-                                                                                              
-
-  No of             14,818         14,818         14,818         14,818                       
-  observations                                                                                
-
-  Number of         2,302          2,302          2,302          2,302                        
-  households                                                                                  
-
-  Note: Linear                                                                                
-  Model with                                                                                  
-  household fixed                                                                             
-  effects. All                                                                                
-  dependent                                                                                   
-  variables are                                                                               
-  dummy variables.                                                                            
-  Standard errors                                                                             
-  are in                                                                                      
-  parentheses.                                                                                
-  \*\*\* indicates                                                                            
-  significance at                                                                             
-  1% level; \*\* at                                                                           
-  5%; \* at 10%.                                                                              
-
-                                                                                              
-  ----------------------------------------------------------------------------------------------
-
-  --------------------------------------------------------------------------------------------
-  Table 7: Impact of                                                                        
-  time spent in                                                                             
-  residence on food                                                                         
-  insecurity                                                                                
-  ------------------ ------------- ------------- ------------- ------------- -------------- --
-                                                                                            
-
-                                                                                            
-
-                     \(1\)         \(2\)         \(3\)         \(4\)         \(5\)          
-
-  Outcome variables: Any food      Worry about   Unable to eat Had to eat    Had to skip a  
-                     insecurity    not having    healthy and   only a few    meal           
-                                   enough food   nutritious    kinds of food                
-                                   to eat        food                                       
-
-  Time spent in      0.020\*\*\*   0.024\*\*\*   0.018\*\*\*   0.017\*\*\*   0.015\*\*\*    
-  residence                                                                                 
-
-                     (0.001)       (0.001)       (0.001)       (0.001)       (0.001)        
-
-  Covid-19           -0.002        -0.003\*\*    -0.002        -0.000        -0.005\*\*\*   
-  cases/100,000                                                                             
-
-                     (0.001)       (0.001)       (0.001)       (0.001)       (0.001)        
-
-                                                                                            
-
-  No of observations 14,818        14,818        14,818        14,817        14,818         
-
-  Number of          2,302         2,302         2,302         2,302         2,302          
-  households                                                                                
-
-                                                                                            
-
-                     \(6\)         \(7\)         \(8\)         \(9\)                        
-
-  Outcome variables: Ate less than Ran out of    Went hungry   Went without                 
-                     they thought  food          but did not   eating for a                 
-                     they should                 eat           whole day                    
-
-  Time spent in      0.018\*\*\*   0.011\*\*\*   0.012\*\*\*   0.006\*\*\*                  
-  residence                                                                                 
-
-                     (0.001)       (0.001)       (0.001)       (0.001)                      
-
-  Covid-19           -0.003\*\*    -0.002\*\*    -0.002\*\*    -0.000                       
-  cases/100,000                                                                             
-
-                     (0.001)       (0.001)       (0.001)       (0.001)                      
-
-                                                                                            
-
-  No of observations 14,818        14,818        14,818        14,818                       
-
-  Number of          2,302         2,302         2,302         2,302                        
-  households                                                                                
-
-  Note: Linear Model                                                                        
-  with household                                                                            
-  fixed effects. All                                                                        
-  dependent                                                                                 
-  variables are                                                                             
-  dummy variables.                                                                          
-  Standard errors                                                                           
-  are in                                                                                    
-  parentheses.                                                                              
-  \*\*\* indicates                                                                          
-  significance at 1%                                                                        
-  level; \*\* at 5%;                                                                        
-  \* at 10%.                                                                                
-
-                                                                                            
-  --------------------------------------------------------------------------------------------
 
 **Appendix**
 
@@ -2378,9 +2050,6 @@ at 10%.
     the lockdown, which allows us to identify whether individuals were
     employed in agriculture before the round 1 lockdown.
 
-[^12]: The average non-lockdown mobility measure is around 10 percent
-    over baseline and the first lockdown mobility measure is about 30.
-
 [^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
     results for the individual surveys are available upon request. UNPS
     2018/19 shows the same questions in the questionnaire, but the
@@ -2393,21 +2062,35 @@ at 10%.
 <div id="refs"></div>
 
 
+
 # Appendix {.unnumbered}
 
 \appendix
 
-
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{figure}{0}
 
-## [Region]
+# Alternative Google Mobility Measures
+
+
+![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
+
+![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
+
+
+
+
+# [Region]
 
 ![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
 Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
 
 
+![Retail](../figures/mobility_regional_retail.pdf){#fig:mobility_regional_retail}
 
+![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
+
+![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
 
 
 
