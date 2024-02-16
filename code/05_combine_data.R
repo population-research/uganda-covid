@@ -16,7 +16,7 @@ pre_covid <- read_rds(here("data", "temp_pre_covid_hh_data.rds")) # Pre covid hh
 covid <- read_rds(here("data", "temp_covid_cases_restrictions.rds")) # Covid cases and restrictions
 
 
-# Combine data ----
+# Combine data and clean region information----
 
 base <- hh %>% 
   left_join(roster, by = c("hhid", "survey")) %>% 
@@ -25,6 +25,11 @@ base <- hh %>%
   # Relocate roster information to after region information
   relocate( 
     starts_with("hh_"), .before = starts_with("food")
+  ) %>% 
+  # Clean region information
+  filter(region != "##N/A##") %>%
+  mutate(
+    region = if_else(region == "Kampala", "Central", region),
   ) %>% 
   select(-hh_size)  # do not need this anymore
 
@@ -55,7 +60,10 @@ base <- base %>%
       insecure_sum >= 7 ~ 1,
       TRUE ~ 0
     )
-  ) 
+  ) %>%
+  relocate(
+    insecure_any, insecure_moderate, insecure_severe, .before = starts_with("food")
+  )
 
 
 # Save data ----
@@ -63,10 +71,10 @@ base <- base %>%
 base %>%   
   write_rds(here("data", "base.rds"))
 
+# Shorten variable names to maximum of 32 characters and save as .dta file
 base %>% 
+  rename_with(~substr(., 1, 32)) %>%
   write_dta(
     here("data", "base.dta"),
     version = 14,
   )
-
-

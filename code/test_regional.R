@@ -154,12 +154,11 @@ datasummary_correlation(national[, -1])
 
 cor(national[, -1], use = "pairwise.complete.obs")
 
+# Now we do the same for regional data
 regional %>% 
   select(-date) %>% 
   group_by(region) %>% 
   group_map(~ correlate(.x))
-
-
 
 
 

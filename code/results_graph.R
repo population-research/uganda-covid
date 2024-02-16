@@ -11,7 +11,7 @@ library(tidymodels) # For extracting model coefficients
 # Load data
 base <- read_rds(here("data", "base.rds")) %>% 
   mutate(
-    survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7"))
+    survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7")),
   ) 
 
 # extract all variable names from base that begins with "food"
@@ -114,3 +114,52 @@ res_predicted <- res_test_data %>%
   mutate(
     prediction = predict(res_test, newdata = res_test_data, interval = "confidence")
   )
+
+# Estimate with survey dummies and lockdown_from_index_4 
+test <- plm(insecure_moderate ~ survey + cases_smooth_per_100000, 
+    data = base, 
+    index = c("hhid", "survey"), 
+    model = "within",
+    effect = "individual",
+    # weighting using weight_final
+    weights = weight_final
+)
+summary(test)
+
+test <- plm(insecure_moderate ~ survey * lockdown_from_residential + cases_smooth_per_100000, 
+            data = base, 
+            index = c("hhid", "survey"), 
+            model = "within",
+            effect = "individual",
+            # weighting using weight_final
+            weights = weight_final
+)
+summary(test)
+
+base %>% 
+  group_by(survey) %>%
+  mutate(
+    lockdown_from_residential_centered = scale(lockdown_from_residential, center = TRUE, scale = FALSE)
+  ) %>%
+  ungroup() %>%
+  plm(insecure_moderate ~ survey * lockdown_from_residential_centered + cases_smooth_per_100000, 
+      data = ., 
+      index = c("hhid", "survey"), 
+      model = "within",
+      effect = "individual",
+      # weighting using weight_final
+      weights = weight_final
+  ) %>% 
+  summary()
+
+
+# Estimate with survey and region dummies
+regional <- plm(insecure_moderate ~ survey * region , 
+    data = base, 
+    index = c("hhid", "survey"), 
+    model = "within",
+    effect = "individual",
+    # weighting using weight_final
+    weights = weight_final
+)
+summary(regional)

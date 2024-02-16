@@ -272,8 +272,7 @@ national_level <- google %>% filter(is.na(sub_region_1))
 
 ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = residential)) + 
-  # geom_line(aes(y = grocery_and_pharmacy)) + 
-  # geom_line(aes(y = transit_stations)) +
+  ylab("Percentage Change in Time Spent at\nResidencies (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
@@ -293,15 +292,12 @@ ggplot(national_level,aes(x = date)) +
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
-ggsave(here("figures", "google_mobility_national.pdf"),
+ggsave(here("figures", "mobility_national_residential.pdf"),
        width = 20, height = 15, units = "cm")
 
-# Regional level mobility ----
-
-regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
-
-ggplot(regional, aes(x = date)) + 
-  geom_line(aes(y = residential, color = sub_region_1)) + 
+ggplot(national_level,aes(x = date)) + 
+  geom_line(aes(y = workplaces)) + 
+  ylab("Percentage Change in Visits to\nWorkplaces (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
@@ -316,10 +312,91 @@ ggplot(regional, aes(x = date)) +
   annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
-           ymin = -Inf, ymax = Inf, alpha = 0.4) 
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
-ggsave(here("figures", "google_mobility_regional.pdf"),
+ggsave(here("figures", "mobility_national_workplaces.pdf"),
        width = 20, height = 15, units = "cm")
+
+
+# Regional level mobility ----
+
+regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
+
+
+
+ggplot(regional, aes(x = date)) + 
+  geom_line(aes(y = retail_and_recreation)) + 
+  ylab("Percentage Change in Visitors to\nRetail (Base: 01/03-02/06, 2020)") +
+  xlab("Date") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  facet_wrap(~sub_region_1, scales = "fixed")
+
+ggsave(here("figures", "mobility_regional_retail.pdf"),
+       width = 20, height = 15, units = "cm")
+
+ggplot(regional, aes(x = date)) + 
+  geom_line(aes(y = residential)) + 
+  ylab("Percentage Change in Time Spent at\nResidencies (Base: 01/03-02/06, 2020)") +
+  xlab("Date") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  facet_wrap(~sub_region_1, scales = "fixed")
+
+ggsave(here("figures", "mobility_regional_residential.pdf"),
+       width = 20, height = 15, units = "cm")
+
+
+ggplot(regional, aes(x = date)) + 
+  geom_line(aes(y = workplaces)) +
+  ylab("Percentage Change in Visits to\nWorkplaces (Base: 01/03-02/06, 2020)") +
+  xlab("Date") +
+  annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+           ymin = -Inf, ymax = Inf, alpha = 0.4) +
+  facet_wrap(~sub_region_1, scales = "fixed")
+
+ggsave(here("figures", "mobility_regional_workplaces.pdf"),
+       width = 20, height = 15, units = "cm")
+
 
 
 # Combine graphs ----
@@ -327,7 +404,7 @@ ggsave(here("figures", "google_mobility_regional.pdf"),
 
 p_index <- ggplot(oxford, aes(x=date, y=index_4)) + 
   geom_line() + 
-  ylab("Daily Stringency Index \n (restricted version)") +
+  ylab("Daily Stringency Index\n(restricted version)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   geom_fit_text(aes(label = "1", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
@@ -363,11 +440,33 @@ p_index <- ggplot(oxford, aes(x=date, y=index_4)) +
         axis.text.x = element_blank())
 
 
+# p_mobility <- ggplot(national_level,aes(x = date)) + 
+#   geom_line(aes(y = residential)) + 
+#   # geom_line(aes(y = grocery_and_pharmacy)) + 
+#   # geom_line(aes(y = transit_stations)) +
+#   ylab("Time Spent at Residencies \n (Base: 01/03-02/06, 2020)") +
+#   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[3], xmax = survey_dates$last_date[3],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[4], xmax = survey_dates$last_date[4],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[5], xmax = survey_dates$last_date[5],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[6], xmax = survey_dates$last_date[6],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
+#            ymin = -Inf, ymax = Inf, alpha = 0.4) +
+#   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+#                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+#   theme(axis.title.x = element_blank(),
+#         axis.text.x = element_blank())
+
 p_mobility <- ggplot(national_level,aes(x = date)) + 
-  geom_line(aes(y = residential)) + 
-  # geom_line(aes(y = grocery_and_pharmacy)) + 
-  # geom_line(aes(y = transit_stations)) +
-  ylab("Time Spent at Residencies \n (Base: 01/03-02/06, 2020)") +
+  geom_line(aes(y = retail_and_recreation)) + 
+  ylab("Percentage Change in Visitors to\nRetail (Base: 01/03-02/06, 2020)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -390,7 +489,7 @@ p_mobility <- ggplot(national_level,aes(x = date)) +
 
 p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) + 
   geom_line() + 
-  ylab("Daily New Cases Per \n 100,000 (Smooth)") +
+  ylab("Daily New Cases Per\n100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -414,7 +513,7 @@ p_cases <- ggplot(our_world_data, aes(x=date, y=cases_smooth_per_100000)) +
 p_deaths <- ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) + 
   geom_line() + 
   xlab("Date") +
-  ylab("Daily New Deaths Per \n 100,000 (Smooth)") +
+  ylab("Daily New Deaths Per\n100,000 (Smooth)") +
   annotate("rect", xmin = survey_dates$first_date[1], xmax = survey_dates$last_date[1],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[2], xmax = survey_dates$last_date[2],
@@ -442,9 +541,9 @@ ggsave(here("figures", "combined.pdf"),
        width = 19, height = 25, units = "cm")
 
 
-# Food security and interview dates by round ----
+# National-level Food security and interview dates by round ----
 
-base <- read_rds(here("data", "base.rds")) %>% 
+national_level <- read_rds(here("data", "base.rds")) %>% 
   select(survey, interview_date, starts_with(c("food", "insecure"))) %>% 
   select(-insecure_sum) %>% 
   group_by(survey) %>% 
@@ -458,10 +557,8 @@ base <- read_rds(here("data", "base.rds")) %>%
   pivot_longer(-c(survey, first_date, last_date), names_to = "type", values_to = "value") 
 
 
-# Plot ----
-
-# Individual food insecurity outcomes
-base %>% 
+# Single type food insecurity
+national_level %>% 
   filter(str_detect(type, "food_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "food_")) %>% 
@@ -498,12 +595,11 @@ base %>%
   guides(color = guide_legend(ncol = 2)) +
   theme(legend.position = c(0.5, 0.8)) 
 
-# Save plot
 ggsave(here("figures", "food_insecurity_by_survey_round_8_questions.pdf"), width = 8, height = 6, units = "in")
 
 
-# Cumulative food insecurity outcomes
-base %>% 
+# Cumulative food insecurity outcomes 
+national_level %>% 
   filter(str_detect(type, "insecure_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "insecure_")) %>% 
@@ -535,6 +631,58 @@ base %>%
   guides(color = guide_legend(ncol = 2)) +
   theme(legend.position = c(0.5, 0.8)) 
 
-# Save plot
 ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
+
+
+# Regional-level food security and interview dates by round ----
+
+regional_level <- read_rds(here("data", "base.rds")) %>% 
+  select(region, survey, interview_date, starts_with(c("food", "insecure"))) %>% 
+  select(-insecure_sum) %>% 
+  group_by(region, survey) %>% 
+  summarise(
+    first_date = min(interview_date),
+    last_date = max(interview_date),
+    # find average across all variables that begin with food
+    across(starts_with(c("food", "insecure")), \(x) mean(x, na.rm = TRUE) * 100)
+  )  %>% 
+  # Pivot longer over all variables that begin with food
+  pivot_longer(-c(region, survey, first_date, last_date), names_to = "type", values_to = "value") 
+
+# Cumulative food insecurity outcomes 
+regional_level %>% 
+  filter(str_detect(type, "insecure_")) %>%
+  # remove food_ from variable 
+  mutate(type = str_remove(type, "insecure_")) %>% 
+  # make type a factor and specify order
+  mutate(
+    type = factor(
+      type, 
+      levels = c("any", "moderate", "severe")
+    )
+  )%>%
+  ggplot(aes(x = value, color = type)) +
+  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  coord_flip(xlim = c(0, 100), expand = FALSE) +
+  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Any",
+      "Moderate or severe",
+      "Severe")
+  ) +
+  labs(
+    x = "Percent",
+    y = "Survey dates",
+    title = "Food insecurity by survey round"
+  ) +
+  guides(color = guide_legend(nrow = 1)) +
+  theme(legend.position = c(0.25, 0.95)) +
+  facet_wrap(~region, scales = "fixed")
+
+ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 8, height = 8, units = "in")
+
 

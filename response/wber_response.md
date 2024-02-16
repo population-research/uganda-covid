@@ -21,7 +21,7 @@ suggestions, which we believe have significantly improved the paper.
 question—did we do that?]
 
 
-Changes:
+**Major changes:**
 
 1. To ease the interpretation of the results, to address the potential multiple comparisons
 issues raised by Referee 1, and in response to Referee 1's comment on the measurement 
@@ -33,6 +33,20 @@ These definitions are based on @FAO2016 and @FAO0.
 [Something on Rasch here]
 
 [Results by individual food insecurity questions are now in the online appendix]
+
+2. In response to the overall comments from both the editor and referees, we have 
+substantially restructured the paper.
+We now begin with a more in-depth examination of the lockdowns, which includes the
+figure on the stringency measure, mobility measure, and Covid deaths and cases.
+This is followed by an analysis of the extent to which the lockdowns explain 
+the changes in food insecurity.
+We do this using a full set of survey indicator variables, the stringency measure,
+and Google mobility measures.
+We also include the original robustness analyses here.
+[mediation analysis and regional mobility analyses here]
+
+After having examined the relationship between lockdowns and food insecurity, 
+we analyze how households/individuals respond to the lockdowns.
 
 
 
@@ -92,9 +106,31 @@ geographic heterogeneity, of course). I think this type of mediation style
 analysis would be more informative than current Table 6 & 7 which I do not know
 how to compare to earlier tables.
 
-    **Response:** [should we interact region dummies with survey dummies to 
-    try to understand regional effects of lockdowns?]
-
+    **Response:**  The two measures of lockdown---stringency and the percentage
+    change in time spent at residential---that we originally used varied only 
+    temporally, not spatially. 
+    Furthermore, none of the survey rounds took place during the two most severe 
+    parts of the lockdowns.
+    The implication of this is that the effect of time from severe lockdown 
+    estimated interacted with survey indicators would only be identified by
+    the variation within each survey round of when a household was surveyed.
+    In addition to the limited variation within each survey, a concern with 
+    this approach is that, despite this being a phone survey,
+    each region did not have the same distribution of interview dates.
+    
+    However, we appreciate the difficulty of interpreting the results in Tables 
+    6 and 7 compared to the other results and have restructured our analysis to 
+    address these issues.
+    First, we now discuss what can be learned about the degree of lockdown from
+    the Google mobility data (see also our response below to R2, suggestion 8)
+    in the "Lockdown Context and Enforcement" section.
+    Second, we present results for all rounds relative to round 4 and discuss
+    how far from the lockdowns each survey round is. 
+    Finally, we have added a new subsection that examines the regional variation 
+    in lockdowns and food insecurity and also discuss what can be learned about the 
+    degrees of lockdown by region using regional Google mobility data 
+    (see also our response below to R2, suggestion 8).
+    
 
 4. Attrition is large. Is it correlated with food security? It seems like it
 will be correlated with survey round. I think it might be useful to end with a
@@ -106,6 +142,8 @@ comfortable precommitting that your paper will not be rejected for attrition so
 long as you are clear on how sensitive your results are to different assumptions
 about attriters, even if the answer is "super sensitive".
 
+    **Response:**
+
 
 
 5. Why isn’t the 8th wave of the NPS used as the baseline? To me, that really
@@ -113,57 +151,58 @@ influences the interpretation of your counterfactuals to your survey round
 effects. You don’t need to add this additional data, but you should explain to
 your reader why you do not.
 
-The only food security related question in UNPS 2019/20 asks whether there have been a 
-situation in the last 12 months when there was not enough food to feed the household.
-If the household respond that there has been, there is a follow-up question about which 
-months this happened and an open-ended question about why it happened.
-The open-ended question about why is coded by the interviewer to match a pre-set list, 
-allowing for multiple reasons. 
-The "why?" question does not allow any indication of which responses corresponds to which
-situations where there was not enough food. 
+    **Response:** The only food security related question in UNPS 2019/20 asks whether 
+    there have been a situation in the last 12 months when there was not enough food 
+    to feed the household.
+    If the household respond that there has been, there is a follow-up question 
+    about which months this happened and an open-ended question about why it happened.
+    The open-ended question about why is coded by the interviewer to match a 
+    pre-set list, allowing for multiple reasons. 
+    The "why?" question does not allow any indication of which responses corresponds 
+    to which situations where there was not enough food. 
 
-The reason we did not use the UNPS 2019/20 as the baseline was that this food security 
-questions in UNPS 2019/20 differ from the ones asked in UHFS in four ways that would 
-likely introduce substantial noise.
-There are four main differences as described below.
-Furthermore, as, mentioned by Referee 2, focusing on the survey rounds where we have
-consistent measures of food insecurity, is a potential strength because it means that we 
-can better isolate the effects of the lockdown, instead of conflating the effects of the 
-pandemic with the effects of the lockdown.
+    The reason we did not use the UNPS 2019/20 as the baseline was that this food security 
+    questions in UNPS 2019/20 differ from the ones asked in UHFS in four ways that would 
+    likely introduce substantial noise.
+    There are four main differences as described below.
+    Furthermore, as, mentioned by Referee 2, focusing on the survey rounds where we have
+    consistent measures of food insecurity, is a potential strength because it means that we 
+    can better isolate the effects of the lockdown, instead of conflating the effects of the 
+    pandemic with the effects of the lockdown.
 
-First, there is no direct correspondance between the UNPS question and any of the UHFS 
-questions.
-Rather,if the respondent answered affirmatively to any of the five FIES questions, 
-"had to skip a meal," "ate less than you thought you
-should," "ran out of food," "hungry but did not eat," and "went without eating for 
-a whole day,"
-we would expect that they would also respond affirmatively to the UNPS question. 
+    First, there is no direct correspondance between the UNPS question and any of the UHFS 
+    questions.
+    Rather,if the respondent answered affirmatively to any of the five FIES questions, 
+    "had to skip a meal," "ate less than you thought you
+    should," "ran out of food," "hungry but did not eat," and "went without eating for 
+    a whole day,"
+    we would expect that they would also respond affirmatively to the UNPS question. 
 
-Second, even though we might be able to create a combined answer that could potentially
-match the UNPS question, the FIES conditions all questions on a lack of money or other 
-resources.
-For example, one FIES question asks whether the respondent, or any other adult in the 
-household, had to skip a meal because there was not enough money or other resources to get 
-food.
-The UNPS question have a broader scope, which includes situations such as insecurity in 
-reaching the market, the absence of food in the market, and floods.
-Furthermore, as mentioned above, there is no way to match individual reasons with 
-individual food insecurity events in the UNPS. 
-
-Third, the UNPS asks about individual months, whereas the UHFS asks about the last 30 days 
-before the interview, which, depending on when the survey took place does not line up 
-with the month-centric question of the UNPS.
-
-Finally, the UHFS questionnaire asks about respondent and other adults in the household,
-rather than the entire household as in UNPS. 
-As long as children are kept fed even in time of food insecurity, this should not
-prevent comparison.
-However, it is possible that food goes to the productive member of the household in 
-order to preserve his or hers productivity [@Pitt1990].
-In that case, the UNPS might well be higher than the UHFS data.
-
-[Still need to find a place to change this in the paper; the current write-up here is too
-long for including in the paper]
+    Second, even though we might be able to create a combined answer that could potentially
+    match the UNPS question, the FIES conditions all questions on a lack of money or other 
+    resources.
+    For example, one FIES question asks whether the respondent, or any other adult in the 
+    household, had to skip a meal because there was not enough money or other resources to get 
+    food.
+    The UNPS question have a broader scope, which includes situations such as insecurity in 
+    reaching the market, the absence of food in the market, and floods.
+    Furthermore, as mentioned above, there is no way to match individual reasons with 
+    individual food insecurity events in the UNPS. 
+    
+    Third, the UNPS asks about individual months, whereas the UHFS asks about the last 30 days 
+    before the interview, which, depending on when the survey took place does not line up 
+    with the month-centric question of the UNPS.
+    
+    Finally, the UHFS questionnaire asks about respondent and other adults in the household,
+    rather than the entire household as in UNPS. 
+    As long as children are kept fed even in time of food insecurity, this should not
+    prevent comparison.
+    However, it is possible that food goes to the productive member of the household in 
+    order to preserve his or hers productivity [@Pitt1990].
+    In that case, the UNPS might well be higher than the UHFS data.
+    
+    [Still need to find a place to change this in the paper; the current write-up here is too
+    long for including in the paper]
 
 6. Cases (i,t). This is the number of national cases in the 30 days before the
 survey date? What do we think of that as measure of local covid exposure?
