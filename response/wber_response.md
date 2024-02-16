@@ -117,17 +117,19 @@ how to compare to earlier tables.
     In addition to the limited variation within each survey, a concern with 
     this approach is that, despite this being a phone survey,
     each region did not have the same distribution of interview dates.
-    Hence, we unfortunately cannot directly follow this suggestion.
     
     However, we appreciate the difficulty of interpreting the results in Tables 
-    6 and 7 compared to the other results.
-    Hence, we instead interact the survey indicators with region dummies to 
-    examine regional differences.
-    We also discuss what can be learned about the degree of lockdown by region
-    from the national and regional Google mobility data 
+    6 and 7 compared to the other results and have restructured our analysis to 
+    address these issues.
+    First, we now discuss what can be learned about the degree of lockdown from
+    the Google mobility data (see also our response below to R2, suggestion 8)
+    in the "Lockdown Context and Enforcement" section.
+    Second, we present results for all rounds relative to round 4 and discuss
+    how far from the lockdowns each survey round is. 
+    Finally, we have added a new subsection that examines the regional variation 
+    in lockdowns and food insecurity and also discuss what can be learned about the 
+    degrees of lockdown by region using regional Google mobility data 
     (see also our response below to R2, suggestion 8).
-     
-    
     
 
 4. Attrition is large. Is it correlated with food security? It seems like it
