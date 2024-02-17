@@ -3,7 +3,7 @@ title: 'Response to Editor and Referee Comments — Impact of Twin Lockdowns on 
         Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda'
 date: January 2024
 bibliography: ../paper/uganda_covid.bib
-csl: journal-of-development-economics.csl
+csl: the-quarterly-journal-of-economics.csl
 link-citations: true
 ...
 
@@ -21,18 +21,18 @@ suggestions, which we believe have significantly improved the paper.
 question—did we do that?]
 
 
-**Major changes:**
+**Notable changes:**
 
 1. To ease the interpretation of the results, to address the potential multiple comparisons
 issues raised by Referee 1, and in response to Referee 1's comment on the measurement 
-approach, we now use three food insecurity measures: any, moderate or severe, and severe
+approach, we have revised our measures of food insecurity.
+We now use three food insecurity measures: any, moderate or severe, and severe
 food insecurity, based on the sum of the eight food insecurity questions.
 "Any" corresponds to having answered yes to any of the questions, "moderate or severe" to 
 having answered yes to 4 or more, and "severe" if answered yes to 7 or 8 questions.
-These definitions are based on @FAO2016 and @FAO0. 
-[Something on Rasch here]
+These definitions are based on @FAO2015 and @FAO2016 and are discussed in the
+Data section.
 
-[Results by individual food insecurity questions are now in the online appendix]
 
 2. In response to the overall comments from both the editor and referees, we have 
 substantially restructured the paper.
@@ -158,76 +158,33 @@ influences the interpretation of your counterfactuals to your survey round
 effects. You don’t need to add this additional data, but you should explain to
 your reader why you do not.
 
-    **Response:** The only food security related question in UNPS 2019/20 asks whether 
-    there have been a situation in the last 12 months when there was not enough food 
-    to feed the household.
-    If the household respond that there has been, there is a follow-up question 
-    about which months this happened and an open-ended question about why it happened.
-    The open-ended question about why is coded by the interviewer to match a 
-    pre-set list, allowing for multiple reasons. 
-    The "why?" question does not allow any indication of which responses corresponds 
-    to which situations where there was not enough food. 
-
-    The reason we did not use the UNPS 2019/20 as the baseline was that this food security 
-    questions in UNPS 2019/20 differ from the ones asked in UHFS in four ways that would 
-    likely introduce substantial noise.
-    There are four main differences as described below.
-    Furthermore, as, mentioned by Referee 2, focusing on the survey rounds where we have
-    consistent measures of food insecurity, is a potential strength because it means that we 
-    can better isolate the effects of the lockdown, instead of conflating the effects of the 
-    pandemic with the effects of the lockdown.
-
-    First, there is no direct correspondance between the UNPS question and any of the UHFS 
-    questions.
-    Rather,if the respondent answered affirmatively to any of the five FIES questions, 
-    "had to skip a meal," "ate less than you thought you
-    should," "ran out of food," "hungry but did not eat," and "went without eating for 
-    a whole day,"
-    we would expect that they would also respond affirmatively to the UNPS question. 
-
-    Second, even though we might be able to create a combined answer that could potentially
-    match the UNPS question, the FIES conditions all questions on a lack of money or other 
-    resources.
-    For example, one FIES question asks whether the respondent, or any other adult in the 
-    household, had to skip a meal because there was not enough money or other resources to get 
-    food.
-    The UNPS question have a broader scope, which includes situations such as insecurity in 
-    reaching the market, the absence of food in the market, and floods.
-    Furthermore, as mentioned above, there is no way to match individual reasons with 
-    individual food insecurity events in the UNPS. 
+    **Response:** The only food security-related question in UNPS 2019/20 asks 
+    whether there has been a situation in the last 12 months when there was not 
+    enough food to feed the household plus two follow-up questions about why
+    and what months this occurred in.
+    We now discuss in the subsection on Food Insecurity Measurement the differences
+    across the surveys and why we cannot use the NPS as the baseline.
+    See also our response to Referee 2 on the interpretation of the effects.
     
-    Third, the UNPS asks about individual months, whereas the UHFS asks about the last 30 days 
-    before the interview, which, depending on when the survey took place does not line up 
-    with the month-centric question of the UNPS.
-    
-    Finally, the UHFS questionnaire asks about respondent and other adults in the household,
-    rather than the entire household as in UNPS. 
-    As long as children are kept fed even in time of food insecurity, this should not
-    prevent comparison.
-    However, it is possible that food goes to the productive member of the household in 
-    order to preserve his or hers productivity [@Pitt1990].
-    In that case, the UNPS might well be higher than the UHFS data.
-    
-    [Still need to find a place to change this in the paper; the current write-up here is too
-    long for including in the paper]
 
 6. Cases (i,t). This is the number of national cases in the 30 days before the
 survey date? What do we think of that as measure of local covid exposure?
 
-It is certainly possible that there are systematic differences in local Covid exposure,
-but, unfortunately, we have been unable to identify any external data sources that could 
-address regional differences in Covid exposure and lockdown behavior (the exception is the 
-regional differences for the Google mobility data discussed below).
-
-While we normally think of cities as having a higher disease load than rural areas,
-this might not hold in the case of Covid. 
-Rather, large and poorer rural households may be more exposed to Covid infections,
-especially if lockdowns are enforced in rural areas.
-In the U.S. the rate of death has been substantially higher in rural than in urban areas,
-although the United States is clearly an imperfect comparison.
-Furthermore, people may be moving from urban to rural areas to "escape" increasing levels 
-of Covid infections and bring with them to rural areas.
-
+    **Response:** It is certainly possible that there are systematic differences in 
+    local Covid exposure, but, unfortunately, we have been unable to identify any 
+    external data sources that could address regional differences in Covid exposure 
+    and lockdown behavior (the exception is the  regional differences for the 
+    Google mobility data discussed below).
+    
+    While we normally think of cities as having a higher disease load than rural areas,
+    this might not hold in the case of Covid. 
+    Rather, large and poorer rural households may be more exposed to Covid infections,
+    especially if lockdowns are enforced in rural areas.
+    In the U.S. the rate of death has been substantially higher in rural than in urban areas,
+    although the United States is clearly an imperfect comparison.
+    Furthermore, people may be moving from urban to rural areas to "escape" increasing levels 
+    of Covid infections and bring with them to rural areas.
+    
 7. Given the clustered survey design of the NPS, you should be clustering by PSU
 throughout (probably only meaningful in the mediation analysis discussed above).
 
@@ -299,7 +256,15 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6121128/) – to aggregate across t
 FIES questions. Following Food and Agriculture Organization guidelines (see
 https://www.fao.org/3/i4830e/i4830e.pdf) this would also depend on checking the
 Rasch model infit statistics, to ensure it is valid. This would be slightly more
-standard than just taking the maximum across the eights FIES questions.
+standard than just taking the maximum across the eight FIES questions.
+
+    **Response:** We appreciate the suggestion and, as mentioned above, we have 
+    moved to a three-level measure of food insecurity based on these references. 
+    This makes the explanation of our results and comparison with the prior literature 
+    easier.
+    It also implies that our new measures have already been checked with the Rasch 
+    model infit statistics.
+
 
 2. The paper at various points refers to “unemployment”. Unemployment has a very
 clear definition, meaning someone who is not working (or not employed, more
@@ -325,6 +290,12 @@ https://link.springer.com/article/10.1007/s11135-014-0057-0).
 multiple hypothesis testing corrections, since there are many outcome variables
 being considered. Alternatively, the authors should provide a qualitative
 explanation of why this is not needed.
+
+    **Response:** We now only use the three standard food insecurity levels,
+    multiple comparison correction is less of a concern than when we had 10
+    different food insecurity measures.
+    
+    [There clearly is still an issue with the response part of the analysis]
 
 
 # Referee 2 Comments
