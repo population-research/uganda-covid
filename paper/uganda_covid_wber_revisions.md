@@ -49,6 +49,8 @@ link-citations: true
 
 ---
 
+\newpage
+
 # Introduction
 
 Uganda had two of the strictest Covid-19 lockdowns in Sub-Saharan Africa, 
