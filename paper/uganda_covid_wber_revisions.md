@@ -44,10 +44,12 @@ abstract: |
   failed in the face of a worldwide shock, contributing to the sizeable
   increase in food insecurity.
 bibliography: uganda_covid.bib
-csl: journal-of-development-economics.csl
+csl: the-quarterly-journal-of-economics.csl
 link-citations: true
 
 ---
+
+\newpage
 
 # Introduction
 
@@ -62,7 +64,7 @@ these changes arose from the twin lockdowns in Uganda by examining food insecuri
 labor market outcomes, and how households attempted to cope with the lockdowns.
 
 [^definition]: The definitions of the three levels of food insecurity are described 
-in detail below [@FAO0].
+in detail below [@FAO2015].
 
 ![Food Insecurity by Survey Round of the Uganda High-Frequency Phone Survey on 
 Covid-19](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
@@ -270,6 +272,61 @@ round together with the number of new households added in the follow-up
 rounds and the total number of households per round are 
 presented in Appendix Table \ref{tab:surveys}.
 
+## Food Insecurity Measurement
+
+The survey measured food insecurity based on the Food Insecurity
+Experience Scale (FIES) developed by the FAO [@FAO2016]. 
+FIES uses eight questions with dichotomous (yes/no) responses to capture
+different aspects of food insecurity. 
+The questions are whether, during the last 30 days, there was a time 
+when any adult in the household experienced the following because of 
+lack of money or other resources: 
+(i) were worried about not having enough food to eat; 
+(ii) were unable to eat healthy and nutritious/preferred foods; 
+(iii) ate only a few kinds of foods; 
+(iv) had to skip a meal; 
+(v) ate less than you thought you should; 
+(vi) ran out of food; 
+(vii) were hungry, but did not eat; 
+and (viii) went without eating for a whole day. 
+
+We follow the prior literature and calculate three food insecurity measure 
+based on the sum of the eight food insecurity questions:
+any, moderate or severe, and severe food insecurity 
+[@Kansiime2021;@Wambogo2018;@FAO2016].
+"Any" corresponds to having answered yes to any of the questions, 
+"moderate or severe" to having answered yes to four or more, 
+and "severe" if answered yes to seven or eight questions 
+[@FAO2015;@FAO2016].[^individual_questions]
+
+[^individual_questions]: Results for the estimations below using
+each individual question as the dependent variables are available 
+upon request.
+
+Although the sample for the UHFS is based on the UNPS, there is, unfortunately, 
+no direct way to compare food insecurity across the surveys.
+First, the only food security-related question in UNPS 2019/20 asked whether 
+there has been a situation in the last 12 months when there was not enough food 
+to feed the household, with a follow-up question about which months this happened in
+and an open-ended question about why it happened.
+These do not match up with any of the individual FIES questions or the cumulative
+food insecurity measures that we use.
+Second, the UNPS questions have a broader scope, which includes situations 
+such as insecurity in reaching the market, the absence of food in the market, 
+and floods, rather the lack of money or other resources in the FIES questions.
+Finally, the UHFS questionnaire asks about the respondent and other adults 
+in the household, rather than the entire household as in UNPS. 
+As long as children are kept fed even in times of food insecurity, this does
+not in itself prevent comparison, but it is possible that food goes to the 
+most productive members of the household in order to preserve his or her 
+productivity [@Pitt1990].[^months]
+
+[^months]: A minor point of difference is that the UNPS asks about 
+individual months, whereas the UHFS asks about the last 30 days before 
+the interview, which, depending on when the survey took place, does not line up 
+with the month-centric question of the UNPS.
+
+
 
 # Lockdown Context and Enforcement
 
@@ -383,7 +440,7 @@ fixed-effects models on a nationally representative longitudinal
 household data set, relying on the changes over time in
 government-imposed lockdowns to identify the effect.
 
-Our main specification regresses outcomes, $Y$, discussed below, on a
+Our main specification regresses outcomes, $Y$, on a
 set of variables using a linear fixed-effects model:[^3]
 
 $$
@@ -392,6 +449,17 @@ Y_{i,t} =  \sum_{t=1}^7 \beta_t 1[Round = t]  + \gamma Cases_{i,t}
 $$
 
 where $i$ denote household and $t$ survey rounds. 
+
+[^3]: A linear model has two advantages over non-linear models, such as
+    conditional logit, and has often been used in recent studies 
+    [@Alam2020; @Alam2018; @Charles2008]. 
+    First, coefficients are easier to interpret. 
+    Second, a linear model allows a more straightforward comparison of 
+    coefficients across regression where some dependent variables 
+    are binary and some non-binary.
+    Robustness checks, available upon request, show that
+    conditional logit models lead to similar results.
+
 
 We use survey indicator variables to capture the variation over time.
 The first survey round took place between 9 and 27 days after the
@@ -442,27 +510,6 @@ models, as the same individual from the household is followed over the
 rounds.
 
 
-## Main Outcomes: Food Insecurity
-
-The survey measures food insecurity based on the Food Insecurity
-Experience Scale (FIES) developed by the FAO [@FAO2016]. 
-FIES uses
-eight questions with dichotomous (yes/no) responses to understand the
-different challenges related to food insecurity. This measure has been
-empirically validated for cross-cultural use 
-[@Ballard2013; @Kansiime2021]. 
-FIES asks whether, during the last 30 days,
-there was any time when any adult in the household experienced the
-following because of lack of money or other resources: (i) were worried
-about not having enough food to eat; (ii) were unable to eat healthy and
-nutritious/preferred foods; (iii) ate only a few kinds of foods; (iv)
-skipped a meal; (v) ate less than you thought you should; (vi) ran out
-of food; (vii) went hungry, but did not eat; and (viii) went without
-eating for a whole day. We create an indicator variable for each
-question where 1 represents "yes," and 0 represents "no." Additionally,
-we create another variable to capture whether a household experienced
-any food insecurity, with 1 for answering "Yes" to at least one of the
-eight FIES questions and 0 otherwise.
 
 ## Mechanisms that Affect Food Insecurity
 
@@ -1555,103 +1602,6 @@ avenues of mitigation are critical future areas of research.
   -----------------------------------------------------------------------------------------------
 
 
-**Appendix**
-
-
-  -----------------------------------------------------------------------------------------------
-  Table A2: Impact of                                                                          
-  lockdowns on food                                                                            
-  insecurity using                                                                             
-  conditional logit                                                                            
-  model                                                                                        
-  ------------------- ------------- ------------- -------------- -------------- -------------- --
-                                                                                               
-
-                      \(1\)         \(2\)         \(3\)          \(4\)          \(5\)          
-
-  Outcome variables:  Any food      Worry about   Unable to eat  Had to eat     Had to skip a  
-                      insecurity    not having    healthy and    only a few     meal           
-                                    enough food   nutritious     kinds of food                 
-                                    to eat        food                                         
-
-  First lockdown:     1.852\*\*\*   1.998\*\*\*   1.454\*\*\*    1.456\*\*\*    1.757\*\*\*    
-  short run                                                                                    
-
-                      (0.087)       (0.082)       (0.080)        (0.080)        (0.091)        
-
-  First lockdown:     0.861\*\*\*   1.052\*\*\*   0.742\*\*\*    0.494\*\*\*    0.974\*\*\*    
-  medium run                                                                                   
-
-                      (0.087)       (0.084)       (0.082)        (0.082)        (0.097)        
-
-  Second lockdown:    1.632\*\*\*   1.867\*\*\*   1.545\*\*\*    1.539\*\*\*    1.965\*\*\*    
-  medium run                                                                                   
-
-                      (0.075)       (0.068)       (0.069)        (0.069)        (0.075)        
-
-  Covid-19            0.015         0.004         0.004          -0.002         -0.037\*\*\*   
-  cases/100,000                                                                                
-
-                      (0.009)       (0.009)       (0.009)        (0.009)        (0.012)        
-
-                                                                                               
-
-  No of observations  9,821         11,169        10,785         10,835         8,715          
-
-  Number of           1,484         1,688         1,634          1,639          1,319          
-  households                                                                                   
-
-                      \(6\)         \(7\)         \(8\)          \(9\)                         
-
-  Outcome variables:  Ate less than Ran out of    Went hungry    Went without                  
-                      they thought  food          but did not    eating for a                  
-                      they should                 eat            whole day                     
-
-  First lockdown:     1.723\*\*\*   1.674\*\*\*   1.694\*\*\*    1.420\*\*\*                   
-  short run                                                                                    
-
-                      (0.085)       (0.104)       (0.103)        (0.142)                       
-
-  First lockdown:     0.860\*\*\*   0.878\*\*\*   1.001\*\*\*    0.710\*\*\*                   
-  medium run                                                                                   
-
-                      (0.090)       (0.113)       (0.110)        (0.157)                       
-
-  Second lockdown:    2.093\*\*\*   1.793\*\*\*   2.147\*\*\*    2.145\*\*\*                   
-  medium run                                                                                   
-
-                      (0.072)       (0.082)       (0.083)        (0.110)                       
-
-  Covid-19            -0.025\*\*    -0.014        -0.041\*\*\*   -0.068\*\*\*                  
-  cases/100,000                                                                                
-
-                      (0.010)       (0.014)       (0.014)        (0.020)                       
-
-                                                                                               
-
-  No of observations  9,962         7,036         7,112          4,016                         
-
-  Number of           1,509         1,063         1,076          603                           
-  households                                                                                   
-
-  Note: Linear Model                                                                           
-  with household                                                                               
-  fixed effects. All                                                                           
-  dependent variables                                                                          
-  are dummy                                                                                    
-  variables. Standard                                                                          
-  errors are in                                                                                
-  parentheses. \*\*\*                                                                          
-  indicates                                                                                    
-  significance at 1%                                                                           
-  level; \*\* at 5%;                                                                           
-  \* at 10%.                                                                                   
-
-                                                                                               
-  -----------------------------------------------------------------------------------------------
-
-*\
-*
 
 *Section A1:*
 
@@ -2021,14 +1971,6 @@ at 10%.
   ---------------------------------------------------------------------------------------------
 
 
-[^3]: A linear model has two advantages over non-linear models, such as
-    conditional logit, and has often been used in recent studies 
-    [@Alam2020; @Alam2018; @Charles2008]. 
-    First, coefficients are easier to interpret. Second, a linear model allows
-    a more straightforward comparison of coefficients across regressions
-    where some dependent variables are binary and some non-binary.
-    Robustness checks, presented in Appendix Tables A1 show that
-    conditional logit models lead to similar results.
 
 [^4]: The advantage of using "Our World in Data" is that it collects
     available Covid-19 data from many sources. The data are available

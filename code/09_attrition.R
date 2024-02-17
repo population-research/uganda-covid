@@ -19,7 +19,7 @@ theme_uft <- theme_classic() +
     legend.key.width = unit(1, "cm"),
     strip.background = element_blank(),
     panel.grid.major.y = element_line(color = "lightgray",
-                                      size = 0.5)
+                                      linewidth = 0.5)
   )
 
 theme_set(theme_uft)
