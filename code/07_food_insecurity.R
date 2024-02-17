@@ -78,7 +78,7 @@ fx <- map(
 # )
 
 # Make fx into one data frame and combine graphs
-(list_rbind(fx) %>% 
+list_rbind(fx) %>% 
     mutate(
       term = str_remove(term, "survey"),
       variable = str_to_title(str_remove(variable, "insecure_"))
@@ -92,8 +92,9 @@ fx <- map(
       y = "Coefficient"
     ) +
     # Combining the graphs from food_insecurity_graphs
-    facet_wrap(~variable, scales = "fixed", ncol = 1) ) %>% 
-  ggsave(here("figures", "food_insecurity_survey.pdf"), ., width = 8, height = 6, units = "in")
+    facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+ggsave(here("figures", "food_insecurity_survey.pdf"), width = 8, height = 6, units = "in")
 
 
 # Regional variation in food insecurity ----
