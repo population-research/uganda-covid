@@ -6,7 +6,7 @@ library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(plm)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
-library(cowplot)
+
 
 # Graph theme set-up ----
 theme_uft <- theme_classic() +
@@ -17,8 +17,10 @@ theme_uft <- theme_classic() +
     legend.title = element_blank(),
     legend.key.width = unit(1, "cm"),
     strip.background = element_blank(),
-    panel.grid.major.y = element_line(color = "lightgray",
-                                      size = 0.5)
+    panel.grid.major.y = element_line(
+      color = "lightgray",
+      linewidth = 0.5
+    )
   )
 
 theme_set(theme_uft)
