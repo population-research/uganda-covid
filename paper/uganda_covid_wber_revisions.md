@@ -259,14 +259,16 @@ To avoid any biases to the extent possible, we use the UHFS-provided survey
 weights to ensure that the data is nationally representative 
 [@Uganda-Bureau-of-Statistics2022].
 
-Over the seven rounds, the cumulative attrition rate was 15.7 percent,
-with 1,875 households from the baseline interviewed in round 7 (October 2021). 
+Over the seven rounds, the cumulative attrition rate was 15.8 percent
+of the originally surveyed households from round 1,
+with 1,873 households from the baseline interviewed in round 7 (October 2021). 
 However, replacement households were added to the sample
 following the first round. 
-This brings our total sample size to 2,302 households. 
+This brings our total sample size to 2,334 households. 
 The number of original households that remained in each
-round and the cumulative number of new households in the follow-up
-rounds are presented in Appendix Table A1.
+round together with the number of new households added in the follow-up
+rounds and the total number of households per round are 
+presented in Appendix Table \ref{tab:surveys}.
 
 
 # Lockdown Context and Enforcement
@@ -708,10 +710,35 @@ the relatively small changes in any food insecurity there over time.
 
 ## The Role of Attrition 
 
+As discussed above, almost 16% of the original households 
+surveyed in round 1 failed to respond by round 7.
+Although new households are added, a concern is whether the
+attrition of households is non-random and might bias the result.
+To examine how sensitive our results are to attrition, we 
+perform a bounding exercise, where we either assume that all
+households that fail to respond would have been food insecure
+or that they would not have been food insecure.[^thank_eric]
 
-[attrition bounding exercise]
+[^thank_eric]: We would like to thank the Editor for this 
+suggestion.
 
+![Attrition](../figures/food_insecurity_survey_attrition_combined.pdf){#fig:attrition}
 
+[@fig:attrition] shows the results for the nation-wide bounding estimations
+together with the original results.
+For the any and moderate or severe food insecurity outcomes, whether we assume 
+that attrited households would have been food insecure or food secure, 
+those results that were statistically significant in the main model remain 
+statistically significant for the bounding exercise.
+The main potential change in the results is for severe food insecurity in round 1, 
+where the first round is no longer statistically significantly different from
+round 4, if we assume that attrition households would have been severely food insecure,
+although we cannot reject that the round 1 coefficients are the same across the
+original and the two bounding assumptions.
+Furthermore, if we assume severe food insecurity for missing households 
+the round 7 estimate is statistically significantly larger than both the original 
+estimate and the estimate if we assumed that attrited households were not 
+severely food insecure.
 
 
 # How Households Responded
@@ -1530,29 +1557,6 @@ avenues of mitigation are critical future areas of research.
 
 **Appendix**
 
-  -----------------------------------------------------------------------------------------
-  Table A1: Number of original and                                                   
-  new households following round 1                                                  
-  for each survey round                                                             
-  -------------------------------- ------- ------- ------- -------- ------- ------- -------
-                                                                                     
-
-                                                           Rounds                   
-
-                                   1       2       3       4        5       6       7
-
-  Number of original households    2,225   2,145   2,091   2,085    2,070   2,040   1,875
-  from Round 1                                                                      
-
-  Cumulative new households added          44      46      44       46      52      55
-  after round 1                                                                     
-
-  Total sample size for a          2,225   2,189   2,137   2,129    2,116   2,092   1,930
-  particular round                                                                  
-  -----------------------------------------------------------------------------------------
-
-**\
-**
 
   -----------------------------------------------------------------------------------------------
   Table A2: Impact of                                                                          
@@ -2069,6 +2073,14 @@ at 10%.
 
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{figure}{0}
+
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{table}{0}
+
+
+\input{../tables/survey_table.tex}
+
+
 
 # Alternative Google Mobility Measures
 

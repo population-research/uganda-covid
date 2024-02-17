@@ -135,14 +135,21 @@ how to compare to earlier tables.
 4. Attrition is large. Is it correlated with food security? It seems like it
 will be correlated with survey round. I think it might be useful to end with a
 bounding exercise where you assume attriters are at extremes of the food
-security distribution. Your end results would be insigniﬁcant, but the range of
+security distribution. Your end results would be insignificant, but the range of
 your survey year effects with different assumptions on attrition would provide
 the reader of a sense of how sensitive your analysis is to attrition. I feel
 comfortable precommitting that your paper will not be rejected for attrition so
 long as you are clear on how sensitive your results are to different assumptions
 about attriters, even if the answer is "super sensitive".
 
-    **Response:**
+    **Response:** We have added a discussion of this with a graph showing the national
+    level food insecurity estimations for each of the three levels of food insecurity 
+    assuming that all attrited households would have been food secure or 
+    that all attrited households would have been food insecure. 
+    Except for severe food insecurity in round 1 when we assume that 
+    attrited households are food insecure, the results that were statistically 
+    significant in the main model remain statistically significant for
+    the bounding exercise.
 
 
 
@@ -350,7 +357,7 @@ is not a surprise to the reader.
 preferred channel. Based on Table 3, paid work is certainly decreasing, but so
 is farm income and income from assets, remittances from within country,
 assistance from non-family individuals, and assistance from NGOs. I would like
-to see the authors better justify why they believe paid work speciﬁcally to be
+to see the authors better justify why they believe paid work specifically to be
 the main pathway.
 
     In particular, Table 5 suggests that agricultural households saw no decrease in
@@ -365,7 +372,7 @@ food insecurity could be explained by these changes? As well, even among those
 not living at home, children would have been home considerably more during this
 time period due to school closures from March 2020 through January 2022; since
 many Ugandan children have lunch at school or attend boarding schools, these
-changes may lead to signiﬁcant increases in food security. It is unclear why
+changes may lead to significant increases in food security. It is unclear why
 this channel is not considered a primary one.
 
 ## Suggestions
@@ -382,13 +389,13 @@ estimate found by the authors large, small, or average relative to these papers?
 estimation? My main concern about omitted variable bias would be something like
 “vulnerability.” Yet given the wide-ranging effects of the shock, many aspects
 of vulnerability would likely be affected by COVID-19 and the lockdowns (income
-diversiﬁcation, availability of remittances, health, etc.). Others (land
-quality, education of household head, etc.) would likely be absorbed by the ﬁxed
+diversification, availability of remittances, health, etc.). Others (land
+quality, education of household head, etc.) would likely be absorbed by the fixed
 effect. How different would the results be if the authors used an index of
-economic vulnerability from the 2019/20 UNPS data instead of household ﬁxed
-effects? The authors argue in the set up that the use of household ﬁxed effects
+economic vulnerability from the 2019/20 UNPS data instead of household fixed
+effects? The authors argue in the set up that the use of household fixed effects
 represents a meaningful contribution to the literature but are fairly mild in
-their description of what the ﬁxed effects achieve on page 9. More consistency
+their description of what the fixed effects achieve on page 9. More consistency
 would be helpful.
 
 6. On page 21, the authors note that they interact lockdown variables with
