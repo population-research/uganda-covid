@@ -172,18 +172,15 @@ survey date? What do we think of that as measure of local covid exposure?
 
     **Response:** It is certainly possible that there are systematic differences in 
     local Covid exposure, but, unfortunately, we have been unable to identify any 
-    external data sources that could address regional differences in Covid exposure 
-    and lockdown behavior (the exception is the  regional differences for the 
-    Google mobility data discussed below).
+    data sources that could address regional differences in Covid exposure.
     
-    While we normally think of cities as having a higher disease load than rural areas,
-    this might not hold in the case of Covid. 
-    Rather, large and poorer rural households may be more exposed to Covid infections,
-    especially if lockdowns are enforced in rural areas.
-    In the U.S. the rate of death has been substantially higher in rural than in urban areas,
-    although the United States is clearly an imperfect comparison.
-    Furthermore, people may be moving from urban to rural areas to "escape" increasing levels 
-    of Covid infections and bring with them to rural areas.
+    As discussed above, we now include an analysis of the regional variation 
+    in food insecurity and discuss the role of potential differences 
+    in Covid cases across regions.
+    Furthermore, we also examine regional lockdown behavior through the 
+    regional Google Mobility data on visits to retail and recreation locations.
+    See also our responses below to the last two suggestions from Referee 2.
+    
     
 7. Given the clustered survey design of the NPS, you should be clustering by PSU
 throughout (probably only meaningful in the mediation analysis discussed above).
