@@ -33,7 +33,7 @@ abstract: |
   lockdown and a continued negative impact three months after its
   lifting. 
   The second lockdown's medium-term impact was even worse, likely because 
-  of a compounding effect of a concurrent drought. 
+  of a compounding effect of a concurrent drier-than-normal period. 
   The rising food insecurity was partly the result of the lockdown-related
   reductions in the availability of paid work. Agricultural households
   were more likely to continue working and consequently saw smaller
@@ -193,7 +193,8 @@ the first lockdown was lifted. The medium-term impact was even higher
 following the second lockdown, with a 22 percentage points increase in
 any form of food insecurity three months after the second lockdown had
 been lifted. The difference in the medium-run impact between the two
-lockdowns suggests that the drought compounded the negative effect of
+lockdowns suggests that the lower than normal rainfall during July 
+through  October of 2021 compounded the negative effect of
 the lockdown.
 
 To understand the mechanisms behind the significant impact on food
@@ -209,7 +210,7 @@ Furthermore, households attempted to cope with the lockdown by switching
 to agricultural work, as shown by a significant increase in the
 likelihood of working in agriculture after the first lockdown. However,
 that increase dissipated by the second lockdown, likely because the
-concurrent drought made agriculture less attractive as a coping
+concurrent rainfall shortfall made agriculture less attractive as a coping
 mechanism.
 
 Traditional sources of support, such as remittance from abroad or
@@ -330,9 +331,6 @@ with the month-centric question of the UNPS.
 
 # Lockdown Context and Enforcement
 
-
-[Still needs a discussion of drought]
-
 On March 18, 2020, the Ugandan government began imposing restrictions,
 including travel restrictions and cancellation of public gatherings,
 such as religious services, weddings, and music events 
@@ -431,6 +429,18 @@ Furthermore, as in many other developing countries, the number of Covid deaths w
 Even with the increase in cases and deaths by the end of 2021, Uganda 
 had only 7.2 deaths per 100,000 persons, while, for
 comparison, the US had 245.1 deaths per 100,000 persons.
+
+On top of lockdowns and Covid, the later part of 2021 saw a below-normal
+rainfall across the country.
+The three-month 3-month rainfall was 75% of normal when averaged across 
+all measurement stations, and all stations showed a below-normal three-month 
+rainfall in August 2021.[^subnational_rainfall]
+This below-normal rainfall coincided with the rainy season in the 
+north part of Uganda and the second rainy season everywhere else.
+
+[^subnational_rainfall]: Calculations based on data available at
+\href{https://data.humdata.org/dataset/uga-rainfall-subnational}{https://data.humdata.org/dataset/uga-rainfall-subnational}.
+
 
 
 # Empirical Specification
@@ -615,8 +625,8 @@ Observed Food Insecurity for Three UHFS
 Outcomes](../figures/seasonality.pdf){#fig:seasonality}
 
 All three UHFS questions follow the same general pattern as the UNPS
-question outside the lockdown periods, September 2020 through April
-2021. For the initial lockdown, both the short- and medium-run effects
+question outside the lockdown periods, September 2020 through April 2021. 
+For the initial lockdown, both the short- and medium-run effects
 show clearly in the UHFS questions. Although it is possible that these
 high values were the result of seasonal variation, we consider it
 unlikely for two reasons. First, there is no evidence of the same
@@ -652,10 +662,15 @@ for seasonality.
 
 ## Regional Variation 
 
-[differences in drought; lockdown severity]
+[differences in drought not an issue it appears, although might be hard for Northern 
+because they only have one rainy season]
 
-All of the results above are national-level, which may obscure regional
-variations in both the degree and effects of lockdowns.
+
+All of the results above are national-level, which may obscure critical
+regional variations in Covid exposure and the degree and effects of lockdowns.
+This section, therefore, examines differences in the Google Mobility measure and 
+in food insecurity across the survey rounds for each of the four regions in Uganda.
+
 Uganda is divided into four regions, Central, Eastern, Northern, 
 and Western, which, although without direct administrative roles, are
 used as units for statistical and planning purposes.
@@ -668,7 +683,7 @@ with the four most populous urban centers in Uganda
 Combined, these four urban centers are home to one-third of the
 entire urban population of Uganda, with almost 2.5 million people.[^small_urban]
 The region has a higher concentration of service and industrial employment 
-opportunities than the other regions and the lowest poverty rates [@Ssewanyana2012]. 
+than the other regions and the lowest poverty rates [@Ssewanyana2012]. 
 
 [^small_urban]:
 For comparison, the fifth-largest urban center, the Western region's Mbarara, 
@@ -676,29 +691,63 @@ had fewer than 200,000 people in 2014.
 
 In contrast, employment in the other regions is predominantly agricultural. 
 The Eastern region is characterized by mixed farming, including both crop 
-cultivation and livestock, with a notable focus on cash crops like coffee and tea. 
+cultivation and livestock, with a focus on cash crops like coffee and tea. 
 The Western region, rich in fertile soils and rainfall, supports intensive 
 agriculture, particularly dairy farming and tea cultivation. 
 The Northern region, historically affected by conflict, has a more 
 subsistence-oriented agricultural system, with lower levels of productivity 
 and a slower pace of urbanization, and consistently has the highest poverty levels.  
 
-![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Location](../figures/regional_retail_and_recreation.pdf){#fig:retail_regional}
 
+![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
 
+[@fig:retail_regional] shows the changes in percentage visits to retail and
+recreation locations by region, together with the survey rounds.[^appendix_regional]
+In all regions, there is clear evidence of the scale of the first severe lockdown,
+although the percentage change is larger in the Central region at about 75%,
+compared with just over 50% in the other three regions.
 
+[^appendix_regional]: Appendix @fig:mobility_regional_workplaces
+and Appendix @fig:mobility_regional_residential show the percentage change in visitors
+to workplaces and the percentage change in time spent at residential locations.
+Although the workplace mobility data appear to have broader coverage we 
+prefer the retail measure because of the predominately agricultural nature
+of work in the Eastern, Northern, and Western regions.
 
-We, therefore, next examine changes in food insecurity across the survey 
-rounds for each of the four regions in Uganda.
+During the second severe lockdown, there is a smaller reduction in the visits to
+retail locations than the first, but otherwise, it followed close to the same regional 
+pattern as the first lockdown.
+The Central region showed the largest reduction at around 50%.
+The Western and Eastern regions both saw approximately 40% reductions when 
+compared to the period immediately preceding the second main lockdown.
+The data for the Northern region is spottier, but there is some evidence
+for a reduction in visits compared to the period immediately before the
+second lockdown.
+
+These changes in visits to retail locations are consistent with more heavily 
+enforced lockdowns in urban than in rural areas.
+However, even in the three more agricultural-focused regions, there are substantial 
+changes in mobility consistent with enforced lockdowns. 
+For the second lockdown, it is possible that part of the change
+in behavior comes from self-isolation associated with the increasing number 
+of Covid cases, although, unfortunately, no regional data is available to
+investigate this possibility.[^regional_covid]
+
+[^regional_covid]: While we normally think of cities as having a higher communicable disease load 
+than rural areas, this might not hold in the case of Covid. 
+Rather, larger rural households may allow more people to be exposed to 
+Covid infections, especially if lockdowns are enforced in rural areas.
+Furthermore, people may be moving from urban to rural areas to "escape" 
+increasing levels of Covid infections, bringing Covid with them to rural areas.
+
 [@fig:food_insecurity_region] shows the results by level of food insecurity
-and regions, where each combination is from a separate regression.[^no_covid]
-
-[^no_covid]: Because we do not have information on regional Covid-19
+and regions, where each combination is from a separate regression.
+The regional raw levels of food insecurity by round are shown in 
+Appendix [@fig:region_descriptive].
+Because we do not have information on regional Covid-19
 cases, all models are estimated without this national-level variable.
-The levels of food insecurity by round are 
-shown in Appendix [@fig:region_descriptive].
 
-![Regional](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
+![Estimated Changes in Food Insecurity With 95% Confidence Intervals for Each Region by Survey Round Relative to Survey 4, Controlling for Household Fixed Effects](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
 
 Both the Central and Eastern regions follow a pattern very closely 
 aligned with the national-level results.
@@ -931,8 +980,9 @@ illness or quarantined (10%), and being laid off from the job (8%).
 
 In the medium run, the likelihood of market work is 2.5 percentage
 points lower than in non-lockdown periods. This suggests that the labor
-market was approaching but not yet fully recovered. The medium-run
-impact of the second lockdown combined with the drought is large, with
+market was approaching but not yet fully recovered. 
+The medium-run impact of the second lockdown combined with the 
+lower than normal rainfall is large, with
 the likelihood of market work decreasing by 13 percentage points. This
 large impact on market work may explain the large impact on food
 insecurity in the medium run following the second lockdown.
@@ -941,7 +991,7 @@ While we do not have data for round 1 and cannot estimate the short-run
 effect, the likelihood of operating a non-farm family business in the
 medium run decreased by seven percentage points after the first lockdown
 (column 2). However, the second lockdown did not impact family business
-in the medium run, even though this coincided with the drought.
+in the medium run, even though this coincided with the drier spell.
 
 Given the overall decrease in market work, it is useful to understand
 whether individuals, who were able to continue work during the
@@ -982,13 +1032,14 @@ first lockdown.
 
 However, we do not find a higher likelihood of agricultural work in the
 medium run following the second lockdown compared to the non-lockdown
-periods, likely because the concurrent drought negatively affected the
+periods, likely because the concurrent dry spell negatively affected the
 agricultural labor market. The lack of opportunities in the agricultural
 sector may also explain why individuals were likely to remain at the
 same job after the second lockdown (results from column 3). Overall,
 these results suggest that while some joined the agricultural sector to
 cope with the effects of the first lockdown, the negative impact of the
-drought on agriculture meant that this was a less attractive coping
+lower than normal rainfall during the later half of 2021 on agriculture 
+meant that this was a less attractive coping
 mechanism during the second lockdown.
 
 ## Impact on Income
@@ -1083,7 +1134,8 @@ disappears in the medium run. Overall, these results suggest that
 agricultural households were better able to keep working and did better
 in terms of food security. There is no difference in employment or food
 insecurity for the second lockdown between the two types of households.
-This is likely because of the concurrent drought during and after the
+This is likely because of the concurrent lower than normal rainfall 
+during and after the
 second lockdown in Uganda that affected the agricultural households\'
 employment and food production.
 
@@ -1097,7 +1149,8 @@ insecurity. Food insecurity increased substantially during the first
 lockdown, with the relative effects largest for the worst types of food
 insecurity. The first lockdown also had a significant medium-run impact
 on food insecurity. The medium-run impact was even higher following the
-second lockdown, as a drought compounded the negative effect of the
+second lockdown, as a lower-than-normal rainfall across Uganda 
+compounded the negative effect of the
 lockdown.
 
 There were significant decreases in paid work and earned income.
@@ -2039,8 +2092,6 @@ at 10%.
 ![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
 Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
 
-
-![Retail](../figures/mobility_regional_retail.pdf){#fig:mobility_regional_retail}
 
 ![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
 
