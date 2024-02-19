@@ -197,6 +197,27 @@ base <- base %>%
   )
 
 
+# Estimations ----
+
+base <- base %>% 
+  mutate(
+    l1 = survey == 1,
+    l2 = survey == 2,
+    l7 = survey == 7,
+    survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7"))
+  )
+
+
+plm(work_for_pay ~ l1 + l2 + l7 + cases_smooth_per_100000, 
+            data = base, 
+            index = c("hhid", "survey"), 
+            model = "within",
+            effect = "individual",
+            # weighting using weight_final
+            weights = weight_final
+      )
+
+
 
 
 
