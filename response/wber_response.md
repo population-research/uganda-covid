@@ -40,11 +40,9 @@ We now begin with a more in-depth examination of the lockdowns, which includes t
 figure on the stringency measure, mobility measure, and Covid deaths and cases.
 This is followed by an analysis of the extent to which the lockdowns explain 
 the changes in food insecurity.
-We do this using a full set of survey indicator variables, the stringency measure,
-and Google mobility measures.
-We also include the original robustness analyses here.
-[mediation analysis and regional mobility analyses here]
-
+We do this using a full set of survey indicator variables.
+We also include the seasonality analyses, together with a new regional analysis 
+and the attrition bounding exercise here.
 After having examined the relationship between lockdowns and food insecurity, 
 we analyze how households/individuals respond to the lockdowns.
 
