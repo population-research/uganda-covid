@@ -399,6 +399,13 @@ the 7-day average number of new Covid-19 cases and deaths per 100,000 persons,
 and the data collection window for each of the UHFS rounds in shaded grey. 
 The number of Covid cases and deaths comes from "Our World in Data."[^4]
 
+[^4]: The advantage of using "Our World in Data" is that it collects
+    available Covid-19 data from many sources. The data are available
+    at <https://covid.ourworldindata.org/data/owid-covid-data.csv>, and
+    a complete listing of underlying sources is
+    at <https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv>.
+
+
 The strictest restrictions are just before round 1, where there is an almost
 complete lockdown. 
 According to the stringency measure, the second lockdown was nearly as strict 
@@ -1926,11 +1933,6 @@ at 10%.
 
 
 
-[^4]: The advantage of using "Our World in Data" is that it collects
-    available Covid-19 data from many sources. The data are available
-    at <https://covid.ourworldindata.org/data/owid-covid-data.csv>, and
-    a complete listing of underlying sources is
-    at <https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv>.
 
 [^7]: Households were also asked whether they received unemployment
     benefits, but there was only one observation representing a change,
