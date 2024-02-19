@@ -224,6 +224,10 @@ effect on food insecurity. Finally, we find evidence of a net increase
 in household members, suggesting that lockdowns forced individuals
 living elsewhere to join/rejoin the household.
 
+[identification of effects based on comparing periods with 
+varying degrees of lockdowns before Covid becomes an issue; 
+important!]
+
 
 # Data
 
@@ -443,9 +447,9 @@ north part of Uganda and the second rainy season everywhere else.
 
 
 
-# Empirical Specification
+# Estimation Strategy
 
-To establish the effects of Covid-19 lockdowns, we use household
+To examine the effects of Covid-19 lockdowns, we use household
 fixed-effects models on a nationally representative longitudinal
 household data set, relying on the changes over time in
 government-imposed lockdowns to identify the effect.
@@ -482,13 +486,9 @@ These we refer to as medium-term.
 The third, fourth, fifth, and sixth survey rounds took place
 112--130, 155--176, 253--272, and 281--322 days after the
 first severe lockdown.
-
 We use the fourth survey round as the excluded round because it is
-the round furthest from both lockdowns and before any substantial
-number of Covid cases and before the election begins in earnest.
-[Explain the identification and advantages of our approach]
-- compare *within* lockdowns, more severe vs less severe
-- before covid shows up in substantial numbers; identify effect of lockdown
+the survey round furthest from both lockdowns and before any substantial
+number of Covid cases, and before the election begins in earnest.
 
 In addition to government-imposed lockdowns, individuals may be ill,
 decide to self-isolate, or take other steps to avoid contact with others
@@ -519,26 +519,26 @@ employment. In these cases, the models are individual fixed-effects
 models, as the same individual from the household is followed over the
 rounds.
 
+In summary, we identify the impact of Uganda's lockdowns by comparing
+periods with more or less severe lockdowns, while the individual
+survey round indicators capture the other potential factors that might impact 
+food insecurity, such as the unrest in connection with the 2021 elections.
+Especially the first lockdown is of interest because it came at a 
+time when there were close to no Covid cases, and, in fact, there
+was no substantial spread of Covid until well after the first 
+severe lockdown ended.
+Hence, we can identify the effect of the lockdown as opposed to 
+the aggregate effect of the lockdowns and the spread of the disease
+combined.
 
+To ensure that we are not capturing other changes, we also 
+examine the potential role of seasonality in the results. 
+Finally, although there were no official variations in lockdown policies
+or enforcement across different areas, and we, therefore, 
+cannot rely on spatial variation for identification, we do
+examine differences in mobility patterns and food insecurity
+across regions.
 
-## Mechanisms that Affect Food Insecurity
-
-
-## Summary Statistics
-
-
-We present the summary statistics of key variables in Table 1. 
-Column 1 shows the overall sample mean, and columns 2, 3, and 4 show the
-respective sample means in round 1 (short-run effect of the first
-lockdown), round 2 (medium-run effect of the first lockdown), and round
-7 (medium run effect of the second lockdown). 
-Column 5 presents the mean for the non-lockdown-related rounds. 
-Overall, the average food insecurity across all rounds is relatively high, 
-with 55.4% reporting at least one type of food insecurity. 
-However, the differences between the lockdown and non-lockdown periods are large. 
-For example, 71.8 percent of households reported any food insecurity during 
-the first lockdown (round 1) as opposed to 47.2 percent for the non-lockdown 
-period, a difference of 24.6 percent.
 
 # Did Lockdowns Increase Food Insecurity?
 
@@ -1186,102 +1186,6 @@ potential long-term cost of the lockdowns potentially significantly
 outweighs the benefits. Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
-
-
-  -------------------------------------------------------------------------------------------
-  Table 1: Summary statistics of                                               
-  key variables                                                                
-  ------------------------------ --------- ----------- ----------- ----------- --------------
-                                                                               
-
-                                 \(1\)     \(2\)       \(3\)       \(4\)       \(5\)
-
-                                 Overall   Mean at     Mean at     Mean at     Mean in
-                                 sample    round 1     round 2     round 7     non-lockdown
-                                 mean      (first      (medium run (medium run rounds (Rounds
-                                           lockdown)   of first    of second   3, 4, 5, and
-                                                       lockdown)   lockdown)   6)
-
-  **Food Insecurity:**                                                         
-
-  Any food insecurity            55.6%     71.8%       58.7%       69.2%       47.5%
-
-  Worry about not having enough  37.8%     58.0%       42.0%       53.5%       27.8%
-  food to eat                                                                  
-
-  Unable to eat healthy and      45.0%     58.6%       48.6%       59.8%       37.2%
-  nutritious food                                                              
-
-  Had to eat only a few kinds of 44.2%     58.0%       44.3%       58.8%       37.4%
-  food                                                                         
-
-  Had to skip a meal             21.0%     34.2%       25.4%       34.4%       13.4%
-
-  Ate less than they thought     28.4%     42.3%       31.3%       46.6%       19.9%
-  they should                                                                  
-
-  Ran out of food                14.4%     23.9%       16.5%       23.2%       9.3%
-
-  Went hungry but did not eat    15.3%     24.8%       18.1%       27.8%       9.2%
-
-  Went without eating for a      6.0%      9.7%        6.4%        14.3%       3.1%
-  whole day                                                                    
-
-  **Employment and household                                                   
-  variables:**                                                                 
-
-  Likelihood of market work      83.2%     69.9%       86.3%       74.5%       87.8%
-
-  Likelihood of op. a non-farm   39.7%                 35.5%       39.6%       40.7%
-  family business                                                              
-
-  Likelihood of working in same  95.2%     87.6%       95.7%       95.1%       96.9%
-  job as before                                                                
-
-  Agricultural household         57.9%     61.4%       60.5%       54.3%       57.2%
-
-  Total household members        5.02      5.0         5.0         5.2         5.0
-
-  Total number of adults in      2.36      2.4         2.3         2.4         2.3
-  household                                                                    
-
-  Total number of children in    2.66      2.6         2.7         2.8         2.6
-  household                                                                    
-
-  Likelihood of living in urban  32.1%     32.8%       31.7%       31.9%       32.1%
-  area                                                                         
-
-  *Fraction of households                                                      
-  reporting changes in income                                                  
-  and assistance ('+' indicates                                                
-  increase, '-' indicates                                                      
-  decrease, 0 indicates no                                                     
-  change):*                                                                    
-
-  Farm income                    -13.2%    -38.0%      -16.8%                  -5.8%
-
-  Nonfarm income                 -12.3%    -36.6%      -17.8%                  -4.5%
-
-  Wage income                    -8.7%     -20.9%      -13.2%                  -4.3%
-
-  Income from assets             -0.9%     -2.4%       -1.5%                   -0.3%
-
-  Pension                        0.0%      0.0%        0.0%                    0.0%
-
-  Remittance                     -0.6%     -1.0%       -0.8%                   -0.5%
-
-  Assistance from family within  -8.5%     -11.8%      -10.3%                  -7.1%
-  country                                                                      
-
-  Assistance from non-family     -1.0%     -2.2%       -1.7%                   -0.5%
-  individuals                                                                  
-
-  Assistance from NGOs           -0.1%     -0.5%       -0.1%                   0.0%
-
-  Assistance from government     0.0%      0.1%        0.0%                    -0.1%
-
-  Number of observations         14,818    2,225       2,189       1,930       8,474
-  -------------------------------------------------------------------------------------------
 
 
   -----------------------------------------------------------------------------------------------------------
