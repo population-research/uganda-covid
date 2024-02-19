@@ -211,7 +211,26 @@ across space (such as different districts having different lockdown policies)
 and time for identification. It would be important for the authors to address
 this identification issue more directly.
 
-    **Response:**
+    **Response:** As we mention in the "Notable Changes" above, we have redone 
+    our analysis to address this point by including survey round indicators for 
+    all rounds.
+    Furthermore, we have expanded the robustness analyses to include a
+    regional analysis, which includes a discussion of potential differential
+    enforcement of lockdowns across regions and how the main region affected
+    by below-normal rainfall was the Western region.
+    We have substantially expanded our discussion of our identification
+    strategy and what we believe are its advantages in the Introduction and
+    in the Estimation Strategy sections.
+    
+    We should also clarify that we originally overstated the extent and severity 
+    of the dry period based on concurrent reports. 
+    Since then rainfall data has become available covering that period and,
+    while there are below-normal rainfalls in all four regions, it was relatively
+    short-lived and mainly appeared to have substantially affected the Western 
+    region.
+    We discuss this in the Lockdown Context and Enforcement and in the regional
+    Variation sections.
+    
 
 2. Second, and relatedly, the paper uses a fixed effects regression “to control for
 unobservable household characteristics”. It would be helpful for the authors to
@@ -298,14 +317,6 @@ explanation of why this is not needed.
 
 # Referee 2 Comments
 
-1. Make it clearer what periods we are comparing lockdowns to and discuss whether prior
- literature compares aggregate effect or within-pandemic effects of Lockdowns
-
-This is a well-taken point. 
-We have updated the paper on page TK to highlight that we are comparing lockdowns to
-other periods during the pandemic, rather than to pre-pandemic periods.
-
-[see also response to E-5 on UNPS food insecurity questions]
 
 ## Essential Points
 
@@ -321,6 +332,16 @@ is not a surprise to the reader.
     distinction clearer, as well as to discuss more explicitly which parts of the
     relevant literature are specifically able to focus on lockdowns vs. merely the
     aggregate effect of the pandemic and lockdowns.
+    
+    **Response:** We have added this to the Introduction and rewritten the 
+    Estimation Strategy section to clarify and highlight that we are comparing 
+    lockdowns to other periods during the pandemic with less severe lockdowns 
+    and that with the low number of Covid cases we can therefore identify the 
+    effect of the lockdown separately from the spread of Covid.
+    See also our response to Referee 1 (Essential Point 1), above.
+    
+    [still need to do something about the literature part]
+
 
 2. It is not clear to me why reductions in paid work seems to be in the authors’
 preferred channel. Based on Table 3, paid work is certainly decreasing, but so
