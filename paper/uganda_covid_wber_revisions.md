@@ -662,10 +662,6 @@ for seasonality.
 
 ## Regional Variation 
 
-[differences in drought not an issue it appears, although might be hard for Northern 
-because they only have one rainy season]
-
-
 All of the results above are national-level, which may obscure critical
 regional variations in Covid exposure and the degree and effects of lockdowns.
 This section, therefore, examines differences in the Google Mobility measure and 
@@ -756,53 +752,54 @@ higher in the immediate aftermath of the first lockdown compared to
 round 4, and food insecurity gradually decrease for the next two 
 survey rounds.
 The levels remain approximately constant until after the second
-lockdown, where food insecurity in round 7 are all statistically significantly
-higher than in round 4.
+lockdown, where food insecurity levels in round 7 are all statistically 
+significantly higher than in round 4.
 
-For the Northern region, severe food insecurity follow the national-level
-pattern.
+For the Northern region, severe food insecurity follows the national level pattern.
 However, for moderate/severe food insecurity, only round 5 is not
-statistically significantly different from round 4 and levels in 
+statistically significantly different from round 4, and levels in 
 rounds 1 and 7 are more than 40 and 30 percentage points higher,
 respectively, than round 4.
 Furthermore, although the changes in any food insecurity are closer 
 to the national-level changes, they are generally smaller.
 
 The Western region is the region that stands out most compared to the
-other region. 
+other regions. 
 First, there is little to no change in severe food insecurity, except
 for the last survey round, which is just below 10 percentage points
 higher than round 4.
 Similarly, although rounds 1 and 2 for moderate food insecurity are 
-statistically significantly higher than round 4, the effects are small.
+statistically significantly higher than round 4, the effects are smaller than 
+elsewhere.
 For any food insecurity, the round 7 level is substantially larger
 than any of the others, despite round 7 further away from the end
 of the lockdowns than rounds 1 and 2.
 
+What do these regional results tell us about the relative effects of the 
+lockdowns?
+There are likely two conflicting dynamics at play here.
+On one hand, urbanized areas can more effectively enforce lockdowns, as 
+shown by the mobility measure for the Central region.
+On the other hand, proximity to the poverty line greatly increases 
+vulnerability to food insecurity. 
+This latter point is crucial, as even minimal enforcement measures in 
+poorer regions like the Eastern region can precipitate significant 
+shifts into food insecurity, due to the already precarious economic 
+standing of these households. 
+This is mirrored in the Northern region, where, in addition, the high 
+baseline poverty levels mean that the observed changes in food insecurity 
+are less pronounced over time---the level of any food insecurity never got 
+below nearly 70% of the population at its best.
 
-[How to explain these patterns?]
-There are two potentially counteracting effects.
-First, the more urbanized an area is the more it will be possible to 
-police/enforce lockdowns.
-Second, the closer households are to the poverty line the less it
-takes to push those households into food insecurity.
-This is important because even though the lockdowns might not 
-limit movement as much in, say the Eastern region, as in Kampala,
-the households are poorer in the Eastern region and it, therefore,
-takes less to push a household into food insecurity.
-[I guess it is also possible that with high enough poverty, we
-will see little change because only *changes* in status will
-contribute to the results (?)].
-
-
-
-These results are consistent with a situation where more households
-closer to the poverty line is associated with rapid and large
-changes in the levels of food insecurity.
-The high level of poverty in the Northern region may also explain
-the relatively small changes in any food insecurity there over time. 
-
-
+Finally, the Western region contributed  significantly to the high 
+national-level round 7 results.
+Part of this is likely the effect of an even more prolonged period of 
+below-normal rainfall than the other regions.
+Using the round 2 results as the basis, it appears that about half
+of the increase in round 7 food insecurity is due to the below-normal
+rainfall, and the other half is due to the second severe lockdown,
+likely combined with the cumulative impact of sustained lower-level
+lockdowns in between the most severe lockdowns. 
 
 ## The Role of Attrition 
 
