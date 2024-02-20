@@ -422,6 +422,20 @@ map(
     select(variable, everything())
 ) %>% 
   list_rbind() %>% 
+  mutate(
+    term = str_remove(term, "survey")
+  ) %>% 
+  # Recode variable to readable names
+  mutate(
+    variable = case_when(
+      variable == "adult_change" ~ "Change in Number of Adults",
+      variable == "hhmem_change" ~ "Change in Number of Household Members",
+      variable == "child_change" ~ "Change in Number of Children",
+      variable == "urban" ~ "Likelihood of Urban Location",
+      TRUE ~ variable
+    ),
+    variable = factor(variable, levels = c("Change in Number of Household Members", "Change in Number of Adults", "Change in Number of Children", "Likelihood of Urban Location"))
+  ) %>% 
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -432,6 +446,11 @@ map(
   ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+ggsave(here("figures", "household_composition_and_urban_location.pdf"), width = 8, height = 6, units = "in")
+
+
+
 
 # Agricultural households and food insecurity ----
 

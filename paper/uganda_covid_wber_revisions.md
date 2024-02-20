@@ -1078,6 +1078,9 @@ The failure of these coping
 mechanisms in the face of reductions in income likely contributed
 substantially to the large effects of lockdowns on food insecurity.
 
+![Impact on changes in number of household members and movement to urban area](../figures/household_composition_and_urban_location.pdf){#:fig:members_location}
+
+
 As households faced greater food insecurity during lockdowns, it is
 possible that, on the one hand, some household members left to look for
 better opportunities. On the other hand, as lockdowns led to reduced
@@ -1112,21 +1115,21 @@ migration into the households and a switch to agricultural work,
 suggesting that some household members return to the family for farm
 work.
 
-## Agricultural vs. Non-agricultural households
+## Agricultural vs. Non-Agricultural Households
 
 Given the increase in agricultural work with the first lockdown, 
 [@fig:ag_vs_non_ag] examines whether agricultural households fared 
 better than non-agricultural households. 
 We show the results for two different approaches.
-The two left columns are separate regressions by whether the 
+First, the two left columns are separate regressions by whether the 
 household was an agricultural household before Covid for each
 level of food insecurity.[^agri_pre_covid] 
-The results in the right two columns come from one regression 
+Second, the results in the right two columns come from one regression 
 per level of food insecurity and use the prior rounds' 
 reported agricultural status interacted with the survey indicators.
 Note, as we previously treated households' work in agriculture 
-as a choice variable, these estimations are exploratory rather than causal. 
-In all case, the effects are shown relatively to survey round 4 as above.
+as a choice variable, this set of estimations is exploratory rather than causal. 
+In all cases, the effects are shown relative to survey round 4 as above.
 
 [^agri_pre_covid]: For round 1, the survey asks about the employment industry 
     before the lockdown, which allows us to identify whether individuals worked
