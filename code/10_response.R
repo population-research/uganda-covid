@@ -360,12 +360,12 @@ map(income_vars,
 # Assistance received ----
 assistance_vars <- c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt")
 
-map(assistance_vars,
+test <- map(assistance_vars,
     ~ {
       y <- stata(
         paste0( 
           "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid)
-          regsave, ci"
+          regsave, ci detail(scalars)"
         ),
         data.in = reduced_df,
         data.out = TRUE
@@ -381,15 +381,26 @@ map(assistance_vars,
   mutate(var = str_extract(var, "\\d+")) %>% 
   # Recode variable to readable names
   mutate(
+    org_variable = variable,
     variable = case_when(
-      variable == "inc_level_farm" ~ "Farm Income",
-      variable == "inc_level_nfe" ~ "Non-farm Income",
-      variable == "inc_level_wage" ~ "Wage Income",
-      variable == "inc_level_assets" ~ "Income from Assets",
-      variable == "inc_level_pension" ~ "Pension Income",
+      variable == "inc_level_family" ~ paste0("Assistance from family within country (", .[.$org_variable == "inc_level_family", ][["N_group"]][1], ")") ,
+      variable == "inc_level_govt" ~ "Assistance from government",
+      variable == "inc_level_ngo" ~ "Assistance from NGOs",
+      variable == "inc_level_non_family" ~ "Assistance from non-family individuals",
+      variable == "inc_level_remittance" ~ "Remittance",
       TRUE ~ variable
-    )
-  ) %>% 
+    ),
+    variable = factor(variable, levels = c(
+      "Remittance", 
+      paste0("Assistance from family within country (", pull(.[.$org_variable == "inc_level_family", ][["N_group"]][1]), ")"), 
+      "Assistance from non-family individuals", 
+      "Assistance from NGOs", 
+      "Assistance from government")
+      )
+  ) 
+
+
+%>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
