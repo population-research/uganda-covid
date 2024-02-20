@@ -8,6 +8,10 @@ library(plm)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
 library(haven)
 library(data.table)
+library(rio)
+library(RStata)
+options("RStata.StataPath" = "/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp")
+options("RStata.StataVersion" = 18)
 
 
 # Graph theme set-up ----
@@ -33,7 +37,55 @@ color_palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072
 
 # Load data ----
 base <- read_rds(here("data", "base.rds")) %>% 
-  zap_labels()
+  zap_labels() 
+
+# Define the vector of variables to drop
+vars_to_drop <- c("medical_access_lack_why_spec", "medical_need_2019_04_2020_04",
+                  "medical_access__2019_04_2020_04", "medical_need_fp", "medical_need_vac",
+                  "medical_need_maternal", "medical_need_child_health", "medical_need_adult_health",
+                  "medical_need_emergency_care", "medical_need_pharmacy", "medical_type_1",
+                  "medical_access_1", "medical_access_lack_why_1", "medical_type_2", "medical_access_2",
+                  "medical_access_lack_why_2", "medical_type_3", "medical_access_3", "medical_access_lack_why_3",
+                  "ag_crops_plant_plan", "ag_no_grow_home", "ag_seeds_why_shops_no_stock",
+                  "ag_seeds_why_markets_closed", "ag_seeds_why_limited_transport",
+                  "ag_seeds_why_travel_restrict", "ag_seeds_why_price_increase", "ag_seeds_why_money_lack",
+                  "ag_seeds_why_other", "ag_fertil_no_trans_why", "ag_fertil_no_trans_why_other",
+                  "ag_crops_progress",
+                  "ag_plant_what_covid_measures", "ag_plant_what_no_workers_hired",
+                  "ag_plant_what_fewer_workers", "ag_plant_safety_mask", "ag_plant_safety_no_hand_shakes",
+                  "ag_plant_safety_gloves", "ag_plant_safety_distance", "ag_plant_safety_others",
+                  "ag_plant_why_not_hire_workers", "ag_expected_output", "ag_expected_harvest_quantity",
+                  "ag_expected_harvest_unit", "ag_expected_harvest_kg", "ag_price_small_banana",
+                  "ag_price_medium_banana", "ag_price_large_banana", "ag_price_100kg_cassava_bag",
+                  "ag_price_basin_dry_casava_chips", "ag_price_kg_dry_cassava_flour",
+                  "ag_price_kg_dry_beans", "ag_price_basin_fresh_beans", "ag_price_kg_maize_grains",
+                  "ag_no_grow_less_labor", "ag_no_grow_restrict", "ag_no_grow_no_seeds",
+                  "ag_no_grow_no_fertilizer", "ag_no_grow_no_other", "ag_no_grow_no_outputs",
+                  "ag_no_grow_family_ill", "ag_plant_what_area_increased", "ag_plant_how_delay_sell_outputs",
+                  "ag_plant_how_care_ill_fammily", "ag_plant_what_area_reduced", "ag_main_crop",
+                  "ag_main_crop_completed_plant", "ag_main_crop_area_acres", "ag_main_crop_expect_output",
+                  "educ_any_child_3_to_18", "educ_attend_pre_covid", "educ_engage_after",
+                  "educ_engage_assigs_completed", "educ_engage_mobile_learning", "educ_engage_tv_programs",
+                  "educ_engage_radio_programs", "educ_engage_tutor", "educ_engage_gov_materials",
+                  "educ_engage_other", "s4q15_other", "educ_teacher_contact", "educ_teacher_contact_sms",
+                  "educ_teacher_contact_online", "educ_teacher_contact_email", "educ_teacher_contact_mail",
+                  "educ_teacher_contact_phone", "educ_teacher_contact_whatsapp",
+                  "educ_teacher_contact_facebook", "educ_teacher_contact_physically",
+                  "educ_teacher_contact_others", "s4q17_other", "financial_access", "financial_access_success",
+                  "financial_access_why", "financial_access_why_spec", "nfe_place_closure_other_why",
+                  "nfe_closure_why_no_customers",
+                  "nfe_closure_why_travel_restrict", "nfe_closure_why_ill_cvd", "nfe_closure_why_ill_other",
+                  "nfe_closure_why_care_family", "nfe_closure_why_seasonal", "nfe_closure_why_vacation",
+                  "nfe_closure_why_other", "nfe_cvd_challenges_op_money",
+                  "nfe_cvd_challenges_loans", "nfe_cvd_challenges_rent", "nfe_cvd_challenges_pay_workers",
+                  "nfe_cvd_challenges_sales", "nfe_cvd_challenges_other")
+
+# Drop these variables from the data frame
+base <- base %>%
+  select(-all_of(vars_to_drop))
+
+
+
 
 # Correcting agricultural variables ----
 
@@ -196,8 +248,7 @@ base <- base %>%
     )
   )
 
-
-# Estimations ----
+# Getting base data frame ready for analysis ----
 
 base <- base %>% 
   mutate(
@@ -208,16 +259,365 @@ base <- base %>%
   )
 
 
-plm(work_for_pay ~ l1 + l2 + l7 + cases_smooth_per_100000, 
-            data = base, 
-            index = c("hhid", "survey"), 
-            model = "within",
-            effect = "individual",
-            # weighting using weight_final
-            weights = weight_final
-      )
+# Impact on work and employment outcomes ----
+
+# Original Table 3, panel A
+
+map(
+  c("work_for_pay", "nfe", "work_same_before"), 
+  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+) %>% 
+  list_rbind() %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+# still need to add the multinomial model here on switching between agricultural, non-agricultural work, and no work
+
+
+# Impact on income sources ----
+
+# Original Table 3, panel B
+
+reduced_df <- base %>% 
+  select(hhid, survey, cases_smooth_per_100000, l1, l2,
+         starts_with("inc")) %>% 
+  filter(survey != "7") %>%
+  mutate(
+    survey_num = as.numeric(as.character(survey))
+  ) %>% 
+  arrange(hhid, survey_num)
+
+# export(reduced_df, "reduced_df.dta")
+
+income_vars <- c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets")
+
+map(income_vars,
+    ~ {
+      y <- stata(
+        paste0( 
+          "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid)
+          regsave, ci"
+        ),
+        data.in = reduced_df,
+        data.out = TRUE
+      ) %>% 
+        mutate(
+          variable = .x
+        )
+    }
+    ) %>%
+  list_rbind() %>% 
+  filter(var != "cases_smooth_per_100000") %>%
+  # Keep first number in observations in var 
+  mutate(var = str_extract(var, "\\d+")) %>% 
+  # Recode variable to readable names
+  mutate(
+    variable = case_when(
+      variable == "inc_level_farm" ~ "Farm Income",
+      variable == "inc_level_nfe" ~ "Non-farm Income",
+      variable == "inc_level_wage" ~ "Wage Income",
+      variable == "inc_level_assets" ~ "Income from Assets",
+      variable == "inc_level_pension" ~ "Pension Income",
+      TRUE ~ variable
+    )
+  ) %>% 
+  ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+
+# Table 4: Impact of lockdowns on different kinds of coping mechanisms ----
+
+# Assistance received ----
+assistance_vars <- c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt")
+
+map(assistance_vars,
+    ~ {
+      y <- stata(
+        paste0( 
+          "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid)
+          regsave, ci"
+        ),
+        data.in = reduced_df,
+        data.out = TRUE
+      ) %>% 
+        mutate(
+          variable = .x
+        )
+    }
+) %>%
+  list_rbind() %>% 
+  filter(var != "cases_smooth_per_100000") %>%
+  # Keep first number in observations in var 
+  mutate(var = str_extract(var, "\\d+")) %>% 
+  # Recode variable to readable names
+  mutate(
+    variable = case_when(
+      variable == "inc_level_farm" ~ "Farm Income",
+      variable == "inc_level_nfe" ~ "Non-farm Income",
+      variable == "inc_level_wage" ~ "Wage Income",
+      variable == "inc_level_assets" ~ "Income from Assets",
+      variable == "inc_level_pension" ~ "Pension Income",
+      TRUE ~ variable
+    )
+  ) %>% 
+  ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "free_y", ncol = 1) 
+
+# Household composition and urban location
+
+map(
+  c("hhmem_change", "adult_change", "child_change", "urban" ), 
+  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+) %>% 
+  list_rbind() %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+# Agricultural households and food insecurity ----
+
+# Use agricultural household status, ag, from the first survey observed
+
+base <- base %>% 
+  mutate(
+    survey_num = as.numeric(as.character(survey))
+  ) %>% 
+  arrange(hhid, survey_num) %>%
+  group_by(hhid) %>%
+  mutate(
+    ag_first = first(ag, order_by = survey_num)
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    ag_first = factor(ag_first, levels = c(0, 1), labels = c("Non-agricultural", "Agricultural")),
+    ag_0 = factor(ag, levels = c(0, 1), labels = c("Non-agricultural", "Agricultural")),
+    ag_1 = factor(ag, levels = c(1, 0), labels = c("Agricultural", "Non-agricultural"))
+  )
+
+# extract all variable names from base that begins with "food"
+food_vars <- base %>% 
+  select(starts_with("insecure")) %>%
+  select(-ends_with("sum")) %>%
+  names()
+
+
+# Run on agricultural and non-agricultural households separately
+agri_separately <- base %>% 
+  nest(.by = ag_first) %>%
+  mutate(
+    ag_result = map(data, function(df) { 
+      map(
+        food_vars, 
+        ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+              data = df, 
+              index = c("hhid", "survey"), 
+              model = "within",
+              effect = "individual",
+              # weighting using weight_final
+              weights = weight_final
+        ) %>% 
+          tidy(conf.int = TRUE) %>% 
+          # select(term, estimate, std.error, p.value) %>%
+          filter(term != "cases_smooth_per_100000") %>% 
+          add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+          arrange(term) %>% 
+          mutate(variable = .x) %>% 
+          select(variable, everything())
+      ) %>% 
+        list_rbind()
+    })
+  ) %>% 
+  select(ag_first, ag_result) %>% 
+  unnest(cols = ag_result) %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) 
+
+# Allow the agricultural status to vary over time
+non_agri <- map(
+  food_vars, 
+  ~ plm(as.formula(paste0(.x, " ~ survey*ag_0 + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+) 
+
+agri <- map(
+  food_vars, 
+  ~ plm(as.formula(paste0(.x, " ~ survey*ag_1 + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+) 
+
+non_agri <- non_agri %>% 
+  list_rbind() %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) %>% 
+  # Remove observations with "Agricultural" in term
+  filter(
+    !str_detect(term, "Agri")
+  ) %>% 
+  mutate(
+    type = "Non-agricultural"
+  )
+
+# Do the same thing for agricultural households
+agri <- agri %>% 
+  list_rbind() %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) %>% 
+  # Remove observations with "Non-agricultural" in term
+  filter(
+    !str_detect(term, "Non")
+  ) %>% 
+  mutate(
+    type = "Agricultural"
+  ) 
 
 
 
+# Combine the two data frames and plot
+bind_rows(non_agri, agri) %>% 
+  mutate(
+    type = factor(type, levels = c("Non-agricultural", "Agricultural"))  
+  ) %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  facet_grid(vars(variable), vars(type), scales = "fixed")
+
+agri_separately %>% 
+  mutate(
+    type = case_when(
+      ag_first == "Agricultural" ~ "Agricultural before Covid",
+      ag_first == "Non-agricultural" ~ "Non-agricultural before Covid"
+    )
+  ) %>% 
+  bind_rows(non_agri) %>% 
+  bind_rows(agri) %>%
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  facet_grid(vars(variable), vars(type), scales = "fixed")
 
 
+agri_separately %>% 
+  mutate(
+    type = case_when(
+      ag_first == "Agricultural" ~ "Agricultural Pre-Covid",
+      ag_first == "Non-agricultural" ~ "Non-agricultural Pre-Covid"
+    )
+  ) %>% 
+  bind_rows(non_agri) %>% 
+  bind_rows(agri) %>%
+  mutate(
+    type = factor(type, levels = c("Non-agricultural Pre-Covid", "Agricultural Pre-Covid", "Non-agricultural", "Agricultural"))  
+  ) %>%
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  facet_grid(variable ~ type , scales = "fixed")
+
+ggsave(here("figures", "agri_vs_non_agri.pdf"), width = 8, height = 6, units = "in")
