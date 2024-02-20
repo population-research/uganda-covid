@@ -1114,35 +1114,47 @@ work.
 
 ## Agricultural vs. Non-agricultural households
 
-Given the increase in agricultural work with the first lockdown, Table 5
-examines whether agricultural households fared better than
-non-agricultural households. Note, as we previously treated households'
-work in agriculture as a choice variable, these estimations are
-exploratory rather than causal. As lockdowns affected the likelihood of
-working in agriculture, we interact lockdown variables with whether the
-household was engaged in agricultural production in the prior
-round.[^11] As shown in column 1 of Table 5, agricultural households
-were 31 percentage points more likely to work during the first lockdown
-than non-agricultural households. However, this difference disappears in
-the medium run suggesting an improvement in employment conditions.
+Given the increase in agricultural work with the first lockdown, 
+[@fig:ag_vs_non_ag] examines whether agricultural households fared 
+better than non-agricultural households. 
+We show the results for two different approaches.
+The two left columns are separate regressions by whether the 
+household was an agricultural household before Covid for each
+level of food insecurity.[^agri_pre_covid] 
+The results in the right two columns come from one regression 
+per level of food insecurity and use the prior rounds' 
+reported agricultural status interacted with the survey indicators.
+Note, as we previously treated households' work in agriculture 
+as a choice variable, these estimations are exploratory rather than causal. 
+In all case, the effects are shown relatively to survey round 4 as above.
+
+[^agri_pre_covid]: For round 1, the survey asks about the employment industry 
+    before the lockdown, which allows us to identify whether individuals worked
+    in agriculture before the round 1 lockdown.
+    
+![Estimated Changes in Food Insecurity With 95% Confidence Intervals 
+by Survey Round Relative to Survey 4, Controlling for Household Fixed Effects, 
+for Non-Agricultural and Agricultural Households. 
+Left Two Columns Condition on Pre-Covid Agricultural Status, While the 
+Right Two Columns Allow Households to Change Status](../figures/agri_vs_non_agri.pdf){#fig:ag_vs_non_ag}   
 
 Agricultural households appeared to be more food secure than
-non-agricultural households during the first lockdown. Their likelihood
-of suffering "any food insecurity" during lockdowns was about 20
-percentage points lower than non-agricultural households. Furthermore,
-all individual food security questions show that agricultural households
-do better than non-agricultural households. However, for "Had to skip a
-meal" and "Went hungry but did not eat," the effects are not
-statistically significant. Like the employment results, the difference
-disappears in the medium run. Overall, these results suggest that
-agricultural households were better able to keep working and did better
-in terms of food security. There is no difference in employment or food
-insecurity for the second lockdown between the two types of households.
-This is likely because of the concurrent lower than normal rainfall 
-during and after the
-second lockdown in Uganda that affected the agricultural households\'
-employment and food production.
-
+non-agricultural households during the first lockdown. 
+Their likelihood of suffering "any food insecurity" during lockdowns was about 20
+percentage points lower than non-agricultural households as shown by round 1.
+This difference is even starker if we use the current agricultural status, in
+which case there is no statistically significant difference between round 1
+and round 4 for agricultural households.
+ Furthermore, agricultural households do better than non-agricultural households
+when it comes to both moderate/severe or severe food insecurity, although
+the difference is less stark for these outcomes.
+ 
+The difference disappears in the medium run with no statistically significant
+differences to round 4 for either non-agricultural or agricultural households.
+However, for round 7 there is little difference with all groups
+seeing statistically significant increases in food insecurity.
+This suggests that the concurrent lower-than-normal rainfall
+removed some of the protection from lockdowns that they had previously had.
 
 
 # Conclusion
@@ -1298,7 +1310,7 @@ avenues of mitigation are critical future areas of research.
   1 represents                                                                                             
   agricultural work, and                                                                                   
   2 represents                                                                                             
-  unemployment. Panel B                                                                                    
+  unemployment.     Panel B                                                                                    
   represents                                                                                               
   coefficients from                                                                                        
   fixed effects ordered                                                                                    
@@ -1429,139 +1441,7 @@ avenues of mitigation are critical future areas of research.
   indicates                                                                                     
   significance at 1%                                                                            
   level; \*\* at 5%; \*                                                                         
-  at 10%.                                                                                       
-
-                                                                                                
-
-                                                                                                
-
-                                                                                                
-  ------------------------------------------------------------------------------------------------
-
-  -----------------------------------------------------------------------------------------------
-  Table 5: Comparing                                                               
-  the differences in                                                               
-  effects of lockdowns                                                             
-  between agricultural                                                             
-  and non-agricultural                                                             
-  households on market                                                             
-  work and food                                                                    
-  insecurity                                                                       
-  -------------------- -------------- -------------- -------------- -------------- --------------
-                                                                                    
-
-                                                                                   
-
-                       \(1\)          \(2\)          \(3\)          \(4\)          \(5\)
-
-  Outcome variables:   Market work    Any food       Worry about    Unable to eat  Had to eat
-                                      insecurity     not having     healthy and    only a few
-                                                     enough food to nutritious     kinds of food
-                                                     eat            food           
-
-  First lockdown:      -0.311\*\*\*   0.339\*\*\*    0.391\*\*\*    0.282\*\*\*    0.260\*\*\*
-  short run                                                                        
-
-                       (0.022)        (0.022)        (0.022)        (0.022)        (0.022)
-
-  First lockdown:      -0.023         0.146\*\*\*    0.160\*\*\*    0.135\*\*\*    0.106\*\*\*
-  medium run                                                                       
-
-                       (0.017)        (0.021)        (0.022)        (0.022)        (0.021)
-
-  Second lockdown:     -0.115\*\*\*   0.231\*\*\*    0.237\*\*\*    0.237\*\*\*    0.218\*\*\*
-  medium run                                                                       
-
-                       (0.022)        (0.025)        (0.025)        (0.025)        (0.025)
-
-  Ag household         0.063\*\*\*    0.030          -0.034         0.041\*        0.023
-
-                       (0.018)        (0.021)        (0.022)        (0.021)        (0.022)
-
-  Ag household x First 0.308\*\*\*    -0.204\*\*\*   -0.187\*\*\*   -0.140\*\*\*   -0.130\*\*\*
-  lockdown: short run                                                              
-
-                       (0.026)        (0.030)        (0.032)        (0.031)        (0.031)
-
-  Ag household x First 0.010          -0.054\*       -0.017         -0.029         -0.084\*\*\*
-  lockdown: medium run                                                             
-
-                       (0.019)        (0.028)        (0.028)        (0.029)        (0.028)
-
-  Ag household x       -0.034         -0.030         0.027          -0.026         -0.007
-  Second lockdown:                                                                 
-  medium run                                                                       
-
-                       (0.030)        (0.035)        (0.035)        (0.035)        (0.037)
-
-                                                                                   
-
-  No of observations   14,811         14,818         14,818         14,818         14,817
-
-  Number of households 2,300          2,302          2,302          2,302          2,302
-
-                                                                                   
-
-                       \(6\)          \(7\)          \(8\)          \(9\)          \(10\)
-
-  Outcome variables:   Had to skip a  Ate less than  Ran out of     Went hungry    Went without
-                       meal           they thought   food           but did not    eating for a
-                                      they should                   eat            whole day
-
-  First lockdown:      0.203\*\*\*    0.242\*\*\*    0.176\*\*\*    0.169\*\*\*    0.077\*\*\*
-  short run                                                                        
-
-                       (0.018)        (0.020)        (0.017)        (0.018)        (0.012)
-
-  First lockdown:      0.100\*\*\*    0.107\*\*\*    0.070\*\*\*    0.077\*\*\*    0.019\*
-  medium run                                                                       
-
-                       (0.017)        (0.020)        (0.015)        (0.015)        (0.010)
-
-  Second lockdown:     0.198\*\*\*    0.255\*\*\*    0.132\*\*\*    0.196\*\*\*    0.109\*\*\*
-  medium run                                                                       
-
-                       (0.022)        (0.026)        (0.021)        (0.022)        (0.016)
-
-  Ag household         -0.008         0.001          -0.002         -0.010         -0.012
-
-                       (0.018)        (0.020)        (0.017)        (0.016)        (0.012)
-
-  Ag household x First -0.022         -0.071\*\*     -0.074\*\*\*   -0.037         -0.036\*\*
-  lockdown: short run                                                              
-
-                       (0.027)        (0.029)        (0.023)        (0.025)        (0.017)
-
-  Ag household x First 0.007          -0.015         -0.008         0.017          0.016
-  lockdown: medium run                                                             
-
-                       (0.025)        (0.027)        (0.020)        (0.022)        (0.016)
-
-  Ag household x       0.012          0.019          0.003          -0.034         -0.014
-  Second lockdown:                                                                 
-  medium run                                                                       
-
-                       (0.032)        (0.036)        (0.029)        (0.030)        (0.022)
-
-                                                                                   
-
-  No of observations   14,818         14,818         14,818         14,818         14,818
-
-  Number of households 2,302          2,302          2,302          2,302          2,302
-
-  Note: Linear Model                                                               
-  with household fixed                                                             
-  effects. All                                                                     
-  dependent variables                                                              
-  are dummy variables.                                                             
-  Standard errors are                                                              
-  in parentheses.                                                                  
-  \*\*\* indicates                                                                 
-  significance at 1%                                                               
-  level; \*\* at 5%;                                                               
-  \* at 10%.                                                                       
-  -----------------------------------------------------------------------------------------------
-
+  at 10%.
 
 
 *Section A1:*
@@ -1948,9 +1828,6 @@ at 10%.
 [^10]: We do not have income data for round 7 and thus cannot examine
     the medium-term impact of the second lockdown.
 
-[^11]: For round 1, the survey asks about the employment industry before
-    the lockdown, which allows us to identify whether individuals were
-    employed in agriculture before the round 1 lockdown.
 
 [^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
     results for the individual surveys are available upon request. UNPS

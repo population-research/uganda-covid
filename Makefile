@@ -84,6 +84,10 @@ $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf: $(CODE)/07_
 $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf: $(CODE)/09_attrition.R \
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1 
+	
+$(FIG)/agri_vs_non_agri.pdf: $(CODE)/10_response.R \
+ $(DAT)/base.rds
+	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
 
 ###################################################################
 ### Paper Production                                            ###
@@ -96,7 +100,8 @@ $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(TEXT)/default.yaml \
  $(DESC_GRAPHS) \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
- $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf
+ $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
+ $(FIG)/agri_vs_non_agri.pdf
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
 .PHONY: word
@@ -106,7 +111,8 @@ $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(TEXT)/default.yaml \
  $(DESC_GRAPHS) \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
- $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf
+ $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
+ $(FIG)/agri_vs_non_agri.pdf
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
 
 .PHONY: view
