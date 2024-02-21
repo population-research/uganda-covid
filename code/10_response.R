@@ -360,7 +360,7 @@ map(income_vars,
 # Assistance received ----
 assistance_vars <- c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt")
 
-test <- map(assistance_vars,
+inc_assistance <- map(assistance_vars,
     ~ {
       y <- stata(
         paste0( 
@@ -379,28 +379,45 @@ test <- map(assistance_vars,
   filter(var != "cases_smooth_per_100000") %>%
   # Keep first number in observations in var 
   mutate(var = str_extract(var, "\\d+")) %>% 
-  # Recode variable to readable names
+  # There are two different variables here to allow for both factoring and
+  # labels to be added. There may be a smarter way to do this, but it works.
   mutate(
     org_variable = variable,
-    variable = case_when(
-      variable == "inc_level_family" ~ paste0("Assistance from family within country (", .[.$org_variable == "inc_level_family", ][["N_group"]][1], ")") ,
-      variable == "inc_level_govt" ~ "Assistance from government",
-      variable == "inc_level_ngo" ~ "Assistance from NGOs",
-      variable == "inc_level_non_family" ~ "Assistance from non-family individuals",
-      variable == "inc_level_remittance" ~ "Remittance",
-      TRUE ~ variable
-    ),
     variable = factor(variable, levels = c(
-      "Remittance", 
-      paste0("Assistance from family within country (", pull(.[.$org_variable == "inc_level_family", ][["N_group"]][1]), ")"), 
-      "Assistance from non-family individuals", 
-      "Assistance from NGOs", 
-      "Assistance from government")
-      )
+      "inc_level_remittance", 
+      "inc_level_family", 
+      "inc_level_non_family", 
+      "inc_level_ngo", 
+      "inc_level_govt"
+    ))
   ) 
 
 
-%>% 
+# Generate labels for each variable in the graph that includes the N_group value
+inc_assistance_labels <- inc_assistance %>% 
+  group_by(org_variable) %>%
+  # Select the first value of N_group
+  summarise(N_group = first(N_group)) %>% 
+  mutate(
+    variable = case_when(
+      org_variable == "inc_level_family" ~ "Assistance from family within country",
+      org_variable == "inc_level_govt" ~ "Assistance from government",
+      org_variable == "inc_level_ngo" ~ "Assistance from NGOs",
+      org_variable == "inc_level_non_family" ~ "Assistance from non-family individuals",
+      org_variable == "inc_level_remittance" ~ "Remittance",
+      TRUE ~ org_variable
+    )
+  ) %>% 
+  # Combine the variable and N_group
+  mutate(
+    new_variable = paste0(variable, " (Number of households: ", N_group, ")")
+  ) %>% 
+  select(org_variable, new_variable) %>% 
+  # Convert to a vector with values from org_variable as names and new_variable as values in quotes
+  deframe() 
+
+
+inc_assistance %>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -410,7 +427,8 @@ test <- map(assistance_vars,
     y = "Coefficient"
   ) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "free_y", ncol = 1) 
+  facet_wrap(~org_variable, scales = "free_y", ncol = 1,
+             labeller = labeller(org_variable = inc_assistance_labels)) 
 
 # Household composition and urban location
 
