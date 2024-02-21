@@ -5,6 +5,7 @@ library(here)
 library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(plm)       # For fixed effects
+library(fixest)    # For fixed effects
 library(tidymodels) # For extracting model coefficients
 library(haven)
 library(data.table)
@@ -355,7 +356,7 @@ map(income_vars,
   facet_wrap(~variable, scales = "fixed", ncol = 1) 
 
 
-# Table 4: Impact of lockdowns on different kinds of coping mechanisms ----
+# Table 4: Impact of lockdowns on different kinds of coping mechanisms 
 
 # Assistance received ----
 assistance_vars <- c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt")
@@ -416,7 +417,7 @@ inc_assistance_labels <- inc_assistance %>%
   # Convert to a vector with values from org_variable as names and new_variable as values in quotes
   deframe() 
 
-
+# Produce graph
 inc_assistance %>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
@@ -433,9 +434,36 @@ inc_assistance %>%
 ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = "in")
 
 
-# Household composition and urban location
+# Household composition and urban location ----
 
-map(
+
+test <- map(
+  c("hhmem_change", "adult_change", "child_change", "urban" ), 
+  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  )
+) 
+
+map(test, tidy, conf.int = TRUE)
+map(test, glance)
+
+feols(hhmem_change ~ survey + cases_smooth_per_100000 | hhid, 
+      data = base, weights = ~weight_final)
+
+plm(hhmem_change ~ survey + cases_smooth_per_100000,
+    data = base,
+    index = c("hhid", "survey"),
+    model = "within",
+    effect = "individual",
+    weights = weight_final) %>% summary()
+  
+  
+  map(
   c("hhmem_change", "adult_change", "child_change", "urban" ), 
   ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
         data = base, 
@@ -445,6 +473,7 @@ map(
         # weighting using weight_final
         weights = weight_final
   ) %>% 
+    # tidy up the results
     tidy(conf.int = TRUE) %>% 
     # select(term, estimate, std.error, p.value) %>%
     filter(term != "cases_smooth_per_100000") %>% 
@@ -453,11 +482,51 @@ map(
     mutate(variable = .x) %>% 
     select(variable, everything())
 ) %>% 
-  list_rbind() %>% 
+  list_rbind() 
+
+
+
+
+
+
+
+hh_composition <- map(
+  c("hhmem_change", "adult_change", "child_change", "urban" ), 
+  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+        data = base, 
+        index = c("hhid", "survey"), 
+        model = "within",
+        effect = "individual",
+        # weighting using weight_final
+        weights = weight_final
+  ) %>% 
+    # tidy up the results
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+) %>% 
+  list_rbind() 
+
+
+%>% 
   mutate(
     term = str_remove(term, "survey")
   ) %>% 
   # Recode variable to readable names
+  mutate(
+    org_variable = variable,
+    variable = factor(variable, levels = c("hhmem_change", "adult_change", "child_change", "urban")),
+  ) 
+
+# Generate labels for each variable in the graph that includes the N_group value
+hh_composition_labels <- hh_composition %>% 
+  group_by(org_variable) %>%
+  # Select the first value of N_group
+  summarise(N_group = first(N_group)) %>% 
   mutate(
     variable = case_when(
       variable == "adult_change" ~ "Change in Number of Adults",
@@ -465,9 +534,18 @@ map(
       variable == "child_change" ~ "Change in Number of Children",
       variable == "urban" ~ "Likelihood of Urban Location",
       TRUE ~ variable
-    ),
-    variable = factor(variable, levels = c("Change in Number of Household Members", "Change in Number of Adults", "Change in Number of Children", "Likelihood of Urban Location"))
+    )
   ) %>% 
+  # Combine the variable and N_group
+  mutate(
+    new_variable = paste0(variable, " (Number of households: ", format(N_group, big.mark = ","), ")")
+  ) %>% 
+  select(org_variable, new_variable) %>% 
+  # Convert to a vector with values from org_variable as names and new_variable as values in quotes
+  deframe() 
+
+  
+hh_composition %>%
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
