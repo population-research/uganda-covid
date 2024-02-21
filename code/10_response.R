@@ -410,7 +410,7 @@ inc_assistance_labels <- inc_assistance %>%
   ) %>% 
   # Combine the variable and N_group
   mutate(
-    new_variable = paste0(variable, " (Number of households: ", N_group, ")")
+    new_variable = paste0(variable, " (Number of households: ", format(N_group, big.mark = ","), ")")
   ) %>% 
   select(org_variable, new_variable) %>% 
   # Convert to a vector with values from org_variable as names and new_variable as values in quotes
@@ -429,6 +429,9 @@ inc_assistance %>%
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~org_variable, scales = "free_y", ncol = 1,
              labeller = labeller(org_variable = inc_assistance_labels)) 
+
+ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = "in")
+
 
 # Household composition and urban location
 
