@@ -1069,7 +1069,7 @@ non-family individuals, and assistance from NGOs after the first
 lockdown. Remittances also decreased but not statistically
 significantly. The only increase came in government assistance, although
 the effect is statistically insignificant. These results suggest that
-households\' standard coping mechanisms were unavailable during the
+households' standard coping mechanisms were unavailable during the
 lockdowns. This is in line with the substantial decline in remittances
 across the world in the second quarter of 2020, as lockdowns worldwide
 led to the closure of workplaces and limited people's movements 
