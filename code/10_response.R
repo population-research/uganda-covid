@@ -36,6 +36,62 @@ theme_set(theme_uft)
 color_palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 
+# Functions ----
+
+# Custom function to tidy the model and add n_obs and n_fixef
+enhance_feols_summary <- function(.model) {
+  # Tidy the model
+  tidied_model <- tidy(
+    .model,
+    conf.int = TRUE,
+    cluster = ~psu
+  )
+  
+  # Extract the dependent variable
+  y_var <- as.character(.model$fml[[2]])
+  
+  # Extract the number of observations
+  n_obs <- summary(.model)$nobs
+  
+  # Extract the number of fixed effects
+  n_fixef <- summary(.model)$fixef_sizes
+  
+  # Add n_obs and n_fixef as new columns
+  tidied_model_enhanced <- tidied_model %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(
+      n_obs = n_obs,
+      n_fixef = n_fixef,
+      variable = y_var
+    ) %>% 
+    select(variable, everything())
+  
+  return(tidied_model_enhanced)
+}
+
+# Function to map original variables to their labels and format the output
+generate_labels <- function(.model_summaries, .labels_mapping) {
+  # Ensure labels_mapping is a tibble with specific columns: 'org_variable' and 'label'
+  if (!("org_variable" %in% names(.labels_mapping)) | !("label" %in% names(.labels_mapping))) {
+    stop("labels_mapping must be a tibble with 'org_variable' and 'label' columns")
+  }
+  
+  .model_summaries %>%
+    group_by(org_variable) %>%
+    summarise(n_fixef = first(n_fixef)) %>%
+    left_join(labels_mapping, by = "org_variable") %>%
+    mutate(
+      variable = if_else(is.na(label), as.character(org_variable), as.character(label)),
+      new_variable = paste0(variable, " (Number of households: ", format(n_fixef, big.mark = ","), ")")
+    ) %>%
+    select(org_variable, new_variable) %>%
+    deframe()
+}
+
+
+
 # Load data ----
 base <- read_rds(here("data", "base.rds")) %>% 
   zap_labels() %>% 
@@ -439,40 +495,6 @@ ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = 
 
 # Household composition and urban location ----
 
-# From ChatGPT
-# Custom function to tidy the model and add n_obs and n_fixef
-enhance_model_summary <- function(.model) {
-  # Tidy the model
-  tidied_model <- tidy(
-    .model,
-    conf.int = TRUE,
-    cluster = ~psu
-  )
-  
-  # Extract the dependent variable
-  y_var <- as.character(.model$fml[[2]])
-  
-  # Extract the number of observations
-  n_obs <- summary(.model)$nobs
-  
-  # Extract the number of fixed effects
-  n_fixef <- summary(.model)$fixef_sizes
-  
-  # Add n_obs and n_fixef as new columns
-  tidied_model_enhanced <- tidied_model %>%
-    filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-    arrange(term) %>% 
-    mutate(
-      n_obs = n_obs,
-      n_fixef = n_fixef,
-      variable = y_var
-    ) %>% 
-    select(variable, everything())
-  
-  return(tidied_model_enhanced)
-}
-
 # Map over different dependent variables and apply the custom function
 hh_composition <- map(
   c("hhmem_change", "adult_change", "child_change", "urban"), 
@@ -480,38 +502,27 @@ hh_composition <- map(
           data = base, 
           weights = ~weight_final
   )
-) %>% map(enhance_model_summary) %>%  
+) %>% map(enhance_feols_summary) %>%  
   list_rbind() %>% 
   mutate(
     term = str_remove(term, "survey")
   ) %>% 
   # First step in recoding variable to readable names
   mutate(
-    org_variable = variable,
-    variable = factor(variable, levels = c("hhmem_change", "adult_change", "child_change", "urban")),
+    org_variable = factor(variable, levels = c("hhmem_change", "adult_change", "child_change", "urban")),
   ) 
 
-# Variable labels with number of households included
-hh_composition_labels <- hh_composition %>% 
-  group_by(org_variable) %>%
-  # Select the first value of N_group
-  summarise(n_fixef = first(n_fixef)) %>% 
-  mutate(
-    variable = case_when(
-      org_variable == "adult_change" ~ "Change in Number of Adults",
-      org_variable == "hhmem_change" ~ "Change in Number of Household Members",
-      org_variable == "child_change" ~ "Change in Number of Children",
-      org_variable == "urban" ~ "Likelihood of Urban Location",
-      TRUE ~ org_variable
-    )
-  ) %>% 
-  # Combine the variable and N_group
-  mutate(
-    new_variable = paste0(variable, " (Number of households: ", format(n_fixef, big.mark = ","), ")")
-  ) %>% 
-  select(org_variable, new_variable) %>% 
-  # Convert to a vector with values from org_variable as names and new_variable as values in quotes
-  deframe() 
+# Define the mapping of org_variable to human-readable labels
+labels_mapping <- tribble(
+  ~org_variable, ~label,
+  "adult_change", "Change in Number of Adults",
+  "hhmem_change", "Change in Number of Household Members", 
+  "child_change", "Change in Number of Children", 
+  "urban",        "Likelihood of Urban Location"
+)
+
+# Now, call the function with your dataset and the labels mapping
+hh_composition_labels <- generate_labels(hh_composition, labels_mapping)
 
 # Produce graphs
 hh_composition %>%
