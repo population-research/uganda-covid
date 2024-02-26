@@ -366,6 +366,46 @@ work_employment %>%
              labeller = labeller(org_variable = work_labels)) 
 
 # still need to add the multinomial model here on switching between agricultural, non-agricultural work, and no work
+# The code below adds a round 0 to capture the last UNPS before Covid.
+# Hence, there are in effect 8 rounds in the data
+
+# Shamma's code for creating the data set he used:
+# *************************************************************************************************************************************************************************
+#   * Creating ag variable for round 0
+# *************************************************************************************************************************************************************************
+#   
+#   use "C:\Users\alams\Dropbox\Uganda\stata\base.dta", clear
+# keep if survey==1
+# replace survey=0
+# gen agri=0
+# replace agri=1 if work_before_main_activity==11111  
+# replace agri=1 if work_main_activity==11111  
+# replace agri=1 if work_main_business_area==11111 & work_same_before==1
+# // work_before_main_activity asks people who were working in R1, what job they were working on before Covid if they did change jobs since then 
+# // work_main_activity asks in R1 for people who were not working, where they were working before Covid
+# 
+# replace agri=2 if work_before==2   // work_before - Whether working before covid, 2 rep No
+# 
+# keep hhid survey agri
+# save "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Data\Ag hh.dta", replace
+
+# His analysis code:
+# append using "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Data\Ag hh.dta"
+# 
+# tsset, clear
+# tsset hhid survey
+# bysort hhid: egen wt2 = mean(weight_final)
+# 
+# replace cases_smooth_per_100000=0 if survey==0
+# replace lockdown=0                if survey==0
+# replace lockdown_2=0 if survey==0
+# replace lockdown_3=0 if survey==0
+# replace agri=0 if work_area~=11111 & work_for_pay==1 & survey>=1 & survey<=7
+# replace agri=1 if work_area==11111 & work_for_pay==1 & survey>=1 & survey<=7
+# replace agri=2 if                    work_for_pay==0 & survey>=1 & survey<=7
+# 
+# xtmlogit agri i.lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 [pw=wt2], fe rrr baseoutcome(0)  
+
 
 ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 6, units = "in")  
   
