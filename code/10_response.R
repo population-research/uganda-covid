@@ -66,6 +66,9 @@ enhance_feols_summary <- function(.model) {
       n_fixef = n_fixef,
       variable = y_var
     ) %>% 
+    mutate(
+      term = str_remove(term, "survey")
+    ) %>% 
     select(variable, everything())
   
   return(tidied_model_enhanced)
@@ -81,7 +84,7 @@ generate_labels <- function(.model_summaries, .labels_mapping) {
   .model_summaries %>%
     group_by(org_variable) %>%
     summarise(n_fixef = first(n_fixef)) %>%
-    left_join(labels_mapping, by = "org_variable") %>%
+    left_join(.labels_mapping, by = "org_variable") %>%
     mutate(
       variable = if_else(is.na(label), as.character(org_variable), as.character(label)),
       new_variable = paste0(variable, " (Number of households: ", format(n_fixef, big.mark = ","), ")")
@@ -323,25 +326,33 @@ base <- base %>%
 
 # Original Table 3, panel A
 
-map(
+work_employment <- map(
   c("work_for_pay", "nfe", "work_same_before"), 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")), 
         data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
-  ) %>% 
-    tidy(conf.int = TRUE) %>% 
-    # select(term, estimate, std.error, p.value) %>%
-    filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-    arrange(term) %>% 
-    mutate(variable = .x) %>% 
-    select(variable, everything())
-) %>% 
+        weights = ~weight_final
+  ) 
+) %>%
+  map(enhance_feols_summary) %>% 
   list_rbind() %>% 
+  mutate(
+    org_variable = factor(
+      variable,
+      levels = c("work_for_pay", "nfe", "work_same_before")
+    )
+  )
+
+  
+work_mapping <- tribble(
+  ~org_variable, ~label,
+  "work_for_pay",     "Likelihood of market work",
+  "nfe",              "Likelihood of operating a non-farm family business",
+  "work_same_before", "Working in same job as before"
+)  
+  
+work_labels <- generate_labels(work_employment, work_mapping)
+
+work_employment %>%
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -351,11 +362,14 @@ map(
     y = "Coefficient"
   ) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~org_variable, scales = "fixed", ncol = 1,
+             labeller = labeller(org_variable = work_labels)) 
 
 # still need to add the multinomial model here on switching between agricultural, non-agricultural work, and no work
 
-
+ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 6, units = "in")  
+  
+  
 # Impact on income sources ----
 
 # Original Table 3, panel B
