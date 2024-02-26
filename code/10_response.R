@@ -38,7 +38,10 @@ color_palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072
 
 # Load data ----
 base <- read_rds(here("data", "base.rds")) %>% 
-  zap_labels() 
+  zap_labels() %>% 
+  mutate(
+    psu = str_sub(hhid, 1, 4)
+  )
 
 # Define the vector of variables to drop
 vars_to_drop <- c("medical_access_lack_why_spec", "medical_need_2019_04_2020_04",
@@ -436,115 +439,81 @@ ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = 
 
 # Household composition and urban location ----
 
-
-test <- map(
-  c("hhmem_change", "adult_change", "child_change", "urban" ), 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
-        data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
+# From ChatGPT
+# Custom function to tidy the model and add n_obs and n_fixef
+enhance_model_summary <- function(.model) {
+  # Tidy the model
+  tidied_model <- tidy(
+    .model,
+    conf.int = TRUE,
+    cluster = ~psu
   )
-) 
-
-map(test, tidy, conf.int = TRUE)
-map(test, glance)
-
-feols(hhmem_change ~ survey + cases_smooth_per_100000 | hhid, 
-      data = base, weights = ~weight_final)
-
-plm(hhmem_change ~ survey + cases_smooth_per_100000,
-    data = base,
-    index = c("hhid", "survey"),
-    model = "within",
-    effect = "individual",
-    weights = weight_final) %>% summary()
   
+  # Extract the dependent variable
+  y_var <- as.character(.model$fml[[2]])
   
-  map(
-  c("hhmem_change", "adult_change", "child_change", "urban" ), 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
-        data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
-  ) %>% 
-    # tidy up the results
-    tidy(conf.int = TRUE) %>% 
-    # select(term, estimate, std.error, p.value) %>%
+  # Extract the number of observations
+  n_obs <- summary(.model)$nobs
+  
+  # Extract the number of fixed effects
+  n_fixef <- summary(.model)$fixef_sizes
+  
+  # Add n_obs and n_fixef as new columns
+  tidied_model_enhanced <- tidied_model %>%
     filter(term != "cases_smooth_per_100000") %>% 
     add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
     arrange(term) %>% 
-    mutate(variable = .x) %>% 
+    mutate(
+      n_obs = n_obs,
+      n_fixef = n_fixef,
+      variable = y_var
+    ) %>% 
     select(variable, everything())
-) %>% 
-  list_rbind() 
+  
+  return(tidied_model_enhanced)
+}
 
-
-
-
-
-
-
+# Map over different dependent variables and apply the custom function
 hh_composition <- map(
-  c("hhmem_change", "adult_change", "child_change", "urban" ), 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
-        data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
-  ) %>% 
-    # tidy up the results
-    tidy(conf.int = TRUE) %>% 
-    # select(term, estimate, std.error, p.value) %>%
-    filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-    arrange(term) %>% 
-    mutate(variable = .x) %>% 
-    select(variable, everything())
-) %>% 
-  list_rbind() 
-
-
-%>% 
+  c("hhmem_change", "adult_change", "child_change", "urban"), 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")), 
+          data = base, 
+          weights = ~weight_final
+  )
+) %>% map(enhance_model_summary) %>%  
+  list_rbind() %>% 
   mutate(
     term = str_remove(term, "survey")
   ) %>% 
-  # Recode variable to readable names
+  # First step in recoding variable to readable names
   mutate(
     org_variable = variable,
     variable = factor(variable, levels = c("hhmem_change", "adult_change", "child_change", "urban")),
   ) 
 
-# Generate labels for each variable in the graph that includes the N_group value
+# Variable labels with number of households included
 hh_composition_labels <- hh_composition %>% 
   group_by(org_variable) %>%
   # Select the first value of N_group
-  summarise(N_group = first(N_group)) %>% 
+  summarise(n_fixef = first(n_fixef)) %>% 
   mutate(
     variable = case_when(
-      variable == "adult_change" ~ "Change in Number of Adults",
-      variable == "hhmem_change" ~ "Change in Number of Household Members",
-      variable == "child_change" ~ "Change in Number of Children",
-      variable == "urban" ~ "Likelihood of Urban Location",
-      TRUE ~ variable
+      org_variable == "adult_change" ~ "Change in Number of Adults",
+      org_variable == "hhmem_change" ~ "Change in Number of Household Members",
+      org_variable == "child_change" ~ "Change in Number of Children",
+      org_variable == "urban" ~ "Likelihood of Urban Location",
+      TRUE ~ org_variable
     )
   ) %>% 
   # Combine the variable and N_group
   mutate(
-    new_variable = paste0(variable, " (Number of households: ", format(N_group, big.mark = ","), ")")
+    new_variable = paste0(variable, " (Number of households: ", format(n_fixef, big.mark = ","), ")")
   ) %>% 
   select(org_variable, new_variable) %>% 
   # Convert to a vector with values from org_variable as names and new_variable as values in quotes
   deframe() 
 
-  
+# Produce graphs
 hh_composition %>%
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
@@ -555,11 +524,10 @@ hh_composition %>%
     y = "Coefficient"
   ) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~org_variable, scales = "fixed", ncol = 1,
+             labeller = labeller(org_variable = hh_composition_labels)) 
 
 ggsave(here("figures", "household_composition_and_urban_location.pdf"), width = 8, height = 6, units = "in")
-
-
 
 
 # Agricultural households and food insecurity ----
