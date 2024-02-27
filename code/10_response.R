@@ -431,7 +431,7 @@ map(income_vars,
     ~ {
       y <- stata(
         paste0( 
-          "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid)
+          "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid) cluster(psu)
           regsave, ci"
         ),
         data.in = reduced_df,
@@ -472,13 +472,13 @@ map(income_vars,
 # Table 4: Impact of lockdowns on different kinds of coping mechanisms 
 
 # Assistance received ----
-assistance_vars <- c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt")
 
-inc_assistance <- map(assistance_vars,
+inc_assistance <- map(
+  c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt"),
     ~ {
       y <- stata(
         paste0( 
-          "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid)
+          "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid) cluster(psu)
           regsave, ci detail(scalars)"
         ),
         data.in = reduced_df,
