@@ -416,18 +416,15 @@ ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 6, units = "
 
 reduced_df <- base %>% 
   select(hhid, survey, cases_smooth_per_100000, l1, l2,
-         starts_with("inc")) %>% 
+         starts_with("inc"), psu) %>% 
   filter(survey != "7") %>%
   mutate(
     survey_num = as.numeric(as.character(survey))
   ) %>% 
   arrange(hhid, survey_num)
 
-# export(reduced_df, "reduced_df.dta")
 
-income_vars <- c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets")
-
-map(income_vars,
+map(c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets"),
     ~ {
       y <- stata(
         paste0( 
