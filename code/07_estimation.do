@@ -14,7 +14,7 @@ drop medical_access_lack_why_spec medical_need_2019_04_2020_04 ///
     ag_seeds_why_markets_closed ag_seeds_why_limited_transport ///
     ag_seeds_why_travel_restrict ag_seeds_why_price_increase ag_seeds_why_money_lack ///
     ag_seeds_why_other ag_fertil_no_trans_why ag_fertil_no_trans_why_other ///
-    ag_output_no_trans_why ag_output_no_trans_why_other ag_crops_progress ///
+    ag_crops_progress ///
     ag_plant_what_covid_measures ag_plant_what_no_workers_hired ///
     ag_plant_what_fewer_workers ag_plant_safety_mask ag_plant_safety_no_hand_shakes ///
     ag_plant_safety_gloves ag_plant_safety_distance ag_plant_safety_others ///
@@ -37,10 +37,10 @@ drop medical_access_lack_why_spec medical_need_2019_04_2020_04 ///
     educ_teacher_contact_facebook educ_teacher_contact_physically ///
     educ_teacher_contact_others s4q17_other financial_access financial_access_success ///
     financial_access_why financial_access_why_spec nfe_place_closure_other_why ///
-    nfe_closure_why_no_customers nfe_closure_why_no_outputs ///
+    nfe_closure_why_no_customers  ///
     nfe_closure_why_travel_restrict nfe_closure_why_ill_cvd nfe_closure_why_ill_other ///
     nfe_closure_why_care_family nfe_closure_why_seasonal nfe_closure_why_vacation ///
-    nfe_closure_why_other nfe_cvd_challenges_outputs nfe_cvd_challenges_op_money ///
+    nfe_closure_why_other nfe_cvd_challenges_op_money ///
     nfe_cvd_challenges_loans nfe_cvd_challenges_rent nfe_cvd_challenges_pay_workers ///
     nfe_cvd_challenges_sales nfe_cvd_challenges_other
 
@@ -309,6 +309,7 @@ tab survey concerns_cvd_srs_ill if hh_total_members_prior~=. , row
 
 /*
 append using "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Data\Ag hh.dta"
+append using  "~/projects/population/uganda_covid/data/Ag hh.dta"
 
 tsset, clear
 tsset hhid survey
