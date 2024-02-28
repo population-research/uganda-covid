@@ -1,14 +1,13 @@
 # Household response to lockdowns
 
+library(data.table)
 library(tidyverse)
 library(here)
 library(janitor)   # For data checking
 library(vtable)    # For data checking
-library(plm)       # For fixed effects
 library(fixest)    # For fixed effects
 library(tidymodels) # For extracting model coefficients
 library(haven)
-library(data.table)
 library(rio)
 library(RStata)
 options("RStata.StataPath" = "/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp")
@@ -99,7 +98,8 @@ generate_labels <- function(.model_summaries, .labels_mapping) {
 base <- read_rds(here("data", "base.rds")) %>% 
   zap_labels() %>% 
   mutate(
-    psu = str_sub(hhid, 1, 4)
+    psu = str_sub(hhid, 1, 4),
+    survey_num = survey
   )
 
 # Define the vector of variables to drop
@@ -221,11 +221,8 @@ base <- base %>%
 
 base <- base %>%
   mutate(
-    work_same_before = case_when(
-      survey == 2 ~ work_same_before_no,
-      work_same_before == 2 ~ 0,
-      TRUE ~ work_same_before
-    ),
+    work_same_before = if_else(survey == 2, work_same_before_no, work_same_before, missing = work_same_before),
+    work_same_before = if_else(work_same_before == 2, 0, work_same_before, missing = work_same_before),
     work_area = work_main_business_area
   ) %>%
   arrange(hhid, survey)
@@ -233,22 +230,23 @@ base <- base %>%
 base <- base %>%
   group_by(hhid) %>%
   mutate(
-    lag_work_main_business_area = lag(work_main_business_area),
-    lag_work_main_activity = lag(work_main_activity),
-    work_area = case_when(
-      survey == 2 & work_same_before_yes == 1 & is.na(work_area) ~ lag_work_main_activity,
-      survey == 2 & work_same_before_no == 1 ~ lag_work_main_business_area,
-      TRUE ~ work_area
-    )
-  ) %>%
-  ungroup()
+    lag_work_main_business_area = lag(work_main_business_area, 
+                                      order_by = survey),
+    lag_work_main_activity = lag(work_main_activity, 
+                                 order_by = survey),
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    work_area = if_else(survey == 2 & work_same_before_yes == 1 & is.na(work_area), lag_work_main_activity, work_area, missing = work_area),
+    work_area = if_else((survey == 2 & work_same_before_no == 1), lag_work_main_business_area, work_area, missing = work_area)
+  )
 
 for(i in 3:7) {
   base <- base %>%
     group_by(hhid) %>%
     mutate(
-      lag_work_area = lag(work_area),
-      work_area = if_else(is.na(work_area) & !is.na(lag_work_area) & work_same_before == 1 & survey == i, lag_work_area, work_area)
+      lag_work_area = lag(work_area, order_by = survey),
+      work_area = if_else(is.na(work_area) & !is.na(lag_work_area) & work_same_before == 1 & survey == i, lag_work_area, work_area, missing = work_area)
     ) %>%
     ungroup() %>%
     select(-lag_work_area)
@@ -257,8 +255,8 @@ for(i in 3:7) {
 base <- base %>%
   group_by(hhid) %>%
   mutate(
-    lag_work_area = lag(work_area),
-    lag_work_for_pay = lag(work_for_pay),
+    lag_work_area = lag(work_area, order_by = survey),
+    lag_work_for_pay = lag(work_for_pay, order_by = survey),
     ag_switch = case_when(
       survey == 1 & work_area == 11111 & work_before_main_activity != 11111 & !is.na(work_before_main_activity) & work_for_pay == 1 ~ 1,
       survey != 1 & work_area == 11111 & lag_work_area != 11111 & !is.na(lag_work_area) & lag_work_for_pay == 1 & work_for_pay == 1 ~ 1,
@@ -281,11 +279,8 @@ base$ag[is.na(base$ag)] <- 0
 
 base <- base %>%
   mutate(
-    work_same_before = case_when(
-      !work_same_before %in% c(1, 0) & !is.na(work_same_before) ~ NA_real_,
-      (work_for_pay == 0 & survey >= 2 & survey <= 7) | (is.na(lag_work_for_pay) & survey >= 2 & survey <= 7) | (work_for_pay == 0 & survey == 1) ~ NA_real_,
-      TRUE ~ work_same_before
-    )
+    work_same_before = if_else(!work_same_before %in% c(1, 0) & !is.na(work_same_before), NA_real_, work_same_before, missing = work_same_before),
+    work_same_before = if_else((work_for_pay == 0 & survey >= 2 & survey <= 7) | (is.na(lag_work_for_pay) & survey >= 2 & survey <= 7) | (work_for_pay == 0 & survey == 1), NA_real_, work_same_before, missing = work_same_before),
   )
 
 # Migration related variables ----
@@ -405,6 +400,38 @@ work_employment %>%
 # replace agri=2 if                    work_for_pay==0 & survey>=1 & survey<=7
 # 
 # xtmlogit agri i.lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 [pw=wt2], fe rrr baseoutcome(0)  
+
+# Add an observation for round 0 for each household
+ag_0_8 <- base %>% 
+  filter(survey == 1) %>%
+  mutate(
+    survey = "0",
+    survey_num = 0,
+    cases_smooth_per_100000 = 0
+  ) %>% 
+  # Generate the agri variable
+  mutate(
+    agri = case_when(
+      work_before == 2 ~ 2,
+      work_before_main_activity == 11111 ~ 1,
+      work_main_activity == 11111 ~ 1,
+      work_main_business_area == 11111 & work_same_before == 1 ~ 1,
+      TRUE ~ 0
+    )
+  ) %>% 
+  bind_rows(base) %>% 
+  mutate(
+    survey = factor(survey, levels = c("4", "0", "1", "2", "3", "5", "6", "7"))
+  ) %>% 
+  mutate(
+    agri = case_when(
+      survey_num == 0 ~ agri,
+      work_for_pay == 0 & survey_num %in% c(1:7) ~ 2,
+      work_area == 11111 & work_for_pay == 1 & survey_num %in% c(1:7) ~ 1,
+      (work_area != 11111 | is.na(work_area)) & work_for_pay == 1 & survey_num %in% c(1:7) ~ 0,
+      TRUE ~ NA_real_
+    )
+  )
 
 
 ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 6, units = "in")  
