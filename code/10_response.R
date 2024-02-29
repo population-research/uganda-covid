@@ -317,7 +317,7 @@ base <- base %>%
   )
 
 
-# Impact on work and employment outcomes ----
+# Impact on work and work area outcomes ----
 
 # Original Table 3, panel A
 
@@ -431,7 +431,57 @@ ag_0_8 <- base %>%
       (work_area != 11111 | is.na(work_area)) & work_for_pay == 1 & survey_num %in% c(1:7) ~ 0,
       TRUE ~ NA_real_
     )
-  )
+  ) %>% 
+  select(survey, survey_num, hhid, agri, cases_smooth_per_100000, weight_final, psu) %>% 
+  arrange(hhid, survey_num)
+
+export(ag_0_8, here("data", "ag_0_8.dta"))
+
+test <- stata(
+  "tsset hhid survey
+  xtmlogit agri ib4.survey_num cases_smooth_per_100000 , fe rrr baseoutcome(0)
+  regsave, ci detail(scalars)",
+  data.in = ag_0_8,
+  data.out = TRUE
+)
+
+export(test, here("data", "ag_0_8_results.csv"))
+
+mt_labels <- c(
+  "1" = "Agriculture vs Non-Agriculture",
+  "2" = "Agriculture vs Not Working")
+
+test %>% 
+  select(var, coef, ci_lower, ci_upper, N, N_g) %>%
+  # Filter out rows where "var" starts with "0" or contains "cases"
+  filter(!str_starts(var, "0"), !str_detect(var, regex("cases", ignore_case = TRUE))) %>%
+  # Take the exponent of specified variables
+  mutate(
+    # If we want relative risk-ratios, we need to exponentiate the coefficients
+    # coef = exp(coef),
+    # ci_lower = exp(ci_lower),
+    # ci_upper = exp(ci_upper),
+    # Extract the second number from the "var" column and create the "survey" variable
+    survey = as.numeric(str_extract_all(var, "\\d+") %>% map_chr(2)),
+    comparison = as.numeric(str_extract_all(var, "\\d+") %>% map_chr(1))
+  ) %>% 
+  ggplot(aes(x = survey, y = coef, ymin = ci_lower, ymax = ci_upper)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient",
+  ) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~comparison, scales = "fixed", ncol = 1,
+             labeller = labeller(comparison = c(
+               "1" = "Agriculture vs Non-Agriculture",
+               "2" = "Not Working vs Non-Agriculture"))
+             ) 
+
+
+
 
 
 ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 6, units = "in")  
