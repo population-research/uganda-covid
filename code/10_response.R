@@ -7,6 +7,7 @@ library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(fixest)    # For fixed effects
 library(tidymodels) # For extracting model coefficients
+library(patchwork) # For plotting
 library(haven)
 library(rio)
 library(RStata)
@@ -337,7 +338,7 @@ work_employment <- map(
     )
   )
 
-  
+# Generate labels for the work_employment graph  
 work_mapping <- tribble(
   ~org_variable, ~label,
   "work_for_pay",     "Likelihood of market work",
@@ -347,7 +348,16 @@ work_mapping <- tribble(
   
 work_labels <- generate_labels(work_employment, work_mapping)
 
-work_employment %>%
+# Add a row with survey = 0 for each group in org_variable
+template_df <- work_employment %>%
+  distinct(org_variable) %>%
+  mutate(variable = org_variable, term = "0", coef = NA_real_, ci_lower = NA_real_, ci_upper = NA_real_) 
+
+work_employment <- bind_rows(work_employment, template_df) %>%
+  # Optional: Sort by group and survey for better readability
+  arrange(org_variable, term)
+
+graph_work_employment <- work_employment %>%
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -360,47 +370,7 @@ work_employment %>%
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
              labeller = labeller(org_variable = work_labels)) 
 
-# still need to add the multinomial model here on switching between agricultural, non-agricultural work, and no work
-# The code below adds a round 0 to capture the last UNPS before Covid.
-# Hence, there are in effect 8 rounds in the data
-
-# Shamma's code for creating the data set he used:
-# *************************************************************************************************************************************************************************
-#   * Creating ag variable for round 0
-# *************************************************************************************************************************************************************************
-#   
-#   use "C:\Users\alams\Dropbox\Uganda\stata\base.dta", clear
-# keep if survey==1
-# replace survey=0
-# gen agri=0
-# replace agri=1 if work_before_main_activity==11111  
-# replace agri=1 if work_main_activity==11111  
-# replace agri=1 if work_main_business_area==11111 & work_same_before==1
-# // work_before_main_activity asks people who were working in R1, what job they were working on before Covid if they did change jobs since then 
-# // work_main_activity asks in R1 for people who were not working, where they were working before Covid
-# 
-# replace agri=2 if work_before==2   // work_before - Whether working before covid, 2 rep No
-# 
-# keep hhid survey agri
-# save "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Data\Ag hh.dta", replace
-
-# His analysis code:
-# append using "C:\Users\alams\OneDrive - Dickinson College\Documents\Research\Uganda HF\Data\Ag hh.dta"
-# 
-# tsset, clear
-# tsset hhid survey
-# bysort hhid: egen wt2 = mean(weight_final)
-# 
-# replace cases_smooth_per_100000=0 if survey==0
-# replace lockdown=0                if survey==0
-# replace lockdown_2=0 if survey==0
-# replace lockdown_3=0 if survey==0
-# replace agri=0 if work_area~=11111 & work_for_pay==1 & survey>=1 & survey<=7
-# replace agri=1 if work_area==11111 & work_for_pay==1 & survey>=1 & survey<=7
-# replace agri=2 if                    work_for_pay==0 & survey>=1 & survey<=7
-# 
-# xtmlogit agri i.lockdown lockdown_2 lockdown_3 cases_smooth_per_100000 [pw=wt2], fe rrr baseoutcome(0)  
-
+# Multinomial model here on switching between agricultural, non-agricultural work, and no work
 # Add an observation for round 0 for each household
 ag_0_8 <- base %>% 
   filter(survey == 1) %>%
@@ -435,23 +405,14 @@ ag_0_8 <- base %>%
   select(survey, survey_num, hhid, agri, cases_smooth_per_100000, weight_final, psu) %>% 
   arrange(hhid, survey_num)
 
-export(ag_0_8, here("data", "ag_0_8.dta"))
 
-test <- stata(
+graph_employment_type <- stata(
   "tsset hhid survey
-  xtmlogit agri ib4.survey_num cases_smooth_per_100000 , fe rrr baseoutcome(0)
+  xtmlogit agri ib0.survey_num cases_smooth_per_100000 , fe rrr baseoutcome(0)
   regsave, ci detail(scalars)",
   data.in = ag_0_8,
   data.out = TRUE
-)
-
-export(test, here("data", "ag_0_8_results.csv"))
-
-mt_labels <- c(
-  "1" = "Agriculture vs Non-Agriculture",
-  "2" = "Agriculture vs Not Working")
-
-test %>% 
+) %>% 
   select(var, coef, ci_lower, ci_upper, N, N_g) %>%
   # Filter out rows where "var" starts with "0" or contains "cases"
   filter(!str_starts(var, "0"), !str_detect(var, regex("cases", ignore_case = TRUE))) %>%
@@ -462,7 +423,7 @@ test %>%
     # ci_lower = exp(ci_lower),
     # ci_upper = exp(ci_upper),
     # Extract the second number from the "var" column and create the "survey" variable
-    survey = as.numeric(str_extract_all(var, "\\d+") %>% map_chr(2)),
+    survey = factor(str_extract_all(var, "\\d+") %>% map_chr(2)),
     comparison = as.numeric(str_extract_all(var, "\\d+") %>% map_chr(1))
   ) %>% 
   ggplot(aes(x = survey, y = coef, ymin = ci_lower, ymax = ci_upper)) +
@@ -480,12 +441,12 @@ test %>%
                "2" = "Not Working vs Non-Agriculture"))
              ) 
 
+# Combine this graph with the graph_work_employment graph from above
+# Combine the plots into a 2x2 grid
+graph_work_employment / graph_employment_type + plot_layout(heights = c(3, 2))
 
+ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 8, units = "in")  
 
-
-
-ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 6, units = "in")  
-  
   
 # Impact on income sources ----
 
