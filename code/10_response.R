@@ -75,7 +75,7 @@ enhance_feols_summary <- function(.model) {
 }
 
 # Function to map original variables to their labels and format the output
-generate_labels <- function(.model_summaries, .labels_mapping) {
+generate_labels <- function(.model_summaries, .labels_mapping, .n_group_var) {
   # Ensure labels_mapping is a tibble with specific columns: 'org_variable' and 'label'
   if (!("org_variable" %in% names(.labels_mapping)) | !("label" %in% names(.labels_mapping))) {
     stop("labels_mapping must be a tibble with 'org_variable' and 'label' columns")
@@ -83,11 +83,11 @@ generate_labels <- function(.model_summaries, .labels_mapping) {
   
   .model_summaries %>%
     group_by(org_variable) %>%
-    summarise(n_fixef = first(n_fixef)) %>%
+    summarise(n_hhs = first({{.n_group_var}})) %>%
     left_join(.labels_mapping, by = "org_variable") %>%
     mutate(
       variable = if_else(is.na(label), as.character(org_variable), as.character(label)),
-      new_variable = paste0(variable, " (Number of households: ", format(n_fixef, big.mark = ","), ")")
+      new_variable = paste0(variable, " (Number of households: ", format(n_hhs, big.mark = ","), ")")
     ) %>%
     select(org_variable, new_variable) %>%
     deframe()
@@ -346,7 +346,7 @@ work_mapping <- tribble(
   "work_same_before", "Working in same job as before"
 )  
   
-work_labels <- generate_labels(work_employment, work_mapping)
+work_labels <- generate_labels(work_employment, work_mapping, n_fixef)
 
 # Add a row with survey = 0 for each group in org_variable
 template_df <- work_employment %>%
@@ -461,13 +461,12 @@ reduced_df <- base %>%
   ) %>% 
   arrange(hhid, survey_num)
 
-
-map(c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets"),
+income_source <- map(c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets"),
     ~ {
       y <- stata(
         paste0( 
           "feologit ", .x, " ib4.survey_num cases_smooth_per_100000, group(hhid) cluster(psu)
-          regsave, ci"
+          regsave, ci detail(scalars)"
         ),
         data.in = reduced_df,
         data.out = TRUE
@@ -481,17 +480,27 @@ map(c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets"),
   filter(var != "cases_smooth_per_100000") %>%
   # Keep first number in observations in var 
   mutate(var = str_extract(var, "\\d+")) %>% 
-  # Recode variable to readable names
   mutate(
-    variable = case_when(
-      variable == "inc_level_farm" ~ "Farm Income",
-      variable == "inc_level_nfe" ~ "Non-farm Income",
-      variable == "inc_level_wage" ~ "Wage Income",
-      variable == "inc_level_assets" ~ "Income from Assets",
-      variable == "inc_level_pension" ~ "Pension Income",
-      TRUE ~ variable
+    org_variable = factor(
+      variable,
+      levels = c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets")
     )
-  ) %>% 
+  )
+
+
+# Generate labels for the work_employment graph  
+income_source_mapping <- tribble(
+  ~org_variable, ~label,
+  "inc_level_farm",  "Farm Income",
+  "inc_level_nfe", "Non-farm Income",
+  "inc_level_wage", "Wage Income",
+  "inc_level_assets", "Income from Assets",
+  "inc_level_pension", "Pension Income"
+)  
+
+income_source_labels <- generate_labels(income_source, income_source_mapping, N_group)
+
+income_source %>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -501,7 +510,10 @@ map(c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets"),
     y = "Coefficient"
   ) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~org_variable, scales = "fixed", ncol = 1,
+             labeller = labeller(org_variable = income_source_labels)) 
+
+ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 8, units = "in")  
 
 
 # Table 4: Impact of lockdowns on different kinds of coping mechanisms 
@@ -611,7 +623,7 @@ labels_mapping <- tribble(
 )
 
 # Now, call the function with your dataset and the labels mapping
-hh_composition_labels <- generate_labels(hh_composition, labels_mapping)
+hh_composition_labels <- generate_labels(hh_composition, labels_mapping, n_fixef)
 
 # Produce graphs
 hh_composition %>%
