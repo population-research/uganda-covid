@@ -87,6 +87,9 @@ $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf: $(
 
 # Response Graphs
 RESP_GRAPHS := \
+ $(FIG)/work_employment.pdf \
+ $(FIG)/income_sources.pdf \
+ $(FIG)/income_assistance.pdf \
  $(FIG)/household_composition_and_urban_location.pdf \
  $(FIG)/agri_vs_non_agri.pdf
 	
