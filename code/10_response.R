@@ -520,7 +520,7 @@ ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 8, units = "i
 
 # Assistance received ----
 
-inc_assistance <- map(
+assistance <- map(
   c("inc_level_remittance", "inc_level_family", "inc_level_non_family", "inc_level_ngo", "inc_level_govt"),
     ~ {
       y <- stata(
@@ -553,32 +553,20 @@ inc_assistance <- map(
     ))
   ) 
 
+# Generate labels for the work_employment graph  
+assistance_mapping <- tribble(
+  ~org_variable, ~label,
+  "inc_level_family", "Assistance from family within country",
+  "inc_level_govt", "Assistance from government",
+  "inc_level_ngo", "Assistance from NGOs",
+  "inc_level_non_family", "Assistance from non-family individuals",
+  "inc_level_remittance", "Remittance"
+  )  
 
-# Generate labels for each variable in the graph that includes the N_group value
-inc_assistance_labels <- inc_assistance %>% 
-  group_by(org_variable) %>%
-  # Select the first value of N_group
-  summarise(N_group = first(N_group)) %>% 
-  mutate(
-    variable = case_when(
-      org_variable == "inc_level_family" ~ "Assistance from family within country",
-      org_variable == "inc_level_govt" ~ "Assistance from government",
-      org_variable == "inc_level_ngo" ~ "Assistance from NGOs",
-      org_variable == "inc_level_non_family" ~ "Assistance from non-family individuals",
-      org_variable == "inc_level_remittance" ~ "Remittance",
-      TRUE ~ org_variable
-    )
-  ) %>% 
-  # Combine the variable and N_group
-  mutate(
-    new_variable = paste0(variable, " (Number of households: ", format(N_group, big.mark = ","), ")")
-  ) %>% 
-  select(org_variable, new_variable) %>% 
-  # Convert to a vector with values from org_variable as names and new_variable as values in quotes
-  deframe() 
+assistance_labels <- generate_labels(assistance, assistance_mapping, N_group)
 
 # Produce graph
-inc_assistance %>% 
+assistance %>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -589,7 +577,7 @@ inc_assistance %>%
   ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~org_variable, scales = "free_y", ncol = 1,
-             labeller = labeller(org_variable = inc_assistance_labels)) 
+             labeller = labeller(org_variable = assistance_labels)) 
 
 ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = "in")
 
@@ -676,22 +664,12 @@ agri_separately <- base %>%
     ag_result = map(data, function(df) { 
       map(
         food_vars, 
-        ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+        ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")), 
               data = df, 
-              index = c("hhid", "survey"), 
-              model = "within",
-              effect = "individual",
-              # weighting using weight_final
-              weights = weight_final
-        ) %>% 
-          tidy(conf.int = TRUE) %>% 
-          # select(term, estimate, std.error, p.value) %>%
-          filter(term != "cases_smooth_per_100000") %>% 
-          add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-          arrange(term) %>% 
-          mutate(variable = .x) %>% 
-          select(variable, everything())
+              weights = ~weight_final
+        ) 
       ) %>% 
+        map(enhance_feols_summary) %>% 
         list_rbind()
     })
   ) %>% 
@@ -705,44 +683,27 @@ agri_separately <- base %>%
 # Allow the agricultural status to vary over time
 non_agri <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ survey*ag_0 + cases_smooth_per_100000")), 
+  ~ feols(as.formula(paste0(.x, " ~ survey*ag_0 + cases_smooth_per_100000 | hhid")), 
         data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
-  ) %>% 
-    tidy(conf.int = TRUE) %>% 
-    # select(term, estimate, std.error, p.value) %>%
-    filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-    arrange(term) %>% 
-    mutate(variable = .x) %>% 
-    select(variable, everything())
-) 
+        weights = ~weight_final
+  ) 
+) %>% 
+  map(enhance_feols_summary) %>%
+  list_rbind() 
 
 agri <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ survey*ag_1 + cases_smooth_per_100000")), 
+  ~ feols(as.formula(paste0(.x, " ~ survey*ag_1 + cases_smooth_per_100000 | hhid ")), 
         data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
-  ) %>% 
-    tidy(conf.int = TRUE) %>% 
-    # select(term, estimate, std.error, p.value) %>%
-    filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
-    arrange(term) %>% 
-    mutate(variable = .x) %>% 
-    select(variable, everything())
-) 
+        weights = ~weight_final
+  ) 
+) %>% 
+  map(enhance_feols_summary) %>%
+  list_rbind() 
+
+    
 
 non_agri <- non_agri %>% 
-  list_rbind() %>% 
   mutate(
     term = str_remove(term, "survey"),
     variable = str_to_title(str_remove(variable, "insecure_"))
@@ -757,7 +718,6 @@ non_agri <- non_agri %>%
 
 # Do the same thing for agricultural households
 agri <- agri %>% 
-  list_rbind() %>% 
   mutate(
     term = str_remove(term, "survey"),
     variable = str_to_title(str_remove(variable, "insecure_"))
