@@ -982,6 +982,18 @@ individuals the reason for not working, and the top three reasons
 reported are that the place of work is closed (62%), being ill from any
 illness or quarantined (10%), and being laid off from the job (8%).
 
+![Impact on work and employment outcomes ---
+Rows 1 to 3 represent coefficients from linear model with household fixed effects. Dependent                                                                                       
+variables in columns 1 to 3 are dummy variables. Columns 4 and 5 represent relative risk ratios
+from fixed effects multinomial logit model, where 0 represents non-agricultural work, 1 represents 
+agricultural work, and 2 represents unemployment](../figures/work_employment.pdf){#fig:work_employment}
+
+
+![Impact on different types of income  ---
+Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
+](../figures/income_sources.pdf){#fig:income_sources}
+
+
 In the medium run, the likelihood of market work is 2.5 percentage
 points lower than in non-lockdown periods. This suggests that the labor
 market was approaching but not yet fully recovered. 
@@ -1217,50 +1229,6 @@ avenues of mitigation are critical future areas of research.
   ---------------------- -------------- -------------- -------------- ------------------ ----------------- --
                                                                                                            
 
-                                                                                                           
-
-  Panel A: Impact on                                                                                       
-  work and employment                                                                                      
-  outcomes                                                                                                 
-
-                         Linear model                                 Multinomial logit                    
-
-                         \(1\)          \(2\)          \(3\)          \(4\)              \(5\)             
-
-  Outcome variables:     Likelihood of  Likelihood of  Working in     Comparing          Comparing         
-                         market work    operating a    same job as    agriculture (1) vs unemployed (2) vs 
-                                        non-farm       before         non-agriculture    non-agriculture   
-                                        family                        (0)                (0)               
-                                        business                                                           
-
-  First lockdown: short  -0.186\*\*\*                  -0.083\*\*\*   3.78\*\*\*         11.24\*\*\*       
-  run                                                                                                      
-
-                         (0.016)                       (0.014)        (0.607)            (1.753)           
-
-  First lockdown: medium -0.022\*       -0.066\*\*\*   -0.009         3.66\*\*\*         2.61\*\*\*        
-  run                                                                                                      
-
-                         (0.012)        (0.015)        (0.012)        (0.541)            (0.436)           
-
-  Second lockdown:       -0.132\*\*\*   -0.007         -0.016\*       0.994              3.48\*\*\*        
-  medium run                                                                                               
-
-                         (0.015)        (0.015)        (0.010)        (0.191)            (0.632)           
-
-  Covid-19 cases/100,000 -0.001         -0.003\*\*     0.002          1.13\*\*\*         1.08\*\*\*        
-
-                         (0.001)        (0.001)        (0.001)        (0.021)            (0.019)           
-
-                                                                                                           
-
-  No of observations     14,811         12,593         10,521         10,676             10,676            
-
-  Number of households   2,300          2,282          2,174          1,407              1,407             
-
-  Mean of outcome at     87.8%          40.7%          96.9%          Agri.: 57.2%,                        
-  non-lockdown period                                                 Unemployed:12.2%                     
-
                                                                                                            
 
   Panel B: Impact on                                                                                       
@@ -1294,26 +1262,7 @@ avenues of mitigation are critical future areas of research.
   Mean of outcome at     -0.06          -0.05          -0.04          -0.003             0                 
   non-lockdown period                                                                                      
 
-  Note: Columns 1 to 3                                                                                     
-  of Panel A represent                                                                                     
-  coefficients from                                                                                        
-  linear model with                                                                                        
-  household fixed                                                                                          
-  effects. Dependent                                                                                       
-  variables in columns 1                                                                                   
-  to 3 are dummy                                                                                           
-  variables. Columns 4                                                                                     
-  and 5 represent                                                                                          
-  relative risk ratios                                                                                     
-  from fixed effects                                                                                       
-  multinomial logit                                                                                        
-  model, where 0                                                                                           
-  represents                                                                                               
-  non-agricultural work,                                                                                   
-  1 represents                                                                                             
-  agricultural work, and                                                                                   
-  2 represents                                                                                             
-  unemployment.     Panel B                                                                                    
+Panel B                                                                                    
   represents                                                                                               
   coefficients from                                                                                        
   fixed effects ordered                                                                                    
