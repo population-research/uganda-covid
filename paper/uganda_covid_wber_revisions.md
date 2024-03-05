@@ -989,9 +989,6 @@ from fixed effects multinomial logit model, where 0 represents non-agricultural 
 agricultural work, and 2 represents unemployment](../figures/work_employment.pdf){#fig:work_employment}
 
 
-![Impact on different types of income  ---
-Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
-](../figures/income_sources.pdf){#fig:income_sources}
 
 
 In the medium run, the likelihood of market work is 2.5 percentage
@@ -1070,6 +1067,11 @@ over time, we also examine the impact on pension income. Not
 surprisingly, we do not find any changes in pension income during the
 lockdowns.[^10]
 
+![Impact on different types of income  ---
+Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
+](../figures/income_sources.pdf){#fig:income_sources}
+
+
 ## Coping Mechanisms 
 
 Given the reductions in household income with the lockdowns, we examine
@@ -1090,7 +1092,32 @@ The failure of these coping
 mechanisms in the face of reductions in income likely contributed
 substantially to the large effects of lockdowns on food insecurity.
 
-![Impact on changes in number of household members and movement to urban area](../figures/household_composition_and_urban_location.pdf){#:fig:members_location}
+
+![Impact on outside assistance ---
+Panel A                                                                                 
+  represents                                                                                    
+  coefficients from                                                                             
+  fixed effects ordered                                                                         
+  logit model, so for                                                                           
+  the dependent                                                                                 
+  variables, 0                                                                                  
+  represents no change,                                                                         
+  1 represents an                                                                               
+  increase, and -1                                                                              
+  represents a                                                                                  
+  decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+
+
+![Impact on changes in number of household members and movement to urban area ---
+Panel B                                                                             
+  represent                                                                                     
+  coefficients from                                                                             
+  linear model with                                                                             
+  household fixed                                                                               
+  effects where                                                                                 
+  dependent variables                                                                           
+  are continuous                                                                                
+  variables](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
 
 
 As households faced greater food insecurity during lockdowns, it is
@@ -1221,179 +1248,11 @@ outweighs the benefits. Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
 
-
-  -----------------------------------------------------------------------------------------------------------
-  Table 3: Impact of                                                                                       
-  lockdowns on labor                                                                                       
-  market outcomes                                                                                          
-  ---------------------- -------------- -------------- -------------- ------------------ ----------------- --
-                                                                                                           
-
-                                                                                                           
-
-  Panel B: Impact on                                                                                       
-  different types of                                                                                       
-  income                                                                                                   
-
-                         \(6\)          \(7\)          \(8\)          \(9\)              \(10\)            
-
-  Outcome variables:     Farm income    Nonfarm income Wage income    Income from assets Pension           
-
-  First lockdown: short  -1.109\*\*\*   -1.957\*\*\*   -1.577\*\*\*   -2.026\*\*\*       -1.544            
-  run                                                                                                      
-
-                         (0.105)        (0.126)        (0.138)        (0.363)            (1.438)           
-
-  First lockdown: medium -0.217\*\*     -0.863\*\*\*   -1.015\*\*\*   -1.473\*\*\*       -1.711            
-  run                                                                                                      
-
-                         (0.109)        (0.129)        (0.153)        (0.393)            (1.605)           
-
-  Covid-19 cases/100,000 0.040\*\*\*    -0.031\*\*     -0.051\*\*\*   -0.059             -0.312            
-
-                         (0.010)        (0.013)        (0.016)        (0.043)            (0.385)           
-
-                                                                                                           
-
-  No of observations     10398          7238           5195           738                18                
-
-  Number of households   1809           1258           911            128                3                 
-
-  Mean of outcome at     -0.06          -0.05          -0.04          -0.003             0                 
-  non-lockdown period                                                                                      
-
-Panel B                                                                                    
-  represents                                                                                               
-  coefficients from                                                                                        
-  fixed effects ordered                                                                                    
-  logit model, so for                                                                                      
-  dependent variables in                                                                                   
-  columns 6 to 10, 0                                                                                       
-  represents no change,                                                                                    
-  1 represents an                                                                                          
-  increase, and -1                                                                                         
-  represents a decrease.                                                                                   
-  For all columns,                                                                                         
-  standard errors are in                                                                                   
-  parentheses. \*\*\*                                                                                      
-  indicates significance                                                                                   
-  at 1% level; \*\* at                                                                                     
-  5%; \* at 10%.                                                                                           
-
                                                                                                            
 
                                                                                                            
 
-                                                                                                           
-  -----------------------------------------------------------------------------------------------------------
-
-  ------------------------------------------------------------------------------------------------
-  Table 4: Impact of                                                                            
-  lockdowns on                                                                                  
-  different kinds of                                                                            
-  coping mechanisms                                                                             
-  --------------------- ------------- -------------- -------------- -------------- ------------ --
-                                                                                                
-
-                                                                                                
-
-  Panel A: Impact on                                                                            
-  outside assistance                                                                            
-
-                        \(1\)         \(2\)          \(3\)          \(4\)          \(5\)        
-
-  Outcome variables:    Remittance    Assistance     Assistance     Assistance     Assistance   
-                                      from family    from           from NGOs      from         
-                                      within country non-family                    government   
-                                                     individuals                                
-
-  First lockdown: short -0.814        -0.406\*\*\*   -1.541\*\*\*   -2.604\*\*\*   1.123        
-  run                                                                                           
-
-                        (0.563)       (0.157)        (0.378)        (0.932)        (0.901)      
-
-  First lockdown:       -0.438        -0.217         -1.316\*\*\*   -0.481         0.235        
-  medium run                                                                                    
-
-                        (0.678)       (0.155)        (0.353)        (0.718)        (0.645)      
-
-  Covid-19              -0.027        0.026          -0.029         0.005          -0.030       
-  cases/100,000                                                                                 
-
-                        (0.049)       (0.020)        (0.035)        (0.149)        (0.071)      
-
-                                                                                                
-
-  No of observations    363           4155           732            87             156          
-
-  Number of households  63            724            129            15             26           
-
-                                                                                                
-
-  Panel B: Impact on                                                                            
-  changes in number of                                                                          
-  household members and                                                                         
-  movement to urban                                                                             
-  area                                                                                          
-
-                        \(6\)         \(7\)          \(8\)          \(9\)                       
-
-                        Change in no. Change in no.  Change in no.  Likelihood of               
-                        of household  of adult       of children    living in                   
-                        members       members        members        urban area                  
-
-  First lockdown: short 0.126\*\*\*   0.043\*\*\*    0.083\*\*\*    -0.002                      
-  run                                                                                           
-
-                        (0.028)       (0.015)        (0.025)        (0.002)                     
-
-  First lockdown:       0.021         -0.023\*\*     0.044\*\*      -0.001                      
-  medium run                                                                                    
-
-                        (0.021)       (0.010)        (0.018)        (0.002)                     
-
-  Second lockdown:      0.244\*\*\*   0.103\*\*\*    0.140\*\*\*    -0.008\*\*                  
-  medium run                                                                                    
-
-                        (0.039)       (0.021)        (0.027)        (0.004)                     
-
-  Covid-19              0.006\*\*\*   0.003\*\*      0.003\*\*      -0.000                      
-  cases/100,000                                                                                 
-
-                        (0.002)       (0.001)        (0.001)        (0.000)                     
-
-                                                                                                
-
-  No of observations    14,463        14,463         14,463         14,818                      
-
-  Number of households  2,282         2,282          2,282          2,302                       
-
-  Note: Panel A                                                                                 
-  represents                                                                                    
-  coefficients from                                                                             
-  fixed effects ordered                                                                         
-  logit model, so for                                                                           
-  the dependent                                                                                 
-  variables, 0                                                                                  
-  represents no change,                                                                         
-  1 represents an                                                                               
-  increase, and -1                                                                              
-  represents a                                                                                  
-  decrease. Panel B                                                                             
-  represent                                                                                     
-  coefficients from                                                                             
-  linear model with                                                                             
-  household fixed                                                                               
-  effects where                                                                                 
-  dependent variables                                                                           
-  are continuous                                                                                
-  variables. Standard                                                                           
-  errors are in                                                                                 
-  parentheses. \*\*\*                                                                           
-  indicates                                                                                     
-  significance at 1%                                                                            
-  level; \*\* at 5%; \*                                                                         
-  at 10%.
+        
 
 
 *Section A1:*
