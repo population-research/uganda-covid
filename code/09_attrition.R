@@ -4,9 +4,8 @@ library(tidyverse)
 library(here)
 library(janitor)   # For data checking
 library(vtable)    # For data checking
-library(plm)       # For fixed effects
+library(fixest)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
-library(cowplot)
 library(xtable)
 
 # Graph theme set-up ----
@@ -191,13 +190,10 @@ base <- base %>%
 # Check that we get same results when not filling in missing insecure variables
 fx <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")), 
         data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
+        cluster = ~ psu,
+        weights = ~ weight_final
   ) %>% 
     tidy(conf.int = TRUE) %>% 
     # select(term, estimate, std.error, p.value) %>%
@@ -236,13 +232,11 @@ base_0 <- base %>%
 
 fx_0 <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")), 
         data = base_0, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
+        cluster = ~ psu,
         # weighting using weight_final
-        weights = weight_final
+        weights = ~ weight_final
   ) %>% 
     tidy(conf.int = TRUE) %>% 
     # select(term, estimate, std.error, p.value) %>%
@@ -281,13 +275,11 @@ base_1 <- base %>%
 
 fx_1 <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")),
         data = base_1, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
+        cluster = ~ psu,
         # weighting using weight_final
-        weights = weight_final
+        weights = ~ weight_final
   ) %>% 
     tidy(conf.int = TRUE) %>% 
     # select(term, estimate, std.error, p.value) %>%
