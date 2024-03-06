@@ -22,6 +22,10 @@ base <- hh %>%
   left_join(roster, by = c("hhid", "survey")) %>% 
   left_join(pre_covid, by = c("hhid")) %>% 
   left_join(covid, by = c("interview_date" = "date")) %>% 
+  # Generate psu variable
+  mutate(
+    psu = str_sub(hhid, 1, 4)
+  ) %>% 
   # Relocate roster information to after region information
   relocate( 
     starts_with("hh_"), .before = starts_with("food")
