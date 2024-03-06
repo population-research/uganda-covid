@@ -9,6 +9,10 @@ library(labelled) # For data checking
 library(glue)
 library(lubridate)
 library(clock)
+library(fixest) # For fixed effects
+library(tidymodels) # For extracting model coefficients
+library(patchwork) # For plotting
+
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -20,11 +24,40 @@ rename_to_lower_snake <- function(df) {
 months_in_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
+# Graph theme changes ----
+theme_uft <- theme_classic() +
+  theme(
+    axis.text = element_text(
+      colour = "black"
+    ),
+    legend.title = element_blank(),
+    legend.key.width = unit(1, "cm"),
+    strip.background = element_blank(),
+    panel.grid.major.y = element_line(color = "lightgray",
+                                      linewidth = 0.5)
+  )
+
+theme_set(theme_uft)
+
+
 # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
 color_palette <- c("black", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
+# Load base data ----
+base <- read_rds(here("data", "base.rds")) %>% 
+  mutate(
+    survey_num = survey,
+    survey = factor(survey, levels = c("4", "1", "2", "3", "5", "6", "7")),
+  ) 
 
-# Load food security question
+# extract all variable names from base that begins with "food"
+food_vars <- base %>% 
+  select(starts_with("insecure")) %>%
+  select(-ends_with("sum")) %>%
+  names()
+
+
+# Load food security question from UNPS ----
 
 food_19 <- read_dta(here("raw_data", "panel_19_20", "HH", "gsec17_1.dta")) %>% 
   rename_to_lower_snake() %>% 
@@ -91,26 +124,9 @@ food <- inner_join(food_15, food_19, by = join_by(month)) %>%
   ) 
 
 
-# Theme changes ----
-theme_uft <- theme_classic() +
-  theme(
-    axis.text = element_text(
-      colour = "black"
-    ),
-    legend.title = element_blank(),
-    legend.key.width = unit(1, "cm"),
-    strip.background = element_blank(),
-    panel.grid.major.y = element_line(color = "lightgray",
-                                      linewidth = 0.5)
-  )
-
-theme_set(theme_uft)
-
-
-
 # Try to plot the base data
 
-base_ranout <- read_rds(here("data", "base.rds")) %>% 
+base_ranout <- base %>% 
   select(interview_date, starts_with("food")) %>% 
   mutate(
     month = month(interview_date),
@@ -136,7 +152,7 @@ base_ranout <- read_rds(here("data", "base.rds")) %>%
   ) %>% 
   select(date, percent, var)
 
-base_hungry <- read_rds(here("data", "base.rds")) %>% 
+base_hungry <- base %>% 
   select(interview_date, starts_with("food")) %>% 
   mutate(
     month = month(interview_date),
@@ -163,7 +179,7 @@ base_hungry <- read_rds(here("data", "base.rds")) %>%
   select(date, percent, var)
 
 
-base_all_day <- read_rds(here("data", "base.rds")) %>% 
+base_all_day <- base %>% 
   select(interview_date, starts_with("food")) %>% 
   mutate(
     month = month(interview_date),
@@ -220,6 +236,116 @@ ggplot(combined, aes(x = date)) +
 
 ggsave(here("figures", "seasonality.pdf"),
        width = 25, height = 19, units = "cm")
+
+
+# Appendix results - comparing lean seasons: R1, R2 vs R6 and R4 vs R7 ----
+
+rounds_1_2_6 <- base %>% 
+  filter(survey_num %in% c(1, 2, 6)) %>%
+  mutate(
+   survey = fct_relevel(survey, "6") 
+  )
+
+results_rounds_1_2_6 <- map(
+  food_vars, 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")),
+          data = rounds_1_2_6,
+          cluster = ~ psu,
+          weights = ~ weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey3", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey4", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey5", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey7", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey6", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+)
+
+# Make into one data frame and combine graphs
+plot_1_2_6 <- list_rbind(results_rounds_1_2_6) %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  coord_cartesian(ylim = c(-0.1, 0.3), expand = TRUE) +
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3)) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+
+rounds_4_7 <- base %>% 
+  filter(survey_num %in% c(4, 7)) 
+
+results_rounds_4_7 <- map(
+  food_vars, 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")),
+          data = rounds_4_7,
+          cluster = ~ psu,
+          weights = ~ weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey1", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey2", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey3", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey5", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey6", estimate = NA, conf.low = NA, conf.high = NA) %>%
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+)
+
+# Make into one data frame and combine graphs
+plot_4_7 <- list_rbind(results_rounds_4_7) %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  coord_cartesian(ylim = c(-0.1, 0.3), expand = TRUE) +
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3)) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+
+plot_1_2_6 / plot_4_7
+
+ggsave(here("figures", "seasonality_comparison.pdf"),
+       width = 8, height = 8, units = "in")
+
+
+
+*************************************************************************************************************************************************************************
+* Appendix tables - Food insecurity in urban areas
+*************************************************************************************************************************************************************************
+xtreg anyfood_insec lockdown lockdown_2 lockdown_3 `controls' `wt' if urban==1, fe 
+outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
+
+foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
+	xtreg `i' lockdown lockdown_2 lockdown_3  `controls' `wt' if urban==1, fe    
+	outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel append dec(3)
+}
 
 
 
