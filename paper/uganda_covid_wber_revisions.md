@@ -982,6 +982,15 @@ individuals the reason for not working, and the top three reasons
 reported are that the place of work is closed (62%), being ill from any
 illness or quarantined (10%), and being laid off from the job (8%).
 
+![Impact on work and employment outcomes ---
+Rows 1 to 3 represent coefficients from linear model with household fixed effects. Dependent                                                                                       
+variables in columns 1 to 3 are dummy variables. Columns 4 and 5 represent relative risk ratios
+from fixed effects multinomial logit model, where 0 represents non-agricultural work, 1 represents 
+agricultural work, and 2 represents unemployment](../figures/work_employment.pdf){#fig:work_employment}
+
+
+
+
 In the medium run, the likelihood of market work is 2.5 percentage
 points lower than in non-lockdown periods. This suggests that the labor
 market was approaching but not yet fully recovered. 
@@ -1058,6 +1067,11 @@ over time, we also examine the impact on pension income. Not
 surprisingly, we do not find any changes in pension income during the
 lockdowns.[^10]
 
+![Impact on different types of income  ---
+Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
+](../figures/income_sources.pdf){#fig:income_sources}
+
+
 ## Coping Mechanisms 
 
 Given the reductions in household income with the lockdowns, we examine
@@ -1069,7 +1083,7 @@ non-family individuals, and assistance from NGOs after the first
 lockdown. Remittances also decreased but not statistically
 significantly. The only increase came in government assistance, although
 the effect is statistically insignificant. These results suggest that
-households\' standard coping mechanisms were unavailable during the
+households' standard coping mechanisms were unavailable during the
 lockdowns. This is in line with the substantial decline in remittances
 across the world in the second quarter of 2020, as lockdowns worldwide
 led to the closure of workplaces and limited people's movements 
@@ -1077,6 +1091,34 @@ led to the closure of workplaces and limited people's movements
 The failure of these coping
 mechanisms in the face of reductions in income likely contributed
 substantially to the large effects of lockdowns on food insecurity.
+
+
+![Impact on outside assistance ---
+Panel A                                                                                 
+  represents                                                                                    
+  coefficients from                                                                             
+  fixed effects ordered                                                                         
+  logit model, so for                                                                           
+  the dependent                                                                                 
+  variables, 0                                                                                  
+  represents no change,                                                                         
+  1 represents an                                                                               
+  increase, and -1                                                                              
+  represents a                                                                                  
+  decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+
+
+![Impact on changes in number of household members and movement to urban area ---
+Panel B                                                                             
+  represent                                                                                     
+  coefficients from                                                                             
+  linear model with                                                                             
+  household fixed                                                                               
+  effects where                                                                                 
+  dependent variables                                                                           
+  are continuous                                                                                
+  variables](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
+
 
 As households faced greater food insecurity during lockdowns, it is
 possible that, on the one hand, some household members left to look for
@@ -1112,37 +1154,49 @@ migration into the households and a switch to agricultural work,
 suggesting that some household members return to the family for farm
 work.
 
-## Agricultural vs. Non-agricultural households
+## Agricultural vs. Non-Agricultural Households
 
-Given the increase in agricultural work with the first lockdown, Table 5
-examines whether agricultural households fared better than
-non-agricultural households. Note, as we previously treated households'
-work in agriculture as a choice variable, these estimations are
-exploratory rather than causal. As lockdowns affected the likelihood of
-working in agriculture, we interact lockdown variables with whether the
-household was engaged in agricultural production in the prior
-round.[^11] As shown in column 1 of Table 5, agricultural households
-were 31 percentage points more likely to work during the first lockdown
-than non-agricultural households. However, this difference disappears in
-the medium run suggesting an improvement in employment conditions.
+Given the increase in agricultural work with the first lockdown, 
+[@fig:ag_vs_non_ag] examines whether agricultural households fared 
+better than non-agricultural households. 
+We show the results for two different approaches.
+First, the two left columns are separate regressions by whether the 
+household was an agricultural household before Covid for each
+level of food insecurity.[^agri_pre_covid] 
+Second, the results in the right two columns come from one regression 
+per level of food insecurity and use the prior rounds' 
+reported agricultural status interacted with the survey indicators.
+Note, as we previously treated households' work in agriculture 
+as a choice variable, this set of estimations is exploratory rather than causal. 
+In all cases, the effects are shown relative to survey round 4 as above.
+
+[^agri_pre_covid]: For round 1, the survey asks about the employment industry 
+    before the lockdown, which allows us to identify whether individuals worked
+    in agriculture before the round 1 lockdown.
+    
+![Estimated Changes in Food Insecurity With 95% Confidence Intervals 
+by Survey Round Relative to Survey 4, Controlling for Household Fixed Effects, 
+for Non-Agricultural and Agricultural Households. 
+Left Two Columns Condition on Pre-Covid Agricultural Status, While the 
+Right Two Columns Allow Households to Change Status](../figures/agri_vs_non_agri.pdf){#fig:ag_vs_non_ag}   
 
 Agricultural households appeared to be more food secure than
-non-agricultural households during the first lockdown. Their likelihood
-of suffering "any food insecurity" during lockdowns was about 20
-percentage points lower than non-agricultural households. Furthermore,
-all individual food security questions show that agricultural households
-do better than non-agricultural households. However, for "Had to skip a
-meal" and "Went hungry but did not eat," the effects are not
-statistically significant. Like the employment results, the difference
-disappears in the medium run. Overall, these results suggest that
-agricultural households were better able to keep working and did better
-in terms of food security. There is no difference in employment or food
-insecurity for the second lockdown between the two types of households.
-This is likely because of the concurrent lower than normal rainfall 
-during and after the
-second lockdown in Uganda that affected the agricultural households\'
-employment and food production.
-
+non-agricultural households during the first lockdown. 
+Their likelihood of suffering "any food insecurity" during lockdowns was about 20
+percentage points lower than non-agricultural households as shown by round 1.
+This difference is even starker if we use the current agricultural status, in
+which case there is no statistically significant difference between round 1
+and round 4 for agricultural households.
+ Furthermore, agricultural households do better than non-agricultural households
+when it comes to both moderate/severe or severe food insecurity, although
+the difference is less stark for these outcomes.
+ 
+The difference disappears in the medium run with no statistically significant
+differences to round 4 for either non-agricultural or agricultural households.
+However, for round 7 there is little difference with all groups
+seeing statistically significant increases in food insecurity.
+This suggests that the concurrent lower-than-normal rainfall
+removed some of the protection from lockdowns that they had previously had.
 
 
 # Conclusion
@@ -1194,374 +1248,11 @@ outweighs the benefits. Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
 
-
-  -----------------------------------------------------------------------------------------------------------
-  Table 3: Impact of                                                                                       
-  lockdowns on labor                                                                                       
-  market outcomes                                                                                          
-  ---------------------- -------------- -------------- -------------- ------------------ ----------------- --
-                                                                                                           
-
-                                                                                                           
-
-  Panel A: Impact on                                                                                       
-  work and employment                                                                                      
-  outcomes                                                                                                 
-
-                         Linear model                                 Multinomial logit                    
-
-                         \(1\)          \(2\)          \(3\)          \(4\)              \(5\)             
-
-  Outcome variables:     Likelihood of  Likelihood of  Working in     Comparing          Comparing         
-                         market work    operating a    same job as    agriculture (1) vs unemployed (2) vs 
-                                        non-farm       before         non-agriculture    non-agriculture   
-                                        family                        (0)                (0)               
-                                        business                                                           
-
-  First lockdown: short  -0.186\*\*\*                  -0.083\*\*\*   3.78\*\*\*         11.24\*\*\*       
-  run                                                                                                      
-
-                         (0.016)                       (0.014)        (0.607)            (1.753)           
-
-  First lockdown: medium -0.022\*       -0.066\*\*\*   -0.009         3.66\*\*\*         2.61\*\*\*        
-  run                                                                                                      
-
-                         (0.012)        (0.015)        (0.012)        (0.541)            (0.436)           
-
-  Second lockdown:       -0.132\*\*\*   -0.007         -0.016\*       0.994              3.48\*\*\*        
-  medium run                                                                                               
-
-                         (0.015)        (0.015)        (0.010)        (0.191)            (0.632)           
-
-  Covid-19 cases/100,000 -0.001         -0.003\*\*     0.002          1.13\*\*\*         1.08\*\*\*        
-
-                         (0.001)        (0.001)        (0.001)        (0.021)            (0.019)           
-
-                                                                                                           
-
-  No of observations     14,811         12,593         10,521         10,676             10,676            
-
-  Number of households   2,300          2,282          2,174          1,407              1,407             
-
-  Mean of outcome at     87.8%          40.7%          96.9%          Agri.: 57.2%,                        
-  non-lockdown period                                                 Unemployed:12.2%                     
-
-                                                                                                           
-
-  Panel B: Impact on                                                                                       
-  different types of                                                                                       
-  income                                                                                                   
-
-                         \(6\)          \(7\)          \(8\)          \(9\)              \(10\)            
-
-  Outcome variables:     Farm income    Nonfarm income Wage income    Income from assets Pension           
-
-  First lockdown: short  -1.109\*\*\*   -1.957\*\*\*   -1.577\*\*\*   -2.026\*\*\*       -1.544            
-  run                                                                                                      
-
-                         (0.105)        (0.126)        (0.138)        (0.363)            (1.438)           
-
-  First lockdown: medium -0.217\*\*     -0.863\*\*\*   -1.015\*\*\*   -1.473\*\*\*       -1.711            
-  run                                                                                                      
-
-                         (0.109)        (0.129)        (0.153)        (0.393)            (1.605)           
-
-  Covid-19 cases/100,000 0.040\*\*\*    -0.031\*\*     -0.051\*\*\*   -0.059             -0.312            
-
-                         (0.010)        (0.013)        (0.016)        (0.043)            (0.385)           
-
-                                                                                                           
-
-  No of observations     10398          7238           5195           738                18                
-
-  Number of households   1809           1258           911            128                3                 
-
-  Mean of outcome at     -0.06          -0.05          -0.04          -0.003             0                 
-  non-lockdown period                                                                                      
-
-  Note: Columns 1 to 3                                                                                     
-  of Panel A represent                                                                                     
-  coefficients from                                                                                        
-  linear model with                                                                                        
-  household fixed                                                                                          
-  effects. Dependent                                                                                       
-  variables in columns 1                                                                                   
-  to 3 are dummy                                                                                           
-  variables. Columns 4                                                                                     
-  and 5 represent                                                                                          
-  relative risk ratios                                                                                     
-  from fixed effects                                                                                       
-  multinomial logit                                                                                        
-  model, where 0                                                                                           
-  represents                                                                                               
-  non-agricultural work,                                                                                   
-  1 represents                                                                                             
-  agricultural work, and                                                                                   
-  2 represents                                                                                             
-  unemployment. Panel B                                                                                    
-  represents                                                                                               
-  coefficients from                                                                                        
-  fixed effects ordered                                                                                    
-  logit model, so for                                                                                      
-  dependent variables in                                                                                   
-  columns 6 to 10, 0                                                                                       
-  represents no change,                                                                                    
-  1 represents an                                                                                          
-  increase, and -1                                                                                         
-  represents a decrease.                                                                                   
-  For all columns,                                                                                         
-  standard errors are in                                                                                   
-  parentheses. \*\*\*                                                                                      
-  indicates significance                                                                                   
-  at 1% level; \*\* at                                                                                     
-  5%; \* at 10%.                                                                                           
-
                                                                                                            
 
                                                                                                            
 
-                                                                                                           
-  -----------------------------------------------------------------------------------------------------------
-
-  ------------------------------------------------------------------------------------------------
-  Table 4: Impact of                                                                            
-  lockdowns on                                                                                  
-  different kinds of                                                                            
-  coping mechanisms                                                                             
-  --------------------- ------------- -------------- -------------- -------------- ------------ --
-                                                                                                
-
-                                                                                                
-
-  Panel A: Impact on                                                                            
-  outside assistance                                                                            
-
-                        \(1\)         \(2\)          \(3\)          \(4\)          \(5\)        
-
-  Outcome variables:    Remittance    Assistance     Assistance     Assistance     Assistance   
-                                      from family    from           from NGOs      from         
-                                      within country non-family                    government   
-                                                     individuals                                
-
-  First lockdown: short -0.814        -0.406\*\*\*   -1.541\*\*\*   -2.604\*\*\*   1.123        
-  run                                                                                           
-
-                        (0.563)       (0.157)        (0.378)        (0.932)        (0.901)      
-
-  First lockdown:       -0.438        -0.217         -1.316\*\*\*   -0.481         0.235        
-  medium run                                                                                    
-
-                        (0.678)       (0.155)        (0.353)        (0.718)        (0.645)      
-
-  Covid-19              -0.027        0.026          -0.029         0.005          -0.030       
-  cases/100,000                                                                                 
-
-                        (0.049)       (0.020)        (0.035)        (0.149)        (0.071)      
-
-                                                                                                
-
-  No of observations    363           4155           732            87             156          
-
-  Number of households  63            724            129            15             26           
-
-                                                                                                
-
-  Panel B: Impact on                                                                            
-  changes in number of                                                                          
-  household members and                                                                         
-  movement to urban                                                                             
-  area                                                                                          
-
-                        \(6\)         \(7\)          \(8\)          \(9\)                       
-
-                        Change in no. Change in no.  Change in no.  Likelihood of               
-                        of household  of adult       of children    living in                   
-                        members       members        members        urban area                  
-
-  First lockdown: short 0.126\*\*\*   0.043\*\*\*    0.083\*\*\*    -0.002                      
-  run                                                                                           
-
-                        (0.028)       (0.015)        (0.025)        (0.002)                     
-
-  First lockdown:       0.021         -0.023\*\*     0.044\*\*      -0.001                      
-  medium run                                                                                    
-
-                        (0.021)       (0.010)        (0.018)        (0.002)                     
-
-  Second lockdown:      0.244\*\*\*   0.103\*\*\*    0.140\*\*\*    -0.008\*\*                  
-  medium run                                                                                    
-
-                        (0.039)       (0.021)        (0.027)        (0.004)                     
-
-  Covid-19              0.006\*\*\*   0.003\*\*      0.003\*\*      -0.000                      
-  cases/100,000                                                                                 
-
-                        (0.002)       (0.001)        (0.001)        (0.000)                     
-
-                                                                                                
-
-  No of observations    14,463        14,463         14,463         14,818                      
-
-  Number of households  2,282         2,282          2,282          2,302                       
-
-  Note: Panel A                                                                                 
-  represents                                                                                    
-  coefficients from                                                                             
-  fixed effects ordered                                                                         
-  logit model, so for                                                                           
-  the dependent                                                                                 
-  variables, 0                                                                                  
-  represents no change,                                                                         
-  1 represents an                                                                               
-  increase, and -1                                                                              
-  represents a                                                                                  
-  decrease. Panel B                                                                             
-  represent                                                                                     
-  coefficients from                                                                             
-  linear model with                                                                             
-  household fixed                                                                               
-  effects where                                                                                 
-  dependent variables                                                                           
-  are continuous                                                                                
-  variables. Standard                                                                           
-  errors are in                                                                                 
-  parentheses. \*\*\*                                                                           
-  indicates                                                                                     
-  significance at 1%                                                                            
-  level; \*\* at 5%; \*                                                                         
-  at 10%.                                                                                       
-
-                                                                                                
-
-                                                                                                
-
-                                                                                                
-  ------------------------------------------------------------------------------------------------
-
-  -----------------------------------------------------------------------------------------------
-  Table 5: Comparing                                                               
-  the differences in                                                               
-  effects of lockdowns                                                             
-  between agricultural                                                             
-  and non-agricultural                                                             
-  households on market                                                             
-  work and food                                                                    
-  insecurity                                                                       
-  -------------------- -------------- -------------- -------------- -------------- --------------
-                                                                                    
-
-                                                                                   
-
-                       \(1\)          \(2\)          \(3\)          \(4\)          \(5\)
-
-  Outcome variables:   Market work    Any food       Worry about    Unable to eat  Had to eat
-                                      insecurity     not having     healthy and    only a few
-                                                     enough food to nutritious     kinds of food
-                                                     eat            food           
-
-  First lockdown:      -0.311\*\*\*   0.339\*\*\*    0.391\*\*\*    0.282\*\*\*    0.260\*\*\*
-  short run                                                                        
-
-                       (0.022)        (0.022)        (0.022)        (0.022)        (0.022)
-
-  First lockdown:      -0.023         0.146\*\*\*    0.160\*\*\*    0.135\*\*\*    0.106\*\*\*
-  medium run                                                                       
-
-                       (0.017)        (0.021)        (0.022)        (0.022)        (0.021)
-
-  Second lockdown:     -0.115\*\*\*   0.231\*\*\*    0.237\*\*\*    0.237\*\*\*    0.218\*\*\*
-  medium run                                                                       
-
-                       (0.022)        (0.025)        (0.025)        (0.025)        (0.025)
-
-  Ag household         0.063\*\*\*    0.030          -0.034         0.041\*        0.023
-
-                       (0.018)        (0.021)        (0.022)        (0.021)        (0.022)
-
-  Ag household x First 0.308\*\*\*    -0.204\*\*\*   -0.187\*\*\*   -0.140\*\*\*   -0.130\*\*\*
-  lockdown: short run                                                              
-
-                       (0.026)        (0.030)        (0.032)        (0.031)        (0.031)
-
-  Ag household x First 0.010          -0.054\*       -0.017         -0.029         -0.084\*\*\*
-  lockdown: medium run                                                             
-
-                       (0.019)        (0.028)        (0.028)        (0.029)        (0.028)
-
-  Ag household x       -0.034         -0.030         0.027          -0.026         -0.007
-  Second lockdown:                                                                 
-  medium run                                                                       
-
-                       (0.030)        (0.035)        (0.035)        (0.035)        (0.037)
-
-                                                                                   
-
-  No of observations   14,811         14,818         14,818         14,818         14,817
-
-  Number of households 2,300          2,302          2,302          2,302          2,302
-
-                                                                                   
-
-                       \(6\)          \(7\)          \(8\)          \(9\)          \(10\)
-
-  Outcome variables:   Had to skip a  Ate less than  Ran out of     Went hungry    Went without
-                       meal           they thought   food           but did not    eating for a
-                                      they should                   eat            whole day
-
-  First lockdown:      0.203\*\*\*    0.242\*\*\*    0.176\*\*\*    0.169\*\*\*    0.077\*\*\*
-  short run                                                                        
-
-                       (0.018)        (0.020)        (0.017)        (0.018)        (0.012)
-
-  First lockdown:      0.100\*\*\*    0.107\*\*\*    0.070\*\*\*    0.077\*\*\*    0.019\*
-  medium run                                                                       
-
-                       (0.017)        (0.020)        (0.015)        (0.015)        (0.010)
-
-  Second lockdown:     0.198\*\*\*    0.255\*\*\*    0.132\*\*\*    0.196\*\*\*    0.109\*\*\*
-  medium run                                                                       
-
-                       (0.022)        (0.026)        (0.021)        (0.022)        (0.016)
-
-  Ag household         -0.008         0.001          -0.002         -0.010         -0.012
-
-                       (0.018)        (0.020)        (0.017)        (0.016)        (0.012)
-
-  Ag household x First -0.022         -0.071\*\*     -0.074\*\*\*   -0.037         -0.036\*\*
-  lockdown: short run                                                              
-
-                       (0.027)        (0.029)        (0.023)        (0.025)        (0.017)
-
-  Ag household x First 0.007          -0.015         -0.008         0.017          0.016
-  lockdown: medium run                                                             
-
-                       (0.025)        (0.027)        (0.020)        (0.022)        (0.016)
-
-  Ag household x       0.012          0.019          0.003          -0.034         -0.014
-  Second lockdown:                                                                 
-  medium run                                                                       
-
-                       (0.032)        (0.036)        (0.029)        (0.030)        (0.022)
-
-                                                                                   
-
-  No of observations   14,818         14,818         14,818         14,818         14,818
-
-  Number of households 2,302          2,302          2,302          2,302          2,302
-
-  Note: Linear Model                                                               
-  with household fixed                                                             
-  effects. All                                                                     
-  dependent variables                                                              
-  are dummy variables.                                                             
-  Standard errors are                                                              
-  in parentheses.                                                                  
-  \*\*\* indicates                                                                 
-  significance at 1%                                                               
-  level; \*\* at 5%;                                                               
-  \* at 10%.                                                                       
-  -----------------------------------------------------------------------------------------------
-
+        
 
 
 *Section A1:*
@@ -1948,9 +1639,6 @@ at 10%.
 [^10]: We do not have income data for round 7 and thus cannot examine
     the medium-term impact of the second lockdown.
 
-[^11]: For round 1, the survey asks about the employment industry before
-    the lockdown, which allows us to identify whether individuals were
-    employed in agriculture before the round 1 lockdown.
 
 [^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
     results for the individual surveys are available upon request. UNPS

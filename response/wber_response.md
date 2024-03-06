@@ -355,6 +355,8 @@ the main pathway.
     “Ag household x First lockdown: short run”) yet still had roughly a 14pp
     increase in facing any food insecurity in that same period. This seems at odds
     with the authors’ primary explanation.
+    
+    **Response:**
 
 3. One point which is severely underdiscussed are the changes in household size.
 There are increases in both adult and child members; how much of the results on
@@ -393,6 +395,16 @@ would be helpful.
 round.” This makes it very difficult to interpret Table 5; why not use engagement
 in agricultural production from the 2019/20 UNPS data? At the least, I’d like to
 see the authors justify making this variable dynamic in more specific detail.
+
+    **Response:** To address the issues of interpretation, we now provide separate 
+    results for households that were in agriculture or those that were not in 
+    agriculture before Covid (the two left columns of Figure TK).
+    With the move to using all survey rounds, we also show the results equivalent
+    to the original table, where we interact agricultural status in prior 
+    round with survey indicators (in effect allowing households to change 
+    status).
+    We discuss the updated results in the Agricultural vs. Non-Agricultural Households
+    section.
 
 7. The authors’ choices about how to define short-run, medium-run and
 non-lockdown are unclear. Based on Figure 1, it’s hard to understand why period
