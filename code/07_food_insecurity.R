@@ -4,7 +4,7 @@ library(tidyverse)
 library(here)
 library(janitor)   # For data checking
 library(vtable)    # For data checking
-library(plm)       # For fixed effects
+library(fixest)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
 
 
@@ -44,13 +44,10 @@ food_vars <- base %>%
 # Basic fixed effects model for each food insecurity variable ----
 fx <- map(
   food_vars, 
-  ~ plm(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000")), 
-        data = base, 
-        index = c("hhid", "survey"), 
-        model = "within",
-        effect = "individual",
-        # weighting using weight_final
-        weights = weight_final
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")),
+          data = base,
+          cluster = ~ psu,
+          weights = ~ weight_final
   ) %>% 
     tidy(conf.int = TRUE) %>% 
     # select(term, estimate, std.error, p.value) %>%
@@ -93,10 +90,11 @@ list_rbind(fx) %>%
       x = "Survey",
       y = "Coefficient"
     ) +
-    # Combining the graphs from food_insecurity_graphs
-    facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3)) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
 
-ggsave(here("figures", "food_insecurity_survey.pdf"), width = 8, height = 6, units = "in")
+ggsave(here("figures", "food_insecurity_survey.pdf"), width = 8, height = 5, units = "in")
 
 
 # Regional variation in food insecurity ----
@@ -108,13 +106,10 @@ fx_regions <- base %>%
     regional_result = map(data, function(df) { 
       map(
         food_vars, 
-        ~ plm(as.formula(paste0(.x, " ~ survey ")), 
+        ~ feols(as.formula(paste0(.x, " ~ survey | hhid ")), 
               data = df, 
-              index = c("hhid", "survey"), 
-              model = "within",
-              effect = "individual",
-              # weighting using weight_final
-              weights = weight_final
+              cluster = ~ psu,
+              weights = ~ weight_final
         ) %>% 
           tidy(conf.int = TRUE) %>% 
           # select(term, estimate, std.error, p.value) %>%
@@ -144,6 +139,7 @@ fx_regions %>%
     x = "Survey",
     y = "Coefficient"
   ) +
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4)) +
   facet_grid(vars(region), vars(variable), scales = "fixed")
 
 ggsave(here("figures", "food_insecurity_region.pdf"), width = 8, height = 10, units = "in")      
