@@ -470,6 +470,8 @@ Y_{i,t} =  \sum_{t=1}^7 \beta_t 1[Round = t]  + \gamma Cases_{i,t}
 $$
 
 where $i$ denote household and $t$ survey rounds. 
+All standard errors control for clustering at the primary sample unit
+level.
 
 [^3]: A linear model has two advantages over non-linear models, such as
     conditional logit, and has often been used in recent studies 

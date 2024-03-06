@@ -99,7 +99,6 @@ generate_labels <- function(.model_summaries, .labels_mapping, .n_group_var) {
 base <- read_rds(here("data", "base.rds")) %>% 
   zap_labels() %>% 
   mutate(
-    psu = str_sub(hhid, 1, 4),
     survey_num = survey
   )
 

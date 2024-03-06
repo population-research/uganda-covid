@@ -183,8 +183,8 @@ survey date? What do we think of that as measure of local covid exposure?
 7. Given the clustered survey design of the NPS, you should be clustering by PSU
 throughout (probably only meaningful in the mediation analysis discussed above).
 
-    **Response:** As discussed above, we cannot do the mediation analysis 
-    as outlined and, therefore, instead include a regional analysis. 
+    **Response:** We have updated all estimations to use clustering by PSU 
+    and clarified this in the Estimation Strategy section.
 
 
 # Referee 1 Comments
