@@ -335,21 +335,44 @@ ggsave(here("figures", "seasonality_comparison.pdf"),
        width = 8, height = 8, units = "in")
 
 
+# Appendix results - food insecurity in urban areas ----
 
-*************************************************************************************************************************************************************************
-* Appendix tables - Food insecurity in urban areas
-*************************************************************************************************************************************************************************
-xtreg anyfood_insec lockdown lockdown_2 lockdown_3 `controls' `wt' if urban==1, fe 
-outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel replace dec(3) 
+urban_only <- base %>% 
+  filter(urban == 1) 
 
-foreach i in food_insufficient_worry food_healthy_lack food_few_kinds food_skipped_meal food_less_than_expected food_ranout food_hungry food_didnt_eat_all_day {
-	xtreg `i' lockdown lockdown_2 lockdown_3  `controls' `wt' if urban==1, fe    
-	outreg2 using "`output'\Est1.xml", e(N df_m F r2) excel append dec(3)
-}
+results_urban_only <- map(
+  food_vars, 
+  ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")),
+          data = urban_only,
+          cluster = ~ psu,
+          weights = ~ weight_final
+  ) %>% 
+    tidy(conf.int = TRUE) %>% 
+    # select(term, estimate, std.error, p.value) %>%
+    filter(term != "cases_smooth_per_100000") %>% 
+    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    arrange(term) %>% 
+    mutate(variable = .x) %>% 
+    select(variable, everything())
+)
 
+# Make into one data frame and combine graphs
+list_rbind(results_urban_only) %>% 
+  mutate(
+    term = str_remove(term, "survey"),
+    variable = str_to_title(str_remove(variable, "insecure_"))
+  ) %>% 
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  # Make 0 line more prominent
+  geom_hline(yintercept = 0, color = color_palette[1]) +
+  geom_pointrange() +
+  labs(
+    x = "Survey",
+    y = "Coefficient"
+  ) +
+  # coord_cartesian(ylim = c(-0.2, 0.6), expand = TRUE) +
+  scale_y_continuous(breaks = c(-0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6)) +
+  # Combining the graphs from food_insecurity_graphs
+  facet_wrap(~variable, scales = "fixed", ncol = 1) 
 
-
-
-
-
-
+ggsave(here("figures", "seasonality_urban.pdf"), width = 8, height = 6, units = "in")
