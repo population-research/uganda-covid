@@ -81,6 +81,15 @@ $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf: $(CODE)/07_
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1	
 	
+SEASONALITY_GRAPHS := \
+ $(FIG)/seasonality.pdf \
+ $(FIG)/seasonality_comparison.pdf \
+ $(FIG)/seasonality_urban.pdf
+ 
+$(SEASONALITY_GRAPHS): $(CODE)/08_seasonality.R \
+ $(DAT)/base.rds
+	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
+	
 $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf: $(CODE)/09_attrition.R \
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1 
@@ -109,6 +118,7 @@ $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(DESC_GRAPHS) \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
  $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
+ $(SEASONALITY_GRAPHS) \
  $(RESP_GRAPHS)
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
@@ -120,6 +130,7 @@ $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(DESC_GRAPHS) \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
  $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
+ $(SEASONALITY_GRAPHS) \
  $(RESP_GRAPHS)
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
 

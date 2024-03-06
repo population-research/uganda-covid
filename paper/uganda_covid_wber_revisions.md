@@ -648,10 +648,13 @@ Our second approach is to re-estimate our main models on three subsets
 of the data. First, we make use of the fact that round 6 took place
 during the April/May lean season but was the round least affected by
 lockdowns and estimate our main model using only information from rounds
-1, 2, and 6. The results are shown in Appendix Table A4. Compared to the
-main model, the short-run effects are slightly smaller and the medium
-effect larger. Second, the only two rounds collected during almost the
-same calendar month were rounds 4 and 7, and Appendix Table A5 shows the
+1, 2, and 6. The results are shown in the top panel of 
+Appendix [@fig:seasonality_comparison]. 
+Compared to the main model, the short-run effects are slightly smaller 
+and the medium effect larger. 
+Second, the only two rounds collected during almost the
+same calendar month were rounds 4 and 7, and the bottom panel 
+of Appendix [@fig:seasonality_comparison] shows the
 results when we restrict to those two rounds. The medium-run effect of
 the second lockdown for this sample is smaller but still statistically
 significant in most cases. Complicating this comparison is that the
@@ -660,8 +663,8 @@ smaller during round 7 than round 4, resulting in potential
 multicollinearity and statistically significant *negative* effects of
 new cases on food insecurity for some outcomes. 
 Finally, we expect urban households to be less affected by seasonality, 
-and Appendix Table A6, therefore, shows the results using only urban 
-households across all rounds. 
+and Appendix [@fig:seasonality_urban], therefore, shows the results using 
+only urban households across all rounds. 
 The short- and medium-run effects of the lockdowns are either
 the same or larger when we restrict the sample to urban households.
 Hence, our results are qualitatively the same, no matter how we account
@@ -1366,266 +1369,6 @@ where the dependent variable is a dummy variable. Standard errors are in
 parentheses. \*\*\* indicates significance at 1% level; \*\* at 5%; \*
 at 10%.
 
-  -------------------------------------------------------------------------------------------
-  Table A4: Impact                                                                         
-  of lockdowns on                                                                          
-  food insecurity                                                                          
-  only using the                                                                           
-  rounds in lean                                                                           
-  seasons - rounds                                                                         
-  1, 2, and 6                                                                              
-  ------------------ ------------- ------------- ------------- ------------- ------------- --
-                                                                                           
-
-                                                                                           
-
-                     \(1\)         \(2\)         \(3\)         \(4\)         \(5\)         
-
-  Outcome variables: Any food      Worry about   Unable to eat Had to eat    Had to skip a 
-                     insecurity    not having    healthy and   only a few    meal          
-                                   enough food   nutritious    kinds of food               
-                                   to eat        food                                      
-
-  First lockdown:    0.258\*\*\*   0.305\*\*\*   0.220\*\*\*   0.195\*\*\*   0.186\*\*\*   
-  short run                                                                                
-
-                     (0.019)       (0.020)       (0.020)       (0.020)       (0.016)       
-
-  First lockdown:    0.109\*\*     0.230\*\*\*   0.159\*\*\*   0.140\*\*     0.179\*\*\*   
-  medium run                                                                               
-
-                     (0.051)       (0.055)       (0.054)       (0.054)       (0.043)       
-
-  Covid-19           -0.030        0.153         0.075         0.144         0.148\*       
-  cases/100,000                                                                            
-
-                     (0.099)       (0.105)       (0.104)       (0.107)       (0.084)       
-
-                                                                                           
-
-  No of observations 6,506         6,506         6,506         6,506         6,506         
-
-  Number of          2,286         2,286         2,286         2,286         2,286         
-  households                                                                               
-
-                                                                                           
-
-                     \(6\)         \(7\)         \(8\)         \(9\)                       
-
-  Outcome variables: Ate less than Ran out of    Went hungry   Went without                
-                     they thought  food          but did not   eating for a                
-                     they should                 eat           whole day                   
-
-  First lockdown:    0.195\*\*\*   0.147\*\*\*   0.149\*\*\*   0.055\*\*\*                 
-  short run                                                                                
-
-                     (0.017)       (0.014)       (0.015)       (0.010)                     
-
-  First lockdown:    0.209\*\*\*   0.105\*\*\*   0.148\*\*\*   0.107\*\*\*                 
-  medium run                                                                               
-
-                     (0.048)       (0.037)       (0.038)       (0.026)                     
-
-  Covid-19           0.223\*\*     0.066         0.122\*       0.154\*\*\*                 
-  cases/100,000                                                                            
-
-                     (0.090)       (0.069)       (0.073)       (0.049)                     
-
-                                                                                           
-
-  No of observations 6,506         6,506         6,506         6,506                       
-
-  Number of          2,286         2,286         2,286         2,286                       
-  households                                                                               
-
-  Note: Linear Model                                                                       
-  with household                                                                           
-  fixed effects. All                                                                       
-  dependent                                                                                
-  variables are                                                                            
-  dummy variables.                                                                         
-  Standard errors                                                                          
-  are in                                                                                   
-  parentheses.                                                                             
-  \*\*\* indicates                                                                         
-  significance at 1%                                                                       
-  level; \*\* at 5%;                                                                       
-  \* at 10%.                                                                               
-
-                                                                                           
-  -------------------------------------------------------------------------------------------
-
-  ---------------------------------------------------------------------------------------
-  Table A5: Comparing                                                                  
-  the effect of                                                                        
-  lockdown during                                                                      
-  round 7 to round 4,                                                                  
-  both of which                                                                        
-  occurred during the                                                                  
-  same calendar month                                                                  
-  -------------------- ------------ ------------ ------------ ------------ ----------- --
-                                                                                       
-
-                                                                                       
-
-                       \(1\)        \(2\)        \(3\)        \(4\)        \(5\)       
-
-  Outcome variables:   Any food     Worry about  Unable to    Had to eat   Had to skip 
-                       insecurity   not having   eat healthy  only a few   a meal      
-                                    enough food  and          kinds of                 
-                                    to eat       nutritious   food                     
-                                                 food                                  
-
-  Second lockdown:     0.139\*      0.176\*\*    0.171\*\*    0.066        0.129\*\*   
-  medium run                                                                           
-
-                       (0.073)      (0.069)      (0.074)      (0.078)      (0.064)     
-
-  Covid-19             -0.031       -0.031       -0.021       -0.057\*     -0.034      
-  cases/100,000                                                                        
-
-                       (0.028)      (0.026)      (0.029)      (0.030)      (0.024)     
-
-                                                                                       
-
-  No of observations   4,059        4,059        4,059        4,059        4,059       
-
-  Number of households 2,220        2,220        2,220        2,220        2,220       
-
-                                                                                       
-
-                       \(6\)        \(7\)        \(8\)        \(9\)                    
-
-  Outcome variables:   Ate less     Ran out of   Went hungry  Went without             
-                       than they    food         but did not  eating for a             
-                       thought they              eat          whole day                
-                       should                                                          
-
-  Second lockdown:     0.166\*\*    0.021        0.156\*\*    -0.024                   
-  medium run                                                                           
-
-                       (0.071)      (0.062)      (0.065)      (0.054)                  
-
-  Covid-19             -0.040       -0.046\*\*   -0.009       -0.051\*\*               
-  cases/100,000                                                                        
-
-                       (0.026)      (0.023)      (0.024)      (0.021)                  
-
-                                                                                       
-
-  No of observations   4,059        4,059        4,059        4,059                    
-
-  Number of households 2,220        2,220        2,220        2,220                    
-
-  Note: Linear Model                                                                   
-  with household fixed                                                                 
-  effects. All                                                                         
-  dependent variables                                                                  
-  are dummy variables.                                                                 
-  Standard errors are                                                                  
-  in parentheses.                                                                      
-  \*\*\* indicates                                                                     
-  significance at 1%                                                                   
-  level; \*\* at 5%;                                                                   
-  \* at 10%.                                                                           
-
-                                                                                       
-  ---------------------------------------------------------------------------------------
-
-  ---------------------------------------------------------------------------------------------
-  Table A6: Impact of                                                                        
-  lockdowns on food                                                                          
-  insecurity in urban                                                                        
-  areas                                                                                      
-  -------------------- ------------- ------------- ------------- ------------- ------------- --
-                                                                                             
-
-                                                                                             
-
-                       \(1\)         \(2\)         \(3\)         \(4\)         \(5\)         
-
-  Outcome variables:   Any food      Worry about   Unable to eat Had to eat    Had to skip a 
-                       insecurity    not having    healthy and   only a few    meal          
-                                     enough food   nutritious    kinds of food               
-                                     to eat        food                                      
-
-  First lockdown:      0.390\*\*\*   0.407\*\*\*   0.308\*\*\*   0.295\*\*\*   0.245\*\*\*   
-  short run                                                                                  
-
-                       (0.032)       (0.032)       (0.033)       (0.032)       (0.027)       
-
-  First lockdown:      0.194\*\*\*   0.206\*\*\*   0.155\*\*\*   0.131\*\*\*   0.136\*\*\*   
-  medium run                                                                                 
-
-                       (0.028)       (0.028)       (0.029)       (0.027)       (0.023)       
-
-  Second lockdown:     0.257\*\*\*   0.241\*\*\*   0.246\*\*\*   0.227\*\*\*   0.208\*\*\*   
-  medium run                                                                                 
-
-                       (0.034)       (0.034)       (0.033)       (0.035)       (0.029)       
-
-  Covid-19             0.003         0.007\*\*\*   0.004         0.001         0.001         
-  cases/100,000                                                                              
-
-                       (0.003)       (0.003)       (0.003)       (0.003)       (0.002)       
-
-                                                                                             
-
-  No of observations   3,804         3,804         3,804         3,804         3,804         
-
-  Number of households 619           619           619           619           619           
-
-                                                                                             
-
-                       \(6\)         \(7\)         \(8\)         \(9\)                       
-
-  Outcome variables:   Ate less than Ran out of    Went hungry   Went without                
-                       they thought  food          but did not   eating for a                
-                       they should                 eat           whole day                   
-
-  First lockdown:      0.271\*\*\*   0.199\*\*\*   0.194\*\*\*   0.076\*\*\*                 
-  short run                                                                                  
-
-                       (0.028)       (0.024)       (0.023)       (0.015)                     
-
-  First lockdown:      0.130\*\*\*   0.073\*\*\*   0.085\*\*\*   0.029\*\*                   
-  medium run                                                                                 
-
-                       (0.027)       (0.018)       (0.017)       (0.011)                     
-
-  Second lockdown:     0.240\*\*\*   0.149\*\*\*   0.181\*\*\*   0.120\*\*\*                 
-  medium run                                                                                 
-
-                       (0.035)       (0.025)       (0.028)       (0.020)                     
-
-  Covid-19             -0.001        0.003         0.003\*\*     0.001                       
-  cases/100,000                                                                              
-
-                       (0.002)       (0.002)       (0.002)       (0.001)                     
-
-                                                                                             
-
-  No of observations   3,804         3,804         3,804         3,804                       
-
-  Number of households 619           619           619           619                         
-
-  Note: Linear Model                                                                         
-  with household fixed                                                                       
-  effects. All                                                                               
-  dependent variables                                                                        
-  are dummy variables.                                                                       
-  Standard errors are                                                                        
-  in parentheses.                                                                            
-  \*\*\* indicates                                                                           
-  significance at 1%                                                                         
-  level; \*\* at 5%;                                                                         
-  \* at 10%.                                                                                 
-
-                                                                                             
-  ---------------------------------------------------------------------------------------------
-
-
-
 
 [^7]: Households were also asked whether they received unemployment
     benefits, but there was only one observation representing a change,
@@ -1676,6 +1419,17 @@ at 10%.
 ![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
 
 ![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
+
+
+
+# [Seasonality]
+
+
+![Results with restricted sample to examine seasonality](../figures/seasonality_comparison.pdf){#fig:seasonality_comparison}
+
+
+
+![Results for urban only to examine seasonality](../figures/seasonality_urban.pdf){#fig:seasonality_urban}
 
 
 
