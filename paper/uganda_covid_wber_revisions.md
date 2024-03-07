@@ -1257,10 +1257,85 @@ avenues of mitigation are critical future areas of research.
 
                                                                                                            
 
-        
 
 
-*Section A1:*
+[^7]: Households were also asked whether they received unemployment
+    benefits, but there was only one observation representing a change,
+    so we do not have any variation to conduct a conditional ordered
+    logit estimation.
+
+[^9]: While not focusing on lockdowns, one prior study 
+	finds evidence that the pandemic itself led to a switch in
+    occupations, particularly among salaried and business persons, with
+    agriculture seeing the biggest inflow of labor compared to other
+    industries [@Gupta2021].
+
+[^10]: We do not have income data for round 7 and thus cannot examine
+    the medium-term impact of the second lockdown.
+
+
+[^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
+    results for the individual surveys are available upon request. UNPS
+    2018/19 shows the same questions in the questionnaire, but the
+    responses are not available in the data.
+    
+    
+    
+# References {.unnumbered}
+
+<div id="refs"></div>
+
+
+
+# Appendix {.unnumbered}
+
+\appendix
+
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
+
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{table}{0}
+
+
+\input{../tables/survey_table.tex}
+
+
+
+# Alternative Google Mobility Measures
+
+
+![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
+
+![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
+
+\clearpage
+
+# [Seasonality]
+
+
+![Results with restricted sample to examine seasonality](../figures/seasonality_comparison.pdf){#fig:seasonality_comparison}
+
+
+
+![Results for urban only to examine seasonality](../figures/seasonality_urban.pdf){#fig:seasonality_urban}
+
+
+\clearpage
+
+# [Region]
+
+![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
+Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
+
+
+![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
+
+![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
+
+\clearpage
+
+# [Change in agricultural strategy]
 
 In this section, we examine whether agricultural households change their
 agricultural strategy to better cope with the effects of the lockdowns.
@@ -1291,8 +1366,6 @@ decrease (2.4%) in variety are mentioned after the first lockdown. Only
 a small fraction of farmers delayed planting (1.2%) or abandoned crop
 farming (1.5%) altogether for that season after the first lockdown.
 
-**\
-**
 
   -------------------------------------------------------------------------
   Table A3: Impact of                                         
@@ -1368,82 +1441,6 @@ Note: Questions on crop planting activities are only asked in rounds 1,
 where the dependent variable is a dummy variable. Standard errors are in
 parentheses. \*\*\* indicates significance at 1% level; \*\* at 5%; \*
 at 10%.
-
-
-[^7]: Households were also asked whether they received unemployment
-    benefits, but there was only one observation representing a change,
-    so we do not have any variation to conduct a conditional ordered
-    logit estimation.
-
-[^9]: While not focusing on lockdowns, one prior study 
-	finds evidence that the pandemic itself led to a switch in
-    occupations, particularly among salaried and business persons, with
-    agriculture seeing the biggest inflow of labor compared to other
-    industries [@Gupta2021].
-
-[^10]: We do not have income data for round 7 and thus cannot examine
-    the medium-term impact of the second lockdown.
-
-
-[^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
-    results for the individual surveys are available upon request. UNPS
-    2018/19 shows the same questions in the questionnaire, but the
-    responses are not available in the data.
-    
-    
-    
-# References {.unnumbered}
-
-<div id="refs"></div>
-
-
-
-# Appendix {.unnumbered}
-
-\appendix
-
-\renewcommand{\thefigure}{A\arabic{figure}}
-\setcounter{figure}{0}
-
-\renewcommand{\thetable}{A\arabic{table}}
-\setcounter{table}{0}
-
-
-\input{../tables/survey_table.tex}
-
-
-
-# Alternative Google Mobility Measures
-
-
-![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
-
-![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
-
-
-
-# [Seasonality]
-
-
-![Results with restricted sample to examine seasonality](../figures/seasonality_comparison.pdf){#fig:seasonality_comparison}
-
-
-
-![Results for urban only to examine seasonality](../figures/seasonality_urban.pdf){#fig:seasonality_urban}
-
-
-
-
-# [Region]
-
-![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
-Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
-
-
-![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
-
-![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
-
 
 
 
