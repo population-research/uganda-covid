@@ -105,6 +105,11 @@ RESP_GRAPHS := \
 $(RESP_GRAPHS): $(CODE)/10_response.R \
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
+	
+	
+$(FIG)/ag_plant_change.pdf $(TAB)/ag_change_table.tex: $(CODE)/11_agricultural_change.R \
+ $(DAT)/base.rds
+	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1	
 
 ###################################################################
 ### Paper Production                                            ###
@@ -119,7 +124,8 @@ $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
  $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
  $(SEASONALITY_GRAPHS) \
- $(RESP_GRAPHS)
+ $(RESP_GRAPHS) \
+ $(FIG)/ag_plant_change.pdf $(TAB)/ag_change_table.tex
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
 .PHONY: word
@@ -131,7 +137,8 @@ $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
  $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
  $(SEASONALITY_GRAPHS) \
- $(RESP_GRAPHS)
+ $(RESP_GRAPHS) \
+ $(FIG)/ag_plant_change.pdf $(TAB)/ag_change_table.tex
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
 
 .PHONY: view
