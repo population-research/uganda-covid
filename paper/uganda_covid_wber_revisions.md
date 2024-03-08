@@ -1257,117 +1257,6 @@ avenues of mitigation are critical future areas of research.
 
                                                                                                            
 
-        
-
-
-*Section A1:*
-
-In this section, we examine whether agricultural households change their
-agricultural strategy to better cope with the effects of the lockdowns.
-The survey asked in rounds 1, 4, and 7 to households engaged in planting
-activities whether they changed their "planting activities in the
-current agricultural season because of changes in the country or
-community due to coronavirus?". 22.6 percent of agricultural households
-during the first lockdown and 19.1 percent during the second lockdown
-reported changing their planting activities because of the pandemic.
-This is as opposed to 5 percent for the non-lockdown period of round 4.
-We create an indicator variable where 1 represents a change in planting
-activities, and 0 represents no change. We present the estimates of the
-impact of lockdowns on changes in planting activities in Panel A of
-Table A3. The estimates show that the first lockdown led to a 52
-percentage point increase in the likelihood of changing crop planting
-activities and the second lockdown led to a 26 percentage points
-increase compared to round 4.
-
-For households with a change in activities, the survey also asked them
-how they changed their activities. This allows us to shed more light on
-how agricultural households attempted to change their farming strategy
-to cope with the effect of the shock. Panel B shows that the biggest
-change was a change in the use of farm areas, where 8.6 percent reported
-a reduction and 8.7 percent reported an increase in the use of farm
-areas after the first lockdown. It is followed by changes in the number
-of varieties of crops produced, where both an increase (4%) and a
-decrease (2.4%) in variety are mentioned after the first lockdown. Only
-a small fraction of farmers delayed planting (1.2%) or abandoned crop
-farming (1.5%) altogether for that season after the first lockdown.
-
-**\
-**
-
-  -------------------------------------------------------------------------
-  Table A3: Impact of                                         
-  lockdowns on agricultural                                  
-  strategies                                                 
-  ---------------------------- -------------- -------------- --------------
-                                                              
-
-                                                              
-
-  Panel A: Impact of lockdowns                                
-  on crop planting activities                                
-
-  Outcome variables:           Changed crop                  
-                               planting                      
-                               activities                    
-                               because of                    
-                               Covid                         
-
-  First lockdown: short run    0.581\*\*\*                   
-
-                               (0.139)                       
-
-  Second lockdown: medium run  0.275\*\*\*                   
-
-                               (0.048)                       
-
-  Covid-19 cases/100,000       0.051\*\*\*                   
-
-                               (0.017)                       
-
-                                                             
-
-  No of observations           5,230                         
-
-  Number of households         2,071                          
-
-                                                             
-
-  Panel B: Means of changes in                               
-  agricultural strategy                                      
-  because of Covid-19 (in                                    
-  percentages)                                               
-
-                               First Lockdown Second         No lockdown
-                                              Lockdown       (round 4)
-
-  Changed planting acitivities 22.6%          18.8%          5.1%
-  because of COVID-19                                        
-
-  Strategies:                                                
-
-  Reduced farm area            8.6%           10.2%          2.1%
-
-  Increased farm area          8.6%           3.8%           0.0%
-
-  Planted less variety/number  4.0%           6.4%           1.5%
-  of crops                                                   
-
-  Planted more variety/number  2.4%           1.6%           1.1%
-  of crops                                                   
-
-  Delayed planting             1.2%           2.9%           0.3%
-
-  Planted crops that mature    1.0%           1.6%           0.0%
-  quickly                                                    
-
-  Abandoned crop farming       1.5%           0.5%           0.0%
-  -------------------------------------------------------------------------
-
-Note: Questions on crop planting activities are only asked in rounds 1,
-4, and 7. Panel A represents linear model with household fixed effects
-where the dependent variable is a dummy variable. Standard errors are in
-parentheses. \*\*\* indicates significance at 1% level; \*\* at 5%; \*
-at 10%.
 
 
 [^7]: Households were also asked whether they received unemployment
@@ -1420,7 +1309,7 @@ at 10%.
 
 ![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
 
-
+\clearpage
 
 # [Seasonality]
 
@@ -1432,7 +1321,7 @@ at 10%.
 ![Results for urban only to examine seasonality](../figures/seasonality_urban.pdf){#fig:seasonality_urban}
 
 
-
+\clearpage
 
 # [Region]
 
@@ -1444,6 +1333,44 @@ Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 
 ![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
 
+\clearpage
 
+# Change in agricultural strategy
+
+In this section, we examine whether agricultural households change their
+agricultural strategy to better cope with the effects of the lockdowns.
+The survey asked in rounds 1, 4, and 7 to households engaged in planting
+activities whether they changed their "planting activities in the
+current agricultural season because of changes in the country or
+community due to coronavirus?". 23.2 percent of agricultural households
+during the first lockdown and 18.5 percent during the second lockdown
+reported changing their planting activities because of the pandemic.
+This is as opposed to 5 percent for the non-lockdown period of round 4.
+We create an indicator variable where 1 represents a change in planting
+activities, and 0 represents no change. 
+
+We present the estimates of the impact of lockdowns on changes in planting 
+activities in [@fig:ag_plant_change]. 
+The estimates show that the first lockdown led to a 57 percentage points 
+increase in the likelihood of changing crop planting activities, and the 
+second lockdown led to a 26 percentage points increase compared to round 4.
+
+For households with a change in activities, the survey also asked them
+how they changed their activities. This allows us to shed more light on
+how agricultural households attempted to change their farming strategy
+to cope with the effect of the shock. 
+Table \ref{tab:ag_changes} shows that the biggest change was a change in the 
+use of farm areas, where 8.7 percent reported
+a reduction and 9 percent reported an increase in the use of farm
+areas after the first lockdown. 
+It is followed by changes in the number
+of varieties of crops produced, where both an increase (4.1%) and a
+decrease (2.6%) in variety are mentioned after the first lockdown. 
+Only a small fraction of farmers delayed planting (1.3%) or abandoned crop
+farming (1.5%) altogether for that season after the first lockdown.
+
+![Ag plant change](../figures/ag_plant_change.pdf){#fig:ag_plant_change}
+
+\input{../tables/ag_change_table.tex}
 
 
