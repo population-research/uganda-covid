@@ -71,6 +71,35 @@ feols(ag_plant_change ~ survey + cases_smooth_per_100000 | hhid,
   add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
   arrange(term)
 
+# Generate tables of means by survey ----
+
+base %>%
+  filter(survey %in% c(1, 4, 7)) %>%
+  group_by(survey) %>%
+  summarise(
+    ag_crops_plant = weighted.mean(ag_crops_plant, weight_final, na.rm = TRUE),
+    ag_plant_change = weighted.mean(ag_plant_change, weight_final, na.rm = TRUE),
+    ag_plant_what_abandoned = weighted.mean(ag_plant_what_abandoned, weight_final, na.rm = TRUE),
+    ag_plant_what_area_reduce = weighted.mean(ag_plant_what_area_reduce, weight_final, na.rm = TRUE),
+    ag_plant_what_area_increase = weighted.mean(ag_plant_what_area_increase, weight_final, na.rm = TRUE),
+    ag_plant_what_fast_crops = weighted.mean(ag_plant_what_fast_crops, weight_final, na.rm = TRUE),
+    ag_plant_what_less_variety = weighted.mean(ag_plant_what_less_variety, weight_final, na.rm = TRUE),
+    ag_plant_what_more_variety = weighted.mean(ag_plant_what_more_variety, weight_final, na.rm = TRUE),
+    ag_plant_what_delayed = weighted.mean(ag_plant_what_delayed, weight_final, na.rm = TRUE),
+    ag_farm_products_sell_need = weighted.mean(ag_farm_products_sell_need, weight_final, na.rm = TRUE),
+    ag_farm_products_sell_able = weighted.mean(ag_farm_products_sell_able, weight_final, na.rm = TRUE),
+    work_for_pay = weighted.mean(work_for_pay, weight_final, na.rm = TRUE)
+  ) %>% 
+  tabyl()
+  
+  # Pivot so each survey is a column
+  pivot_longer(!survey, names_to = "survey", values_to = "value")
+  
+  
+
+
+
+
 *************************************************************************************************************************************************************************
   * Estimations on agriculture
 *************************************************************************************************************************************************************************
@@ -83,7 +112,7 @@ foreach i in  ag_plant_change ag_farm_products_sell_able {
 }	
 
 foreach i in ag_plant_change  ag_plant_what_area_reduce ag_plant_what_area_increase  ag_plant_what_less_variety ag_plant_what_more_variety ag_plant_what_delayed ag_plant_what_fast_crops ag_plant_what_abandoned {
-	svy: tab survey `i'
+	tab survey `i'
 }	
 
 
