@@ -127,7 +127,7 @@ how to compare to earlier tables.
     Finally, we have added a new subsection that examines the regional variation 
     in lockdowns and food insecurity and also discuss what can be learned about the 
     degrees of lockdown by region using regional Google mobility data 
-    (see also our response below to R2, suggestion 8).
+    (See also our response to R2, suggestion 9 below.)
     
 
 4. Attrition is large. Is it correlated with food security? It seems like it
@@ -418,6 +418,71 @@ good reason to think this data is accurate in rural areas? How many time periods
 are there in the data, and how is the measure constructed (e.g., last thirty
 days)? Based on Figure 1, it seems like the data (and much of the COVID-19) data
 is national in scope; is this correct? A little more detail would be helpful.
+
+	**Response:** The Google Mobility data provide daily information,
+	both nationally and by the four regions in Uganda, on the
+	change relative to the baseline for six different location types.
+	The six location types are Retail and recreation, 
+	Supermarkets and pharmacies, Parks, Public transport, 
+	Workplaces, and Residential.
+	
+	The coverage varies depending on the location type and area.
+	If there is an insufficient number to avoid privacy concerns and to meet
+	Google's quality threshold, the date/location type combination will be 
+	missing.
+	Date/location type combinations can be missing from regional data, while
+	still being available in the national data.
+	
+	As we discussed above, we removed the original Tables 6 and 7
+	in response to the Editor's concern about the difficulty of comparing the
+	results.
+	Instead, we now discuss in detail the changes in the number of visitors to 
+	retail and recreation locations in the Lockdown Context and Enforcement 
+	section. 
+	Furthermore, we use the same variable to examine the regional distribution
+	of lockdown (see below).
+	
+	In terms of urban/rural differences in coverage, we now discuss the 
+	differences in urbanization across the four regions. 
+	Briefly, the Central region, home to Kampala, is the only region with
+	any sizable urban centers; the fifth-largest center, Mbarara in the 
+	Western region had fewer than 200,000 people at the last census.
+	Despite this, there is enough coverage to allow us to say something about
+	the degrees of lockdown by region when we use retail locations, which
+	includes marketplaces.
+	
+	Originally, we used time spent in residential locations but that 
+	suffers from almost no coverage in the Northern region and little 
+	coverage around the first lockdown in the Eastern and Western regions.
+	
+	[produce graphs for each outcome and check which ones are missing.]
+
+	Transit: Eastern missing completely; Northern almost completely missing
+	between survey rounds 6 and 7
+	
+	Parks: Eastern missing completely; Northern spotty between 4 and 5 
+	and between 6 and 7
+	
+	Grocery/pharmacy: Northern completely missing; Eastern and Western
+	very spotty throughout
+	
+	Workplaces: high availability for all regions
+	
+	Residential: Eastern and Western very spotty before survey round 1 
+	(missing essentially the entire first lockdown); Northern 
+	has only spotty information around survey rounds 3 and 4 and between
+	rounds 6 and 7 and otherwise is missing.
+	
+	
+	 
+	
+	
+	
+	[change from residential to retail for showing lockdowns]
+	
+	[Discuss lockdown severity regionally below]
+	
+	
 
 9. To the extent it is possible, it would be helpful to see more detail on
 whether enforcement of lockdowns might have varied subnationally. I would expect
