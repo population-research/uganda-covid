@@ -382,7 +382,7 @@ better regional coverage than most other mobility measures.[^other_mobility]
 Each day of the week is scaled relative to a "baseline day," which
 is the median value from the five weeks, January 3 -- February 6, 2020. 
 
-[^other_mobility]: Mobility information for two other types of locations, 
+[^other_mobility]: Mobility information for two other locations types, 
     the percentage change in the number of visitors to workplaces and the
     percentage change in the time spent at residential locations are 
     shown in Appendix Figures @fig:mobility_national_workplaces and
@@ -1285,7 +1285,7 @@ avenues of mitigation are critical future areas of research.
 
 <div id="refs"></div>
 
-
+\clearpage
 
 # Appendix {.unnumbered}
 
@@ -1308,6 +1308,14 @@ avenues of mitigation are critical future areas of research.
 ![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
 
 ![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
+
+
+![Transit](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
+
+![Grocery/pharmacy](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
+
+![Parks](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
+
 
 \clearpage
 
@@ -1332,6 +1340,15 @@ Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 ![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
 
 ![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
+
+![Transit](../figures/mobility_regional_transit.pdf){#fig:mobility_regional_transit}
+
+![Grocery/pharmacy](../figures/mobility_regional_grocery.pdf){#fig:mobility_regional_grocery}
+
+![Parks](../figures/mobility_regional_parks.pdf){#fig:mobility_regional_parks}
+
+
+
 
 \clearpage
 
