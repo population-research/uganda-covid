@@ -382,11 +382,12 @@ better regional coverage than most other mobility measures.[^other_mobility]
 Each day of the week is scaled relative to a "baseline day," which
 is the median value from the five weeks, January 3 -- February 6, 2020. 
 
-[^other_mobility]: Mobility information for two other types of locations, 
-    the percentage change in the number of visitors to workplaces and the
-    percentage change in the time spent at residential locations are 
-    shown in Appendix Figures @fig:mobility_national_workplaces and
-    @fig:mobility_national_residential.
+[^other_mobility]: Mobility information for the five other locations types, 
+    the percentage change in the number of visitors to workplaces 
+    to groceries or pharmacies, to transit stations, to parks, 
+    and the percentage change in the time spent at residential locations are 
+    shown in Appendix Figures @fig:mobility_national_workplaces 
+    through @fig:mobility_national_residential.
     The visits to workplaces measure also has good regional coverage
     but it is unclear how relevant this is given that the majority of 
     people in Uganda work in agriculture.
@@ -675,7 +676,7 @@ for seasonality.
 ## Regional Variation 
 
 All of the results above are national-level, which may obscure critical
-regional variations in Covid exposure and the degree and effects of lockdowns.
+regional variations in Covid exposure and the degrees and effects of lockdowns.
 This section, therefore, examines differences in the Google Mobility measure and 
 in food insecurity across the survey rounds for each of the four regions in Uganda.
 
@@ -709,15 +710,17 @@ and a slower pace of urbanization, and consistently has the highest poverty leve
 
 ![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
 
-[@fig:retail_regional] shows the changes in percentage visits to retail and
+[@fig:retail_regional] shows the percentage changes in visits to retail and
 recreation locations by region, together with the survey rounds.[^appendix_regional]
 In all regions, there is clear evidence of the scale of the first severe lockdown,
 although the percentage change is larger in the Central region at about 75%,
 compared with just over 50% in the other three regions.
 
 [^appendix_regional]: Appendix @fig:mobility_regional_workplaces
-and Appendix @fig:mobility_regional_residential show the percentage change in visitors
-to workplaces and the percentage change in time spent at residential locations.
+through Appendix @fig:mobility_regional_residential 
+show the percentage changes in the number of visitors to workplaces 
+to groceries or pharmacies, to transit stations, to parks, 
+and the percentage change in the time spent at residential locations.
 Although the workplace mobility data appear to have broader coverage we 
 prefer the retail measure because of the predominately agricultural nature
 of work in the Eastern, Northern, and Western regions.
@@ -1285,7 +1288,7 @@ avenues of mitigation are critical future areas of research.
 
 <div id="refs"></div>
 
-
+\clearpage
 
 # Appendix {.unnumbered}
 
@@ -1306,6 +1309,12 @@ avenues of mitigation are critical future areas of research.
 
 
 ![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
+
+![Transit](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
+
+![Grocery/pharmacy](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
+
+![Parks](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
 
 ![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
 
@@ -1332,6 +1341,15 @@ Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 ![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
 
 ![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
+
+![Transit](../figures/mobility_regional_transit.pdf){#fig:mobility_regional_transit}
+
+![Grocery/pharmacy](../figures/mobility_regional_grocery.pdf){#fig:mobility_regional_grocery}
+
+![Parks](../figures/mobility_regional_parks.pdf){#fig:mobility_regional_parks}
+
+
+
 
 \clearpage
 

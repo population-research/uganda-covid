@@ -127,7 +127,7 @@ how to compare to earlier tables.
     Finally, we have added a new subsection that examines the regional variation 
     in lockdowns and food insecurity and also discuss what can be learned about the 
     degrees of lockdown by region using regional Google mobility data 
-    (see also our response below to R2, suggestion 8).
+    (See also our response to R2, suggestion 9 below.)
     
 
 4. Attrition is large. Is it correlated with food security? It seems like it
@@ -419,12 +419,72 @@ are there in the data, and how is the measure constructed (e.g., last thirty
 days)? Based on Figure 1, it seems like the data (and much of the COVID-19) data
 is national in scope; is this correct? A little more detail would be helpful.
 
+	**Response:** The Google Mobility data provide daily information,
+	both nationally and by the four regions in Uganda, on the
+	change relative to the baseline for six different location types.
+	The six location types are Retail and recreation, 
+	Supermarkets and pharmacies, Parks, Public transport, 
+	Workplaces, and Residential.
+	
+	The coverage varies depending on the location type and area.
+	If there is an insufficient number to avoid privacy concerns or to meet
+	Google's quality threshold, the date/location type combination will be 
+	missing.
+	Date/location type combinations can be missing from regional data, while
+	still being available in the national data.
+	
+	As we discussed above, we removed the original Tables 6 and 7
+	in response to the Editor's concern about the difficulty of comparing the
+	results.
+	Instead, we now discuss in detail the changes in the number of visitors to 
+	retail and recreation locations in the Lockdown Context and Enforcement 
+	section. 
+	Furthermore, we use the same variable to examine the regional distribution
+	of lockdown (see below).
+	
+	In terms of urban/rural differences in coverage, we now discuss the 
+	differences in urbanization across the four regions in the section
+	on Regional Variation. 
+	Briefly, the Central region, home to Kampala, is the only region with
+	any sizable urban centers; the fifth-largest center, Mbarara in the 
+	Western region had fewer than 200,000 people at the last census.
+	Despite this, there is enough coverage to allow us to say something about
+	the degrees of lockdown by region when we use retail locations, which
+	includes marketplaces.
+	
+	Originally, we used time spent in residential locations but that 
+	suffers from almost no coverage in the Northern region and little 
+	coverage around the first lockdown in the Eastern and Western regions.
+	Visits to workplaces has high coverage for all regions, but we decided
+	to use retail instead because it is unclear to what extent this would
+	be relevant for more rural areas, while even more rural areas will have
+	marketplaces and retail locations.
+	
+	We now show all mobility measures, both nationally and regionally, in 
+	the Appendix. 
+	For transit, Eastern is missing completely, while Northern is almost
+	completely missing between survey rounds 6 and 7.
+	For parks, Eastern is missing completely, while Northern is spotty 
+	between 4 and 5 and between 6 and 7.
+	For grocery/pharmacy, Northern is completely missing, while Eastern and 
+	Western are very spotty throughout.
+	
+
 9. To the extent it is possible, it would be helpful to see more detail on
 whether enforcement of lockdowns might have varied subnationally. I would expect
 that it did (and in particular, that it might have been much less strictly
 enforced in rural parts of Uganda).
 
-
+	**Response:** To address this, we now include the Google Mobility 
+	measure of the percentage changes in the number of visits to retail
+	location relative to the baseline period.
+	Lockdowns are, indeed, less strictly enforced in the more rural regions 
+	than in the Central region judging from the percentage changes.
+	However, the first lockdown is still clearly heavily enforced in those
+	three regions.
+	The pattern for the second lockdown enforcement is more mixed but,
+	as we describe in the paper, there is still clear evidence of 
+	enforcement, even in more rural areas.
 
 \clearpage
 \onehalfspacing

@@ -65,11 +65,18 @@ $(DAT)/temp_covid_cases_restrictions.rds: $(CODE)/04_load_covid_cases_restrictio
 # Descriptive Graphs
 DESC_GRAPHS := \
  $(FIG)/combined.pdf \
+ $(FIG)/mobility_national_retail.pdf \
  $(FIG)/mobility_national_residential.pdf \
  $(FIG)/mobility_national_workplaces.pdf \
+ $(FIG)/mobility_national_grocery.pdf \
+ $(FIG)/mobility_national_parks.pdf \
+ $(FIG)/mobility_national_transit.pdf \
  $(FIG)/mobility_regional_retail.pdf \
  $(FIG)/mobility_regional_workplaces.pdf \
  $(FIG)/mobility_regional_residential.pdf \
+ $(FIG)/mobility_regional_grocery.pdf \
+ $(FIG)/mobility_regional_parks.pdf \
+ $(FIG)/mobility_regional_transit.pdf \
  $(FIG)/food_insecurity_by_survey_round_3_levels.pdf \
  $(FIG)/food_insecurity_by_region_survey_round_3_levels.pdf 
 
