@@ -275,8 +275,9 @@ https://www.fao.org/3/i4830e/i4830e.pdf) this would also depend on checking the
 Rasch model infit statistics, to ensure it is valid. This would be slightly more
 standard than just taking the maximum across the eight FIES questions.
 
-    **Response:** We appreciate the suggestion and, as mentioned above, we have 
-    moved to a three-level measure of food insecurity based on these references. 
+    **Response:** We appreciate the suggestion, and, as mentioned above, we have 
+    moved to the standard three-level measure of food insecurity based on this
+    suggestion and the references. 
     This makes the explanation of our results and comparison with the prior literature 
     easier.
     It also implies that our new measures have already been checked with the Rasch 

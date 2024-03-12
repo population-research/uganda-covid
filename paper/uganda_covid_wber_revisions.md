@@ -178,10 +178,8 @@ non-farm business owners---experienced significant asset decline and increased
 likelihood of net borrowing, presumably as a coping mechanism after the first
 lockdown [@Mahmud2023].
 
-Using the Food and Agriculture Organization's (FAO) eight-question food
-insecurity experience scale to measure food insecurity, we find that
-food insecurity significantly increased during the lockdowns. The point
-estimates are significant, with an increase of 25 percentage points for
+We find that food insecurity significantly increased during the lockdowns. 
+The point estimates are significant, with an increase of 25 percentage points for
 any food insecurity during the first lockdown compared to the period
 with no lockdowns. Even more concerningly, the two worst forms of food
 insecurity, skipping meals and going without eating the whole day,
@@ -192,8 +190,8 @@ food insecurity 12 percentage points higher two to three months after
 the first lockdown was lifted. The medium-term impact was even higher
 following the second lockdown, with a 22 percentage points increase in
 any form of food insecurity three months after the second lockdown had
-been lifted. The difference in the medium-run impact between the two
-lockdowns suggests that the lower than normal rainfall during July 
+been lifted. The differences in the medium-run impact between the two
+lockdowns suggest that the lower-than-normal rainfall during July 
 through  October of 2021 compounded the negative effect of
 the lockdown.
 
@@ -279,7 +277,7 @@ presented in Appendix Table \ref{tab:surveys}.
 
 ## Food Insecurity Measurement
 
-The survey measured food insecurity based on the Food Insecurity
+The surveys measured food insecurity based on the Food Insecurity
 Experience Scale (FIES) developed by the FAO [@FAO2016]. 
 FIES uses eight questions with dichotomous (yes/no) responses to capture
 different aspects of food insecurity. 
@@ -305,7 +303,7 @@ and "severe" if answered yes to seven or eight questions
 [@FAO2015;@FAO2016].[^individual_questions]
 
 [^individual_questions]: Results for the estimations below using
-each individual question as the dependent variables are available 
+each individual question as the dependent variable are available 
 upon request.
 
 Although the sample for the UHFS is based on the UNPS, there is, unfortunately, 
@@ -318,7 +316,7 @@ These do not match up with any of the individual FIES questions or the cumulativ
 food insecurity measures that we use.
 Second, the UNPS questions have a broader scope, which includes situations 
 such as insecurity in reaching the market, the absence of food in the market, 
-and floods, rather the lack of money or other resources in the FIES questions.
+and floods, rather than the lack of money or other resources in the FIES questions.
 Finally, the UHFS questionnaire asks about the respondent and other adults 
 in the household, rather than the entire household as in UNPS. 
 As long as children are kept fed even in times of food insecurity, this does
