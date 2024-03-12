@@ -427,7 +427,7 @@ is national in scope; is this correct? A little more detail would be helpful.
 	Workplaces, and Residential.
 	
 	The coverage varies depending on the location type and area.
-	If there is an insufficient number to avoid privacy concerns and to meet
+	If there is an insufficient number to avoid privacy concerns or to meet
 	Google's quality threshold, the date/location type combination will be 
 	missing.
 	Date/location type combinations can be missing from regional data, while
@@ -443,7 +443,8 @@ is national in scope; is this correct? A little more detail would be helpful.
 	of lockdown (see below).
 	
 	In terms of urban/rural differences in coverage, we now discuss the 
-	differences in urbanization across the four regions. 
+	differences in urbanization across the four regions in the section
+	on Regional Variation. 
 	Briefly, the Central region, home to Kampala, is the only region with
 	any sizable urban centers; the fifth-largest center, Mbarara in the 
 	Western region had fewer than 200,000 people at the last census.
@@ -454,34 +455,19 @@ is national in scope; is this correct? A little more detail would be helpful.
 	Originally, we used time spent in residential locations but that 
 	suffers from almost no coverage in the Northern region and little 
 	coverage around the first lockdown in the Eastern and Western regions.
+	Visits to workplaces has high coverage for all regions, but we decided
+	to use retail instead because it is unclear to what extent this would
+	be relevant for more rural areas, while even more rural areas will have
+	marketplaces and retail locations.
 	
-	[produce graphs for each outcome and check which ones are missing.]
-
-	Transit: Eastern missing completely; Northern almost completely missing
-	between survey rounds 6 and 7
-	
-	Parks: Eastern missing completely; Northern spotty between 4 and 5 
-	and between 6 and 7
-	
-	Grocery/pharmacy: Northern completely missing; Eastern and Western
-	very spotty throughout
-	
-	Workplaces: high availability for all regions
-	
-	Residential: Eastern and Western very spotty before survey round 1 
-	(missing essentially the entire first lockdown); Northern 
-	has only spotty information around survey rounds 3 and 4 and between
-	rounds 6 and 7 and otherwise is missing.
-	
-	
-	 
-	
-	
-	
-	[change from residential to retail for showing lockdowns]
-	
-	[Discuss lockdown severity regionally below]
-	
+	We now show all mobility measures, both nationally and regionally, in 
+	the Appendix. 
+	For transit, Eastern is missing completely, while Northern is almost
+	completely missing between survey rounds 6 and 7.
+	For parks, Eastern is missing completely, while Northern is spotty 
+	between 4 and 5 and between 6 and 7.
+	For grocery/pharmacy, Northern is completely missing, while Eastern and 
+	Western are very spotty throughout.
 	
 
 9. To the extent it is possible, it would be helpful to see more detail on
@@ -489,7 +475,16 @@ whether enforcement of lockdowns might have varied subnationally. I would expect
 that it did (and in particular, that it might have been much less strictly
 enforced in rural parts of Uganda).
 
-
+	**Response:** To address this, we now include the Google Mobility 
+	measure of the percentage changes in the number of visits to retail
+	location relative to the baseline period.
+	Lockdowns are, indeed, less strictly enforced in the more rural regions 
+	than in the Central region judging from the percentage changes.
+	However, the first lockdown is still clearly heavily enforced in those
+	three regions.
+	The pattern for the second lockdown enforcement is more mixed but,
+	as we describe in the paper, there is still clear evidence of 
+	enforcement, even in more rural areas.
 
 \clearpage
 \onehalfspacing
