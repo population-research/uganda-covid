@@ -417,7 +417,7 @@ these choices.
 	redone the analyses so that they include all survey indicators.
 	Furthermore, in the Estimation Strategy section, we now include a 
 	detailed discussion of how long after the end of lockdowns each survey 
-	occurred. 
+	occurred, which we hope will better motivate our choices. 
 	
 
 8. How good is Google Mobility data in Uganda? How disaggregated is it? Is there
