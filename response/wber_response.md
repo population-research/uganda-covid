@@ -413,6 +413,13 @@ with the same stringency index and similar time spent at residence) is
 considered non-lockdown. It would be helpful to see a clearer articulation of
 these choices.
 
+	**Response:** In response to this and the questions above, we have 
+	redone the analyses so that they include all survey indicators.
+	Furthermore, in the Estimation Strategy section, we now include a 
+	detailed discussion of how long after the end of lockdowns each survey 
+	occurred. 
+	
+
 8. How good is Google Mobility data in Uganda? How disaggregated is it? Is there
 good reason to think this data is accurate in rural areas? How many time periods
 are there in the data, and how is the measure constructed (e.g., last thirty
