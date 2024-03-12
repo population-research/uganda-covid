@@ -679,7 +679,8 @@ agri_separately <- base %>%
     variable = str_to_title(str_remove(variable, "insecure_"))
   ) 
 
-# Allow the agricultural status to vary over time
+# Allow the agricultural status to vary over time; running the same thing twice
+# with different agri status as excluded to ease graph production
 non_agri <- map(
   food_vars, 
   ~ feols(as.formula(paste0(.x, " ~ survey*ag_0 + cases_smooth_per_100000 | hhid")), 
@@ -731,8 +732,8 @@ agri <- agri %>%
 
 
 
-# Combine the two data frames and plot
-bind_rows(non_agri, agri) %>% 
+# Combine the two data frames with varying agricultural status and plot
+right_columns <- bind_rows(non_agri, agri) %>% 
   mutate(
     type = factor(type, levels = c("Non-agricultural", "Agricultural"))  
   ) %>% 
@@ -744,17 +745,23 @@ bind_rows(non_agri, agri) %>%
     x = "Survey",
     y = "Coefficient"
   ) +
-  facet_grid(vars(variable), vars(type), scales = "fixed")
+  scale_y_continuous(breaks = c(-0.1, 0, 0.1, 0.2, 0.3, 0.4)) +
+  coord_cartesian(ylim = c(-0.15, 0.45)) +
+  facet_grid(vars(variable), vars(type), scales = "fixed") +
+  ggtitle("Agricultural Status Vary By Survey") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10))
+  
 
-agri_separately %>% 
-  mutate(
-    type = case_when(
-      ag_first == "Agricultural" ~ "Agricultural before Covid",
-      ag_first == "Non-agricultural" ~ "Non-agricultural before Covid"
-    )
-  ) %>% 
-  bind_rows(non_agri) %>% 
-  bind_rows(agri) %>%
+# Plot the same thing, but with pre-covid and post-covid agricultural status
+
+left_columns <- agri_separately %>% 
+  mutate(type = ag_first) %>% 
+  # mutate(
+  #   type = case_when(
+  #     ag_first == "Agricultural" ~ "Agricultural Pre-Covid",
+  #     ag_first == "Non-agricultural" ~ "Non-agricultural Pre-Covid"
+  #   )
+  # ) %>% 
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -763,29 +770,36 @@ agri_separately %>%
     x = "Survey",
     y = "Coefficient"
   ) +
-  facet_grid(vars(variable), vars(type), scales = "fixed")
+  scale_y_continuous(breaks = c(-0.1, 0, 0.1, 0.2, 0.3, 0.4)) +
+  coord_cartesian(ylim = c(-0.15, 0.45)) +
+  facet_grid(variable ~ type , scales = "fixed") +
+  ggtitle("Separate Samples by Pre-Covid Status") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10))
 
+# Combine the two plots
+left_columns + right_columns +  plot_layout(axes = 'collect')
 
-agri_separately %>% 
-  mutate(
-    type = case_when(
-      ag_first == "Agricultural" ~ "Agricultural Pre-Covid",
-      ag_first == "Non-agricultural" ~ "Non-agricultural Pre-Covid"
-    )
-  ) %>% 
-  bind_rows(non_agri) %>% 
-  bind_rows(agri) %>%
-  mutate(
-    type = factor(type, levels = c("Non-agricultural Pre-Covid", "Agricultural Pre-Covid", "Non-agricultural", "Agricultural"))  
-  ) %>%
-  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  # Make 0 line more prominent
-  geom_hline(yintercept = 0, color = color_palette[1]) +
-  geom_pointrange() +
-  labs(
-    x = "Survey",
-    y = "Coefficient"
-  ) +
-  facet_grid(variable ~ type , scales = "fixed")
+# Prior version that does not have titles above columns
+# agri_separately %>% 
+#   mutate(
+#     type = case_when(
+#       ag_first == "Agricultural" ~ "Agricultural Pre-Covid",
+#       ag_first == "Non-agricultural" ~ "Non-agricultural Pre-Covid"
+#     )
+#   ) %>% 
+#   bind_rows(non_agri) %>% 
+#   bind_rows(agri) %>%
+#   mutate(
+#     type = factor(type, levels = c("Non-agricultural Pre-Covid", "Agricultural Pre-Covid", "Non-agricultural", "Agricultural"))  
+#   ) %>%
+#   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
+#   # Make 0 line more prominent
+#   geom_hline(yintercept = 0, color = color_palette[1]) +
+#   geom_pointrange() +
+#   labs(
+#     x = "Survey",
+#     y = "Coefficient"
+#   ) +
+#   facet_grid(variable ~ type , scales = "fixed") 
 
 ggsave(here("figures", "agri_vs_non_agri.pdf"), width = 8, height = 6, units = "in")

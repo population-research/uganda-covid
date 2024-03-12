@@ -21,7 +21,7 @@ suggestions, which we believe have significantly improved the paper.
 question—did we do that?]
 
 
-**Notable changes:**
+**Major changes:**
 
 1. To ease the interpretation of the results, to address the potential multiple comparisons
 issues raised by Referee 1, and in response to Referee 1's comment on the measurement 
@@ -397,13 +397,12 @@ round.” This makes it very difficult to interpret Table 5; why not use engagem
 in agricultural production from the 2019/20 UNPS data? At the least, I’d like to
 see the authors justify making this variable dynamic in more specific detail.
 
-    **Response:** To address the issues of interpretation, we now provide separate 
-    results for households that were in agriculture or those that were not in 
-    agriculture before Covid (the two left columns of Figure TK).
-    With the move to using all survey rounds, we also show the results equivalent
-    to the original table, where we interact agricultural status in prior 
-    round with survey indicators (in effect allowing households to change 
-    status).
+    **Response:** To address this, we now use two different approaches.
+    First, we present results separately for households that were in agriculture 
+    and those that were not in agriculture before Covid.
+    Second, we show the results equivalent to the original table but with all 
+    survey rounds, interacting households' agricultural status in the prior round 
+    with survey indicators (in effect, allowing households to change status).
     We discuss the updated results in the Agricultural vs. Non-Agricultural Households
     section.
 
