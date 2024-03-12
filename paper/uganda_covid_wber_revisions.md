@@ -1100,30 +1100,11 @@ substantially to the large effects of lockdowns on food insecurity.
 
 
 ![Impact on outside assistance ---
-Panel A                                                                                 
-  represents                                                                                    
-  coefficients from                                                                             
-  fixed effects ordered                                                                         
-  logit model, so for                                                                           
-  the dependent                                                                                 
-  variables, 0                                                                                  
-  represents no change,                                                                         
-  1 represents an                                                                               
-  increase, and -1                                                                              
-  represents a                                                                                  
-  decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+Panel A represents coefficients from fixed effects ordered logit model, so for the dependent variables, 0 represents no change, 1 represents an increase, and -1 represents a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
 
 
-![Impact on changes in number of household members and movement to urban area ---
-Panel B                                                                             
-  represent                                                                                     
-  coefficients from                                                                             
-  linear model with                                                                             
-  household fixed                                                                               
-  effects where                                                                                 
-  dependent variables                                                                           
-  are continuous                                                                                
-  variables](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
+![Impact on changes in number of household members and movement to urban area --- 
+Panel B represent coefficients from linear model with household fixed effects where dependent variables are continuous variables](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
 
 
 As households faced greater food insecurity during lockdowns, it is
@@ -1166,9 +1147,9 @@ Given the increase in agricultural work with the first lockdown,
 [@fig:ag_vs_non_ag] examines whether agricultural households fared 
 better than non-agricultural households. 
 We show the results for two different approaches.
-First, the two left columns are separate regressions by whether the 
-household was an agricultural household before Covid for each
-level of food insecurity.[^agri_pre_covid] 
+First, the two left columns separate households by whether they 
+were agricultural households before Covid and estimate each level 
+of food insecurity.[^agri_pre_covid] 
 Second, the results in the right two columns come from one regression 
 per level of food insecurity and use the prior rounds' 
 reported agricultural status interacted with the survey indicators.
@@ -1176,9 +1157,9 @@ Note, as we previously treated households' work in agriculture
 as a choice variable, this set of estimations is exploratory rather than causal. 
 In all cases, the effects are shown relative to survey round 4 as above.
 
-[^agri_pre_covid]: For round 1, the survey asks about the employment industry 
-    before the lockdown, which allows us to identify whether individuals worked
-    in agriculture before the round 1 lockdown.
+[^agri_pre_covid]: Round 1 of the survey asks about the household's
+area of work before the lockdown, which allows us to identify whether households
+were in agriculture before the first lockdown.
     
 ![Estimated Changes in Food Insecurity With 95% Confidence Intervals 
 by Survey Round Relative to Survey 4, Controlling for Household Fixed Effects, 
@@ -1189,20 +1170,21 @@ Right Two Columns Allow Households to Change Status](../figures/agri_vs_non_agri
 Agricultural households appeared to be more food secure than
 non-agricultural households during the first lockdown. 
 Their likelihood of suffering "any food insecurity" during lockdowns was about 20
-percentage points lower than non-agricultural households as shown by round 1.
-This difference is even starker if we use the current agricultural status, in
-which case there is no statistically significant difference between round 1
-and round 4 for agricultural households.
- Furthermore, agricultural households do better than non-agricultural households
+percentage points lower than non-agricultural households, as shown by round 1.
+In fact, there are no statistically significant differences between rounds 1
+and 4 for agricultural households, whether we use pre-Covid or prior survey
+agricultural status.
+Agricultural households also do better than non-agricultural households
 when it comes to both moderate/severe or severe food insecurity, although
 the difference is less stark for these outcomes.
- 
-The difference disappears in the medium run with no statistically significant
-differences to round 4 for either non-agricultural or agricultural households.
-However, for round 7 there is little difference with all groups
+Specifically, for severe food insecurity, the estimated difference between
+round 1 and 4 is very close to zero.
+
+However, for round 7, there is little difference, with all groups
 seeing statistically significant increases in food insecurity.
 This suggests that the concurrent lower-than-normal rainfall
-removed some of the protection from lockdowns that they had previously had.
+removed some of the protection from lockdowns that 
+agricultural households had previously had.
 
 
 # Conclusion
