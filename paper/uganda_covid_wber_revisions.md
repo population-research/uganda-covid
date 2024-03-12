@@ -676,7 +676,7 @@ for seasonality.
 ## Regional Variation 
 
 All of the results above are national-level, which may obscure critical
-regional variations in Covid exposure and the degree and effects of lockdowns.
+regional variations in Covid exposure and the degrees and effects of lockdowns.
 This section, therefore, examines differences in the Google Mobility measure and 
 in food insecurity across the survey rounds for each of the four regions in Uganda.
 
@@ -710,7 +710,7 @@ and a slower pace of urbanization, and consistently has the highest poverty leve
 
 ![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
 
-[@fig:retail_regional] shows the changes in percentage visits to retail and
+[@fig:retail_regional] shows the percentage changes in visits to retail and
 recreation locations by region, together with the survey rounds.[^appendix_regional]
 In all regions, there is clear evidence of the scale of the first severe lockdown,
 although the percentage change is larger in the Central region at about 75%,
@@ -718,7 +718,7 @@ compared with just over 50% in the other three regions.
 
 [^appendix_regional]: Appendix @fig:mobility_regional_workplaces
 through Appendix @fig:mobility_regional_residential 
-show the percentage change in the number of visitors to workplaces 
+show the percentage changes in the number of visitors to workplaces 
 to groceries or pharmacies, to transit stations, to parks, 
 and the percentage change in the time spent at residential locations.
 Although the workplace mobility data appear to have broader coverage we 
