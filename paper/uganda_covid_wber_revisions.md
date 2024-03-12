@@ -382,11 +382,12 @@ better regional coverage than most other mobility measures.[^other_mobility]
 Each day of the week is scaled relative to a "baseline day," which
 is the median value from the five weeks, January 3 -- February 6, 2020. 
 
-[^other_mobility]: Mobility information for two other locations types, 
-    the percentage change in the number of visitors to workplaces and the
-    percentage change in the time spent at residential locations are 
-    shown in Appendix Figures @fig:mobility_national_workplaces and
-    @fig:mobility_national_residential.
+[^other_mobility]: Mobility information for the five other locations types, 
+    the percentage change in the number of visitors to workplaces 
+    to groceries or pharmacies, to transit stations, to parks, 
+    and the percentage change in the time spent at residential locations are 
+    shown in Appendix Figures @fig:mobility_national_workplaces 
+    through @fig:mobility_national_residential.
     The visits to workplaces measure also has good regional coverage
     but it is unclear how relevant this is given that the majority of 
     people in Uganda work in agriculture.
@@ -716,8 +717,10 @@ although the percentage change is larger in the Central region at about 75%,
 compared with just over 50% in the other three regions.
 
 [^appendix_regional]: Appendix @fig:mobility_regional_workplaces
-and Appendix @fig:mobility_regional_residential show the percentage change in visitors
-to workplaces and the percentage change in time spent at residential locations.
+through Appendix @fig:mobility_regional_residential 
+show the percentage change in the number of visitors to workplaces 
+to groceries or pharmacies, to transit stations, to parks, 
+and the percentage change in the time spent at residential locations.
 Although the workplace mobility data appear to have broader coverage we 
 prefer the retail measure because of the predominately agricultural nature
 of work in the Eastern, Northern, and Western regions.
@@ -1307,15 +1310,13 @@ avenues of mitigation are critical future areas of research.
 
 ![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
 
-![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
-
-
 ![Transit](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
 
 ![Grocery/pharmacy](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
 
 ![Parks](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
 
+![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
 
 \clearpage
 
