@@ -367,7 +367,9 @@ graph_work_employment <- work_employment %>%
   ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
-             labeller = labeller(org_variable = work_labels)) 
+             labeller = labeller(org_variable = work_labels)) +
+  ggtitle("Linear household fixed effects models") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10))
 
 # Multinomial model here on switching between agricultural, non-agricultural work, and no work
 # Add an observation for round 0 for each household
@@ -438,7 +440,9 @@ graph_employment_type <- stata(
              labeller = labeller(comparison = c(
                "1" = "Agriculture vs Non-Agriculture",
                "2" = "Not Working vs Non-Agriculture"))
-             ) 
+             ) +
+  ggtitle("Multinomial fixed effects logit model") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10))
 
 # Combine this graph with the graph_work_employment graph from above
 # Combine the plots into a 2x2 grid
