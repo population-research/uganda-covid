@@ -292,6 +292,13 @@ understand how those individuals out of the labor force are being treated in
 these regressions. If not, a different term like “not employed” or “not working”
 would be more accurate.
 
+    **Response:** We did, indeed, use unemployment as short-hand for not working,
+    even though the survey does allow for other reasons for not working than
+    strict unemployment (such as lacking transport or not wanting to work
+    because of fear of Covid exposure).
+    We have updated the paper throughout to use "not working" rather than unemployment.
+    
+
 3. The paper uses a multinomial logit approach to look at switches between labor
 market statuses. This is an interesting approach, but it might be helpful to
 complement this by looking at use transition matrices to better understand labor
