@@ -483,33 +483,24 @@ transition_matrices_by_round <- transition %>%
   map(~{
     mat <- as.matrix(select(.x, -survey, -outcome))
     rownames(mat) <- .x$outcome
-    mat <- sweep(mat, 1, rowSums(mat), FUN = "/")
-    round(mat, 2) # Round the matrix elements to two decimal places
+    mat <- as_tibble(sweep(mat, 1, rowSums(mat), FUN = "/"))
+    mat <- round(mat, 2) # Round the matrix elements to two decimal places
+    rename(mat, "non_agri" = `0`, "agri" = `1`, "not" = `2`)
   })
 
-
-
-# Assuming transition_matrices_by_round is your list of transition matrices
-# Step 1: Ensure each matrix has the same rownames, if necessary
-
-# Step 2: Combine the matrices
 combined_matrix <- map2(transition_matrices_by_round, names(transition_matrices_by_round), ~{
-  cbind(round = .y, as.data.frame(.x))
+  # cbind(round = .y, as.data.frame(.x))
+  as.data.frame(.x)
 }) %>%
-  bind_rows()
-
-# Convert the combined data frame to a wide format if desired
-wide_combined <- pivot_wider(combined_matrix, names_from = round, values_from = c(agriculture, non_agriculture, not_working), values_fill = list(value = NA))
-
-# Step 3: Use xtable to create LaTeX code
-latex_table <- xtable(wide_combined, caption = "Transition Matrices by Survey Round")
-print(latex_table, include.rownames = FALSE, hline.after = c(-1, 0), comment = FALSE)
-
-
-
-# Print the transition matrix
-transition_matrices_by_round %>% map(print)
-
+  bind_cols() %>% 
+  rename_all(~ str_replace_all(., "\\.\\.\\.", "_")) %>% 
+  xtable() %>% 
+  print(
+    file = here("tables", "transition_table.tex"), append = TRUE,
+    only.contents = TRUE, comment = FALSE,
+    include.rownames = FALSE, include.colnames = FALSE,
+    hline.after = NULL
+  )
 
   
 # Impact on income sources ----
