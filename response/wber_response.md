@@ -304,6 +304,8 @@ market statuses. This is an interesting approach, but it might be helpful to
 complement this by looking at use transition matrices to better understand labor
 market switches.
 
+	**Response:** [Currently working on this]
+
 4. In Table 5 the paper is interacting the impact of lockdowns with a dummy
 variable capturing whether the household was an agricultural household. It would
 be helpful for the authors to explain how the paper avoids the critiques of
