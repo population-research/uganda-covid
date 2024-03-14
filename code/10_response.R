@@ -8,6 +8,7 @@ library(vtable)    # For data checking
 library(fixest)    # For fixed effects
 library(tidymodels) # For extracting model coefficients
 library(patchwork) # For plotting
+library(xtable)    # For exporting tables
 library(haven)
 library(rio)
 library(RStata)
@@ -406,10 +407,9 @@ ag_0_8 <- base %>%
   select(survey, survey_num, hhid, agri, cases_smooth_per_100000, weight_final, psu) %>% 
   arrange(hhid, survey_num)
 
-
 graph_employment_type <- stata(
   "tsset hhid survey
-  xtmlogit agri ib0.survey_num cases_smooth_per_100000 , fe rrr baseoutcome(0)
+  xtmlogit agri ib0.survey_num cases_smooth_per_100000 , fe baseoutcome(0)
   regsave, ci detail(scalars)",
   data.in = ag_0_8,
   data.out = TRUE
@@ -449,6 +449,67 @@ graph_employment_type <- stata(
 graph_work_employment / graph_employment_type + plot_layout(heights = c(3, 2))
 
 ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 8, units = "in")  
+
+
+
+# Transition matrix
+
+# 0: Non-agricultural work
+# 1: Agricultural work
+# 2: Not working
+
+# Ensure data is ordered properly
+transition <- ag_0_8 %>% 
+  mutate(
+    outcome = agri
+  ) %>% 
+  select(hhid, survey_num, outcome) %>% 
+  # Create a lagged outcome variable to identify the previous state
+  group_by(hhid) %>%
+  mutate(next_outcome = lead(outcome)) %>%
+  ungroup() %>% 
+  # Drop the first observation for each id where prev_outcome is NA
+  filter(!is.na(next_outcome), !is.na(outcome))
+
+# Calculate transitions for each round and create a list of matrices
+transition_matrices_by_round <- transition %>%
+  group_by(survey_num) %>%
+  count(outcome, next_outcome) %>%
+  ungroup() %>%
+  mutate(survey = as.factor(survey_num)) %>%
+  select(-survey_num) %>%
+  pivot_wider(names_from = next_outcome, values_from = n, values_fill = list(n = 0)) %>%
+  split(.$survey) %>%
+  map(~{
+    mat <- as.matrix(select(.x, -survey, -outcome))
+    rownames(mat) <- .x$outcome
+    mat <- sweep(mat, 1, rowSums(mat), FUN = "/")
+    round(mat, 2) # Round the matrix elements to two decimal places
+  })
+
+
+
+# Assuming transition_matrices_by_round is your list of transition matrices
+# Step 1: Ensure each matrix has the same rownames, if necessary
+
+# Step 2: Combine the matrices
+combined_matrix <- map2(transition_matrices_by_round, names(transition_matrices_by_round), ~{
+  cbind(round = .y, as.data.frame(.x))
+}) %>%
+  bind_rows()
+
+# Convert the combined data frame to a wide format if desired
+wide_combined <- pivot_wider(combined_matrix, names_from = round, values_from = c(agriculture, non_agriculture, not_working), values_fill = list(value = NA))
+
+# Step 3: Use xtable to create LaTeX code
+latex_table <- xtable(wide_combined, caption = "Transition Matrices by Survey Round")
+print(latex_table, include.rownames = FALSE, hline.after = c(-1, 0), comment = FALSE)
+
+
+
+# Print the transition matrix
+transition_matrices_by_round %>% map(print)
+
 
   
 # Impact on income sources ----
