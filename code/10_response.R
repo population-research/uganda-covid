@@ -471,6 +471,35 @@ transition <- ag_0_8 %>%
   # Drop the first observation for each id where prev_outcome is NA
   filter(!is.na(next_outcome), !is.na(outcome))
 
+# Plot the absolute number of households in each state
+ag_0_8 %>% 
+  select(survey_num, agri) %>% 
+  group_by(survey_num) %>%
+  count(agri) %>% 
+  filter(!is.na(agri)) %>% 
+  # Calculate the percentage of households in each state
+  mutate(
+    n = n * 100 / sum(n)
+  ) %>%
+  ungroup() %>%
+  ggplot(aes(x = survey_num, y = n, color = factor(agri))) +
+  geom_line(stat = "identity") +
+  labs(
+    x = "Survey",
+    y = "Percentage of households (Unweighted)"
+  ) +
+  # Make 0 the intersection between y-axis and x-axis
+  scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+  # Add a legend
+  scale_color_manual(values = color_palette[1:3], labels = c("Non-agricultural work", "Agricultural work", "Not working")) +
+  # Make legend be on top and one row
+  theme(legend.position = "top", legend.direction = "horizontal") +
+  # Add ticks for each survey
+  scale_x_continuous(breaks = 0:7)
+
+ggsave(here("figures", "transition_absolute.pdf"),  width = 8, height = 6, units = "in")
+ 
+
 # Calculate transitions for each round and create a list of matrices
 transition_matrices_by_round <- transition %>%
   group_by(survey_num) %>%
@@ -488,21 +517,118 @@ transition_matrices_by_round <- transition %>%
     rename(mat, "non_agri" = `0`, "agri" = `1`, "not" = `2`)
   })
 
-combined_matrix <- map2(transition_matrices_by_round, names(transition_matrices_by_round), ~{
+combined <- map2(transition_matrices_by_round, names(transition_matrices_by_round), ~{
   # cbind(round = .y, as.data.frame(.x))
   as.data.frame(.x)
 }) %>%
   bind_cols() %>% 
-  rename_all(~ str_replace_all(., "\\.\\.\\.", "_")) %>% 
-  xtable() %>% 
+  rename_all(~ str_replace_all(., "\\.\\.\\.", "_"))
+
+row_names <- c("Non-agriculture", "Agriculture", "Not working")
+  
+# LaTeX table top
+cat(
+  c(
+    "\\begin{table}[hbtp!]\n",
+    "\\begin{center}\n",
+    "\\begin{small}\n",
+    "\\begin{threeparttable}\n",
+    "\\caption{Transition matrices between not working in agriculture, working in agriculture, and not working\n",
+    "by survey round}\n",
+    "\\label{tab:transition}\n",
+    "\\begin{tabular}{@{} l ccc ccc @{}}\n",
+    "\\toprule \n",
+    "        & Non-  & Agri- & Not   & Non-  & Agri- & Not  \\\\ \n",
+    "        & agri- & cul-  & work- & agri- & cul-  & work-   \\\\ \n",
+    "        & cul-  & ture  & ing   & cul-  & ture  & ing     \\\\ \n",
+    "        & ture  &       &       & ture  &       &         \\\\ \n",
+    "\\midrule \n",
+    "        & \\multicolumn{3}{c}{Pre-Covid to Round 1} & \\multicolumn{3}{c}{Rounds 1 to 2} \\\\ \\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \n"
+  ),
+  file = here("tables", "transition_table.tex")
+)
+
+# Print by two rounds at a time 
+xtable(cbind(row_names, combined[1:6])) %>% 
   print(
     file = here("tables", "transition_table.tex"), append = TRUE,
     only.contents = TRUE, comment = FALSE,
     include.rownames = FALSE, include.colnames = FALSE,
-    hline.after = NULL
+    hline.after = NULL,
+    sanitize.text.function = identity # necessary to prevent xtable from messing up LaTeX code
   )
 
-  
+cat(c(
+  "\\addlinespace\n",
+  "        & \\multicolumn{3}{c}{Rounds 2 to 3} & \\multicolumn{3}{c}{Rounds 3 to 4} \\\\ \\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \n"
+), file = here("tables", "transition_table.tex"), append = TRUE)
+
+xtable(cbind(row_names, combined[7:12])) %>% 
+  print(
+    file = here("tables", "transition_table.tex"), append = TRUE,
+    only.contents = TRUE, comment = FALSE,
+    include.rownames = FALSE, include.colnames = FALSE,
+    hline.after = NULL,
+    sanitize.text.function = identity # necessary to prevent xtable from messing up LaTeX code
+  )
+
+cat(c(
+  "\\addlinespace\n",
+  "        & \\multicolumn{3}{c}{Rounds 4 to 5} & \\multicolumn{3}{c}{Rounds 5 to 6} \\\\ \\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \n"
+  ), file = here("tables", "transition_table.tex"), append = TRUE)
+
+xtable(cbind(row_names, combined[13:18])) %>% 
+  print(
+    file = here("tables", "transition_table.tex"), append = TRUE,
+    only.contents = TRUE, comment = FALSE,
+    include.rownames = FALSE, include.colnames = FALSE,
+    hline.after = NULL,
+    sanitize.text.function = identity # necessary to prevent xtable from messing up LaTeX code
+  )
+
+cat(c(
+  "\\addlinespace\n",
+  "        & \\multicolumn{3}{c}{Rounds 6 to 7} & \\multicolumn{3}{c}{} \\\\ \\cmidrule(lr){2-4}  \n"
+), file = here("tables", "transition_table.tex"), append = TRUE)
+
+xtable(cbind(row_names, combined[19:21], tribble(~b1, ~b2, ~b3,
+                                                 "", "", "",
+                                                 "", "", "",
+                                                 "", "", ""))) %>% 
+  print(
+    file = here("tables", "transition_table.tex"), append = TRUE,
+    only.contents = TRUE, comment = FALSE,
+    include.rownames = FALSE, include.colnames = FALSE,
+    hline.after = NULL,
+    sanitize.text.function = identity # necessary to prevent xtable from messing up LaTeX code
+  )
+
+# Table end
+count_0 <- ag_0_8 %>% 
+  filter(survey_num == 0) %>% 
+  group_by(agri) %>% 
+  count(agri)
+
+cat(
+  c(
+    "\\bottomrule\n",
+    "\\end{tabular}\n",
+    "\\begin{tablenotes}\n",
+    "\\item \\hspace*{-0.5em} \\textbf{Note:} \n",
+    "Before Covid, there were ", count_0$n[1], " households in non-agricultural work, \n",
+    count_0$n[2], " working in agriculture, and ", count_0$n[3], " not working. \n",
+    "\\end{tablenotes}\n",
+    "\\end{threeparttable}\n",
+    "\\end{small}\n",
+    "\\end{center}\n",
+    "\\end{table}"
+  ),
+  file = here("tables", "transition_table.tex"),
+  append = TRUE
+)
+
+
+
 # Impact on income sources ----
 
 # Original Table 3, panel B

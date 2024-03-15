@@ -101,15 +101,17 @@ $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf: $(
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1 
 
-# Response Graphs
-RESP_GRAPHS := \
+# Response Graphs and table
+RESPONSE := \
  $(FIG)/work_employment.pdf \
+ $(FIG)/transition_absolute.pdf \
+ $(TAB)/transition_table.tex \
  $(FIG)/income_sources.pdf \
  $(FIG)/income_assistance.pdf \
  $(FIG)/household_composition_and_urban_location.pdf \
  $(FIG)/agri_vs_non_agri.pdf
 	
-$(RESP_GRAPHS): $(CODE)/10_response.R \
+$(RESPONSE): $(CODE)/10_response.R \
  $(DAT)/base.rds
 	Rscript --verbose $(CODE)/$(<F) > $(CODE)/$(basename $(<F)).ROut 2>&1
 	
@@ -131,7 +133,7 @@ $(TEXT)/$(PAPER).pdf: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
  $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
  $(SEASONALITY_GRAPHS) \
- $(RESP_GRAPHS) \
+ $(RESPONSE) \
  $(FIG)/ag_plant_change.pdf $(TAB)/ag_change_table.tex
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).pdf --pdf-engine=xelatex -N -s --filter pandoc-crossref --citeproc
 
@@ -144,7 +146,7 @@ $(TEXT)/$(PAPER).docx: $(TEXT)/$(PAPER).md $(TEXT)/uganda_covid.bib \
  $(FIG)/food_insecurity_survey.pdf $(FIG)/food_insecurity_region.pdf \
  $(TAB)/survey_table.tex $(FIG)/food_insecurity_survey_attrition_combined.pdf \
  $(SEASONALITY_GRAPHS) \
- $(RESP_GRAPHS) \
+ $(RESPONSE) \
  $(FIG)/ag_plant_change.pdf $(TAB)/ag_change_table.tex
 	cd $(TEXT); pandoc default.yaml $(PAPER).md -o $(PAPER).docx -N -s --filter pandoc-crossref --citeproc
 
