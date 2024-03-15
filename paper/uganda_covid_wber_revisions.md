@@ -945,7 +945,7 @@ as the base.
 the top 3 panels show coefficients from linear models with household fixed effects
 and dependent indicator variables.
 The bottom two panels show coefficients from a fixed effects multinomial logit 
-model, relative to not working.](../figures/work_employment.pdf){#fig:work_employment}
+model, relative to non-agricultural work.](../figures/work_employment.pdf){#fig:work_employment}
 
 The likelihood of any market work was significantly lower immediately after
 the first lockdown compared to Round 4.
@@ -1001,45 +1001,73 @@ between sectors, and from working to not working.
 Layoffs are likely in both the agricultural and non-agricultural sectors. 
 To complicate the picture, some may resort to agricultural production, even 
 if there is a lower return than their original job. 
+The two bottom panels of [@fig:work_employment] show the coefficients
+for the multinomial fixed effects logit model on the likelihood of working 
+in the agricultural sector and not working, respectively, versus working 
+in the non-agricultural sector.
+To help with interpretation, \ref{tab:transition} shows the transition 
+probabilities between the three groups from round to round.[^absolute_groups]
 
-Table 3, columns 4 and 5 show the
-relative risk of being in the agricultural sector and not working,
-respectively, versus working in the non-agricultural sector. 
+[^absolute_groups]: Appendix @fig:transition_absolute shows the unweighted counts of
+household by labor market group.     
+
+\input{../tables/transition_table.tex}
+
+As we have pre-Covid information, we use that as the excluded round.
 Not surprisingly, the short-run effect of the first lockdown is to
-significantly the risk of not working relative to being employed in the
-non-agricultural sector, with the relative risk of not working
-increasing by 11.6 relative to working in the non-agricultural sector.
-However, there was also a significant shift to agriculture after the
-first lockdown: the relative risk of working in agriculture is 3.9 times
-higher compared to working in the non-agricultural sector. 
-The results suggest that while more people were not working, 
+significantly increase the risk of not working relative to being employed 
+in the non-agricultural sector, although there was also a significant shift 
+to agriculture.
+Only just over half of all households working in the non-agricultural 
+sector pre-Covid remain in that section, while 30% are not working and 
+15% are working in agriculture in Round 1.
+About 7% of the households working in agriculture pre-Covid report
+not working in Round 1, likely because the lockdowns also affected
+sale and processing of agricultural produce.
+Hence, the results suggest that while more people were not working, 
 there is also a significant switch to agricultural work to cope with the 
-effects of the first lockdown.[^9] 
-While the magnitude of the relative risk for not working declined to 2.8 times, 
-the strong effect on working in agriculture persisted in the medium run, 
-suggesting that people did not immediately shift back to non-agricultural work 
-after the end of the first lockdown.
+effects of the first lockdown.[^occupation_switch] 
 
-[^9]: While not focusing on lockdowns, one prior study 
+[^occupation_switch]: While not focusing on lockdowns, one prior study 
 finds evidence that the pandemic itself led to a switch in
 occupations, particularly among salaried and business persons, with
 agriculture seeing the biggest inflow of labor compared to other
 industries [@Gupta2021].
 
+Although there was some recovery by Round 2, half of those who were 
+not working in Round 1 are now working in agriculture, while only 25% 
+move (back) to the non-agricultural sector.
+Furthermore, relative to pre-Covid, households remain substantially 
+more likely to be working in agriculture than non-agriculture for the next 
+three survey rounds, and only by Round 5, March 2021, is there a reduction 
+in the likelihood of working in agriculture, although it comes not from a 
+movement to non-agricultural work but rather from not working.
 
-However, we do not find a higher likelihood of agricultural work in the
-medium run following the second lockdown compared to the non-lockdown
-periods, likely because the concurrent dry spell negatively affected the
-agricultural labor market. The lack of opportunities in the agricultural
-sector may also explain why individuals were likely to remain at the
-same job after the second lockdown (results from column 3). Overall,
-these results suggest that while some joined the agricultural sector to
-cope with the effects of the first lockdown, the negative impact of the
-lower than normal rainfall during the later half of 2021 on agriculture 
-meant that this was a less attractive coping
-mechanism during the second lockdown.
+Unfortunately, we cannot see the short-term movement across groups 
+after the second lockdown, but the medium-term effect is a reversal
+of the very gradual improvement in the likelihood of working in the 
+non-agricultural sector that occurred between Round 2 and 6.
+This is combined with a substantial movement to not working, mostly
+from agriculture, possibly from a combination of the lockdown and
+the lower-than-normal rainfall.
+The lack of opportunities in the agricultural sector may also explain 
+why individuals were likely to remain at the same job after the second 
+lockdown (Panel 3). 
 
-
+The results suggest that the Covid-19 lockdowns had pronounced effects on 
+employment dynamics, underscored by the migration from non-agricultural to 
+agricultural employment and the significant increases in the likelihood 
+of not working.
+Although there was a semblance of recovery after the first lockdown, 
+the continued high levels of agricultural employment imply a structural 
+rather than a transitory adjustment to the employment landscape. 
+Furthermore, the resurgence of restrictions interrupted the nascent 
+recovery in  non-agricultural employment, showing the precariousness of 
+economic revival in the face of additional lockdowns. 
+Overall, the results underscore the agricultural sector's role as a vital 
+reservoir of employment during periods of economic upheaval, yet also 
+highlights its susceptibility to further disruptions, whether policy-driven 
+or environmental.
 
 
 ## Income Sources
@@ -1356,6 +1384,12 @@ Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 
 
 
+
+\clearpage
+
+# Labor Market Outcomes
+
+![Absolute](../figures/transition_absolute.pdf){#fig:transition_absolute}
 
 \clearpage
 
