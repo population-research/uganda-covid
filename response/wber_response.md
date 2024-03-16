@@ -292,10 +292,26 @@ understand how those individuals out of the labor force are being treated in
 these regressions. If not, a different term like “not employed” or “not working”
 would be more accurate.
 
+    **Response:** We did, indeed, use unemployment as short-hand for not working,
+    even though the survey does allow for other reasons for not working than
+    strict unemployment (such as lacking transport or not wanting to work
+    because of fear of Covid exposure).
+    We have updated the paper throughout to use "not working" rather than unemployment.
+    
+
 3. The paper uses a multinomial logit approach to look at switches between labor
 market statuses. This is an interesting approach, but it might be helpful to
 complement this by looking at use transition matrices to better understand labor
 market switches.
+
+	**Response:** That is a great suggestion. 
+	We have included a table showing the transition probabilities between 
+	the three groups (working outside agriculture, working in agriculture, and not working).
+	The table notes also show the pre-Covid distribution across the three groups.
+	Furthermore, we have added an Appendix Figure showing the unweighted
+	absolute number of households in the three groups.
+	Finally, we have expanded the discussion of movement between sectors using the 
+	transition probabilities and the figure.
 
 4. In Table 5 the paper is interacting the impact of lockdowns with a dummy
 variable capturing whether the household was an agricultural household. It would

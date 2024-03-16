@@ -337,8 +337,8 @@ On March 18, 2020, the Ugandan government began imposing restrictions,
 including travel restrictions and cancellation of public gatherings,
 such as religious services, weddings, and music events 
 [@Uganda-Bureau-of-Statistics2022]. 
-A total lockdown was imposed on March 30 with a
-nationwide curfew from 7 pm to 6:30 am, banning of public
+On March 20, schools were closed, and a total lockdown was imposed on March 30 
+with a nationwide curfew from 7 pm to 6:30 am, banning of public
 transportation, strict regulations on the movement of vehicles, and
 closure of all non-essential businesses, which extended till the end of May 
 [@Alfonsi2021; @Margini2020].
@@ -628,6 +628,13 @@ the UNPS data show that April, May, and June were the three months with
 the highest proportion of food insecurity, while November and December
 were the months with the lowest proportion.[^13]
 
+[^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
+results for the individual surveys are available upon request. 
+UNPS 2018/19 shows the same questions in the questionnaire, but the
+responses are not available in the data.
+
+
+
 ![Projected Seasonality in Food Insecurity from UNPS and
 Observed Food Insecurity for Three UHFS 
 Outcomes](../figures/seasonality.pdf){#fig:seasonality}
@@ -817,7 +824,7 @@ lockdowns in between the most severe lockdowns.
 ## The Role of Attrition 
 
 As discussed above, almost 16% of the original households 
-surveyed in round 1 failed to respond by round 7.
+surveyed in Round 1 failed to respond by Round 7.
 Although new households are added, a concern is whether the
 attrition of households is non-random and might bias the result.
 To examine how sensitive our results are to attrition, we 
@@ -836,27 +843,26 @@ For the any and moderate or severe food insecurity outcomes, whether we assume
 that attrited households would have been food insecure or food secure, 
 those results that were statistically significant in the main model remain 
 statistically significant for the bounding exercise.
-The main potential change in the results is for severe food insecurity in round 1, 
+The main potential change in the results is for severe food insecurity in Round 1, 
 where the first round is no longer statistically significantly different from
-round 4, if we assume that attrition households would have been severely food insecure,
+Round 4, if we assume that attrition households would have been severely food insecure,
 although we cannot reject that the round 1 coefficients are the same across the
 original and the two bounding assumptions.
 Furthermore, if we assume severe food insecurity for missing households 
-the round 7 estimate is statistically significantly larger than both the original 
+the Round 7 estimate is statistically significantly larger than both the original 
 estimate and the estimate if we assumed that attrited households were not 
 severely food insecure.
 
 
 # How Households Responded
 
-[Explain the analysis]
 
 To understand how the government lockdowns affected food insecurity and
 how households responded to the lockdowns, we examine three broad
 categories: labor market outcomes, changes in income across sources, and
 whether households received assistance from outside sources.
 
-### Labor Market Outcomes
+## Impact on Labor Market Outcomes
 
 Lockdowns may affect the availability of employment, both because
 workplaces close and because of the overall reduction in economic
@@ -864,7 +870,7 @@ activity likely to follow lockdowns. Respondents were asked whether they
 did "any work for pay, any kind of business, farming or other activity
 to generate income" in the last week. If yes, they were asked whether
 this was the same job as the previous round and the broad industry in
-which they worked in the current survey round. For round 1, respondents
+which they worked in the current survey round. For Round 1, respondents
 were also asked whether they did the same work as before the pandemic
 started and if it was a different job, which industry it was in. We
 create two indicator variables to capture the likelihood of working:
@@ -873,46 +879,49 @@ doing any market work and working in the same job as the prior round.
 The UHFS also asked whether any household member had operated a non-farm
 family business since the preceding round, so we also created an
 indicator variable where 1 represents operating a business and 0
-otherwise. However, round 1 only asks whether the family has operated a
+otherwise. However, Round 1 only asks whether the family has operated a
 business since the beginning of 2020 and does not ask about operations
-since the start of the lockdown. This means we are unable to use round 1
+since the start of the lockdown. This means we are unable to use Round 1
 information to examine the impact of the lockdown on operating a family
 business.
 
 The closing of workplaces to enforce social distancing was one of the
-primary channels through which market work was affected. However, people
-may have been able to continue some types of work more easily than
-others. For example, in agriculture, workers can more easily socially
+primary channels through which market work was affected. 
+However, people may have been able to continue some types of work more 
+easily than others. 
+For example, in agriculture, workers can more easily socially
 distance themselves while working, and, in many cases, the workers are
 from the same household removing the need to socially distance.
 Furthermore, lockdowns are more challenging to enforce on farms in rural
 areas.
 
 Thus, there are two implications of this differential lockdown effect on
-workplace closings. First, the impacts of lockdowns likely differ
-between households whose main sector is in agriculture, which we will
-refer to as agricultural households, and non-agricultural households.
+workplace closings. 
+First, the impacts of lockdowns likely differ between households whose 
+main sector is in agriculture, which we will refer to as agricultural 
+households, and non-agricultural households.
 Agricultural households include any household that reported that their
-main activity was related to agriculture. This includes both farmers,
-casual farm labor, and those employed in any type of processing, sale,
-or transport of agricultural goods. These households can be either urban
-or rural.
+main activity was related to agriculture. 
+This includes both farmers, casual farm laborers, and those employed in 
+any type of processing, sale, or transport of agricultural goods. 
+These households can be either urban or rural.
 
 Second, it is essential to understand how lockdowns affected the
-movement between unemployment, agricultural work, and non-agricultural
-work. We create a categorical variable where 0 represents
-non-agricultural work, 1 represents agricultural work, and 2 represents
-unemployment. As we know the industry before the first lockdown, we can
+movement between agricultural work, non-agricultural work, and not working. 
+We create a categorical variable where 0 represents non-agricultural work, 
+1 represents agricultural work, and 2 represents not working. 
+As we know the industry before the first lockdown, we can
 utilize that data as a pre-lockdown round (i.e., round 0), so we have
 eight rounds of data for this estimation.
 
 With three potential outcomes, we use a conditional fixed-effects
-multinomial logit model to estimate the movements between unemployment,
-agricultural work, and non-agricultural work. There are two potential
-issues with this method. First, as with any multinomial model, the
+multinomial logit model to estimate the movements between agricultural work, 
+non-agricultural work, and not working. 
+There are two potential issues with this method. 
+First, as with any multinomial model, the
 coefficient sign does not necessarily indicate the direction of the
-relationship between the explanatory variable and the outcome. Second,
-standard marginal analyses are not meaningful because the fixed-effects
+relationship between the explanatory variable and the outcome. 
+Second, standard marginal analyses are not meaningful because the fixed-effects
 estimator cannot make predictions that account for the panel-level fixed
 effects, which are not estimated explicitly. We, therefore, present two
 relative risk ratios, one the likelihood of working in the agricultural
@@ -925,7 +934,143 @@ planting activities because of Covid-19. If yes, they are asked how they
 changed their activities. This allows us to examine whether households
 changed their agricultural strategy in response to the lockdowns.
 
-### Income
+The top three panels of [@fig:work_employment] shows the results for the 
+likelihoods of doing market work, operating a non-farm family business, and 
+working in the same job as before, using Round 4 as the base.
+The bottom two panels show the coefficients for the multinomial logit 
+model, relative to non-agriculture work, using Round 0, i.e. pre-Covid, 
+as the base.
+
+![Changes in work and employment outcomes across survey rounds ---
+the top 3 panels show coefficients from linear models with household fixed effects
+and dependent indicator variables.
+The bottom two panels show coefficients from a fixed effects multinomial logit 
+model, relative to non-agricultural work.](../figures/work_employment.pdf){#fig:work_employment}
+
+The likelihood of any market work was significantly lower immediately after
+the first lockdown compared to Round 4.
+Given the very low number of Covid-19 cases, as shown in [@fig:combined], 
+this effect was likely driven predominately by the severe lockdown. 
+This is supported by the stated reasons for not working, where the 
+top three are that the place of work is closed (62%), 
+being ill from any illness or quarantined (10%), 
+and being laid off from the job (8%).
+Relative to Round 4, there appears to be no medium-run impact of the 
+first lockdown, although given the absence of information on pre-Covid
+we cannot rule out that the levels of market work were depressed overall.
+
+The medium-run impact of the second lockdown, combined with the 
+lower-than-normal rainfall is large, with
+the likelihood of market work decreasing by around 13 percentage points. 
+This large impact on market work may explain the large impact on food
+insecurity in the medium run following the second lockdown.
+
+We cannot estimate the short-run impact of the lockdown on the likelihood 
+of operating a non-farm family business, as we do not have data for Round 1.
+However, relative to Round 4, the only statistically significantly 
+coefficient is for Round 6, where there is an approximately five 
+percentage points higher likelihood of operating a non-farm business.
+Combined with the positive, but not statistically significant coefficient
+for market work in the same round, this suggests that the economy had
+slowly started to recover right before the beginning of the second
+severe lockdown.
+
+Given the overall decrease in market work, it is useful to understand
+whether individuals, who were able to continue work during the lockdowns, 
+did so in the same jobs.
+The first lockdown significantly was associated with an approximately
+10 percentage points lower likelihood of working at the same job, 
+relatively to Round 4. 
+Thus, we find both a decrease in market work and an increased likelihood 
+of moving jobs. 
+The impact in the medium run is small, indicating that people remained 
+in their new jobs after the end of the lockdown. 
+
+We do not have direct information on wages, but these new jobs likely paid 
+less than the pre-lockdown job,
+suggesting continued labor market difficulties in the medium run, which
+would also affect food insecurity. 
+There is only a small, statistically insignificant, effect in the medium 
+run following the second lockdown. 
+However, we cannot establish whether this is because the second lockdown 
+follows the same pattern as the first or because there is less immediate 
+movement compared to the first lockdown.
+
+With workplace closures during lockdowns, we expect significant movement
+between sectors, and from working to not working. 
+Layoffs are likely in both the agricultural and non-agricultural sectors. 
+To complicate the picture, some may resort to agricultural production, even 
+if there is a lower return than their original job. 
+The two bottom panels of [@fig:work_employment] show the coefficients
+for the multinomial fixed effects logit model on the likelihood of working 
+in the agricultural sector and not working, respectively, versus working 
+in the non-agricultural sector.
+To help with interpretation, \ref{tab:transition} shows the transition 
+probabilities between the three groups from round to round.[^absolute_groups]
+
+[^absolute_groups]: Appendix @fig:transition_absolute shows the unweighted counts of
+household by labor market group.     
+
+\input{../tables/transition_table.tex}
+
+As we have pre-Covid information, we use that as the excluded round.
+Not surprisingly, the short-run effect of the first lockdown is to
+significantly increase the risk of not working relative to being employed 
+in the non-agricultural sector, although there was also a significant shift 
+to agriculture.
+Only just over half of all households working in the non-agricultural 
+sector pre-Covid remain in that section, while 30% are not working and 
+15% are working in agriculture in Round 1.
+About 7% of the households working in agriculture pre-Covid report
+not working in Round 1, likely because the lockdowns also affected
+sale and processing of agricultural produce.
+Hence, the results suggest that while more people were not working, 
+there is also a significant switch to agricultural work to cope with the 
+effects of the first lockdown.[^occupation_switch] 
+
+[^occupation_switch]: While not focusing on lockdowns, one prior study 
+finds evidence that the pandemic itself led to a switch in
+occupations, particularly among salaried and business persons, with
+agriculture seeing the biggest inflow of labor compared to other
+industries [@Gupta2021].
+
+Although there was some recovery by Round 2, half of those who were 
+not working in Round 1 are now working in agriculture, while only 25% 
+move (back) to the non-agricultural sector.
+Furthermore, relative to pre-Covid, households remain substantially 
+more likely to be working in agriculture than non-agriculture for the next 
+three survey rounds, and only by Round 5, March 2021, is there a reduction 
+in the likelihood of working in agriculture, although it comes not from a 
+movement to non-agricultural work but rather from not working.
+
+Unfortunately, we cannot see the short-term movement across groups 
+after the second lockdown, but the medium-term effect is a reversal
+of the very gradual improvement in the likelihood of working in the 
+non-agricultural sector that occurred between Round 2 and 6.
+This is combined with a substantial movement to not working, mostly
+from agriculture, possibly from a combination of the lockdown and
+the lower-than-normal rainfall.
+The lack of opportunities in the agricultural sector may also explain 
+why individuals were likely to remain at the same job after the second 
+lockdown (Panel 3). 
+
+The results suggest that the Covid-19 lockdowns had pronounced effects on 
+employment dynamics, underscored by the migration from non-agricultural to 
+agricultural employment and the significant increases in the likelihood 
+of not working.
+Although there was a semblance of recovery after the first lockdown, 
+the continued high levels of agricultural employment imply a structural 
+rather than a transitory adjustment to the employment landscape. 
+Furthermore, the resurgence of restrictions interrupted the nascent 
+recovery in  non-agricultural employment, showing the precariousness of 
+economic revival in the face of additional lockdowns. 
+Overall, the results underscore the agricultural sector's role as a vital 
+reservoir of employment during periods of economic upheaval, yet also 
+highlights its susceptibility to further disruptions, whether policy-driven 
+or environmental.
+
+
+## Income Sources
 
 Households were asked questions related to income in rounds 1 through 6.
 Instead of the monetary value of their income, households were asked
@@ -952,20 +1097,50 @@ increase in household income, a negative coefficient represents a
 decrease, and a coefficient near 0 indicates that income remained
 stable.
 
-### Outside Assistance
+As shown in Panel B of Table 3, the first lockdown significantly
+decreased farm income, non-farm family business income, wage income, and
+income from assets, and the effects persisted in the medium run. These
+income effects are likely a major reason for the significant increase in
+food insecurity from the lockdowns. As a placebo, since pensions are
+typically not dependent on the state of the economy and remain steady
+over time, we also examine the impact on pension income. 
+Not surprisingly, we do not find any changes in pension income during the
+lockdowns.
+We do not have income data for round 7 and thus cannot examine
+the medium-term impact of the second lockdown.
+
+
+
+![Impact on different types of income  ---
+Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
+](../figures/income_sources.pdf){#fig:income_sources}
+
+
+
+## Outside Assistance
 
 In rounds 1 through 6, the UHFS asked households whether they received
 assistance from the following sources: (i) remittance from abroad, (ii)
 assistance from family members within the country, (iii) assistance from
 other non-family individuals, (iv) assistance from NGOs, and (v)
-assistance from the government.[^7] The questions were asked the same
-way as the income questions, where households can either report income
-increase, remaining the same, decrease, or complete loss relative to the
-prior round. Therefore, like the income estimations, we create ordinal
+assistance from the government.[^7] 
+The questions were asked the same way as the income questions, where households 
+can either report income increase, remaining the same, decrease, or complete 
+loss relative to the prior round. 
+Therefore, like the income estimations, we create ordinal
 variables where 1,0 and -1 represent an increase, same, and
 decrease/complete loss, respectively, and estimate the effect of
 lockdowns using the same conditional fixed-effects ordered logistic
 model.
+
+[^7]: Households were also asked whether they received unemployment
+benefits, but there was only one observation representing a change,
+so we do not have any variation to conduct a conditional ordered
+logit estimation.
+
+![Impact on outside assistance ---
+Panel A represents coefficients from fixed effects ordered logit model, so for the dependent variables, 0 represents no change, 1 represents an increase, and -1 represents a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+
 
 Using the household rosters from UHFS and the UNPS 2019/20, we have data
 on the number of household members, adults, and children. To understand
@@ -973,109 +1148,6 @@ the impact on household structure, we calculate the change in the number
 of household members by subtracting the number in the prior round from
 the current round's number.
 
-
-
-
-## Impact on Work
-
-One way lockdowns can affect food insecurity is by lowering people's
-ability to work. Table 3, column 1, shows that the likelihood of any
-market work decreased by a significant 18.6 percentage points during the
-first lockdown. These employment effects were driven mainly by lockdowns
-rather than being ill from Covid-19. As shown in [@fig:combined], there were
-almost no cases during the first lockdown. Furthermore, UHSF asked
-individuals the reason for not working, and the top three reasons
-reported are that the place of work is closed (62%), being ill from any
-illness or quarantined (10%), and being laid off from the job (8%).
-
-![Impact on work and employment outcomes ---
-Rows 1 to 3 represent coefficients from linear model with household fixed effects. Dependent                                                                                       
-variables in columns 1 to 3 are dummy variables. Columns 4 and 5 represent relative risk ratios
-from fixed effects multinomial logit model, where 0 represents non-agricultural work, 1 represents 
-agricultural work, and 2 represents unemployment](../figures/work_employment.pdf){#fig:work_employment}
-
-
-
-
-In the medium run, the likelihood of market work is 2.5 percentage
-points lower than in non-lockdown periods. This suggests that the labor
-market was approaching but not yet fully recovered. 
-The medium-run impact of the second lockdown combined with the 
-lower than normal rainfall is large, with
-the likelihood of market work decreasing by 13 percentage points. This
-large impact on market work may explain the large impact on food
-insecurity in the medium run following the second lockdown.
-
-While we do not have data for round 1 and cannot estimate the short-run
-effect, the likelihood of operating a non-farm family business in the
-medium run decreased by seven percentage points after the first lockdown
-(column 2). However, the second lockdown did not impact family business
-in the medium run, even though this coincided with the drier spell.
-
-Given the overall decrease in market work, it is useful to understand
-whether individuals, who were able to continue work during the
-lockdowns, did so in the same jobs. The first lockdown significantly
-decreased the likelihood of working at the same job as the prior round
-by about 8.6 percentage points (column 3). Thus, we find both a decrease
-in market work and an increased likelihood of moving jobs. The impact in
-the medium run is small, indicating that people remained in their new
-jobs after the end of the lockdown. We do not have direct information on
-wages, but these new jobs likely paid less than the pre-lockdown job,
-suggesting continued labor market difficulties in the medium run, which
-would also affect food insecurity. There is a small effect in the medium
-run following the second lockdown. However, we cannot establish whether
-this is because the second lockdown follows the same pattern as the
-first or because there is less movement compared to the first lockdown.
-
-With workplace closures during lockdowns, we expect significant movement
-between sectors, and from employment to unemployment. Layoffs are likely
-in both the agricultural and non-agricultural sectors. To complicate the
-picture, some may resort to agricultural production, even if there is a
-lower return than their original job. Table 3, columns 4 and 5 show the
-relative risk of being in the agricultural sector and being unemployed,
-respectively, versus working in the non-agricultural sector. Not
-surprisingly, the short-run effect of the first lockdown is to
-significantly increase unemployment relative to being employed in the
-non-agricultural sector, with the relative risk of unemployment
-increasing by 11.6 relative to working in the non-agricultural sector.
-However, there was also a significant shift to agriculture after the
-first lockdown: the relative risk of working in agriculture is 3.9 times
-higher compared to working in the non-agricultural sector. The results
-suggest that while more people were becoming unemployed, there is also a
-significant switch to agricultural work to cope with the effects of the
-first lockdown.[^9] While the magnitude of the relative risk for
-unemployment declined to 2.8 times, the strong effect on working in
-agriculture persisted in the medium run, suggesting that people did not
-immediately shift back to non-agricultural work after the end of the
-first lockdown.
-
-However, we do not find a higher likelihood of agricultural work in the
-medium run following the second lockdown compared to the non-lockdown
-periods, likely because the concurrent dry spell negatively affected the
-agricultural labor market. The lack of opportunities in the agricultural
-sector may also explain why individuals were likely to remain at the
-same job after the second lockdown (results from column 3). Overall,
-these results suggest that while some joined the agricultural sector to
-cope with the effects of the first lockdown, the negative impact of the
-lower than normal rainfall during the later half of 2021 on agriculture 
-meant that this was a less attractive coping
-mechanism during the second lockdown.
-
-## Impact on Income
-
-As shown in Panel B of Table 3, the first lockdown significantly
-decreased farm income, non-farm family business income, wage income, and
-income from assets, and the effects persisted in the medium run. These
-income effects are likely a major reason for the significant increase in
-food insecurity from the lockdowns. As a placebo, since pensions are
-typically not dependent on the state of the economy and remain steady
-over time, we also examine the impact on pension income. Not
-surprisingly, we do not find any changes in pension income during the
-lockdowns.[^10]
-
-![Impact on different types of income  ---
-Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
-](../figures/income_sources.pdf){#fig:income_sources}
 
 
 ## Coping Mechanisms 
@@ -1097,10 +1169,6 @@ led to the closure of workplaces and limited people's movements
 The failure of these coping
 mechanisms in the face of reductions in income likely contributed
 substantially to the large effects of lockdowns on food insecurity.
-
-
-![Impact on outside assistance ---
-Panel A represents coefficients from fixed effects ordered logit model, so for the dependent variables, 0 represents no change, 1 represents an increase, and -1 represents a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
 
 
 ![Impact on changes in number of household members and movement to urban area --- 
@@ -1217,7 +1285,8 @@ forced individuals living elsewhere to join/rejoin the household.
 
 Three broader conclusions emerge from our results. First, on average,
 agriculture is likely less productive than non-farm work but better than
-unemployment. With a slow rate of switching back from agriculture, the
+not working. 
+With a slow rate of switching back from agriculture, the
 lockdowns can potentially have severe long-term adverse effects on
 Uganda's development. Second, the results show the limit of
 self-insurance and mutual insurance when faced with a systemic shock.
@@ -1242,25 +1311,10 @@ avenues of mitigation are critical future areas of research.
 
 
 
-[^7]: Households were also asked whether they received unemployment
-    benefits, but there was only one observation representing a change,
-    so we do not have any variation to conduct a conditional ordered
-    logit estimation.
-
-[^9]: While not focusing on lockdowns, one prior study 
-	finds evidence that the pandemic itself led to a switch in
-    occupations, particularly among salaried and business persons, with
-    agriculture seeing the biggest inflow of labor compared to other
-    industries [@Gupta2021].
-
-[^10]: We do not have income data for round 7 and thus cannot examine
-    the medium-term impact of the second lockdown.
 
 
-[^13]: This pattern holds for both UNPS 2015/16 and UNPS 2019/20. The
-    results for the individual surveys are available upon request. UNPS
-    2018/19 shows the same questions in the questionnaire, but the
-    responses are not available in the data.
+
+
     
     
     
@@ -1330,6 +1384,12 @@ Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 
 
 
+
+\clearpage
+
+# Labor Market Outcomes
+
+![Absolute](../figures/transition_absolute.pdf){#fig:transition_absolute}
 
 \clearpage
 
