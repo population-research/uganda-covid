@@ -1107,7 +1107,7 @@ stable.
 The results are shown in [@fig:income_sources] together with
 the number of households that the estimations are based on.[^no-pension]
 
-[^no-pension]: Very few households reported pension income, so we 
+[^no-pension]: Only 34 households ever reported pension income, so we 
 do not show results for this income source.
 
 The first lockdown significantly decreased farm income, non-farm income, 
