@@ -1073,49 +1073,57 @@ or environmental.
 
 ## Income Sources
 
-Households were asked questions related to income in rounds 1 through 6.
-Instead of the monetary value of their income, households were asked
+Households were asked questions related to income in Rounds 1 through 6.
+Rather than the monetary value of their income, households were asked
 whether their income from different sources increased, remained the
-same, decreased, or was completely lost since the prior round (for round
+same, decreased, or was completely lost since the prior round (for Round
 1, the questions were asked relative to the start date of the lockdown).
-The income questions covered five sources: (i) family farming,
-livestock, or fishing, (ii) non-farm family business, (iii) wage
-employment, (iv) income from assets (properties, investments, or
-savings), and (v) pension. As the income question was ordinal, we
-created variables for each income source where 1 represents an increase
-in income, 0 represents income remaining unchanged, and -1 represents a
-decrease in income or a complete loss.
+The income questions covered five sources: 
+(i) family farming, livestock, or fishing, 
+(ii) non-farm family business, 
+(iii) wage employment, 
+(iv) income from assets (properties, investments, or savings), 
+and (v) pension.
+As the income question was ordinal, we created variables for each income 
+source where 1 represents an increase in income, 0 represents income 
+remaining unchanged, and -1 represents a decrease in income or a complete loss.
+
+![Impact on the levels of income from farms, non-farm businesses, wages,
+and assets  --- coefficients from fixed effects ordered logit model,
+with positive representing an increase, 0 no change, and negative 
+a decrease](../figures/income_sources.pdf){#fig:income_sources}
 
 Given that we use ordinal variables to represent changes in household
-income, we use a conditional fixed-effects ordered logistic model. The
-typical conditional logit model works by applying a fixed-effects logit
-model for households that see a change in the dependent variable over
-time. For the conditional *ordered* logit model, the actual values of
-the dependent variable are irrelevant. Instead, greater values
-correspond to higher-value outcomes [@Baetschmann2015]. 
+income, we use a conditional fixed-effects ordered logistic model. 
+The typical conditional logit model works by applying a fixed-effects logit
+model for households that see a change in the dependent variable over time. 
+For the conditional *ordered* logit model, the actual values of
+the dependent variable are irrelevant. 
+Instead, greater values correspond to higher-value outcomes [@Baetschmann2015]. 
 Hence, for our regressions, a positive coefficient for lockdowns represents an
 increase in household income, a negative coefficient represents a
 decrease, and a coefficient near 0 indicates that income remained
 stable.
+The results are shown in [@fig:income_sources] together with
+the number of households that the estimations are based on.[^no-pension]
 
-As shown in Panel B of Table 3, the first lockdown significantly
-decreased farm income, non-farm family business income, wage income, and
-income from assets, and the effects persisted in the medium run. These
-income effects are likely a major reason for the significant increase in
-food insecurity from the lockdowns. As a placebo, since pensions are
-typically not dependent on the state of the economy and remain steady
-over time, we also examine the impact on pension income. 
-Not surprisingly, we do not find any changes in pension income during the
-lockdowns.
+[^no-pension]: Very few households reported pension income, so we 
+do not show results for this income source.
+
+The first lockdown significantly decreased farm income, non-farm income, 
+and wage income.
+Furthermore, the effect on income from assets is negative, although not
+statistically significant, likely because of the low number of households.
+
+The effects persisted in the medium run, with very few
+households reporting improvements between Rounds 1 and 2, and,
+as a consequence, the estimated effects are either zero or negative.
+Only by the third round do a significant number of households
+report improvements in income levels.
 We do not have income data for round 7 and thus cannot examine
 the medium-term impact of the second lockdown.
-
-
-
-![Impact on different types of income  ---
-Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
-](../figures/income_sources.pdf){#fig:income_sources}
-
+These income effects are likely a major reason for the significant increase in
+food insecurity from the lockdowns. 
 
 
 ## Outside Assistance

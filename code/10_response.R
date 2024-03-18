@@ -694,7 +694,7 @@ income_source %>%
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
              labeller = labeller(org_variable = income_source_labels)) 
 
-ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 8, units = "in")  
+ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 6, units = "in")  
 
 
 # Table 4: Impact of lockdowns on different kinds of coping mechanisms 
