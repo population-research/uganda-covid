@@ -835,7 +835,8 @@ or that they would not have been food insecure.[^thank_eric]
 [^thank_eric]: We would like to thank the Editor for this 
 suggestion.
 
-![Attrition](../figures/food_insecurity_survey_attrition_combined.pdf){#fig:attrition}
+![Food insecurity estimates when assuming that all missing households are
+either food insecure or are not food insecure](../figures/food_insecurity_survey_attrition_combined.pdf){#fig:attrition}
 
 [@fig:attrition] shows the results for the nation-wide bounding estimations
 together with the original results.
