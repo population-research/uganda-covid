@@ -640,7 +640,31 @@ reduced_df <- base %>%
   mutate(
     survey_num = as.numeric(as.character(survey))
   ) %>% 
-  arrange(hhid, survey_num)
+  arrange(hhid, survey_num) %>% 
+  # Change level to NA if household did not report that source of income
+  mutate(
+    drop_inc_level_farm = if_else(inc_source_farm == 1, inc_level_farm, NA_real_),
+    drop_inc_level_nfe = if_else(inc_source_nfe == 1, inc_level_nfe, NA_real_),
+    drop_inc_level_wage = if_else(inc_source_wage == 1, inc_level_wage, NA_real_),
+    drop_inc_level_assets = if_else(inc_source_assets == 1, inc_level_assets, NA_real_)
+  ) %>% 
+  # Change level to NA if household did not report that source of income at any point (income source == 2)
+  group_by(hhid) %>%
+  mutate(
+    ever_inc_source_farm = if_else(any(inc_source_farm == 1, na.rm = TRUE), 1, 0),
+    ever_inc_source_nfe = if_else(any(inc_source_nfe == 1, na.rm = TRUE), 1, 0),
+    ever_inc_source_wage = if_else(any(inc_source_wage == 1, na.rm = TRUE), 1, 0),
+    ever_inc_source_assets = if_else(any(inc_source_assets == 1, na.rm = TRUE), 1, 0),
+    ever_inc_source_pension = if_else(any(inc_source_pension == 1, na.rm = TRUE), 1, 0)
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    inc_level_farm =    if_else(ever_inc_source_farm == 0, NA_real_, inc_level_farm),
+    inc_level_nfe =     if_else(ever_inc_source_nfe == 0, NA_real_, inc_level_nfe),
+    inc_level_wage =    if_else(inc_source_wage == 0, NA_real_, inc_level_wage),
+    inc_level_assets =  if_else(inc_source_assets == 0, NA_real_, inc_level_assets),
+    inc_level_pension = if_else(inc_source_pension == 0, NA_real_, inc_level_pension)
+  ) 
 
 income_source <- map(c("inc_level_farm", "inc_level_nfe", "inc_level_wage", "inc_level_assets"),
     ~ {
@@ -696,6 +720,12 @@ income_source %>%
 
 ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 6, units = "in")  
 
+
+tabyl(reduced_df, inc_level_farm, survey_num)
+tabyl(reduced_df, inc_level_nfe, survey_num)
+tabyl(reduced_df, inc_level_wage, survey_num)
+tabyl(reduced_df, inc_level_assets, survey_num)
+tabyl(reduced_df, inc_level_pension, survey_num)
 
 # Table 4: Impact of lockdowns on different kinds of coping mechanisms 
 
