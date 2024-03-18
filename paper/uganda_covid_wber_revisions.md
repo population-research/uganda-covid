@@ -1128,29 +1128,64 @@ food insecurity from the lockdowns.
 
 ## Outside Assistance
 
+Given the reductions in household income with the lockdowns, we examine
+potential coping mechanisms in this section and the next [@Morduch1995; @Townsend1994].
+
+Households may, for example, rely on assistance from family members outside the
+household or from institutions. 
 In rounds 1 through 6, the UHFS asked households whether they received
 assistance from the following sources: (i) remittance from abroad, (ii)
 assistance from family members within the country, (iii) assistance from
 other non-family individuals, (iv) assistance from NGOs, and (v)
-assistance from the government.[^7] 
+assistance from the government.[^unemployment_benefits] 
 The questions were asked the same way as the income questions, where households 
 can either report income increase, remaining the same, decrease, or complete 
 loss relative to the prior round. 
 Therefore, like the income estimations, we create ordinal
-variables where 1,0 and -1 represent an increase, same, and
+variables where 1, 0 and -1 represent an increase, same, and
 decrease/complete loss, respectively, and estimate the effect of
 lockdowns using the same conditional fixed-effects ordered logistic
 model.
+The results are shown in [@fig:income_assistance].
 
-[^7]: Households were also asked whether they received unemployment
-benefits, but there was only one observation representing a change,
+[^unemployment_benefits]: Households were also asked whether they received unemployment
+benefits, but there was only one observation with a change in level,
 so we do not have any variation to conduct a conditional ordered
 logit estimation.
 
-![Impact on outside assistance ---
-Panel A represents coefficients from fixed effects ordered logit model, so for the dependent variables, 0 represents no change, 1 represents an increase, and -1 represents a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+![Impact on the level of outside assistance --- coefficients from fixed effects ordered 
+logit model, with positive representing an increase, 0 no change, and negative 
+a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+
+There were reductions in the assistance from family within the country
+and the assistance from non-family individuals after the first lockdown,
+although neither effect is statistically significant. 
+The level of remittances did increase slightly, although this is
+also not statistically significant.[^remittances]
+
+[^remittances]: This increase does run slightly counter to the substantial 
+decline in remittances across the world in the second quarter of 2020, 
+as lockdowns worldwide led to the closure of workplaces and limited people's 
+movements  [@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
+However, only 63 households reported any change over the six survey rounds.
+
+Neither could the households turn to NGOs or the government for help.
+Only 15 households report any change in NGOs assistance, while only 26 
+households report a change in government assistance.
+Not surprisingly, both coefficients are very noisy for the first and
+second rounds.
+
+These results suggest that households' standard coping mechanisms were 
+unavailable during the lockdowns. 
+The failure of these coping
+mechanisms in the face of reductions in income likely contributed
+substantially to the large effects of lockdowns on food insecurity.
 
 
+
+## Coping Through Changes to the Household 
+
+[from original estimation strategy]
 Using the household rosters from UHFS and the UNPS 2019/20, we have data
 on the number of household members, adults, and children. To understand
 the impact on household structure, we calculate the change in the number
@@ -1158,26 +1193,6 @@ of household members by subtracting the number in the prior round from
 the current round's number.
 
 
-
-## Coping Mechanisms 
-
-Given the reductions in household income with the lockdowns, we examine
-potential coping mechanisms in Table 4 (Morduch, 1995; Townsend, 1994).
-Two possibilities are assistance from family members outside the
-household or from institutions. There were significant reductions in
-assistance from the family within the country, assistance from
-non-family individuals, and assistance from NGOs after the first
-lockdown. Remittances also decreased but not statistically
-significantly. The only increase came in government assistance, although
-the effect is statistically insignificant. These results suggest that
-households' standard coping mechanisms were unavailable during the
-lockdowns. This is in line with the substantial decline in remittances
-across the world in the second quarter of 2020, as lockdowns worldwide
-led to the closure of workplaces and limited people's movements 
-[@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
-The failure of these coping
-mechanisms in the face of reductions in income likely contributed
-substantially to the large effects of lockdowns on food insecurity.
 
 
 ![Impact on changes in number of household members and movement to urban area --- 

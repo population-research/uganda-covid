@@ -718,7 +718,7 @@ income_source %>%
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
              labeller = labeller(org_variable = income_source_labels)) 
 
-ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 6, units = "in")  
+ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 4.5, units = "in")  
 
 
 tabyl(reduced_df, inc_level_farm, survey_num)
@@ -754,24 +754,24 @@ assistance <- map(
   # There are two different variables here to allow for both factoring and
   # labels to be added. There may be a smarter way to do this, but it works.
   mutate(
-    org_variable = variable,
-    variable = factor(variable, levels = c(
-      "inc_level_remittance", 
-      "inc_level_family", 
-      "inc_level_non_family", 
-      "inc_level_ngo", 
-      "inc_level_govt"
-    ))
+    org_variable = factor(
+      variable, levels = c(
+        "inc_level_family", 
+        "inc_level_non_family", 
+        "inc_level_remittance", 
+        "inc_level_ngo", 
+        "inc_level_govt"
+      ))
   ) 
 
 # Generate labels for the work_employment graph  
 assistance_mapping <- tribble(
   ~org_variable, ~label,
   "inc_level_family", "Assistance from family within country",
-  "inc_level_govt", "Assistance from government",
-  "inc_level_ngo", "Assistance from NGOs",
+  "inc_level_remittance", "Remittance",
   "inc_level_non_family", "Assistance from non-family individuals",
-  "inc_level_remittance", "Remittance"
+  "inc_level_ngo", "Assistance from NGOs",
+  "inc_level_govt", "Assistance from government"
   )  
 
 assistance_labels <- generate_labels(assistance, assistance_mapping, N_group)
