@@ -835,7 +835,8 @@ or that they would not have been food insecure.[^thank_eric]
 [^thank_eric]: We would like to thank the Editor for this 
 suggestion.
 
-![Attrition](../figures/food_insecurity_survey_attrition_combined.pdf){#fig:attrition}
+![Food insecurity estimates when assuming that all missing households are
+either food insecure or are not food insecure](../figures/food_insecurity_survey_attrition_combined.pdf){#fig:attrition}
 
 [@fig:attrition] shows the results for the nation-wide bounding estimations
 together with the original results.
@@ -1072,140 +1073,173 @@ or environmental.
 
 ## Income Sources
 
-Households were asked questions related to income in rounds 1 through 6.
-Instead of the monetary value of their income, households were asked
+Households were asked questions related to income in Rounds 1 through 6.
+Rather than the monetary value of their income, households were asked
 whether their income from different sources increased, remained the
-same, decreased, or was completely lost since the prior round (for round
+same, decreased, or was completely lost since the prior round (for Round
 1, the questions were asked relative to the start date of the lockdown).
-The income questions covered five sources: (i) family farming,
-livestock, or fishing, (ii) non-farm family business, (iii) wage
-employment, (iv) income from assets (properties, investments, or
-savings), and (v) pension. As the income question was ordinal, we
-created variables for each income source where 1 represents an increase
-in income, 0 represents income remaining unchanged, and -1 represents a
-decrease in income or a complete loss.
+The income questions covered five sources: 
+(i) family farming, livestock, or fishing, 
+(ii) non-farm family business, 
+(iii) wage employment, 
+(iv) income from assets (properties, investments, or savings), 
+and (v) pension.
+As the income question was ordinal, we created variables for each income 
+source where 1 represents an increase in income, 0 represents income 
+remaining unchanged, and -1 represents a decrease in income or a complete loss.
+
+![Impact on the levels of income from farms, non-farm businesses, wages,
+and assets  --- coefficients from fixed effects ordered logit model,
+with positive representing an increase, 0 no change, and negative 
+a decrease](../figures/income_sources.pdf){#fig:income_sources}
 
 Given that we use ordinal variables to represent changes in household
-income, we use a conditional fixed-effects ordered logistic model. The
-typical conditional logit model works by applying a fixed-effects logit
-model for households that see a change in the dependent variable over
-time. For the conditional *ordered* logit model, the actual values of
-the dependent variable are irrelevant. Instead, greater values
-correspond to higher-value outcomes [@Baetschmann2015]. 
+income, we use a conditional fixed-effects ordered logistic model. 
+The typical conditional logit model works by applying a fixed-effects logit
+model for households that see a change in the dependent variable over time. 
+For the conditional *ordered* logit model, the actual values of
+the dependent variable are irrelevant. 
+Instead, greater values correspond to higher-value outcomes [@Baetschmann2015]. 
 Hence, for our regressions, a positive coefficient for lockdowns represents an
 increase in household income, a negative coefficient represents a
 decrease, and a coefficient near 0 indicates that income remained
 stable.
+The results are shown in [@fig:income_sources] together with
+the number of households that the estimations are based on.[^no-pension]
 
-As shown in Panel B of Table 3, the first lockdown significantly
-decreased farm income, non-farm family business income, wage income, and
-income from assets, and the effects persisted in the medium run. These
-income effects are likely a major reason for the significant increase in
-food insecurity from the lockdowns. As a placebo, since pensions are
-typically not dependent on the state of the economy and remain steady
-over time, we also examine the impact on pension income. 
-Not surprisingly, we do not find any changes in pension income during the
-lockdowns.
+[^no-pension]: Only 34 households ever reported pension income, so we 
+do not show results for this income source.
+
+The first lockdown significantly decreased farm income, non-farm income, 
+and wage income.
+Furthermore, the effect on income from assets is negative, although not
+statistically significant, likely because of the low number of households.
+
+The effects persisted in the medium run, with very few
+households reporting improvements between Rounds 1 and 2, and,
+as a consequence, the estimated effects are either zero or negative.
+Only by the third round do a significant number of households
+report improvements in income levels.
 We do not have income data for round 7 and thus cannot examine
 the medium-term impact of the second lockdown.
-
-
-
-![Impact on different types of income  ---
-Panel B represents coefficients from fixed effects ordered logit model, so for dependent variables in columns 6 to 10, 0 represents no change, 1 represents an increase, and -1 represents a decrease.                                                                                   
-](../figures/income_sources.pdf){#fig:income_sources}
-
+These income effects are likely a major reason for the significant increase in
+food insecurity from the lockdowns. 
 
 
 ## Outside Assistance
 
+Given the reductions in household income with the lockdowns, we examine
+potential coping mechanisms in this section and the next [@Morduch1995; @Townsend1994].
+
+Households may, for example, rely on assistance from family members outside the
+household or from institutions. 
 In rounds 1 through 6, the UHFS asked households whether they received
 assistance from the following sources: (i) remittance from abroad, (ii)
 assistance from family members within the country, (iii) assistance from
 other non-family individuals, (iv) assistance from NGOs, and (v)
-assistance from the government.[^7] 
+assistance from the government.[^unemployment_benefits] 
 The questions were asked the same way as the income questions, where households 
 can either report income increase, remaining the same, decrease, or complete 
 loss relative to the prior round. 
 Therefore, like the income estimations, we create ordinal
-variables where 1,0 and -1 represent an increase, same, and
+variables where 1, 0 and -1 represent an increase, same, and
 decrease/complete loss, respectively, and estimate the effect of
 lockdowns using the same conditional fixed-effects ordered logistic
 model.
+The results are shown in [@fig:income_assistance].
 
-[^7]: Households were also asked whether they received unemployment
-benefits, but there was only one observation representing a change,
+[^unemployment_benefits]: Households were also asked whether they received unemployment
+benefits, but there was only one observation with a change in level,
 so we do not have any variation to conduct a conditional ordered
 logit estimation.
 
-![Impact on outside assistance ---
-Panel A represents coefficients from fixed effects ordered logit model, so for the dependent variables, 0 represents no change, 1 represents an increase, and -1 represents a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
+![Impact on the level of outside assistance --- coefficients from fixed effects ordered 
+logit model, with positive representing an increase, 0 no change, and negative 
+a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
 
+There were reductions in the assistance from family within the country
+and the assistance from non-family individuals after the first lockdown,
+although neither effect is statistically significant. 
+The level of remittances did increase slightly, although this is
+also not statistically significant.[^remittances]
 
-Using the household rosters from UHFS and the UNPS 2019/20, we have data
-on the number of household members, adults, and children. To understand
-the impact on household structure, we calculate the change in the number
-of household members by subtracting the number in the prior round from
-the current round's number.
+[^remittances]: This increase does run counter to the substantial 
+decline in remittances across the world in the second quarter of 2020, 
+as lockdowns worldwide led to the closure of workplaces and limited people's 
+movements  [@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
+However, only 63 households reported any change over the six survey rounds.
 
+Neither could the households turn to NGOs or the government for help.
+Only 15 households report any change in NGO assistance, while only 26 
+households report a change in government assistance.
+Not surprisingly, both coefficients are very noisy for the first and
+second rounds.
 
-
-## Coping Mechanisms 
-
-Given the reductions in household income with the lockdowns, we examine
-potential coping mechanisms in Table 4 (Morduch, 1995; Townsend, 1994).
-Two possibilities are assistance from family members outside the
-household or from institutions. There were significant reductions in
-assistance from the family within the country, assistance from
-non-family individuals, and assistance from NGOs after the first
-lockdown. Remittances also decreased but not statistically
-significantly. The only increase came in government assistance, although
-the effect is statistically insignificant. These results suggest that
-households' standard coping mechanisms were unavailable during the
-lockdowns. This is in line with the substantial decline in remittances
-across the world in the second quarter of 2020, as lockdowns worldwide
-led to the closure of workplaces and limited people's movements 
-[@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
+These results suggest that households' standard coping mechanisms were 
+unavailable during the lockdowns. 
 The failure of these coping
 mechanisms in the face of reductions in income likely contributed
 substantially to the large effects of lockdowns on food insecurity.
 
 
-![Impact on changes in number of household members and movement to urban area --- 
-Panel B represent coefficients from linear model with household fixed effects where dependent variables are continuous variables](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
+
+## Other Coping Mechanisms
 
 
-As households faced greater food insecurity during lockdowns, it is
-possible that, on the one hand, some household members left to look for
-better opportunities. On the other hand, as lockdowns led to reduced
-income and lower availability of work, migrants might return to their
-families. Panel B of Table 4 shows the impact of lockdowns on the change
-in the number of household members. We find an increase in household
-members during the first lockdown (column 1). Furthermore, this effect
-holds for adults (column 2) and children (column 3). The positive effect
-continued in the medium run for total members, although statistically
-insignificant, and the number of children, but there was a slight
-reduction in the number of adults. In contrast to the effects from the
-first lockdown, there were larger effects in the medium run following
-the second lockdown.
+As households faced greater food insecurity during lockdowns, it is possible 
+that, on the one hand, some household members left to look for better opportunities. 
+On the other hand, as lockdowns led to reduced income and lower availability of 
+work, migrants might return to their families, and, with schools closed 
+throughout the entire period, students going to boarding schools---especially
+prominent among secondary schools---likely returned home.
+Using the household rosters from UHFS and the UNPS 2019/20, we have data
+on the number of household members, adults, and children, and location of
+the households for the last survey before Covid, here referred to as Round 0, 
+and for each survey round. 
+The top three panels of [@fig:members_location] show the impact of lockdowns 
+on the number of household members and the number of adults and children separately.
+
+![Impact on the number of household members and the likelihood of urban 
+locations --- household fixed effects coefficients from linear models 
+with continuous outcome variables for the top three panels and an indicator 
+variable for the bottom 
+panel.](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
+
+Relatively to before Covid, there are significant increases in the 
+number of household members throughout the entire period.
+This effect comes almost entirely from an increase in the number
+of children. 
+The exception is for Round 7, where there are statistically significant
+increases in both the number of adults and the number of children,
+relatively to before Covid.
+
+The relative reduction in household size in Round 6 may be related to
+the improvement of the labor market suggested above with older children 
+moving to jobs. 
+However, similarly to the likelihood of market work, the second lockdown 
+significantly reversed the positive trend and the number of both 
+adult and young household members increased substantially. 
 
 The increase in the number of household members raises the question of
-whether the lockdowns caused an urban-to-rural migration. However, we
-find no such evidence of lockdown-induced migration in column 4, which
+whether the lockdowns caused an urban-to-rural migration. 
+However, we find no such evidence of lockdown-induced migration in 
+bottom panel of [@fig:members_location], which
 shows the likelihood of living in an urban area.
 
 Lastly, given the shift to agricultural work, we examine whether
 agricultural households change their agricultural strategy to cope with
-the lockdowns. We find suggestive evidence that agricultural households
+the lockdowns. 
+We find suggestive evidence that agricultural households
 changed their farming strategy during the lockdowns, such as changing
-the farming area and changes in the variety of crops produced. The
-details of these results are in Appendix Section A1.
+the farming area and changes in the variety of crops produced. 
+The details of these results are in the Appendix.
 
-Overall, our results from the coping mechanisms suggest that the
-households, on average, could not take advantage of outside help,
+Overall, our results that the households, on average, could not take 
+advantage of outside help,
 whether it was assistance from family members living outside of the
-household or assistance from institutions. We find evidence of net
-migration into the households and a switch to agricultural work,
+household or assistance from institutions. 
+We find evidence of net migration into the households and a 
+switch to agricultural work,
 suggesting that some household members return to the family for farm
 work.
 

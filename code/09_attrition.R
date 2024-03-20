@@ -182,7 +182,8 @@ base <- base %>%
   # Substitute in average weights and COVID-19 cases per 100,000 people within each survey round if missing
   mutate(
     cases_smooth_per_100000 = if_else(is.na(cases_smooth_per_100000), avg_cases_smooth_per_100000, cases_smooth_per_100000),
-    weight_final = if_else(is.na(weight_final), avg_weights, weight_final)
+    weight_final = if_else(is.na(weight_final), avg_weights, weight_final),
+    psu = str_sub(hhid, 1, 4)
   ) 
 
 # Estimations ----
@@ -349,8 +350,10 @@ org_fx %>%
   scale_color_manual(values = c("black", color_palette[2], color_palette[3]) ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~variable, scales = "fixed", ncol = 1) +
-  theme(legend.position = c(0.5, 0.92)) 
+  # Make legend be on top and one row
+  theme(legend.position = "top", legend.direction = "horizontal")
+  
 
-ggsave(here("figures", "food_insecurity_survey_attrition_combined.pdf"), width = 8, height = 6, units = "in")
+ggsave(here("figures", "food_insecurity_survey_attrition_combined.pdf"), width = 8, height = 4, units = "in")
 
 
