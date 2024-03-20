@@ -40,7 +40,7 @@ color_palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072
 # Functions ----
 
 # Custom function to tidy the model and add n_obs and n_fixef
-enhance_feols_summary <- function(.model) {
+enhance_feols_summary <- function(.model, excluded = 4) {
   # Tidy the model
   tidied_model <- tidy(
     .model,
@@ -60,7 +60,7 @@ enhance_feols_summary <- function(.model) {
   # Add n_obs and n_fixef as new columns
   tidied_model_enhanced <- tidied_model %>%
     filter(term != "cases_smooth_per_100000") %>% 
-    add_row(term = "survey4", estimate = 0, conf.low = 0, conf.high = 0) %>% 
+    add_row(term = paste0("survey", excluded), estimate = 0, conf.low = 0, conf.high = 0) %>% 
     arrange(term) %>% 
     mutate(
       n_obs = n_obs,
@@ -795,30 +795,63 @@ ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = 
 
 # Household composition and urban location ----
 
+
+# Create round 0 composition and location variables based on 2019 data
+prior_composition <- base %>% 
+  select(hhid, survey, survey_num, hh_total_members_prior, hh_adults_prior, hh_child_prior, urban_prior, weight_final, psu) %>%
+  filter(survey_num == 1) %>%
+  # Rename variables to match the 2020 data
+  rename(
+    hh_total_members = hh_total_members_prior,
+    hh_adults = hh_adults_prior,
+    hh_child = hh_child_prior,
+    urban = urban_prior
+  ) %>% 
+  mutate(
+    survey_num = 0,
+    cases_smooth_per_100000 = 0
+  ) 
+
+# Merge the two datasets
+composition <- base %>% 
+  select(hhid, survey, survey_num, hh_total_members, hh_adults, hh_child, urban, cases_smooth_per_100000, weight_final, psu) %>%
+  bind_rows(prior_composition) %>%
+  mutate(
+    survey = factor(survey_num, levels = c("0", "1", "2", "3", "4", "5", "6", "7"))
+  ) %>% 
+  arrange(hhid, survey_num)
+
 # Map over different dependent variables and apply the custom function
 hh_composition <- map(
-  c("hhmem_change", "adult_change", "child_change", "urban"), 
+  # c("hhmem_change", "adult_change", "child_change", "urban"), 
+  c("hh_total_members", "hh_adults", "hh_child", "urban"), 
   ~ feols(as.formula(paste0(.x, " ~ survey + cases_smooth_per_100000 | hhid")), 
-          data = base, 
+          data = composition, 
           weights = ~weight_final
   )
-) %>% map(enhance_feols_summary) %>%  
+) %>% 
+  # Looks messier because need the excluded = 0 argument
+  map(., ~ enhance_feols_summary(.x, excluded = 0)) %>%  
   list_rbind() %>% 
   mutate(
     term = str_remove(term, "survey")
   ) %>% 
   # First step in recoding variable to readable names
   mutate(
-    org_variable = factor(variable, levels = c("hhmem_change", "adult_change", "child_change", "urban")),
+    # org_variable = factor(variable, levels = c("hhmem_change", "adult_change", "child_change", "urban")),
+    org_variable = factor(variable, levels = c("hh_total_members", "hh_adults", "hh_child", "urban")),
   ) 
 
 # Define the mapping of org_variable to human-readable labels
 labels_mapping <- tribble(
   ~org_variable, ~label,
-  "adult_change", "Change in Number of Adults",
-  "hhmem_change", "Change in Number of Household Members", 
-  "child_change", "Change in Number of Children", 
-  "urban",        "Likelihood of Urban Location"
+  # "adult_change", "Change in Number of Adults",
+  # "hhmem_change", "Change in Number of Household Members", 
+  # "child_change", "Change in Number of Children",
+  "hh_total_members", "Number of Household Members", 
+  "hh_adults",        "Number of Adults",
+  "hh_child",         "Number of Children", 
+  "urban",            "Likelihood of Urban Location"
 )
 
 # Now, call the function with your dataset and the labels mapping
@@ -838,7 +871,7 @@ hh_composition %>%
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
              labeller = labeller(org_variable = hh_composition_labels)) 
 
-ggsave(here("figures", "household_composition_and_urban_location.pdf"), width = 8, height = 6, units = "in")
+ggsave(here("figures", "household_composition_and_urban_location.pdf"), width = 8, height = 4.5, units = "in")
 
 
 # Agricultural households and food insecurity ----
