@@ -64,7 +64,7 @@ roster <- map_dfr(
 # variable in round 1 appears to correspond nicely with the panel data
 # information.
 
-# HHID across panel and phone survey to get correspondance in household ids
+# HHID across panel and phone survey to get correspondence in household ids
 hhid_correspondance  <- read_dta(here( "raw_data", "round1", "Cover.dta")) %>% 
   select(HHID, baseline_hhid) %>% 
   rename_to_lower_snake()
@@ -90,12 +90,25 @@ panel_hh_roster <- read_dta(here("raw_data", "panel_19_20", "HH", "gsec2.dta")) 
   mutate(survey = 1) %>% # prior in round 1
   select(hhid, survey, starts_with("hh_"))
 
+# 2019/2020 Panel survey urban/rural data
+panel_urban_rural <- read_dta(here("raw_data", "panel_19_20", "HH", "gsec1.dta")) %>% 
+  rename_to_lower_snake() %>% 
+  rename(baseline_hhid = hhid) %>% 
+  left_join(hhid_correspondance, by = "baseline_hhid") %>% 
+  filter(!is.na(hhid)) %>% # Not in the phone survey
+  rename(urban_prior = urban) %>% 
+  mutate(survey = 1) %>%  # prior in round 1
+  select(hhid, survey, urban_prior) 
+
+# Combine panel data
+panel_combined <- left_join(panel_hh_roster, panel_urban_rural, by = c("hhid", "survey")) 
+
 # Other rounds 
 roster_prior <- roster %>% 
   rename_with(~ glue("{.}_prior"), starts_with("hh_")) %>% 
   mutate(survey = survey + 1) %>% 
   filter(survey != max(survey)) %>%  # drop latest survey
-  bind_rows(panel_hh_roster, .)
+  bind_rows(panel_combined, .)
 
 
 # Save ----
