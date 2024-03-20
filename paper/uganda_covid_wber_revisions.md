@@ -130,31 +130,18 @@ Finally, the Nigeria study only examined the immediate effect of the lockdown on
 a limited set of food insecurity questions 
 [@Amare2021].
 
-Our study contributes to two strands of the literature. First, we
-contribute to the literature on understanding the impacts of the
-lockdowns. Given the mixed findings and the limitations in data and
-estimation methods in the prior literature, our study contributes to the
-literature on the effects of lockdowns in three ways. First, we use
-country-wide panel data with household fixed-effects models---which
-allows us to control for unobservable household characteristics---to
-compare household food insecurity across almost one-and-a-half years of
-varying Covid-19 restriction levels. Second, we estimate short- and
-medium-run effects of lockdowns to understand the persistence of the
-impact of lockdowns in the months following their lifting. Moreover, the
-second lockdown coincided with a prolonged dry spell, which allows us to
-investigate whether a weather shock compounds the effect of the lockdown
-[@Atamanov2022]. 
-Finally, rather than relying solely on reported
-lockdowns like in prior studies, we use additional data on the
-stringency of lockdowns and Google mobility data to conduct robustness
-checks of our analysis.
+Our study contributes to two strands of the literature. 
+First, we contribute to the literature on understanding the impacts of the lockdowns.
+Given the mixed findings and the limitations in data in the prior literature, 
+we use household fixed-effects models on country-wide panel data to estimate 
+short- and medium-run effects of lockdowns, with the goal of understanding the 
+persistence of the impact of lockdowns in the months following their lifting. 
 
 Second, we contribute to the small but growing body of research on the
 effects of aggregate shocks and how households cope with these shocks.
-There is a long-standing literature on how households in developing
-countries smooth consumption in response to idiosyncratic shocks through
-self-insurance approaches 
-[@Case1995]. 
+There is a long-standing literature on how households in low-income countries
+smooth consumption in response to idiosyncratic shocks through
+self-insurance approaches [@Case1995]. 
 However, we know less about how these coping mechanisms fare when households 
 are exposed to aggregate shocks. 
 Most of the research on aggregate shocks has focused on
@@ -163,8 +150,8 @@ ability to smooth consumption, although wealthier households are
 generally better able to deal with the shock 
 [@Del-Ninno2003; @Fallon2002;@Glewwe1998;@Hallegatte2020;@McKenzie2003;@Skoufias2003;@Thomas2007].
 
-We contribute to the literature on coping with aggregate shocks in two
-ways. First, we examine a repeated systemic shock, which was almost
+We contribute to the literature on coping with aggregate shocks in two ways. 
+First, we examine a repeated systemic shock, which was almost
 entirely unanticipated, especially the first instance. Second, we use
 panel data to directly analyze four broad categories of coping
 mechanisms that households may use to mitigate the effects of these
@@ -1292,8 +1279,8 @@ agricultural households had previously had.
 # Conclusion
 
 Using country-wide panel data with a household fixed-effects model, we
-examine the impact of two Covid-19 lockdowns in Uganda on food
-insecurity. Food insecurity increased substantially during the first
+examine the impact of two Covid-19 lockdowns in Uganda on food insecurity. 
+Food insecurity increased substantially during the first
 lockdown, with the relative effects largest for the worst types of food
 insecurity. The first lockdown also had a significant medium-run impact
 on food insecurity. The medium-run impact was even higher following the

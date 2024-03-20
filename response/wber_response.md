@@ -407,6 +407,15 @@ represents a meaningful contribution to the literature but are fairly mild in
 their description of what the fixed effects achieve on page 9. More consistency
 would be helpful.
 
+    **Response:** As we discuss in our response to the Editor's 2nd comment,
+    the absence of individual-level variables does remove one of the 
+    usual arguments for using fixed effects.
+    We have included a paragraph in the Estimation Strategy on why we still
+    use household fixed effects.
+    Furthermore, we have rewritten the discussion in the Introduction of our 
+    contribution to ensure it is consistent with the rest of the paper.
+    
+
 6. On page 21, the authors note that they interact lockdown variables with
 “whether the household was engaged in agricultural production in the prior
 round.” This makes it very difficult to interpret Table 5; why not use engagement
