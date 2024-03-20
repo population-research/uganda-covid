@@ -1163,14 +1163,14 @@ although neither effect is statistically significant.
 The level of remittances did increase slightly, although this is
 also not statistically significant.[^remittances]
 
-[^remittances]: This increase does run slightly counter to the substantial 
+[^remittances]: This increase does run counter to the substantial 
 decline in remittances across the world in the second quarter of 2020, 
 as lockdowns worldwide led to the closure of workplaces and limited people's 
 movements  [@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
 However, only 63 households reported any change over the six survey rounds.
 
 Neither could the households turn to NGOs or the government for help.
-Only 15 households report any change in NGOs assistance, while only 26 
+Only 15 households report any change in NGO assistance, while only 26 
 households report a change in government assistance.
 Not surprisingly, both coefficients are very noisy for the first and
 second rounds.
@@ -1183,53 +1183,63 @@ substantially to the large effects of lockdowns on food insecurity.
 
 
 
-## Coping Through Changes to the Household 
+## Other Coping Mechanisms
 
-[from original estimation strategy]
+
+As households faced greater food insecurity during lockdowns, it is possible 
+that, on the one hand, some household members left to look for better opportunities. 
+On the other hand, as lockdowns led to reduced income and lower availability of 
+work, migrants might return to their families, and, with schools closed 
+throughout the entire period, students going to boarding schools---especially
+prominent among secondary schools---likely returned home.
 Using the household rosters from UHFS and the UNPS 2019/20, we have data
-on the number of household members, adults, and children. To understand
-the impact on household structure, we calculate the change in the number
-of household members by subtracting the number in the prior round from
-the current round's number.
+on the number of household members, adults, and children, and location of
+the households for the last survey before Covid, here referred to as Round 0, 
+and for each survey round. 
+The top three panels of [@fig:members_location] show the impact of lockdowns 
+on the number of household members and the number of adults and children separately.
 
+![Impact on the number of household members and the likelihood of urban 
+locations --- household fixed effects coefficients from linear models 
+with continuous outcome variables for the top three panels and an indicator 
+variable for the bottom 
+panel.](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
 
+Relatively to before Covid, there are significant increases in the 
+number of household members throughout the entire period.
+This effect comes almost entirely from an increase in the number
+of children. 
+The exception is for Round 7, where there are statistically significant
+increases in both the number of adults and the number of children,
+relatively to before Covid.
 
-
-![Impact on changes in number of household members and movement to urban area --- 
-Panel B represent coefficients from linear model with household fixed effects where dependent variables are continuous variables](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
-
-
-As households faced greater food insecurity during lockdowns, it is
-possible that, on the one hand, some household members left to look for
-better opportunities. On the other hand, as lockdowns led to reduced
-income and lower availability of work, migrants might return to their
-families. Panel B of Table 4 shows the impact of lockdowns on the change
-in the number of household members. We find an increase in household
-members during the first lockdown (column 1). Furthermore, this effect
-holds for adults (column 2) and children (column 3). The positive effect
-continued in the medium run for total members, although statistically
-insignificant, and the number of children, but there was a slight
-reduction in the number of adults. In contrast to the effects from the
-first lockdown, there were larger effects in the medium run following
-the second lockdown.
+The relative reduction in household size in Round 6 may be related to
+the improvement of the labor market suggested above with older children 
+moving to jobs. 
+However, similarly to the likelihood of market work, the second lockdown 
+significantly reversed the positive trend and the number of both 
+adult and young household members increased substantially. 
 
 The increase in the number of household members raises the question of
-whether the lockdowns caused an urban-to-rural migration. However, we
-find no such evidence of lockdown-induced migration in column 4, which
+whether the lockdowns caused an urban-to-rural migration. 
+However, we find no such evidence of lockdown-induced migration in 
+bottom panel of [@fig:members_location], which
 shows the likelihood of living in an urban area.
 
 Lastly, given the shift to agricultural work, we examine whether
 agricultural households change their agricultural strategy to cope with
-the lockdowns. We find suggestive evidence that agricultural households
+the lockdowns. 
+We find suggestive evidence that agricultural households
 changed their farming strategy during the lockdowns, such as changing
-the farming area and changes in the variety of crops produced. The
-details of these results are in Appendix Section A1.
+the farming area and changes in the variety of crops produced. 
+The details of these results are in the Appendix.
 
-Overall, our results from the coping mechanisms suggest that the
-households, on average, could not take advantage of outside help,
+Overall, our results that the households, on average, could not take 
+advantage of outside help,
 whether it was assistance from family members living outside of the
-household or assistance from institutions. We find evidence of net
-migration into the households and a switch to agricultural work,
+household or assistance from institutions. 
+We find evidence of net migration into the households and a 
+switch to agricultural work,
 suggesting that some household members return to the family for farm
 work.
 
