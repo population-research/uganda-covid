@@ -357,6 +357,8 @@ is not a surprise to the reader.
     effect of the lockdown separately from the spread of Covid.
     See also our response to Referee 1 (Essential Point 1), above.
     
+    [few exceptions where we have pre-Covid results]
+    
     [still need to do something about the literature part]
 
 
@@ -383,6 +385,51 @@ time period due to school closures from March 2020 through January 2022; since
 many Ugandan children have lunch at school or attend boarding schools, these
 changes may lead to significant increases in food security. It is unclear why
 this channel is not considered a primary one.
+
+    **Response:** Before we respond to the main question, we should point out 
+    that the original number of household members estimations
+    were difficult to interpret because they essentially estimated how the 
+    lockdowns affected the *change* in number of members.
+    With the move to using indicators for each round, we now directly
+    estimating how the round indicators affect the number of members (total,
+    adults, and children).
+    One advantage of this, besides easier interpretation, is that we can use 
+    pre-Covid as the base/excluded period.
+    
+    The new results, indeed, show significant increases in the number of children 
+    below 18 compared to pre-Covid, but little change in the number of adults 
+    until after the second severe lockdown.
+    One possible explanation for these results could certainly be the school 
+    closures leading to children returning home from boarding schools.
+    The concern about this explanation is that the number of household 
+    members younger than 18 is increasing at an approximately uniform rate between 
+    surveys until Round 4, rather than being associated with a substantial
+    increase in connection with the first severe lockdowns and the associated
+    school closures.
+    
+    Hence, while we agree completely that the increase compared to the pre-Covid 
+    period likely contributed to raising the *base* level of food insecurity 
+    compared to before Covid, we do not see the changes in the number of
+    children as a primary channel through which the lockdowns increase 
+    food insecurity.
+    That the change in the number of children should drive the increase in
+    food insecurity especially runs counter to what we observe for the 
+    first severe lockdown; there are more children in Round 4 
+    (our base level for the food insecurity estimations) than in Round 1.
+    We have included an expanded discussion of this important point.
+
+    Furthermore, unfortunately, we cannot establish whether the absence of 
+    school lunches added to the level of food insecurity, but we now discuss 
+    the possibility in a footnote.
+    Note, as for the number of children, the lack of school lunches may raise 
+    the base level of food insecurity, but it is unlikely to drive the 
+    lockdown-related changes as the schools were closed in all of the UHFS 
+    survey rounds.
+
+    [Shamma: should we also include a discussion of the Round 7 results?
+    It is possible that we are getting an increase in adults because of the
+    below-normal rainfall but that is not really lockdown related.]
+    
 
 ## Suggestions
 
