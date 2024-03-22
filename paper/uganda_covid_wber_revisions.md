@@ -744,7 +744,7 @@ Furthermore, people may be moving from urban to rural areas to "escape"
 increasing levels of Covid infections, bringing Covid with them to rural areas.
 
 [@fig:food_insecurity_region] shows the results by level of food insecurity
-and regions, where each combination is from a separate regression.
+and regions, where each region is treated as a separate sample.
 The regional raw levels of food insecurity by round are shown in 
 Appendix [@fig:region_descriptive].
 Because we do not have information on regional Covid-19
