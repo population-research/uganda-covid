@@ -389,7 +389,18 @@ the main pathway.
     increase in facing any food insecurity in that same period. This seems at odds
     with the authors’ primary explanation.
     
-    **Response:**
+    **Response:** Thank you for bringing this to our attention. It was not
+    our intention for paid work to be seen as the "preferred channel" through 
+    which the lockdowns affected food insecurity.
+    As you point out, income decreases across agricultural, non-farm,
+    and wage employment.
+    However, agricultural households do appear to suffer less from increases 
+    in food insecurity, especially at the severe levels, than non-agricultural
+    households.
+    We have edited the abstract and the paper throughout to emphasize the
+    overall reduction in income and transfers (although the estimates on
+    transfers are noisier with the new estimation set-up and clustered standard 
+    errors).
 
 3. One point which is severely underdiscussed are the changes in household size.
 There are increases in both adult and child members; how much of the results on
