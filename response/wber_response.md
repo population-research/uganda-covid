@@ -320,6 +320,20 @@ including interactions or doing sub-group comparisons in linear probability
 models, as outlined in Holm et al. (2015, see
 https://link.springer.com/article/10.1007/s11135-014-0057-0).
 
+    **Response:** Thank you for drawing our attention to this paper.
+    If we understand @Holm2015 correctly, their main concern is that testing
+    for differences across groups using LPM results in a too high 
+    probability of rejecting a true null of no differences across groups.
+    We do not rely on or test differences across agricultural/non-agricultural 
+    households but instead analyze the pattern of food insecurity within each group.
+    Furthermore, we now present results using separate samples based on pre-Covid
+    agricultural status, as explained below in our response to R2, Suggestion 6,
+    and the results are similar across the separate samples and the interaction 
+    models.
+    Finally, for our new analysis of regional variation, we use separate samples 
+    and do not test for differences across regions.
+    
+
 5. It would be useful for the authors to show how the results would be affected by
 multiple hypothesis testing corrections, since there are many outcome variables
 being considered. Alternatively, the authors should provide a qualitative
@@ -470,8 +484,8 @@ in agricultural production from the 2019/20 UNPS data? At the least, I’d like 
 see the authors justify making this variable dynamic in more specific detail.
 
     **Response:** To address this, we now use two different approaches.
-    First, we present results separately for households that were in agriculture 
-    and those that were not in agriculture before Covid.
+    First, we split the sample into two and present results separately for households 
+    that were in agriculture and those that were not in agriculture before Covid.
     Second, we show the results equivalent to the original table but with all 
     survey rounds, interacting households' agricultural status in the prior round 
     with survey indicators (in effect, allowing households to change status).
