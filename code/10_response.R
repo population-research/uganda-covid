@@ -790,7 +790,7 @@ assistance %>%
   facet_wrap(~org_variable, scales = "free_y", ncol = 1,
              labeller = labeller(org_variable = assistance_labels)) 
 
-ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = "in")
+ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 4.5, units = "in")
 
 
 # Household composition and urban location ----
@@ -1047,4 +1047,4 @@ left_columns + right_columns +  plot_layout(axes = 'collect')
 #   ) +
 #   facet_grid(variable ~ type , scales = "fixed") 
 
-ggsave(here("figures", "agri_vs_non_agri.pdf"), width = 8, height = 6, units = "in")
+ggsave(here("figures", "agri_vs_non_agri.pdf"), width = 8, height = 4.5, units = "in")

@@ -1,7 +1,7 @@
 ---
 title: 'Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
 		Household Coping Mechanisms: Evidence from Uganda'
-date: February 2024
+date: March 2024
 author:
 - Claus C. Pörtner^[Associate Professor, 
 	Albers School of Business and Economics, 
@@ -30,19 +30,19 @@ abstract: |
   Covid-19 lockdowns in the developing world, employing longitudinal
   data from Uganda. 
   We find significant, immediate increases in food insecurity after the first
-  lockdown and a continued negative impact three months after its
-  lifting. 
+  lockdown and a continued negative impact three months after its lifting. 
   The second lockdown's medium-term impact was even worse, likely because 
   of a compounding effect of a concurrent drier-than-normal period. 
-  The rising food insecurity was partly the result of the lockdown-related
-  reductions in the availability of paid work. Agricultural households
-  were more likely to continue working and consequently saw smaller
-  increases in food insecurity. Furthermore, the likelihood of engaging
-  in agricultural work increased after the first lockdown, suggesting a
-  switch to agriculture as a coping mechanism. The other coping
-  mechanisms that households typically rely on for idiosyncratic shocks
-  failed in the face of a worldwide shock, contributing to the sizeable
-  increase in food insecurity.
+  Income from agriculture, non-farm businesses, and wage employment were all 
+  lower during lockdowns, contributing to the increased food insecurity.
+  However, agricultural households were less affected than other households
+  and particularly showed a lower impact on severe food insecurity.
+  The likelihood of engaging in market work declined significantly 
+  and there was a marked movement towards agricultural work, suggesting a
+  switch to agriculture as a coping mechanism. 
+  The other coping mechanisms that households typically rely on for 
+  idiosyncratic shocks failed, contributing to the sizeable increase in 
+  food insecurity.
 bibliography: uganda_covid.bib
 csl: the-quarterly-journal-of-economics.csl
 link-citations: true
@@ -152,10 +152,10 @@ generally better able to deal with the shock
 
 We contribute to the literature on coping with aggregate shocks in two ways. 
 First, we examine a repeated systemic shock, which was almost
-entirely unanticipated, especially the first instance. Second, we use
-panel data to directly analyze four broad categories of coping
-mechanisms that households may use to mitigate the effects of these
-shocks. The categories are changes in labor market participation,
+entirely unanticipated, especially the first instance. 
+Second, we directly analyze four broad categories of coping mechanisms 
+that households may use to mitigate the effects of these shocks. 
+The categories are changes in labor market participation,
 diversification of income sources, transfers and remittances, and
 changes in household structure through migration 
 [@Foster2002; @Jayachandran2006; @Kochar1999; @McKenzie2003; @Morduch1995;
@@ -166,48 +166,52 @@ likelihood of net borrowing, presumably as a coping mechanism after the first
 lockdown [@Mahmud2023].
 
 We find that food insecurity significantly increased during the lockdowns. 
-The point estimates are significant, with an increase of 25 percentage points for
-any food insecurity during the first lockdown compared to the period
-with no lockdowns. Even more concerningly, the two worst forms of food
-insecurity, skipping meals and going without eating the whole day,
-doubled and tripled in size relative to non-lockdown periods.
+The point estimates are significant, with an increase of almost 25 percentage 
+points for any food insecurity during the first lockdown compared to the period
+with no lockdowns. 
+Even more concerning, moderate to severe and severe food insecurity
+is more than 20 percentage points and almost 10 percentage points higher
+relative to when there are fewer lockdown-related restrictions.
 
 We also find that lockdowns have a substantial medium-term impact, with
-food insecurity 12 percentage points higher two to three months after
-the first lockdown was lifted. The medium-term impact was even higher
-following the second lockdown, with a 22 percentage points increase in
-any form of food insecurity three months after the second lockdown had
-been lifted. The differences in the medium-run impact between the two
+any food insecurity about 10 percentage points higher two to three months after
+the first lockdown was lifted. 
+The medium-term impact was even higher following the second lockdown, 
+with an approximately 20 percentage points increase three months after 
+the second lockdown had been lifted. 
+The differences in the medium-run impact between the two
 lockdowns suggest that the lower-than-normal rainfall during July 
-through  October of 2021 compounded the negative effect of
-the lockdown.
+through  October of 2021 compounded the negative effect of the lockdown.
 
 To understand the mechanisms behind the significant impact on food
 insecurity, we examine the effect on labor market outcomes and find
-substantial decreases in paid work during the lockdowns and decreases
-across all income types, such as wage income, agricultural income,
-non-farm business income, and income from assets owned. However,
-households in the agricultural sector were significantly more likely to
-continue work during and after the first lockdown than non-agricultural
-households. Thus, their food security was less affected.
+substantial decreases across all income types, such as wage income, 
+agricultural income, non-farm business income, and income from assets owned. 
+There were also substantial decreases in the likelihood of engaging 
+in market work during the lockdowns.
+Households in the agricultural sector saw lower increases in 
+food insecurity than non-agricultural households, especially for
+severe food insecurity, during the first severe lockdown.
+This is consistent with agricultural households being able to
+work even during lockdowns and have access to foods produced at home.
 
 Furthermore, households attempted to cope with the lockdown by switching
 to agricultural work, as shown by a significant increase in the
-likelihood of working in agriculture after the first lockdown. However,
-that increase dissipated by the second lockdown, likely because the
-concurrent rainfall shortfall made agriculture less attractive as a coping
-mechanism.
+likelihood of working in agriculture after the first lockdown. 
+However, likely because the concurrent rainfall shortfall made agriculture 
+less attractive as a coping mechanism, there was no further
+movement to agriculture after the second lockdown.
 
 Traditional sources of support, such as remittance from abroad or
 assistance from family members within the country, non-family
-individuals, and development organizations, decreased during the
-lockdowns. This suggests that the worldwide macroeconomic shock from
+individuals, and development organizations, were all either flat
+or decreased during the lockdowns. 
+This suggests that the worldwide macroeconomic shock from
 Covid-19 affected everyone's ability to transfer resources to needy
-relatives or friends. This failure of the standard coping mechanisms
-likely is a significant factor in explaining lockdowns' substantial
-effect on food insecurity. Finally, we find evidence of a net increase
-in household members, suggesting that lockdowns forced individuals
-living elsewhere to join/rejoin the household.
+relatives or friends. 
+This failure of the standard coping mechanisms likely is a 
+significant factor in explaining lockdowns' substantial
+effect on food insecurity. 
 
 [identification of effects based on comparing periods with 
 varying degrees of lockdowns before Covid becomes an issue; 
@@ -1297,47 +1301,46 @@ Using country-wide panel data with a household fixed-effects model, we
 examine the impact of two Covid-19 lockdowns in Uganda on food insecurity. 
 Food insecurity increased substantially during the first
 lockdown, with the relative effects largest for the worst types of food
-insecurity. The first lockdown also had a significant medium-run impact
-on food insecurity. The medium-run impact was even higher following the
+insecurity. 
+The first lockdown also had a significant medium-run impact
+on food insecurity. 
+The medium-run impact was even higher following the
 second lockdown, as a lower-than-normal rainfall across Uganda 
-compounded the negative effect of the
-lockdown.
+compounded the negative effect of the lockdown.
 
-There were significant decreases in paid work and earned income.
+There were significant decreases in income.
 However, agricultural households were better able to continue working
 during the first lockdown than non-agricultural households.
 Consequently, their food security outcomes were better as well.
 
 We find evidence that households attempted to cope with the first
-lockdown by temporarily switching to agricultural work. However,
-traditional sources of coping mechanisms, such as remittance from
+lockdown by temporarily switching to agricultural work. 
+However, traditional sources of coping mechanisms, such as remittance from
 abroad, assistance from family members within the country, assistance
 from non-family individuals, and assistance from development
-organizations, all decreased during the lockdowns. The lack of
-assistance may explain lockdowns' substantial effect on food insecurity.
-Lastly, to make matters more challenging for households, there was a net
-increase in the number of household members, suggesting that lockdowns
-forced individuals living elsewhere to join/rejoin the household.
+organizations, were all either flat or decreased during the lockdowns. 
+The lack of assistance may explain lockdowns' substantial effect on food insecurity.
 
-Three broader conclusions emerge from our results. First, on average,
-agriculture is likely less productive than non-farm work but better than
-not working. 
+Three broader conclusions emerge from our results. 
+First, on average, agriculture is likely less productive than non-farm 
+work but better than not working. 
 With a slow rate of switching back from agriculture, the
 lockdowns can potentially have severe long-term adverse effects on
-Uganda's development. Second, the results show the limit of
-self-insurance and mutual insurance when faced with a systemic shock.
+Uganda's development. 
+Second, the results show the limit of self-insurance and mutual 
+insurance when faced with a systemic shock.
 Most of the literature has focused on the smaller and more frequent risk
-of idiosyncratic shocks and how households respond to these. However, a
-better understanding of systemic shocks and how households respond is
-still lacking. Finally, the case of Uganda illustrates well the issues
-with the wholesale lockdown of economies in response to Covid-19 in
-situations with low state capacity. Uganda has been hailed as a leading
-example of curbing Covid-19 [@Adams2021]. 
-However, the
-mitigation efforts failed to reach those most affected by the lockdown.
+of idiosyncratic shocks and how households respond to these. 
+However, a better understanding of systemic shocks and how households respond is
+still lacking. 
+Finally, the case of Uganda illustrates well the issues with the wholesale 
+lockdown of economies in response to Covid-19 in situations with 
+low state capacity. 
+Uganda has been hailed as a leading example of curbing Covid-19 [@Adams2021]. 
+However, the mitigation efforts failed to reach those most affected by the lockdown.
 With the low mortality rate in Sub-Saharan Africa, including Uganda, the
-potential long-term cost of the lockdowns potentially significantly
-outweighs the benefits. Quantifying these costs and identifying possible
+long-term cost of the lockdowns likely significantly outweighs the benefits. 
+Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
 
