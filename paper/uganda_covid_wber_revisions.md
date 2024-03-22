@@ -1170,21 +1170,33 @@ substantially to the large effects of lockdowns on food insecurity.
 
 
 
-## Other Coping Mechanisms
+## Other Changes to the Household
 
 
 As households faced greater food insecurity during lockdowns, it is possible 
-that, on the one hand, some household members left to look for better opportunities. 
-On the other hand, as lockdowns led to reduced income and lower availability of 
-work, migrants might return to their families, and, with schools closed 
-throughout the entire period, students going to boarding schools---especially
-prominent among secondary schools---likely returned home.
+that, on the one hand, some household members left to look for better opportunities.
+On the other hand, lockdowns resulted in decreased income and diminished work 
+opportunities, and schools were closed throughout the entire period.
+Consequently, migrants may have chosen to return to their families, 
+and students attending boarding schools---particularly common in secondary 
+education---also likely returned home, and these returns 
+may further increase food insecurity.[^school_lunch]
+
+[^school_lunch]: Children at local schools would also spend more time 
+at home more as a result of the school closures.
+Although we cannot directly capture this dimension, it is likely that
+it added to the general level of food insecurity as these children
+often would have been served lunch at school.
+
 Using the household rosters from UHFS and the UNPS 2019/20, we have data
 on the number of household members, adults, and children, and location of
-the households for the last survey before Covid, here referred to as Round 0, 
+the households for the last UNPS survey before Covid, here referred to as Round 0, 
 and for each survey round. 
+One caveat is that UNPS 2019/20 data collection took place between 
+April 2019 and February 2020, which means that the pre-Covid information on 
+household size can be more than a year for the first UHFS survey.
 The top three panels of [@fig:members_location] show the impact of lockdowns 
-on the number of household members and the number of adults and children separately.
+on the number of household members and on the number of adults and children separately.
 
 ![Impact on the number of household members and the likelihood of urban 
 locations --- household fixed effects coefficients from linear models 
@@ -1192,25 +1204,31 @@ with continuous outcome variables for the top three panels and an indicator
 variable for the bottom 
 panel.](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
 
-Relatively to before Covid, there are significant increases in the 
-number of household members throughout the entire period.
+Relatively to before Covid, the number of household members is
+statistically significantly higher throughout the entire period.
 This effect comes almost entirely from an increase in the number
 of children. 
 The exception is for Round 7, where there are statistically significant
 increases in both the number of adults and the number of children,
 relatively to before Covid.
 
+The continuous increase in the number of children until Round 4 
+compared to the pre-Covid survey suggests that this change is not 
+driven by the lockdowns and school closures, which began at the same time
+as the first lockdown and did not end until 2022.
+Hence, although the school closures may have increased the 
+base level of food insecurity compared to before Covid, it is unlikely 
+to have driven the increases in food insecurity during the first lockdowns.
+
 The relative reduction in household size in Round 6 may be related to
 the improvement of the labor market suggested above with older children 
 moving to jobs. 
 However, similarly to the likelihood of market work, the second lockdown 
-significantly reversed the positive trend and the number of both 
-adult and young household members increased substantially. 
+reversed the positive trend, substantially increasing the number of both 
+adult and young household members. 
 
-The increase in the number of household members raises the question of
-whether the lockdowns caused an urban-to-rural migration. 
-However, we find no such evidence of lockdown-induced migration in 
-bottom panel of [@fig:members_location], which
+Related to migration, we find no such evidence of lockdown-induced 
+migration in the bottom panel of [@fig:members_location], which
 shows the likelihood of living in an urban area.
 
 Lastly, given the shift to agricultural work, we examine whether
@@ -1221,14 +1239,11 @@ changed their farming strategy during the lockdowns, such as changing
 the farming area and changes in the variety of crops produced. 
 The details of these results are in the Appendix.
 
-Overall, our results that the households, on average, could not take 
-advantage of outside help,
+Overall, our results indicate that the households, on average, could 
+not take advantage of outside help,
 whether it was assistance from family members living outside of the
 household or assistance from institutions. 
-We find evidence of net migration into the households and a 
-switch to agricultural work,
-suggesting that some household members return to the family for farm
-work.
+We do find evidence of a switch to agricultural work.
 
 ## Agricultural vs. Non-Agricultural Households
 
