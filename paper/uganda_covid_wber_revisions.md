@@ -1301,47 +1301,46 @@ Using country-wide panel data with a household fixed-effects model, we
 examine the impact of two Covid-19 lockdowns in Uganda on food insecurity. 
 Food insecurity increased substantially during the first
 lockdown, with the relative effects largest for the worst types of food
-insecurity. The first lockdown also had a significant medium-run impact
-on food insecurity. The medium-run impact was even higher following the
+insecurity. 
+The first lockdown also had a significant medium-run impact
+on food insecurity. 
+The medium-run impact was even higher following the
 second lockdown, as a lower-than-normal rainfall across Uganda 
-compounded the negative effect of the
-lockdown.
+compounded the negative effect of the lockdown.
 
-There were significant decreases in paid work and earned income.
+There were significant decreases in income.
 However, agricultural households were better able to continue working
 during the first lockdown than non-agricultural households.
 Consequently, their food security outcomes were better as well.
 
 We find evidence that households attempted to cope with the first
-lockdown by temporarily switching to agricultural work. However,
-traditional sources of coping mechanisms, such as remittance from
+lockdown by temporarily switching to agricultural work. 
+However, traditional sources of coping mechanisms, such as remittance from
 abroad, assistance from family members within the country, assistance
 from non-family individuals, and assistance from development
-organizations, all decreased during the lockdowns. The lack of
-assistance may explain lockdowns' substantial effect on food insecurity.
-Lastly, to make matters more challenging for households, there was a net
-increase in the number of household members, suggesting that lockdowns
-forced individuals living elsewhere to join/rejoin the household.
+organizations, were all either flat or decreased during the lockdowns. 
+The lack of assistance may explain lockdowns' substantial effect on food insecurity.
 
-Three broader conclusions emerge from our results. First, on average,
-agriculture is likely less productive than non-farm work but better than
-not working. 
+Three broader conclusions emerge from our results. 
+First, on average, agriculture is likely less productive than non-farm 
+work but better than not working. 
 With a slow rate of switching back from agriculture, the
 lockdowns can potentially have severe long-term adverse effects on
-Uganda's development. Second, the results show the limit of
-self-insurance and mutual insurance when faced with a systemic shock.
+Uganda's development. 
+Second, the results show the limit of self-insurance and mutual 
+insurance when faced with a systemic shock.
 Most of the literature has focused on the smaller and more frequent risk
-of idiosyncratic shocks and how households respond to these. However, a
-better understanding of systemic shocks and how households respond is
-still lacking. Finally, the case of Uganda illustrates well the issues
-with the wholesale lockdown of economies in response to Covid-19 in
-situations with low state capacity. Uganda has been hailed as a leading
-example of curbing Covid-19 [@Adams2021]. 
-However, the
-mitigation efforts failed to reach those most affected by the lockdown.
+of idiosyncratic shocks and how households respond to these. 
+However, a better understanding of systemic shocks and how households respond is
+still lacking. 
+Finally, the case of Uganda illustrates well the issues with the wholesale 
+lockdown of economies in response to Covid-19 in situations with 
+low state capacity. 
+Uganda has been hailed as a leading example of curbing Covid-19 [@Adams2021]. 
+However, the mitigation efforts failed to reach those most affected by the lockdown.
 With the low mortality rate in Sub-Saharan Africa, including Uganda, the
-potential long-term cost of the lockdowns potentially significantly
-outweighs the benefits. Quantifying these costs and identifying possible
+long-term cost of the lockdowns likely significantly outweighs the benefits. 
+Quantifying these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
 
