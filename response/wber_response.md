@@ -21,7 +21,7 @@ suggestions, which we believe have significantly improved the paper.
 question—did we do that?]
 
 
-**Major changes:**
+**Notable changes:**
 
 1. To ease the interpretation of the results, to address the potential multiple comparisons
 issues raised by Referee 1, and in response to Referee 1's comment on the measurement 
@@ -46,9 +46,10 @@ and the attrition bounding exercise here.
 After having examined the relationship between lockdowns and food insecurity, 
 we analyze how households/individuals respond to the lockdowns.
 
+3. We have updated the citations with both new papers and newer or published
+versions of prior cited articles.
 
-
-We list below our responses to the individual comments and suggestions.
+Below, we list our responses to individual comments and suggestions.
 
 # Editor Comments
 
