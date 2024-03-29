@@ -449,10 +449,13 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  facet_wrap(~sub_region_1, scales = "fixed")
+  facet_wrap(~sub_region_1, scales = "fixed") +
+  scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) 
+  
 
 ggsave(here("figures", "mobility_regional_retail.pdf"),
-       width = 20, height = 15, units = "cm")
+       width = 8, height = 4.5, units = "in")
 
 ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = residential)) + 
