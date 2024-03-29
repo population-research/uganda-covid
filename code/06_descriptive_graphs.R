@@ -871,13 +871,21 @@ regional_level %>%
   ) +
   labs(
     x = "Percent",
-    y = "Survey dates",
-    title = "Food insecurity by survey round"
+    y = "Survey dates"
   ) +
   guides(color = guide_legend(nrow = 1)) +
-  theme(legend.position = c(0.25, 0.95)) +
+  theme(legend.position = "top", legend.direction = "horizontal") +
+  # Grumble, grumble - have to specify this as it would be *before* the coord_flip!
+  annotate("rect",
+           ymin = lockdowns$start[1],
+           ymax = lockdowns$end[1],
+           xmin = -Inf, xmax = Inf, alpha = 0.4) +
+  annotate("rect",
+           ymin = lockdowns$start[2],
+           ymax = lockdowns$end[2],
+           xmin = -Inf, xmax = Inf, alpha = 0.4) +
   facet_wrap(~region, scales = "fixed")
 
-ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 8, height = 8, units = "in")
+ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
 
 
