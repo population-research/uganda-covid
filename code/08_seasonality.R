@@ -218,7 +218,7 @@ combined <- food %>%
       TRUE ~ 2021
     ),
     date = date_build(year, as.numeric(month)),
-    var = "UNPS - Not enough food (Pre-Covid)"
+    var = "UNPS - Not enough food (Pre-COVID-19)"
   ) %>% 
   select(date, percent, var) %>% 
   bind_rows(base_ranout) %>% 
@@ -229,13 +229,17 @@ combined <- food %>%
 ggplot(combined, aes(x = date)) +
   geom_point(aes(y = percent, color = fct_rev(factor(var))), size = 3) +
   coord_cartesian(ylim = c(0, 32), expand = FALSE) +
-  theme(legend.position = c(0.5, 0.79)) +
   scale_colour_manual(values = color_palette) +
   ylab("Percent reported") +
-  xlab("Month")
-
+  xlab("Month") +
+  theme(legend.position = "top", legend.direction = "horizontal") +
+  guides(color = guide_legend(nrow = 2)) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2019-12-15"), ymd("2021-12-15"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1))
+  
 ggsave(here("figures", "seasonality.pdf"),
-       width = 25, height = 19, units = "cm")
+       width = 8, height = 4.5, units = "in")
 
 
 # Appendix results - comparing lean seasons: R1, R2 vs R6 and R4 vs R7 ----
