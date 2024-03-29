@@ -68,7 +68,7 @@ the lockdowns.
 in detail below [@FAO2015].
 
 ![Food insecurity by survey round of the Uganda high-frequency phone survey on 
-COVID-19](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
+COVID-19 together with severe lockdown periods in grey](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
 
 To achieve this, we compare periods after severe lockdowns with other periods 
 during COVID-19 where the restrictions were less severe.
@@ -189,7 +189,7 @@ the changes in food insecurity and household responses over time and through
 multiple lockdowns.[^Nigeria]
 Third, with very few COVID-19 cases in Uganda, especially for the first lockdown, 
 we can separate out COVID-19 effects from lockdown effect. 
-There are, at least, three potential drawbacks to our approach.
+However, there are, at least, three potential drawbacks to our approach.
 First, phone surveys, as we use here, provide less detailed data about household 
 members and may suffer from selection bias.
 Second, in contrast to, for example, @Amare2020, we have limited  pre-COVID-19 
@@ -419,8 +419,8 @@ is the median value from the five weeks, January 3 -- February 6, 2020.
     but it is unclear how relevant this is given that the majority of 
     people in Uganda work in agriculture.
     
-![Revised stringency index, visits to retail and recreation locations, daily new COVID-19 Cases per 100,000 persons and new deaths per 100,000,
-and data collection window for each UHFS Survey round](../figures/combined.pdf){#fig:combined}
+![Revised stringency index, visits to retail and recreation locations, daily new COVID-19 cases per 100,000 persons and new deaths per 100,000,
+and data collection window for each UHFS survey round](../figures/combined.pdf){#fig:combined}
 
 [@fig:combined] shows the daily stringency index, the daily Google Mobility measure,
 the 7-day average number of new COVID-19 cases and deaths per 100,000 persons, 
@@ -578,7 +578,7 @@ across regions.
 # Did Lockdowns Increase Food Insecurity?
 
 ![Estimated changes in food insecurity with 95% confidence intervals by survey round relative to Round 4, 
-controlling for number of COVID-19 Cases and household fixed effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
+controlling for number of COVID-19 cases and household fixed effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
 
 [@fig:food_insecurity_survey] shows the estimated changes in the
 three food insecurity measures by survey round, relative to 
@@ -743,7 +743,8 @@ subsistence-oriented agricultural system, with lower levels of productivity
 and a slower pace of urbanization, and consistently has the highest poverty levels.  
 
 
-![regional distribution of percentage changes in the number of visits to retail and recreation locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
+![Regional distribution of percentage changes in the number of 
+visitors to retail and recreation locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
 
 [@fig:retail_regional] shows the percentage changes in visits to retail and
 recreation locations by region, together with the survey rounds.[^appendix_regional]
@@ -1309,7 +1310,7 @@ were in agriculture before the first lockdown.
 ![Estimated changes in food insecurity with 95% confidence intervals 
 by survey round relative to Round 4, controlling for household fixed effects, 
 for non-agricultural and agricultural households. 
-Left two columns condition on Pre-COVID-19 agricultural status, while the 
+Left two columns condition on pre-COVID-19 agricultural status, while the 
 right two columns allow households to change status](../figures/agri_vs_non_agri.pdf){#fig:ag_vs_non_ag}   
 
 Agricultural households appeared to be more food secure than
@@ -1407,23 +1408,22 @@ avenues of mitigation are critical future areas of research.
 # Alternative Google Mobility Measures
 
 
-![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
+![Percentage changes in the number of visitors to workplace locations](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
 
-![Transit](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
+![Percentage changes in the number of visitors to transit locations](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
 
-![Grocery/pharmacy](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
+![Percentage changes in the number of visitors to grocery and pharmacy locations](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
 
-![Parks](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
+![Percentage changes in the number of visitors to park](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
 
-![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
+![Percentage changes in the time spent at residential locations](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
 
 \clearpage
 
-# [Seasonality]
+# Seasonality
 
 
 ![Results with restricted sample to examine seasonality](../figures/seasonality_comparison.pdf){#fig:seasonality_comparison}
-
 
 
 ![Results for urban only to examine seasonality](../figures/seasonality_urban.pdf){#fig:seasonality_urban}
@@ -1431,22 +1431,23 @@ avenues of mitigation are critical future areas of research.
 
 \clearpage
 
-# [Region]
+# Regional
 
-![Food insecurity by region and survey round of the uganda high-frequency phone survey on 
-COVID-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
+![Food insecurity by region and survey round of the Uganda high-frequency phone survey on 
+COVID-19 together with severe lockdown periods in grey](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
 
+![Regional distribution of percentage changes in the number of visitors to workplace locations](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
 
-![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
+![Regional distribution of percentage changes in the number of 
+visitors to transit locations](../figures/mobility_regional_transit.pdf){#fig:mobility_regional_transit}
 
-![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
+![Regional distribution of percentage changes in the number of 
+visitors to grocery and pharmacy locations](../figures/mobility_regional_grocery.pdf){#fig:mobility_regional_grocery}
 
-![Transit](../figures/mobility_regional_transit.pdf){#fig:mobility_regional_transit}
+![Regional distribution of percentage changes in the number of 
+visitors to parks](../figures/mobility_regional_parks.pdf){#fig:mobility_regional_parks}
 
-![Grocery/pharmacy](../figures/mobility_regional_grocery.pdf){#fig:mobility_regional_grocery}
-
-![Parks](../figures/mobility_regional_parks.pdf){#fig:mobility_regional_parks}
-
+![Regional distribution of percentage changes in the time spent at residential locations](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
 
 
 
@@ -1454,24 +1455,25 @@ COVID-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 
 # Labor Market Outcomes
 
-![Absolute](../figures/transition_absolute.pdf){#fig:transition_absolute}
+![Sectoral distribution by survey round in percent ](../figures/transition_absolute.pdf){#fig:transition_absolute}
 
 \clearpage
 
-# Change in agricultural strategy
+# Change in Agricultural Strategy
 
 In this section, we examine whether agricultural households change their
 agricultural strategy to better cope with the effects of the lockdowns.
 The survey asked in Rounds 1, 4, and 7 to households engaged in planting
 activities whether they changed their "planting activities in the
 current agricultural season because of changes in the country or
-community due to coronavirus?". 23.2 percent of agricultural households
-during the first lockdown and 18.5 percent during the second lockdown
-reported changing their planting activities because of the pandemic.
+community due to coronavirus?". 
+During the first lockdown, 23.2 percent of agricultural households
+reported changing their planting activities because of the pandemic,
+as did 18.5 percent during the second lockdown.
 This is as opposed to 5 percent for the non-lockdown period of Round 4.
+
 We create an indicator variable where 1 represents a change in planting
 activities, and 0 represents no change. 
-
 We present the estimates of the impact of lockdowns on changes in planting 
 activities in [@fig:ag_plant_change]. 
 The estimates show that the first lockdown led to a 57 percentage points 
@@ -1492,7 +1494,7 @@ decrease (2.6%) in variety are mentioned after the first lockdown.
 Only a small fraction of farmers delayed planting (1.3%) or abandoned crop
 farming (1.5%) altogether for that season after the first lockdown.
 
-![Ag plant change](../figures/ag_plant_change.pdf){#fig:ag_plant_change}
+![Estimated change in planting activities, relative to Round 4](../figures/ag_plant_change.pdf){#fig:ag_plant_change}
 
 \input{../tables/ag_change_table.tex}
 
