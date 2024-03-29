@@ -775,6 +775,14 @@ ggsave(here("figures", "food_insecurity_by_survey_round_8_questions.pdf"), width
 
 
 # Cumulative food insecurity outcomes 
+
+lockdowns <- tribble(
+  ~start, ~end,
+  ymd("2020-03-30"), ymd("2020-05-25"),
+  ymd("2021-06-18"), ymd("2021-08-02")
+)
+
+
 national_level %>% 
   filter(str_detect(type, "insecure_")) %>%
   # remove food_ from variable 
@@ -786,8 +794,8 @@ national_level %>%
       levels = c("any", "moderate", "severe")
     )
   )%>%
-  ggplot(aes(x = value, color = type)) +
-  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  ggplot(aes(x = value, ymin = first_date, ymax = last_date, color = type)) +
+  geom_linerange(linewidth = 2) +
   coord_flip(xlim = c(0, 100), expand = FALSE) +
   scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
@@ -801,13 +809,21 @@ national_level %>%
   ) +
   labs(
     x = "Percent",
-    y = "Survey dates",
-    title = "Food insecurity by survey round"
+    y = "Survey dates"
   ) +
-  guides(color = guide_legend(ncol = 2)) +
-  theme(legend.position = c(0.5, 0.8)) 
-
-ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
+  guides(color = guide_legend(nrow = 1)) +
+  theme(legend.position = "top", legend.direction = "horizontal") +
+  # Grumble, grumble - have to specify this as it would be *before* the coord_flip!
+  annotate("rect",
+           ymin = lockdowns$start[1],
+           ymax = lockdowns$end[1],
+           xmin = -Inf, xmax = Inf, alpha = 0.4) +
+  annotate("rect",
+           ymin = lockdowns$start[2],
+           ymax = lockdowns$end[2],
+           xmin = -Inf, xmax = Inf, alpha = 0.4) 
+  
+  ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
 
 
 # Regional-level food security and interview dates by round ----
