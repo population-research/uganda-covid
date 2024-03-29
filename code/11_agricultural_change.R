@@ -150,7 +150,7 @@ ag_changes <- base %>%
   # Prettier labels
   mutate(variable = fct_recode(
     variable,
-    "Change planting because of Covid" = "ag_plant_change",
+    "Change planting because of COVID-19" = "ag_plant_change",
     "Reduced farm area" = "ag_plant_what_area_reduce",
     "Increased farm area" = "ag_plant_what_area_increase",
     "Planted less variety/number of crops" = "ag_plant_what_less_variety",
@@ -175,7 +175,7 @@ cat(
     "\\begin{threeparttable}\n",
     "\\caption{Average changes in                               
   agricultural strategy                                      
-  because of Covid-19 (in                                    
+  because of COVID-19 (in                                    
   percentages)}\n",
     "\\label{tab:ag_changes}\n",
     "\\begin{tabular}{@{} l rrr @{}}\n",
