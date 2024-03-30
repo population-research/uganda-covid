@@ -890,9 +890,10 @@ severely food insecure.
 
 
 To understand how the government lockdowns affected food insecurity and
-how households responded to the lockdowns, we examine three broad
-categories: labor market outcomes, changes in income across sources, and
-whether households received assistance from outside sources.
+how households responded to the lockdowns, we examine four
+categories: labor market outcomes, movement between sectors, 
+changes in income across sources, and
+assistance from outside sources.
 
 ## Impact on Labor Market Outcomes
 
@@ -916,53 +917,6 @@ business since the beginning of 2020 and does not ask about operations
 since the start of the lockdown. This means we are unable to use Round 1
 information to examine the impact of the lockdown on operating a family
 business.
-
-The closing of workplaces to enforce social distancing was one of the
-primary channels through which market work was affected. 
-However, people may have been able to continue some types of work more 
-easily than others. 
-For example, in agriculture, workers can more easily socially
-distance themselves while working, and, in many cases, the workers are
-from the same household removing the need to socially distance.
-Furthermore, lockdowns are more challenging to enforce on farms in rural
-areas.
-
-Thus, there are two implications of this differential lockdown effect on
-workplace closings. 
-First, the impacts of lockdowns likely differ between households whose 
-main sector is in agriculture, which we will refer to as agricultural 
-households, and non-agricultural households.
-Agricultural households include any household that reported that their
-main activity was related to agriculture. 
-This includes both farmers, casual farm laborers, and those employed in 
-any type of processing, sale, or transport of agricultural goods. 
-These households can be either urban or rural.
-
-Second, it is essential to understand how lockdowns affected the
-movement between agricultural work, non-agricultural work, and not working. 
-We create a categorical variable where 0 represents non-agricultural work, 
-1 represents agricultural work, and 2 represents not working. 
-As we know the industry before the first lockdown, we can
-utilize that data as a pre-lockdown round (i.e., Round 0), so we have
-eight rounds of data for this estimation.
-
-With three potential outcomes, we use a conditional fixed-effects
-multinomial logit model to estimate the movements between agricultural work, 
-non-agricultural work, and not working. 
-One potential issue with this method is that standard marginal analyses 
-are not meaningful because the fixed-effects estimator cannot make 
-predictions that account for the panel-level fixed effects, which 
-are not estimated explicitly. 
-We, therefore, present the coefficients on the likelihood of working in 
-the agricultural sector against working in the non-agricultural sector, 
-and the other is the likelihood of not working against working in the 
-non-agricultural sector.
-
-Finally, the survey asked agricultural households whether they had changed
-planting activities because of COVID-19. 
-If yes, they are asked how they
-changed their activities. This allows us to examine whether households
-changed their agricultural strategy in response to the lockdowns.
 
 The top three panels of [@fig:work_employment] shows the results for the 
 likelihoods of doing market work, operating a non-farm family business, and 
@@ -1027,24 +981,50 @@ However, we cannot establish whether this is because the second lockdown
 follows the same pattern as the first or because there is less immediate 
 movement compared to the first lockdown.
 
-With workplace closures during lockdowns, we expect significant movement
-between sectors, and from working to not working. 
-Layoffs are likely in both the agricultural and non-agricultural sectors. 
-To complicate the picture, some may resort to agricultural production, even 
-if there is a lower return than their original job. 
+
+## Movement Between Sectors
+
+With workplace closures during lockdowns and reduced economic activity, 
+we expect significant movement between the non-agricultural and the agricultural 
+sectors, and between working and not working. 
+Enforcement of lockdowns is likely easier in the non-agricultural sector than
+the agricultural sector, so we expect that people are more likely to be able
+to continue working in the agricultural sector.
+Furthermore, those who are laid off may either stop working or resort to 
+agricultural production at home, even if the income is lower return than in
+their original job. 
+
+To examine this, we create a three-level categorical variable for the household's 
+main sector: non-agricultural work (0), agricultural work (1), and not working (2).
+We consider a household agricultural if its main activity was related to agriculture,
+which includes both farmers, casual farm laborers, and those employed in any 
+type of processing, sale, or transport of agricultural goods. 
+These households can be either urban or rural.
+As we know the household's main industry prior to the first lockdown, we have 
+eight rounds of data and use the pre-lockdown round (i.e., Round 0) as the 
+excluded round.
+
+\input{../tables/transition_table.tex}
+
+We use a conditional fixed-effects multinomial logit model to estimate 
+the movements between agricultural work, non-agricultural work, and not working. 
+Standard marginal analyses are not meaningful because the fixed-effects estimator 
+cannot make predictions that account for the panel-level fixed effects. 
+We, therefore, present the coefficients on the likelihood of working in 
+the agricultural sector against working in the non-agricultural sector, 
+and the other is the likelihood of not working against working in the 
+non-agricultural sector.
+
 The two bottom panels of [@fig:work_employment] show the coefficients
 for the multinomial fixed effects logit model on the likelihood of working 
 in the agricultural sector and not working, respectively, versus working 
 in the non-agricultural sector.
-To help with interpretation, Table \ref{tab:transition} shows the transition 
+Furthermore, to ease interpretation, Table \ref{tab:transition} shows the transition 
 probabilities between the three groups from round to round.[^absolute_groups]
 
 [^absolute_groups]: Appendix @fig:transition_absolute shows the unweighted counts of
 household by labor market group.     
 
-\input{../tables/transition_table.tex}
-
-As we have pre-COVID-19 information, we use that as the excluded round.
 There are two important short-run effects of the first lockdown.
 First, there was a significant shift to agriculture from working in the 
 non-agricultural sector.
