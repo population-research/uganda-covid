@@ -538,12 +538,13 @@ cat(
     "\\label{tab:transition}\n",
     "\\begin{tabular}{@{} l ccc ccc @{}}\n",
     "\\toprule \n",
+    "        & \\multicolumn{6}{c}{Current Sector}  \\\\ \\cmidrule(lr){2-7} \n",
     "        & Non-  & Agri- & Not   & Non-  & Agri- & Not  \\\\ \n",
     "        & agri- & cul-  & work- & agri- & cul-  & work-   \\\\ \n",
     "        & cul-  & ture  & ing   & cul-  & ture  & ing     \\\\ \n",
-    "        & ture  &       &       & ture  &       &         \\\\ \n",
+    " Prior Sector  & ture  &       &       & ture  &       &         \\\\ \n",
     "\\midrule \n",
-    "        & \\multicolumn{3}{c}{Pre-Covid to Round 1} & \\multicolumn{3}{c}{Rounds 1 to 2} \\\\ \\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \n"
+    "        & \\multicolumn{3}{c}{Pre-COVID to Round 1} & \\multicolumn{3}{c}{Rounds 1 to 2} \\\\ \\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \n"
   ),
   file = here("tables", "transition_table.tex")
 )
@@ -615,7 +616,7 @@ cat(
     "\\end{tabular}\n",
     "\\begin{tablenotes}\n",
     "\\item \\hspace*{-0.5em} \\textbf{Note:} \n",
-    "Before Covid, there were ", count_0$n[1], " households in non-agricultural work, \n",
+    "Before COVID-19, there were ", count_0$n[1], " households in non-agricultural work, \n",
     count_0$n[2], " working in agriculture, and ", count_0$n[3], " not working. \n",
     "\\end{tablenotes}\n",
     "\\end{threeparttable}\n",

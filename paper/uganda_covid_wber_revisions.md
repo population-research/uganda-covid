@@ -9,13 +9,13 @@ author:
 	in Demography and Ecology, University of Washington, Seattle, WA. 
 	\href{mailto:cportner@seattleu.edu}{\texttt{cportner@seattleu.edu}},
     \href{http://www.clausportner.com}{\texttt{www.clausportner.com}}]
-- Shamma Adeeb Alam^[Associate Professor, Department of International
-	Studies, Dickinson College, Carlisle, PA.
+- Shamma Adeeb Alam^[Associate Professor, Department of Economics, 
+    Dickinson College, Carlisle, PA.
 	\href{mailto:alams@dickinson.edu}{\texttt{alams@dickinson.edu}}]
 - Ishraq Ahmed^[Senior Economist, 
     Policy Development, Office of Tax Policy,
     Virginia Department of Taxation, Richmond, VA.
-    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{texttt{Ishraq.Ahmed@tax.virginia.gov}}]
+    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{\texttt{Ishraq.Ahmed@tax.virginia.gov}}]
 thanks: |
   We would like to thank seminar participants at Howard University, Alex
   Henke, and four anonymous referees for their helpful comments and suggestions. 
@@ -26,23 +26,27 @@ thanks: |
   University of Washington.
   
 abstract: |
-  \noindent We examine the short- and medium-run impacts of two of the strictest
-  Covid-19 lockdowns in the developing world, employing longitudinal
-  data from Uganda. 
-  We find significant, immediate increases in food insecurity after the first
-  lockdown and a continued negative impact three months after its lifting. 
-  The second lockdown's medium-term impact was even worse, likely because 
-  of a compounding effect of a concurrent drier-than-normal period. 
-  Income from agriculture, non-farm businesses, and wage employment were all 
-  lower during lockdowns, contributing to the increased food insecurity.
-  However, agricultural households were less affected than other households
-  and particularly showed a lower impact on severe food insecurity.
-  The likelihood of engaging in market work declined significantly 
-  and there was a marked movement towards agricultural work, suggesting a
-  switch to agriculture as a coping mechanism. 
+  \noindent We examine the short- and medium-term impacts of Uganda's strict
+  COVID-19 lockdowns on household food insecurity, labor market outcomes, and
+  coping strategies, using longitudinal data. 
+  Uganda, which implemented two of the harshest lockdowns in the developing world, 
+  provides a unique case study for understanding the implications of such public 
+  health measures on economic wellbeing. 
+  Lockdowns significantly exacerbated food insecurity immediately and 
+  continued to do so in the medium term. 
+  The effect was more pronounced after the second lockdown, likely due to its
+  coinciding with a period of lower-than-normal rainfall, highlighting the
+  compounded challenges of concurrent environmental stressors and reduced resilience
+  after the first lockdown.
+  There were substantial decreases in income from various sources---including
+  agriculture, non-farm businesses, and wage employment---contributing to the
+  heightened food insecurity. 
+  Notably, agricultural households were less adversely affected, and we find
+  significant switching to agricultural activities as a coping mechanism. 
   The other coping mechanisms that households typically rely on for 
-  idiosyncratic shocks failed, contributing to the sizeable increase in 
-  food insecurity.
+  idiosyncratic shocks, such as remittances and government assistance,
+  failed, contributing to the sizeable increase in food insecurity.  
+
 bibliography: uganda_covid.bib
 csl: the-quarterly-journal-of-economics.csl
 link-citations: true
@@ -51,108 +55,113 @@ link-citations: true
 
 \newpage
 
+\doublespace
+
 # Introduction
 
-Uganda had two of the strictest Covid-19 lockdowns in Sub-Saharan Africa, 
+Uganda had two of the strictest COVID-19 lockdowns in Sub-Saharan Africa, 
 with the most severe parts of these lockdowns covering April through June 2020 
-and July through August 2021 [@BBC2020;@Birner2021;@Mahmud2021].
+and June through July 2021 [@BBC2020;@Birner2021;@Mahmud2021].
 As [@fig:raw-insecurity] shows, Uganda also experienced substantially higher food
 insecurity during or immediately following these lockdowns than at any other time
 during the pandemic.[^definition]
 Using longitudinal household data, we aim to understand the extent to which
 these changes arose from the twin lockdowns in Uganda by examining food insecurity, 
-labor market outcomes, and how households attempted to cope with the lockdowns.
+labor market outcomes, income changes, and how households attempted to cope with 
+the lockdowns.
 
 [^definition]: The definitions of the three levels of food insecurity are described 
 in detail below [@FAO2015].
 
-![Food Insecurity by Survey Round of the Uganda High-Frequency Phone Survey on 
-Covid-19](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
+![Food insecurity by survey round of the Uganda high-frequency phone survey on 
+COVID-19 together with severe lockdown periods shaded](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
 
+To achieve this, we compare periods after severe lockdowns with other periods 
+during COVID-19 where the restrictions were less severe.
+The initial lockdown was initiated well before any substantial spread of COVID-19,
+which allows us to isolate the effect of the first severe lockdown from the effect
+of the spread of the disease itself.
+The second lockdown illustrates the effects of a second aggregate shock, just as 
+the economy was recovering.
 
+Understanding how lockdowns impacted food insecurity and how households responded to them is relevant for three reasons.
+First, it provides us with a way to learn about the effects of aggregate/covariate 
+shocks and how households respond to them.
+Second, households are still in the process of recovering from these shocks and 
+likely will be for a substantial period, and this type of analysis 
+can serve as a starting point for estimating the costs of the lockdowns.
+Last but not least, understanding the cost and benefits of lockdowns is an important 
+input into planning for future pandemics and the appropriate policy response to them 
+[@World-Health-Organization2022].
+The importance of this is illustrated by the September 2022 Ebola outbreak in Uganda,
+which resulted in a two-month lockdown with travel restrictions in the affected 
+districts [@Makerere-University-School-of-Statistics-and-Planning2023].[^ebola_literature]
 
+[^ebola_literature]: Work on the effects of Ebola outbreaks shows
+significant, and often long-lasting, impacts on food security and livelihoods in the
+affected communities, across  Liberia, Sierra Leone, and Uganda, although 
+separating out effects of the disease and the lockdowns is difficult
+[@Langlay2014; @Kastelic2015; @Gatiso2018; @Djomaleu2022; @Makerere-University-School-of-Statistics-and-Planning2023]. 
 
-Early assessments of the impact of the pandemic in developing countries
-generally find a negative effect of lockdowns on food insecurity,
-income, employment, and agricultural production.[^1] 
-However, these studies have limitations, such as using only cross-sectional type data
-or having a narrow geographical focus covering only one or two villages
-or states in a country. 
-These studies also suggest that households try
-to cope with the lockdowns through behavior changes, such as reducing
-non-food expenditure, drawing down savings, leaving savings and loan
-groups, increasing borrowing, and selling assets 
-[@Ceballos2021;@Headey2020;@Kansiime2021;@Mahmud2023;@Ronkko2022;@Ruszczyk2021]. 
-In addition, there is evidence that remittances declined, and there was insufficient 
+Assessments in low- and lower-middle-income countries have found a mixed impact of lockdowns on 
+food insecurity when identifying the effect through spatial or temporal variation 
+in lockdowns.[^snapshots]
+The Bangladeshi lockdown exacerbated food insecurity for urban low-income groups 
+and in rural areas [@Hamadani2020; @Ruszczyk2021]. 
+Households with mothers with very young children in Uttar Pradesh saw a sharp increase 
+in food insecurity compared to pre-COVID-19 [@Nguyen2021a].
+In Nigeria, higher COVID-19 case rates and lockdown measures increased food insecurity,
+particularly for households relying on non-farm businesses and those in remote
+and conflicted-affected zones [@Amare2021]. 
+Similarly, in 14 refugee-hosting settlements and the associated host community in Uganda, 
+lockdowns were associated with increased food insecurity and worsening diet 
+quality, with refugees being more affected than hosts [@Squarcina2022].
+However, in Ethiopia, Kenya, Liberia, and Malawi, there was no evidence of 
+increased food insecurity with lockdowns 
+[@Janssens2021; @Aggarwal2022; @Hirvonen2021].[^middle_income]
+
+[^snapshots]: A large number of studies provide cross-sectional evidence on 
+food insecurity prevalence during COVID-19 and how it varies with household
+characteristics but do not attempt to identify the effects of lockdowns
+[@Ceballos2020; @Ceballos2021; @Dasgupta2021; @Egger2022; @Gaitan-Rossi2021; 
+@Giacoman2021; @Harris2020; @Jaacks2021; @Kansiime2021; 
+@Kesar2021; @Kundu2021; @Lee2022]. 
+Similarly, for income, employment, agricultural production, and savings
+[@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; 
+@Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
+@Siwach2023].
+
+[^middle_income]: In the middle-income countries of Chile, Guatemala, and Peru, 
+lockdowns were all associated with increased food insecurity 
+[@Ceballos2021a; @Curi-Quinto2021; @Giacoman2021].
+
+There is more consensus on the negative effects on income and employment 
+during the pandemic [@Schotte2023; @Mahmud2023].
+This reduced income in the initial phases of the pandemic was associated with 
+increased food insecurity in Uganda, particularly in rural areas [@Agamile2022].
+Furthermore, there is evidence that households tried to cope with the 
+pandemic and lockdowns and through behavior changes, such as 
+reducing non-food expenditure, drawing down savings, leaving savings and loan
+groups, increased borrowing, and selling assets 
+[@Ceballos2020; @Kansiime2021; @Mahmud2023; @Ronkko2022; @Ruszczyk2021]. 
+In addition, remittances declined, and there were insufficient or delayed
 government support to help households cope with the shock 
-[@Ceballos2021;@Curi-Quinto2021].
-
-[^1]: One set of studies examines the impact of Covid-19 lockdowns on
-    food insecurity [@Agamile2022; @Ceballos2020; @Ceballos2021;
-    @Dasgupta2021; @Egger2022; @Gaitan-Rossi2021; @Giacoman2021; 
-    @Hamadani2020; @Harris2020; @Headey2020; @Jaacks2021; @Kansiime2021; 
-    @Kesar2021; @Kundu2021; @Lee2022; @Nguyen2021]. 
-    Another part of the literature examine
-    the impact on income, employment, or agricultural production 
-    [@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; @Headey2020; 
-    @Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
-    @Ruszczyk2021; @Wild2021].
-
-
-Only four studies we could identify used longitudinal data to examine the
-effects of lockdowns on food insecurity.[^2] 
-Contrary to the cross-sectional studies, three of
-these studies found no effect of lockdowns on food consumption across
-Liberia, Malawi, Kenya, and Ethiopia 
-[@Aggarwal2022;@Hirvonen2021;@Janssens2021]. 
-Only the Nigerian lockdown appeared to increase food insecurity [@Amare2021].
-
-[^2]: Two studies examine the impact on income and employment using
-    panel data. Results for Ghana show that lockdowns significantly
-    decreased employment and earnings [@Schotte2021]. 
-    In rural Uganda, household income declined sharply during the initial
-    lockdown. However, a year later, those without a business mostly
-    recovered, while business-owning households still had significantly
-    lower incomes [@Mahmud2023].
-
-
-
-These studies do, however, also have limitations. The Liberia survey had
-completion rates as low as 49% and evidence of a non-random attrition
-[@Aggarwal2022]. 
-The Kenya study focused only on households with
-pregnant women or mothers with children below age four in one county
-[@Janssens2021]. 
-Ethiopia never went into a complete lockdown,
-and the study covers only Addis Ababa 
-[@Hirvonen2021]. 
-Finally, the Nigeria study only examined the immediate effect of the lockdown on
-a limited set of food insecurity questions 
-[@Amare2021].
+[@Ceballos2021; @Curi-Quinto2021; @Suresh2022].
 
 Our study contributes to two strands of the literature. 
-First, we contribute to the literature on understanding the impacts of the lockdowns.
+First, we contribute to the literature on understanding the impacts of 
+the lockdowns themselves.
 Given the mixed findings and the limitations in data in the prior literature, 
 we use household fixed-effects models on country-wide panel data to estimate 
 short- and medium-run effects of lockdowns, with the goal of understanding the 
 persistence of the impact of lockdowns in the months following their lifting. 
 
 Second, we contribute to the small but growing body of research on the
-effects of aggregate shocks and how households cope with these shocks.
-There is a long-standing literature on how households in low-income countries
-smooth consumption in response to idiosyncratic shocks through
-self-insurance approaches [@Case1995]. 
-However, we know less about how these coping mechanisms fare when households 
-are exposed to aggregate shocks. 
-Most of the research on aggregate shocks has focused on
-financial shocks and natural disasters and has found varying degrees of
-ability to smooth consumption, although wealthier households are
-generally better able to deal with the shock 
-[@Del-Ninno2003; @Fallon2002;@Glewwe1998;@Hallegatte2020;@McKenzie2003;@Skoufias2003;@Thomas2007].
-
-We contribute to the literature on coping with aggregate shocks in two ways. 
-First, we examine a repeated systemic shock, which was almost
-entirely unanticipated, especially the first instance. 
+effects of aggregate shocks and how households cope with these shocks,
+which has mostly focused on financial shocks and natural disasters 
+[@Del-Ninno2003; @Fallon2002; @Glewwe1998; @Hallegatte2020; @McKenzie2003; @Skoufias2003; @Thomas2007].
+First, we examine a repeated systemic shock, of which the first instance was 
+almost entirely unanticipated. 
 Second, we directly analyze four broad categories of coping mechanisms 
 that households may use to mitigate the effects of these shocks. 
 The categories are changes in labor market participation,
@@ -164,6 +173,29 @@ Our paper complements recent work showing that rural households in Uganda---espe
 non-farm business owners---experienced significant asset decline and increased 
 likelihood of net borrowing, presumably as a coping mechanism after the first
 lockdown [@Mahmud2023].
+
+Compared to the prior literature, three things set our paper apart.
+First, we use a nationwide representative longitudinal survey.
+This is in contrast to much of the prior research, which is based on either very 
+small samples [@Ruszczyk2021; @Squarcina2022; @Hirvonen2021; @Nguyen2021a] or
+only rural areas [@Janssens2021; @Aggarwal2022].
+Second, the data covers close to the entire pandemic, so we can observe 
+the changes in food insecurity and household responses over time and through
+multiple lockdowns.[^Nigeria]
+Third, with very few COVID-19 cases in Uganda, especially for the first lockdown, 
+we can separate the effects of COVID-19 from lockdown effects. 
+However, there are at least three potential drawbacks to our approach.
+First, phone surveys, as we use here, provide less detailed data about household 
+members and may suffer from selection bias.
+Second, in contrast to, for example, @Amare2021, we have limited  pre-COVID-19 
+information on the households.
+Third, there was no spatial variation in the lockdowns decreed by the government, 
+opposite of, for example, Nigeria or India.
+Hence, identification is based on comparing periods with varying degrees 
+of restrictions, and our estimates are, therefore, likely lower-bound estimates. 
+
+[^Nigeria]: The other study using nationwide representative data only cover
+one survey round, April-May 2020, although more are planned [@Amare2021].
 
 We find that food insecurity significantly increased during the lockdowns. 
 The point estimates are significant, with an increase of almost 25 percentage 
@@ -181,7 +213,7 @@ with an approximately 20 percentage points increase three months after
 the second lockdown had been lifted. 
 The differences in the medium-run impact between the two
 lockdowns suggest that the lower-than-normal rainfall during July 
-through  October of 2021 compounded the negative effect of the lockdown.
+through October of 2021 compounded the negative effect of the lockdown.
 
 To understand the mechanisms behind the significant impact on food
 insecurity, we examine the effect on labor market outcomes and find
@@ -207,26 +239,22 @@ assistance from family members within the country, non-family
 individuals, and development organizations, were all either flat
 or decreased during the lockdowns. 
 This suggests that the worldwide macroeconomic shock from
-Covid-19 affected everyone's ability to transfer resources to needy
+COVID-19 affected everyone's ability to transfer resources to needy
 relatives or friends. 
-This failure of the standard coping mechanisms likely is a 
+This failure of the standard coping mechanisms is likely a 
 significant factor in explaining lockdowns' substantial
 effect on food insecurity. 
-
-[identification of effects based on comparing periods with 
-varying degrees of lockdowns before Covid becomes an issue; 
-important!]
 
 
 # Data
 
 Household and individual data come from the *Uganda High-Frequency 
-Phone Survey on Covid-19* (UHFS), conducted by the Uganda Bureau of Statistics in
+Phone Survey on COVID-19* (UHFS), conducted by the Uganda Bureau of Statistics in
 collaboration with the World Bank. 
 The survey was conducted in seven waves, with four waves in 2020 
 (June, August, September, and October) and three in 2021 (February, 
 March, and October). 
-The goal was to understand the economic and social impacts of the Covid-19 
+The goal was to understand the economic and social impacts of the COVID-19 
 pandemic by collecting high-frequency data on individuals and households 
 [@Uganda-Bureau-of-Statistics2022]. 
 To this end, the survey asked detailed
@@ -237,11 +265,12 @@ The UHFS sample is a subset of the 3,098 households interviewed in the
 8th wave of the Uganda National Panel Survey in 2019/20 (UNPS 2019/20). 
 In UNPS 2019/20, respondents were asked to provide a phone
 number where they could be reached, either their own or that of a friend
-or neighbor. Originally, the goal was to ensure households could be
-reached in case they moved, but with the Covid lockdowns, the phone
+or neighbor. 
+Originally, the goal was to ensure households could be
+reached in case they moved, but with the COVID-19 lockdowns, the phone
 numbers became the basis for surveying households. Of the 2,386
 households that provided a phone number, 2,225 were successfully
-interviewed for round 1 of the UHFS. The head of the household was
+interviewed for Round 1 of the UHFS. The head of the household was
 typically the respondent. If the household head was not present, another
 member of the household over the age of 15 could respond to the survey.
 
@@ -256,8 +285,8 @@ weights to ensure that the data is nationally representative
 [@Uganda-Bureau-of-Statistics2022].
 
 Over the seven rounds, the cumulative attrition rate was 15.8 percent
-of the originally surveyed households from round 1,
-with 1,873 households from the baseline interviewed in round 7 (October 2021). 
+of the originally surveyed households from Round 1,
+with 1,873 households from the baseline interviewed in Round 7 (October 2021). 
 However, replacement households were added to the sample
 following the first round. 
 This brings our total sample size to 2,334 households. 
@@ -297,28 +326,30 @@ and "severe" if answered yes to seven or eight questions
 each individual question as the dependent variable are available 
 upon request.
 
-Although the sample for the UHFS is based on the UNPS, there is, unfortunately, 
+Although the sample for the UHFS is based on the UNPS 2019/20, there is, unfortunately, 
 no direct way to compare food insecurity across the surveys.
-First, the only food security-related question in UNPS 2019/20 asked whether 
+First, 
+the UNPS 2019/20 questions have a broader scope, which includes situations 
+such as insecurity in reaching the market, the absence of food in the market, 
+and floods, rather than the lack of money or other resources in the FIES questions.
+Second, 
+the only food security-related question in UNPS 2019/20 asked whether 
 there has been a situation in the last 12 months when there was not enough food 
 to feed the household, with a follow-up question about which months this happened in
 and an open-ended question about why it happened.
 These do not match up with any of the individual FIES questions or the cumulative
 food insecurity measures that we use.
-Second, the UNPS questions have a broader scope, which includes situations 
-such as insecurity in reaching the market, the absence of food in the market, 
-and floods, rather than the lack of money or other resources in the FIES questions.
 Finally, the UHFS questionnaire asks about the respondent and other adults 
-in the household, rather than the entire household as in UNPS. 
+in the household, rather than the entire household as in UNPS 2019/20. 
 As long as children are kept fed even in times of food insecurity, this does
 not in itself prevent comparison, but it is possible that food goes to the 
 most productive members of the household in order to preserve his or her 
 productivity [@Pitt1990].[^months]
 
-[^months]: A minor point of difference is that the UNPS asks about 
+[^months]: A minor point of difference is that the UNPS 2019/20 asks about 
 individual months, whereas the UHFS asks about the last 30 days before 
 the interview, which, depending on when the survey took place, does not line up 
-with the month-centric question of the UNPS.
+with the month-centric question of the UNPS 2019/20.
 
 
 
@@ -343,8 +374,8 @@ International travel restrictions remained until the end
 of September, when land borders reopened, and international flights
 resumed [@Guloba2021].
 
-In response to the increasing number of Covid-19 infections in 2021, the
-government of Uganda imposed a second severe lockdown from June 2021 
+In response to the increasing number of COVID-19 infections in 2021, the
+government of Uganda imposed a second severe lockdown from mid-June 2021 
 [@Atamanov2022; @Athumani2021]. 
 This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
 
@@ -364,7 +395,7 @@ and any restrictions on internal movement.
 The stringency index cannot capture the extent to which the lockdown 
 policies were enforced or adhered to, and we, therefore, also use Google 
 Mobility data on the percentage change in the number of 
-visitors to retail and recreation locations relative to the pre-Covid 
+visitors to retail and recreation locations relative to the pre-COVID-19
 behavior [@Google2022].
 We use this measure because it captures the closures of shops and has 
 better regional coverage than most other mobility measures.[^other_mobility]
@@ -381,27 +412,26 @@ is the median value from the five weeks, January 3 -- February 6, 2020.
     but it is unclear how relevant this is given that the majority of 
     people in Uganda work in agriculture.
     
-![Revised Stringency Index, Visits to Retail and Recreation Locations, Daily New Covid Cases per 100,000 persons and New Deaths per 100,000,
-and Data Collection Window for Each UHFS Survey Round](../figures/combined.pdf){#fig:combined}
+![Revised stringency index, visits to retail and recreation locations, daily new COVID-19 cases per 100,000 persons and new deaths per 100,000,
+and data collection window for each UHFS survey round](../figures/combined.pdf){#fig:combined}
 
 [@fig:combined] shows the daily stringency index, the daily Google Mobility measure,
-the 7-day average number of new Covid-19 cases and deaths per 100,000 persons, 
+the 7-day average number of new COVID-19 cases and deaths per 100,000 persons, 
 and the data collection window for each of the UHFS rounds in shaded grey. 
-The number of Covid cases and deaths comes from "Our World in Data."[^4]
+The number of COVID-19 cases and deaths comes from "Our World in Data."[^4]
 
 [^4]: The advantage of using "Our World in Data" is that it collects
-    available Covid-19 data from many sources. The data are available
+    available COVID-19 data from many sources. The data are available
     at <https://covid.ourworldindata.org/data/owid-covid-data.csv>, and
     a complete listing of underlying sources is
-    at <https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv>.
+    at <https://github.com/owid/COVID-19-data/tree/master/public/data/owid-covid-codebook.csv>.
 
 
-The strictest restrictions are just before round 1, where there is an almost
+The strictest restrictions are just before Round 1, where there is an almost
 complete lockdown. 
-According to the stringency measure, the second lockdown was nearly as strict 
-as the first. 
-Furthermore, the four months after each lockdown show similar stringency 
-levels, with stringency only dropping in September 2020.
+According to the stringency measure, the second lockdown---in June and July 2021---was 
+nearly as strict as the first. 
+Furthermore, the four months after each lockdown show similar stringency levels.
 
 That the most severe lockdown policies were enforced is evident from the 
 substantial decreases in visits to retail from April through June 2020 
@@ -421,23 +451,21 @@ Although the election was preceded by widespread violence and internet shutdowns
 immediately around the time of the election, the reduction in visits to retail 
 and recreation locations appeared to have been relatively short-lived.
 
-The number of confirmed infections and deaths from Covid remained low in
+The number of confirmed infections and deaths from COVID-19 remained low in
 Uganda until halfway through 2021. 
 For context, even with the spike in cases in 2021, Uganda's cumulative 
 number of cases per 100,000 at the end of 2021 was only 306.9 compared 
 with 16,294.5 in the US.
-Furthermore, as in many other developing countries, the number of Covid deaths was low.
+Furthermore, as in many other developing countries, the number of COVID-19 deaths was low.
 Even with the increase in cases and deaths by the end of 2021, Uganda 
 had only 7.2 deaths per 100,000 persons, while, for
 comparison, the US had 245.1 deaths per 100,000 persons.
 
-On top of lockdowns and Covid, the later part of 2021 saw a below-normal
-rainfall across the country.
+On top of lockdowns and COVID-19, the later part of 2021 saw a below-normal
+rainfall during the rainy season across the country.
 The three-month 3-month rainfall was 75% of normal when averaged across 
 all measurement stations, and all stations showed a below-normal three-month 
 rainfall in August 2021.[^subnational_rainfall]
-This below-normal rainfall coincided with the rainy season in the 
-north part of Uganda and the second rainy season everywhere else.
 
 [^subnational_rainfall]: Calculations based on data available at
 \href{https://data.humdata.org/dataset/uga-rainfall-subnational}{https://data.humdata.org/dataset/uga-rainfall-subnational}.
@@ -446,13 +474,13 @@ north part of Uganda and the second rainy season everywhere else.
 
 # Estimation Strategy
 
-To examine the effects of Covid-19 lockdowns, we use household
+To examine the effects of COVID-19 lockdowns, we use household
 fixed-effects models on a nationally representative longitudinal
 household data set, relying on the changes over time in
 government-imposed lockdowns to identify the effect.
 
 Our main specification regresses outcomes, $Y$, on a
-set of variables using a linear fixed-effects model:[^3]
+set of variables using a linear fixed-effects model:[^linear_advantages]
 
 $$
 Y_{i,t} =  \sum_{t=1}^7 \beta_t 1[Round = t]  + \gamma Cases_{i,t} 
@@ -463,15 +491,15 @@ where $i$ denote household and $t$ survey rounds.
 All standard errors control for clustering at the primary sample unit
 level.
 
-[^3]: A linear model has two advantages over non-linear models, such as
-    conditional logit, and has often been used in recent studies 
-    [@Alam2020; @Alam2018; @Charles2008]. 
-    First, coefficients are easier to interpret. 
-    Second, a linear model allows a more straightforward comparison of 
-    coefficients across regression where some dependent variables 
-    are binary and some non-binary.
-    Robustness checks, available upon request, show that
-    conditional logit models lead to similar results.
+[^linear_advantages]: A linear model has two advantages over non-linear models, such as
+conditional logit, and has often been used in recent studies 
+[@Alam2020; @Alam2018; @Charles2008]. 
+First, coefficients are easier to interpret. 
+Second, a linear model allows a more straightforward comparison of 
+coefficients across regression where some dependent variables 
+are binary and some non-binary.
+Robustness checks, available upon request, show that
+conditional logit models lead to similar results.
 
 
 We use survey indicator variables to capture the variation over time.
@@ -479,21 +507,21 @@ The first survey round took place between 9 and 27 days after the
 end of the first severe lockdown and, therefore, can be thought of
 as capturing the short-run effect of the first lockdown.
 The second survey took place 63 to 86 days after the first lockdown ended
-and the seventh survey took place 74 to 105 days (with the majority before
-within 87 days) after the second lockdown ended.
+and the seventh survey took place 74 to 105 days (with the majority within 
+87 days) after the second lockdown ended.
 These we refer to as medium-term.
 The third, fourth, fifth, and sixth survey rounds took place
 112--130, 155--176, 253--272, and 281--322 days after the
 first severe lockdown.
 We use the fourth survey round as the excluded round because it is
 the survey round furthest from both lockdowns and before any substantial
-number of Covid cases, and before the election begins in earnest.
+number of COVID-19 cases, and before the general election begins in earnest.
 
 In addition to government-imposed lockdowns, individuals may be ill,
 decide to self-isolate, or take other steps to avoid contact with others
-if they perceive a high risk of contracting Covid-19, which may increase
-food insecurity. To capture the severity of the Covid situation, the
-$Cases$ variable measures the number of new Covid-19 cases per 100,000
+if they perceive a high risk of contracting COVID-19, which may increase
+food insecurity. To capture the severity of the COVID-19 situation, the
+$Cases$ variable measures the number of new COVID-19 cases per 100,000
 persons in the 30 days before the household's survey date. 
 
 Although we do not include any household-level variables in the 
@@ -520,11 +548,12 @@ rounds.
 
 In summary, we identify the impact of Uganda's lockdowns by comparing
 periods with more or less severe lockdowns, while the individual
-survey round indicators capture the other potential factors that might impact 
-food insecurity, such as the unrest in connection with the 2021 elections.
+survey round indicators capture other potential factors that might impact 
+food insecurity, 
+such as seasonality and the unrest in connection with the 2021 general elections.
 Especially the first lockdown is of interest because it came at a 
-time when there were close to no Covid cases, and, in fact, there
-was no substantial spread of Covid until well after the first 
+time when there were close to no COVID-19 cases, and, in fact, there
+was no substantial spread of COVID-19 until well after the first 
 severe lockdown ended.
 Hence, we can identify the effect of the lockdown as opposed to 
 the aggregate effect of the lockdowns and the spread of the disease
@@ -532,23 +561,23 @@ combined.
 
 To ensure that we are not capturing other changes, we also 
 examine the potential role of seasonality in the results. 
-Finally, although there were no official variations in lockdown policies
-or enforcement across different areas, and we, therefore, 
-cannot rely on spatial variation for identification, we do
-examine differences in mobility patterns and food insecurity
+Finally, there were no official variations in lockdown policies
+or enforcement across different areas, and we, therefore, cannot 
+rely on spatial variation for identification.
+Instead, we examine differences in mobility patterns and food insecurity
 across regions.
 
 
 # Did Lockdowns Increase Food Insecurity?
 
-![Estimated Changes in Food Insecurity with 95% Confidence Intervals by Survey Round Relative to Survey 4, 
-Controlling for Number of Covid Cases and Household Fixed Effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
+![Estimated changes in food insecurity with 95% confidence intervals by survey round relative to Round 4, 
+controlling for number of COVID-19 cases and household fixed effects](../figures/food_insecurity_survey.pdf){#fig:food_insecurity_survey}
 
 [@fig:food_insecurity_survey] shows the estimated changes in the
 three food insecurity measures by survey round, relative to 
-survey round 4, together with the 95% confidence intervals for 
+survey Round 4, together with the 95% confidence intervals for 
 a linear model with household fixed effects.[^base_results]
-Overall, Covid-19 lockdowns appear to be associated with substantial 
+Overall, COVID-19 lockdowns appear to be associated with substantial 
 increases in all levels of food insecurity.
 
 [^base_results]: The full tables for this and all following
@@ -556,30 +585,30 @@ results presented as tables are available upon request.
 
 Approximately a month after the end of the first severe lockdown, 
 the proportion of households that report any or moderate to severe food 
-insecurity is more than 20 percentage points higher than in round 4,
-an effect that is very statistically significant. 
-Severe food insecurity in round 1 is just below 10 percentage points 
-higher than in round 4 and also statistically significantly different 
-from round 4.
+insecurity is more than 20 percentage points higher than in Round 4,
+an effect that is statistically significant. 
+Severe food insecurity in Round 1 is just below 10 percentage points 
+higher than in Round 4 and also statistically significantly different 
+from Round 4.
 
 About three months after the end of the first severe lockdown, 
 any and moderate to severe food insecurity levels are still statistically 
-significantly higher than in round 4 at approximately 10 percentage points.
+significantly higher than in Round 4 at approximately 10 percentage points.
 Severe food insecurity is also increased but not statistically significantly
 so.
 
-Between six and eleven months (rounds 3 through 6), there is little 
+Between six and eleven months (Rounds 3 through 6), there is little 
 discernable difference in the levels of food insecurity, and we cannot 
 reject that they all have the same levels. 
 
-The final round, round 7, took place 2.5 to 3.5 months after the end
-of the second major lockdown, but in relation to round 4, the levels of
-food insecurity are closer to those of round 1.
+The final round, Round 7, took place 2.5 to 3.5 months after the end
+of the second major lockdown, but in relation to Round 4, the levels of
+food insecurity are closer to those of Round 1.
 Any and moderate to severe food insecurity are both more than 20 percentage 
-points higher than in round 4, while severe food insecurity is more than 10
+points higher than in Round 4, while severe food insecurity is more than 10
 percentage points higher; all three are strongly statistically significant.
+These medium-term effects are close to the short-run effect of the first severe lockdown.
 
-[summary; drought and round 7; anything else that can explain this?]
 
 ## The Role of Seasonality
 
@@ -587,16 +616,16 @@ Uganda has two lean seasons, one in April and May and another
 in November and December [@FAO2022]. 
 Hence, with the first survey round
 fielded in June 2020, it is possible that part of what we capture with
-the round 1 indicator variable is the effect of the April/May lean
+the Round 1 indicator variable is the effect of the April/May lean
 season on food security. To examine the role of seasonal variation, we
 compare the changes in food insecurity measures with the closest
-comparable from previous rounds of UNPS and estimate our main model on
+comparable from previous rounds of UNPS 2019/20 and estimate our main model on
 alternative samples to show that seasonal variation is unlikely to
 explain our results.
 
 
 To examine whether seasonality in food security might be behind our
-results, we first compare pre-Covid information on food insecurity with
+results, we first compare pre-COVID-19 information on food insecurity with
 a subset of our measures. 
 The UNPS 2015/16 and the UNPS 2019/20 both asked if the households had been 
 faced with a situation when they did not have enough food to feed the 
@@ -608,12 +637,13 @@ than the 30 days for the UHFS, it is close to three of our questions:
 ran out of food because of lack of money, went hungry but did not eat,
 and went without eating for a whole day.
 
-For the UNPS question, we combined all observations by month and
-calculate the percentage who reported not having enough food to feed the
-household. For the UHFS questions, we calculate the percentages food
-insecure by interview month. 
-[@fig:seasonality] shows the food insecurity
-percentages with the UNPS question shown in black for comparison.
+For the UNPS question, we combined all observations from 2015/16 and 2019/20 
+by month, and calculated the percentage who reported not having enough food 
+to feed the household. 
+For the UHFS questions, we calculate the percentages of food insecure by interview 
+month. 
+[@fig:seasonality] shows the food insecurity percentages with the UNPS question 
+shown in black for comparison.
 Despite FAO listing April/May and November/December as the lean periods,
 the UNPS data show that April, May, and June were the three months with
 the highest proportion of food insecurity, while November and December
@@ -626,39 +656,41 @@ responses are not available in the data.
 
 
 
-![Projected Seasonality in Food Insecurity from UNPS and
-Observed Food Insecurity for Three UHFS 
-Outcomes](../figures/seasonality.pdf){#fig:seasonality}
+![Projected seasonality in food insecurity from UNPS and observed food insecurity for three UHFS 
+outcomes](../figures/seasonality.pdf){#fig:seasonality}
 
 All three UHFS questions follow the same general pattern as the UNPS
-question outside the lockdown periods, September 2020 through April 2021. 
-For the initial lockdown, both the short- and medium-run effects
-show clearly in the UHFS questions. Although it is possible that these
-high values were the result of seasonal variation, we consider it
-unlikely for two reasons. First, there is no evidence of the same
-elevation for April 2021, which is also in the lean season but nine
-months after the lockdown. Second, the medium-term effects of the second
-lockdown show even worse medium-term food insecurity outcomes despite
-being in a non-lean period.
+question outside the lockdown periods, September 2020 through April 2021,
+while the months following the lockdowns are clearly elevated. 
+Although it is possible that these high values were the result of seasonal 
+variation, we consider it unlikely for two reasons. 
+First, there is no evidence of the same elevation for April 2021, which 
+is also in the lean season but nine months after the lockdown. 
+Second, the medium-term effects of the second lockdown show even 
+worse medium-term food insecurity outcomes despite being in a non-lean period.
 
 Our second approach is to re-estimate our main models on three subsets
-of the data. First, we make use of the fact that round 6 took place
-during the April/May lean season but was the round least affected by
-lockdowns and estimate our main model using only information from rounds
-1, 2, and 6. The results are shown in the top panel of 
-Appendix [@fig:seasonality_comparison]. 
+of the data. 
+First, we make use of the fact that Round 6 took place during the April/May 
+lean season but was the round least affected by lockdowns.
+Because Rounds 1 and 2 also took place during the lean season, we  
+estimate our main model using only information from Rounds 1, 2, and 6. 
+The results are shown in the top panel of Appendix [@fig:seasonality_comparison]. 
 Compared to the main model, the short-run effects are slightly smaller 
 and the medium effect larger. 
-Second, the only two rounds collected during almost the
-same calendar month were rounds 4 and 7, and the bottom panel 
-of Appendix [@fig:seasonality_comparison] shows the
-results when we restrict to those two rounds. The medium-run effect of
-the second lockdown for this sample is smaller but still statistically
-significant in most cases. Complicating this comparison is that the
-number of new Covid cases was close to constant within each round and
-smaller during round 7 than round 4, resulting in potential
-multicollinearity and statistically significant *negative* effects of
-new cases on food insecurity for some outcomes. 
+
+Second, to show the robustness of the second lockdown medium-run results, 
+we make use of the fact that Rounds 4 and 7 were collected during almost the
+same calendar month.
+The bottom panel of Appendix [@fig:seasonality_comparison] shows the
+results when we restrict to those two rounds. 
+The medium-run effect of the second lockdown for this sample is smaller 
+but still statistically significant in most cases. 
+Complicating this comparison is that the number of new COVID-19 cases was close 
+to constant within each round and smaller during Round 7 than Round 4, 
+resulting in potential multicollinearity and statistically significant 
+*negative* effects of new cases on food insecurity for some outcomes. 
+
 Finally, we expect urban households to be less affected by seasonality, 
 and Appendix [@fig:seasonality_urban], therefore, shows the results using 
 only urban households across all rounds. 
@@ -672,7 +704,7 @@ for seasonality.
 ## Regional Variation 
 
 All of the results above are national-level, which may obscure critical
-regional variations in Covid exposure and the degrees and effects of lockdowns.
+regional variations in COVID-19 exposure and the degrees and effects of lockdowns.
 This section, therefore, examines differences in the Google Mobility measure and 
 in food insecurity across the survey rounds for each of the four regions in Uganda.
 
@@ -704,7 +736,8 @@ subsistence-oriented agricultural system, with lower levels of productivity
 and a slower pace of urbanization, and consistently has the highest poverty levels.  
 
 
-![Regional Distribution of Percentage Changes in the Number of Visits to Retail and Recreation Locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
+![Regional distribution of percentage changes in the number of 
+visitors to retail and recreation locations](../figures/mobility_regional_retail.pdf){#fig:retail_regional}
 
 [@fig:retail_regional] shows the percentage changes in visits to retail and
 recreation locations by region, together with the survey rounds.[^appendix_regional]
@@ -737,40 +770,40 @@ However, even in the three more agricultural-focused regions, there are substant
 changes in mobility consistent with enforced lockdowns. 
 For the second lockdown, it is possible that part of the change
 in behavior comes from self-isolation associated with the increasing number 
-of Covid cases, although, unfortunately, no regional data is available to
+of COVID-19 cases, although, unfortunately, no regional data is available to
 investigate this possibility.[^regional_covid]
 
 [^regional_covid]: While we normally think of cities as having a higher communicable disease load 
-than rural areas, this might not hold in the case of Covid. 
+than rural areas, this might not hold in the case of COVID-19. 
 Rather, larger rural households may allow more people to be exposed to 
-Covid infections, especially if lockdowns are enforced in rural areas.
+COVID-19 infections, especially if lockdowns are enforced in rural areas.
 Furthermore, people may be moving from urban to rural areas to "escape" 
-increasing levels of Covid infections, bringing Covid with them to rural areas.
+increasing levels of COVID-19 infections, bringing COVID-19 with them to rural areas.
 
 [@fig:food_insecurity_region] shows the results by level of food insecurity
 and regions, where each region is treated as a separate sample.
 The regional raw levels of food insecurity by round are shown in 
 Appendix [@fig:region_descriptive].
-Because we do not have information on regional Covid-19
-cases, all models are estimated without this national-level variable.
+Because we do not have information on regional COVID-19
+cases, all models are estimated without COVID-19 cases variables.
 
-![Estimated Changes in Food Insecurity With 95% Confidence Intervals for Each Region by Survey Round Relative to Survey 4, Controlling for Household Fixed Effects](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
+![Estimated changes in food insecurity with 95% confidence intervals for each region by survey round relative to Round 4, controlling for household fixed effects](../figures/food_insecurity_region.pdf){#fig:food_insecurity_region}
 
 Both the Central and Eastern regions follow a pattern very closely 
 aligned with the national-level results.
 All three levels of food insecurity are statistically significantly
 higher in the immediate aftermath of the first lockdown compared to 
-round 4, and food insecurity gradually decrease for the next two 
+Round 4, and food insecurity gradually decrease for the next two 
 survey rounds.
 The levels remain approximately constant until after the second
-lockdown, where food insecurity levels in round 7 are all statistically 
-significantly higher than in round 4.
+lockdown, where food insecurity levels in Round 7 are all statistically 
+significantly higher than in Round 4.
 
 For the Northern region, severe food insecurity follows the national level pattern.
-However, for moderate/severe food insecurity, only round 5 is not
-statistically significantly different from round 4, and levels in 
-rounds 1 and 7 are more than 40 and 30 percentage points higher,
-respectively, than round 4.
+However, for moderate/severe food insecurity, only Round 5 is not
+statistically significantly different from Round 4, and levels in 
+Rounds 1 and 7 are more than 40 and 30 percentage points higher,
+respectively, than Round 4.
 Furthermore, although the changes in any food insecurity are closer 
 to the national-level changes, they are generally smaller.
 
@@ -778,13 +811,13 @@ The Western region is the region that stands out most compared to the
 other regions. 
 First, there is little to no change in severe food insecurity, except
 for the last survey round, which is just below 10 percentage points
-higher than round 4.
-Similarly, although rounds 1 and 2 for moderate food insecurity are 
-statistically significantly higher than round 4, the effects are smaller than 
+higher than Round 4.
+Similarly, although Rounds 1 and 2 for moderate food insecurity are 
+statistically significantly higher than Round 4, the effects are smaller than 
 elsewhere.
-For any food insecurity, the round 7 level is substantially larger
-than any of the others, despite round 7 further away from the end
-of the lockdowns than rounds 1 and 2.
+For any food insecurity, the Round 7 level is substantially larger
+than any of the others, despite Round 7 further away from the end
+of the lockdowns than Rounds 1 and 2.
 
 What do these regional results tell us about the relative effects of the 
 lockdowns?
@@ -803,11 +836,11 @@ are less pronounced over time---the level of any food insecurity never got
 below nearly 70% of the population at its best.
 
 Finally, the Western region contributed  significantly to the high 
-national-level round 7 results.
+national-level Round 7 results.
 Part of this is likely the effect of an even more prolonged period of 
 below-normal rainfall than the other regions.
-Using the round 2 results as the basis, it appears that about half
-of the increase in round 7 food insecurity is due to the below-normal
+Using the Round 2 results as the basis, it appears that about half
+of the increase in Round 7 food insecurity is due to the below-normal
 rainfall, and the other half is due to the second severe lockdown,
 likely combined with the cumulative impact of sustained lower-level
 lockdowns in between the most severe lockdowns. 
@@ -838,7 +871,7 @@ statistically significant for the bounding exercise.
 The main potential change in the results is for severe food insecurity in Round 1, 
 where the first round is no longer statistically significantly different from
 Round 4, if we assume that attrition households would have been severely food insecure,
-although we cannot reject that the round 1 coefficients are the same across the
+although we cannot reject that the Round 1 coefficients are the same across the
 original and the two bounding assumptions.
 Furthermore, if we assume severe food insecurity for missing households 
 the Round 7 estimate is statistically significantly larger than both the original 
@@ -850,9 +883,10 @@ severely food insecure.
 
 
 To understand how the government lockdowns affected food insecurity and
-how households responded to the lockdowns, we examine three broad
-categories: labor market outcomes, changes in income across sources, and
-whether households received assistance from outside sources.
+how households responded to the lockdowns, we examine four
+categories: labor market outcomes, movement between sectors, 
+changes in income across sources, and
+assistance from outside sources.
 
 ## Impact on Labor Market Outcomes
 
@@ -877,60 +911,11 @@ since the start of the lockdown. This means we are unable to use Round 1
 information to examine the impact of the lockdown on operating a family
 business.
 
-The closing of workplaces to enforce social distancing was one of the
-primary channels through which market work was affected. 
-However, people may have been able to continue some types of work more 
-easily than others. 
-For example, in agriculture, workers can more easily socially
-distance themselves while working, and, in many cases, the workers are
-from the same household removing the need to socially distance.
-Furthermore, lockdowns are more challenging to enforce on farms in rural
-areas.
-
-Thus, there are two implications of this differential lockdown effect on
-workplace closings. 
-First, the impacts of lockdowns likely differ between households whose 
-main sector is in agriculture, which we will refer to as agricultural 
-households, and non-agricultural households.
-Agricultural households include any household that reported that their
-main activity was related to agriculture. 
-This includes both farmers, casual farm laborers, and those employed in 
-any type of processing, sale, or transport of agricultural goods. 
-These households can be either urban or rural.
-
-Second, it is essential to understand how lockdowns affected the
-movement between agricultural work, non-agricultural work, and not working. 
-We create a categorical variable where 0 represents non-agricultural work, 
-1 represents agricultural work, and 2 represents not working. 
-As we know the industry before the first lockdown, we can
-utilize that data as a pre-lockdown round (i.e., round 0), so we have
-eight rounds of data for this estimation.
-
-With three potential outcomes, we use a conditional fixed-effects
-multinomial logit model to estimate the movements between agricultural work, 
-non-agricultural work, and not working. 
-There are two potential issues with this method. 
-First, as with any multinomial model, the
-coefficient sign does not necessarily indicate the direction of the
-relationship between the explanatory variable and the outcome. 
-Second, standard marginal analyses are not meaningful because the fixed-effects
-estimator cannot make predictions that account for the panel-level fixed
-effects, which are not estimated explicitly. We, therefore, present two
-relative risk ratios, one the likelihood of working in the agricultural
-sector against working in the non-agricultural sector, and the other the
-likelihood of not working against working in the non-agricultural
-sector.
-
-Finally, the survey asked agricultural households whether they changed
-planting activities because of Covid-19. If yes, they are asked how they
-changed their activities. This allows us to examine whether households
-changed their agricultural strategy in response to the lockdowns.
-
 The top three panels of [@fig:work_employment] shows the results for the 
 likelihoods of doing market work, operating a non-farm family business, and 
 working in the same job as before, using Round 4 as the base.
 The bottom two panels show the coefficients for the multinomial logit 
-model, relative to non-agriculture work, using Round 0, i.e. pre-Covid, 
+model, relative to non-agriculture work, using Round 0, i.e. pre-COVID-19, 
 as the base.
 
 ![Changes in work and employment outcomes across survey rounds ---
@@ -941,10 +926,11 @@ model, relative to non-agricultural work.](../figures/work_employment.pdf){#fig:
 
 The likelihood of any market work was significantly lower immediately after
 the first lockdown compared to Round 4.
-Given the very low number of Covid-19 cases, as shown in [@fig:combined], 
+Given the very low number of COVID-19 cases, as shown in [@fig:combined], 
 this effect was likely driven predominately by the severe lockdown. 
-This is supported by the stated reasons for not working, where the 
-top three are that the place of work is closed (62%), 
+This is supported by the stated reasons for not working,
+which was collected in Round 1;
+the top three were that the place of work is closed (62%), 
 being ill from any illness or quarantined (10%), 
 and being laid off from the job (8%).
 Relative to Round 4, there appears to be no medium-run impact of the 
@@ -988,32 +974,59 @@ However, we cannot establish whether this is because the second lockdown
 follows the same pattern as the first or because there is less immediate 
 movement compared to the first lockdown.
 
-With workplace closures during lockdowns, we expect significant movement
-between sectors, and from working to not working. 
-Layoffs are likely in both the agricultural and non-agricultural sectors. 
-To complicate the picture, some may resort to agricultural production, even 
-if there is a lower return than their original job. 
+
+## Movement Between Sectors
+
+With workplace closures during lockdowns and reduced economic activity, 
+we expect significant movement between the non-agricultural and the agricultural 
+sectors, and between working and not working. 
+Enforcement of lockdowns is likely easier in the non-agricultural sector than
+the agricultural sector, so we expect that people are more likely to be able
+to continue working in the agricultural sector.
+Furthermore, those who are laid off may either stop working or resort to 
+agricultural production at home, even if the income is lower return than in
+their original job. 
+
+To examine this, we create a three-level categorical variable for the household's 
+main sector: non-agricultural work (0), agricultural work (1), and not working (2).
+We consider a household agricultural if its main activity was related to agriculture,
+which includes both farmers, casual farm laborers, and those employed in any 
+type of processing, sale, or transport of agricultural goods. 
+These households can be either urban or rural.
+As we know the household's main industry prior to the first lockdown, we have 
+eight rounds of data and use the pre-lockdown round (i.e., Round 0) as the 
+excluded round.
+
+\input{../tables/transition_table.tex}
+
+We use a conditional fixed-effects multinomial logit model to estimate 
+the movements between agricultural work, non-agricultural work, and not working. 
+Standard marginal analyses are not meaningful because the fixed-effects estimator 
+cannot make predictions that account for the panel-level fixed effects. 
+We, therefore, present the coefficients on the likelihood of working in 
+the agricultural sector against working in the non-agricultural sector, 
+and the other is the likelihood of not working against working in the 
+non-agricultural sector.
+
 The two bottom panels of [@fig:work_employment] show the coefficients
 for the multinomial fixed effects logit model on the likelihood of working 
 in the agricultural sector and not working, respectively, versus working 
 in the non-agricultural sector.
-To help with interpretation, \ref{tab:transition} shows the transition 
+Furthermore, to ease interpretation, Table \ref{tab:transition} shows the transition 
 probabilities between the three groups from round to round.[^absolute_groups]
 
 [^absolute_groups]: Appendix @fig:transition_absolute shows the unweighted counts of
 household by labor market group.     
 
-\input{../tables/transition_table.tex}
-
-As we have pre-Covid information, we use that as the excluded round.
-Not surprisingly, the short-run effect of the first lockdown is to
-significantly increase the risk of not working relative to being employed 
-in the non-agricultural sector, although there was also a significant shift 
-to agriculture.
+There are two important short-run effects of the first lockdown.
+First, there was a significant shift to agriculture from working in the 
+non-agricultural sector.
+Second, there is a significant increase in the risk of not working 
+relative to being employed in the non-agricultural sector.
 Only just over half of all households working in the non-agricultural 
-sector pre-Covid remain in that section, while 30% are not working and 
+sector pre-COVID-19 remain in that sector, while 30% are not working and 
 15% are working in agriculture in Round 1.
-About 7% of the households working in agriculture pre-Covid report
+About 7% of the households working in agriculture pre-COVID-19 report
 not working in Round 1, likely because the lockdowns also affected
 sale and processing of agricultural produce.
 Hence, the results suggest that while more people were not working, 
@@ -1029,7 +1042,7 @@ industries [@Gupta2021].
 Although there was some recovery by Round 2, half of those who were 
 not working in Round 1 are now working in agriculture, while only 25% 
 move (back) to the non-agricultural sector.
-Furthermore, relative to pre-Covid, households remain substantially 
+Furthermore, relative to pre-COVID-19, households remain substantially 
 more likely to be working in agriculture than non-agriculture for the next 
 three survey rounds, and only by Round 5, March 2021, is there a reduction 
 in the likelihood of working in agriculture, although it comes not from a 
@@ -1046,7 +1059,7 @@ The lack of opportunities in the agricultural sector may also explain
 why individuals were likely to remain at the same job after the second 
 lockdown (Panel 3). 
 
-The results suggest that the Covid-19 lockdowns had pronounced effects on 
+The results suggest that the COVID-19 lockdowns had pronounced effects on 
 employment dynamics, underscored by the migration from non-agricultural to 
 agricultural employment and the significant increases in the likelihood 
 of not working.
@@ -1101,17 +1114,16 @@ the number of households that the estimations are based on.[^no-pension]
 [^no-pension]: Only 34 households ever reported pension income, so we 
 do not show results for this income source.
 
-The first lockdown significantly decreased farm income, non-farm income, 
-and wage income.
+The first lockdown significantly decreased farm income, non-farm income, and wage income.
 Furthermore, the effect on income from assets is negative, although not
-statistically significant, likely because of the low number of households.
+statistically significant, likely because of the low number of households who own assets.
 
 The effects persisted in the medium run, with very few
 households reporting improvements between Rounds 1 and 2, and,
 as a consequence, the estimated effects are either zero or negative.
 Only by the third round do a significant number of households
 report improvements in income levels.
-We do not have income data for round 7 and thus cannot examine
+We do not have income data for Round 7 and thus cannot examine
 the medium-term impact of the second lockdown.
 These income effects are likely a major reason for the significant increase in
 food insecurity from the lockdowns. 
@@ -1133,10 +1145,9 @@ The questions were asked the same way as the income questions, where households
 can either report income increase, remaining the same, decrease, or complete 
 loss relative to the prior round. 
 Therefore, like the income estimations, we create ordinal
-variables where 1, 0 and -1 represent an increase, same, and
+variables where 1, 0, and -1 represent an increase, same, and
 decrease/complete loss, respectively, and estimate the effect of
-lockdowns using the same conditional fixed-effects ordered logistic
-model.
+lockdowns using the same conditional fixed-effects ordered logistic model.
 The results are shown in [@fig:income_assistance].
 
 [^unemployment_benefits]: Households were also asked whether they received unemployment
@@ -1148,14 +1159,12 @@ logit estimation.
 logit model, with positive representing an increase, 0 no change, and negative 
 a decrease](../figures/income_assistance.pdf){#fig:income_assistance}
 
-There were reductions in the assistance from family within the country
-and the assistance from non-family individuals after the first lockdown,
-although neither effect is statistically significant. 
-The level of remittances did increase slightly, although this is
-also not statistically significant.[^remittances]
-
-[^remittances]: This increase does run counter to the substantial 
-decline in remittances across the world in the second quarter of 2020, 
+We find no statistically significant effect on the assistance from 
+family with the country, assistance from non-family individuals,
+or remittances after the first lockdown. 
+The first two fell slightly, while the level of remittances increased slightly.
+This statistically insignificant increase for remittances does run counter to 
+the substantial decline in remittances across the world in the second quarter of 2020, 
 as lockdowns worldwide led to the closure of workplaces and limited people's 
 movements  [@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
 However, only 63 households reported any change over the six survey rounds.
@@ -1190,14 +1199,16 @@ may further increase food insecurity.[^school_lunch]
 at home more as a result of the school closures.
 Although we cannot directly capture this dimension, it is likely that
 it added to the general level of food insecurity as these children
-often would have been served lunch at school.
+often would have been served lunch at school, as was the case for 
+Nigeria [@Abay2021].
+
 
 Using the household rosters from UHFS and the UNPS 2019/20, we have data
 on the number of household members, adults, and children, and location of
-the households for the last UNPS survey before Covid, here referred to as Round 0, 
+the households for the last UNPS survey before COVID-19, here referred to as Round 0, 
 and for each survey round. 
 One caveat is that UNPS 2019/20 data collection took place between 
-April 2019 and February 2020, which means that the pre-Covid information on 
+April 2019 and February 2020, which means that the pre-COVID-19 information on 
 household size can be more than a year for the first UHFS survey.
 The top three panels of [@fig:members_location] show the impact of lockdowns 
 on the number of household members and on the number of adults and children separately.
@@ -1208,20 +1219,20 @@ with continuous outcome variables for the top three panels and an indicator
 variable for the bottom 
 panel.](../figures/household_composition_and_urban_location.pdf){#fig:members_location}
 
-Relatively to before Covid, the number of household members is
+Relatively to before COVID-19, the number of household members is
 statistically significantly higher throughout the entire period.
-This effect comes almost entirely from an increase in the number
-of children. 
+This effect comes almost entirely from an increase in the number of children. 
 The exception is for Round 7, where there are statistically significant
 increases in both the number of adults and the number of children,
-relatively to before Covid.
-
+relatively to before COVID-19.
 The continuous increase in the number of children until Round 4 
-compared to the pre-Covid survey suggests that this change is not 
+compared to the pre-COVID-19 survey, suggests that this change is not 
 driven by the lockdowns and school closures, which began at the same time
 as the first lockdown and did not end until 2022.
-Hence, although the school closures may have increased the 
-base level of food insecurity compared to before Covid, it is unlikely 
+
+
+Hence, although the school closures may have increased the base level of 
+food insecurity compared to before COVID-19, it is unlikely 
 to have driven the increases in food insecurity during the first lockdowns.
 
 The relative reduction in household size in Round 6 may be related to
@@ -1256,40 +1267,41 @@ Given the increase in agricultural work with the first lockdown,
 better than non-agricultural households. 
 We show the results for two different approaches.
 First, the two left columns separate households by whether they 
-were agricultural households before Covid and estimate each level 
+were agricultural households before COVID-19 and estimate each level 
 of food insecurity.[^agri_pre_covid] 
 Second, the results in the right two columns come from one regression 
 per level of food insecurity and use the prior rounds' 
 reported agricultural status interacted with the survey indicators.
 Note, as we previously treated households' work in agriculture 
 as a choice variable, this set of estimations is exploratory rather than causal. 
-In all cases, the effects are shown relative to survey round 4 as above.
+In all cases, the effects are shown relative to survey Round 4 as above.
 
 [^agri_pre_covid]: Round 1 of the survey asks about the household's
 area of work before the lockdown, which allows us to identify whether households
 were in agriculture before the first lockdown.
     
-![Estimated Changes in Food Insecurity With 95% Confidence Intervals 
-by Survey Round Relative to Survey 4, Controlling for Household Fixed Effects, 
-for Non-Agricultural and Agricultural Households. 
-Left Two Columns Condition on Pre-Covid Agricultural Status, While the 
-Right Two Columns Allow Households to Change Status](../figures/agri_vs_non_agri.pdf){#fig:ag_vs_non_ag}   
+![Estimated changes in food insecurity with 95% confidence intervals 
+by survey round relative to Round 4, controlling for household fixed effects, 
+for non-agricultural and agricultural households. 
+Left two columns condition on pre-COVID-19 agricultural status, while the 
+right two columns allow households to change status](../figures/agri_vs_non_agri.pdf){#fig:ag_vs_non_ag}   
 
 Agricultural households appeared to be more food secure than
 non-agricultural households during the first lockdown. 
 Their likelihood of suffering "any food insecurity" during lockdowns was about 20
-percentage points lower than non-agricultural households, as shown by round 1.
-In fact, there are no statistically significant differences between rounds 1
-and 4 for agricultural households, whether we use pre-Covid or prior survey
+percentage points lower than non-agricultural households, as shown by Round 1.
+In fact, there are no statistically significant differences between Rounds 1
+and 4 for agricultural households, whether we use pre-COVID-19 or prior survey
 agricultural status.
 Agricultural households also do better than non-agricultural households
 when it comes to both moderate/severe or severe food insecurity, although
 the difference is less stark for these outcomes.
 Specifically, for severe food insecurity, the estimated difference between
-round 1 and 4 is very close to zero.
+Round 1 and 4 is very close to zero.
 
-However, for round 7, there is little difference, with all groups
-seeing statistically significant increases in food insecurity.
+However, for Round 7, there is little difference across different 
+measures of food insecurity, with all groups seeing statistically 
+significant increases in food insecurity.
 This suggests that the concurrent lower-than-normal rainfall
 removed some of the protection from lockdowns that 
 agricultural households had previously had.
@@ -1297,64 +1309,74 @@ agricultural households had previously had.
 
 # Conclusion
 
+As countries around the world continue to navigate the challenges posed by 
+the aftermath of the COVID-19 pandemic and plan for responses to potential 
+future crises and epidemics, 
+understanding the cost and benefits of potential policies is critical.
 Using country-wide panel data with a household fixed-effects model, we
-examine the impact of two Covid-19 lockdowns in Uganda on food insecurity. 
-Food insecurity increased substantially during the first
-lockdown, with the relative effects largest for the worst types of food
-insecurity. 
+examine the impact of the two COVID-19 lockdowns in Uganda on food insecurity
+and household responses.
+As we use the periods during COVID-19 with fewer restrictions as the comparison,
+we expect our results to be lower-bound estimates.
+ 
+Food insecurity increased substantially during the first lockdown. 
 The first lockdown also had a significant medium-run impact
 on food insecurity. 
-The medium-run impact was even higher following the
-second lockdown, as a lower-than-normal rainfall across Uganda 
-compounded the negative effect of the lockdown.
+The medium-run impact was even more pronounced following the second lockdown.
+The larger effect is likely partly from the compounding effect of the 
+concurrent environmental stressors of a lower-than-normal rainfall,
+especially in the Western region of Uganda,
+and partly from reduced resilience after the effects of the first lockdown.
 
-There were significant decreases in income.
-However, agricultural households were better able to continue working
-during the first lockdown than non-agricultural households.
-Consequently, their food security outcomes were better as well.
+The lockdowns led to significant disruptions in income sources across the board, 
+with decreases in income from agriculture, non-farm businesses, and wage employment 
+contributing to the rise in food insecurity.
+Both agricultural and non-agricultural households were affected, although
+non-agricultural households experienced more severe impacts. 
+This difference underscores the relative resilience of agricultural activities 
+during lockdown periods.
+Agriculture provided a coping mechanism for many households, and 
+the switch towards agricultural work suggests a strategic shift in 
+employment patterns in response to the lockdown measures. 
 
-We find evidence that households attempted to cope with the first
-lockdown by temporarily switching to agricultural work. 
-However, traditional sources of coping mechanisms, such as remittance from
-abroad, assistance from family members within the country, assistance
-from non-family individuals, and assistance from development
-organizations, were all either flat or decreased during the lockdowns. 
-The lack of assistance may explain lockdowns' substantial effect on food insecurity.
+However, traditional sources of coping mechanisms, such as reliance on 
+outside assistance from family members and friends, NGOs, or government support, 
+proved inadequate during the lockdowns, leaving households to face 
+the economic shocks with limited external support.
+Remittance from abroad, assistance from family members within the country, assistance
+from non-family individuals, and assistance from development organizations, 
+were all either flat or decreased during the lockdowns. 
+This lack of assistance may explain lockdowns' substantial effect on food insecurity.
 
 Three broader conclusions emerge from our results. 
 First, on average, agriculture is likely less productive than non-farm 
-work but better than not working. 
-With a slow rate of switching back from agriculture, the
-lockdowns can potentially have severe long-term adverse effects on
-Uganda's development. 
-Second, the results show the limit of self-insurance and mutual 
+work but more productive than not working. 
+Hence, with the slow rate of switching back from agriculture that we observe, 
+the lockdowns can potentially have severe long-term adverse effects on Uganda's development.
+ 
+Second, the results show the limits of self-insurance and mutual 
 insurance when faced with a systemic shock.
 Most of the literature has focused on the smaller and more frequent risk
 of idiosyncratic shocks and how households respond to these. 
 However, a better understanding of systemic shocks and how households respond is
 still lacking. 
+
 Finally, the case of Uganda illustrates well the issues with the wholesale 
-lockdown of economies in response to Covid-19 in situations with 
-low state capacity. 
-Uganda has been hailed as a leading example of curbing Covid-19 [@Adams2021]. 
+lockdown of economies in response to COVID-19,
+particularly in situations with low state capacity. 
+Uganda has been hailed as a leading example of curbing COVID-19 [@Adams2021]. 
 However, the mitigation efforts failed to reach those most affected by the lockdown.
 With the low mortality rate in Sub-Saharan Africa, including Uganda, the
-long-term cost of the lockdowns likely significantly outweighs the benefits. 
-Quantifying these costs and identifying possible
+long-term cost of the lockdowns likely significantly outweighs the benefits.
+In addition to the increasing food insecurity and decline in economic activity, 
+the lockdowns disrupted education and reduced accessibility 
+and use of health care with the lockdowns in Uganda.[^other_effects] 
+Quantifying all these costs and identifying possible
 avenues of mitigation are critical future areas of research.
 
+[^other_effects]: See @Bose2023 on health care and @Batte2021 for an early assessment 
+of the effects on education on a small sample.
 
-                                                                                                           
-
-                                                                                                           
-
-
-
-
-
-
-
-    
     
     
 # References {.unnumbered}
@@ -1381,23 +1403,22 @@ avenues of mitigation are critical future areas of research.
 # Alternative Google Mobility Measures
 
 
-![workplaces](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
+![Percentage changes in the number of visitors to workplace locations](../figures/mobility_national_workplaces.pdf){#fig:mobility_national_workplaces}
 
-![Transit](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
+![Percentage changes in the number of visitors to transit locations](../figures/mobility_national_transit.pdf){#fig:mobility_national_transit}
 
-![Grocery/pharmacy](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
+![Percentage changes in the number of visitors to grocery and pharmacy locations](../figures/mobility_national_grocery.pdf){#fig:mobility_national_grocery}
 
-![Parks](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
+![Percentage changes in the number of visitors to park](../figures/mobility_national_parks.pdf){#fig:mobility_national_parks}
 
-![Residential](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
+![Percentage changes in the time spent at residential locations](../figures/mobility_national_residential.pdf){#fig:mobility_national_residential}
 
 \clearpage
 
-# [Seasonality]
+# Seasonality
 
 
 ![Results with restricted sample to examine seasonality](../figures/seasonality_comparison.pdf){#fig:seasonality_comparison}
-
 
 
 ![Results for urban only to examine seasonality](../figures/seasonality_urban.pdf){#fig:seasonality_urban}
@@ -1405,22 +1426,23 @@ avenues of mitigation are critical future areas of research.
 
 \clearpage
 
-# [Region]
+# Regional
 
-![Food Insecurity by Region and Survey Round of the Uganda High-Frequency Phone Survey on 
-Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
+![Food insecurity by region and survey round of the Uganda high-frequency phone survey on 
+COVID-19 together with severe lockdown periods in grey](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:region_descriptive}
 
+![Regional distribution of percentage changes in the number of visitors to workplace locations](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
 
-![workplaces](../figures/mobility_regional_workplaces.pdf){#fig:mobility_regional_workplaces}
+![Regional distribution of percentage changes in the number of 
+visitors to transit locations](../figures/mobility_regional_transit.pdf){#fig:mobility_regional_transit}
 
-![Residential](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
+![Regional distribution of percentage changes in the number of 
+visitors to grocery and pharmacy locations](../figures/mobility_regional_grocery.pdf){#fig:mobility_regional_grocery}
 
-![Transit](../figures/mobility_regional_transit.pdf){#fig:mobility_regional_transit}
+![Regional distribution of percentage changes in the number of 
+visitors to parks](../figures/mobility_regional_parks.pdf){#fig:mobility_regional_parks}
 
-![Grocery/pharmacy](../figures/mobility_regional_grocery.pdf){#fig:mobility_regional_grocery}
-
-![Parks](../figures/mobility_regional_parks.pdf){#fig:mobility_regional_parks}
-
+![Regional distribution of percentage changes in the time spent at residential locations](../figures/mobility_regional_residential.pdf){#fig:mobility_regional_residential}
 
 
 
@@ -1428,29 +1450,30 @@ Covid-19](../figures/food_insecurity_by_region_survey_round_3_levels.pdf){#fig:r
 
 # Labor Market Outcomes
 
-![Absolute](../figures/transition_absolute.pdf){#fig:transition_absolute}
+![Sectoral distribution by survey round in percent ](../figures/transition_absolute.pdf){#fig:transition_absolute}
 
 \clearpage
 
-# Change in agricultural strategy
+# Change in Agricultural Strategy
 
 In this section, we examine whether agricultural households change their
 agricultural strategy to better cope with the effects of the lockdowns.
-The survey asked in rounds 1, 4, and 7 to households engaged in planting
+The survey asked in Rounds 1, 4, and 7 to households engaged in planting
 activities whether they changed their "planting activities in the
 current agricultural season because of changes in the country or
-community due to coronavirus?". 23.2 percent of agricultural households
-during the first lockdown and 18.5 percent during the second lockdown
-reported changing their planting activities because of the pandemic.
-This is as opposed to 5 percent for the non-lockdown period of round 4.
+community due to coronavirus?". 
+During the first lockdown, 23.2 percent of agricultural households
+reported changing their planting activities because of the pandemic,
+as did 18.5 percent during the second lockdown.
+This is as opposed to 5 percent for the non-lockdown period of Round 4.
+
 We create an indicator variable where 1 represents a change in planting
 activities, and 0 represents no change. 
-
 We present the estimates of the impact of lockdowns on changes in planting 
 activities in [@fig:ag_plant_change]. 
 The estimates show that the first lockdown led to a 57 percentage points 
 increase in the likelihood of changing crop planting activities, and the 
-second lockdown led to a 26 percentage points increase compared to round 4.
+second lockdown led to a 26 percentage points increase compared to Round 4.
 
 For households with a change in activities, the survey also asked them
 how they changed their activities. This allows us to shed more light on
@@ -1458,7 +1481,7 @@ how agricultural households attempted to change their farming strategy
 to cope with the effect of the shock. 
 Table \ref{tab:ag_changes} shows that the biggest change was a change in the 
 use of farm areas, where 8.7 percent reported
-a reduction and 9 percent reported an increase in the use of farm
+a reduction, and 9 percent reported an increase in the use of farm
 areas after the first lockdown. 
 It is followed by changes in the number
 of varieties of crops produced, where both an increase (4.1%) and a
@@ -1466,7 +1489,7 @@ decrease (2.6%) in variety are mentioned after the first lockdown.
 Only a small fraction of farmers delayed planting (1.3%) or abandoned crop
 farming (1.5%) altogether for that season after the first lockdown.
 
-![Ag plant change](../figures/ag_plant_change.pdf){#fig:ag_plant_change}
+![Estimated change in planting activities, relative to Round 4](../figures/ag_plant_change.pdf){#fig:ag_plant_change}
 
 \input{../tables/ag_change_table.tex}
 
