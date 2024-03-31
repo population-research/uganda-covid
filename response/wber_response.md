@@ -15,12 +15,6 @@ Mechanisms: Evidence from Uganda."
 We would like to thank the two referees and the editor for the very useful comments and
 suggestions, which we believe have significantly improved the paper.
 
-[Overall changes - and changes not asked for]
-
-[reference our AJTMH paper; could use NPS 8th wave because there is a treatment consulting 
-question—did we do that?]
-
-
 **Notable changes:**
 
 1. To ease the interpretation of the results, to address the potential multiple comparisons
@@ -483,11 +477,11 @@ estimate found by the authors large, small, or average relative to these papers?
 
     There were large variations among other studies. For example, for any kind
     of food insecurity, the impact varied between 13.1% [@Agamile2022] and 59%
-    [Nguyen2021]. 
+    [@Nguyen2021]. 
     For studies focusing on moderate security, the impact varied between 
     11.1% [@Agamile2022] and 53% [@Ceballos2021]. 
     For severe food insecurity, the impacts varied between null effects
-    [@Gaitán-Rossi2021] and 16% [@Kansiime2021].
+    [@Gaitan-Rossi2021] and 16% [@Kansiime2021].
 
 5. How much should we expect the household fixed effects to deal with in this
 estimation? My main concern about omitted variable bias would be something like
@@ -518,7 +512,9 @@ in agricultural production from the 2019/20 UNPS data? At the least, I’d like 
 see the authors justify making this variable dynamic in more specific detail.
 
     **Response:** To address this, we now use two different approaches.
-    First, we split the sample into two and present results separately for households 
+    First, following the reviewer's suggestion, we use agricultural status from
+    the UNPS 2019/20 data for our analysis.
+    We split the sample into two and separately present results for households 
     that were in agriculture and those that were not in agriculture before COVID-19.
     Second, we show the results equivalent to the original table but with all 
     survey rounds, interacting households' agricultural status in the prior round 
@@ -579,11 +575,12 @@ is national in scope; is this correct? A little more detail would be helpful.
 	the degrees of lockdown by region when we use retail locations, which
 	includes marketplaces.
 	
-	Originally, we used time spent in residential locations but that 
+	The mobility data is, indeed, more spotty in the more rural parts of the country.
+	Originally, we used the time spent in residential locations, but that 
 	suffers from almost no coverage in the Northern region and little 
 	coverage around the first lockdown in the Eastern and Western regions.
-	Visits to workplaces has high coverage for all regions, but we decided
-	to use retail instead because it is unclear to what extent this would
+	Visits to workplaces have high coverage for all regions, but we decided
+	to use retail instead because it is unclear to what extent "visits to workplaces" would
 	be relevant for more rural areas, while even more rural areas will have
 	marketplaces and retail locations.
 	
@@ -609,9 +606,8 @@ enforced in rural parts of Uganda).
 	than in the Central region judging from the percentage changes.
 	However, the first lockdown is still clearly heavily enforced in those
 	three regions.
-	The pattern for the second lockdown enforcement is more mixed but,
-	as we describe in the paper, there is still clear evidence of 
-	enforcement, even in more rural areas.
+	The pattern for the second lockdown enforcement is more mixed, but, as we describe 
+	in the paper, there is still clear evidence of enforcement, even in more rural areas.
 
 \clearpage
 \onehalfspacing
