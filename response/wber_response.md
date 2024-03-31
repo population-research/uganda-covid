@@ -37,7 +37,7 @@ Data section.
 2. In response to the overall comments from both the editor and referees, we have 
 substantially restructured the paper.
 We now begin with a more in-depth examination of the lockdowns, which includes the
-figure on the stringency measure, mobility measure, and Covid deaths and cases.
+figure on the stringency measure, mobility measure, and COVID-19 deaths and cases.
 This is followed by an analysis of the extent to which the lockdowns explain 
 the changes in food insecurity.
 We do this using a full set of survey indicator variables.
@@ -58,13 +58,14 @@ interpreting those as lockdown effects. I don’t understand that. Why not just
 report all 7 survey round effects (graphically) and think of the paper as trying
 to understand why the survey round effects vary.
 
-    **Response:** We have added a figure with the raw percentage of households that 
-    report any, moderate to severe, and severe food insecurity by survey round.
-    Furthermore, we have recast the introductory paragraph to follow the suggestion
-    and rewritten the paper accordingly.
-
-
-
+    **Response:** We thank the editor for the suggestion and have updated all 
+    estimations to include survey round indicators for each round.
+    To ease interpretation with the larger number of dummies, we now present most 
+    of the results graphically.
+    Furthermore, in the Introduction, we have added a figure with the raw percentage 
+    of households that report any, moderate to severe, and severe food insecurity 
+    by survey round, and have recast the introductory paragraph to follow this suggestion.
+    Finally, the paper has been rewritten accordingly.
 
 
 2. What are the household fixed effects doing? In a world where the household’s
@@ -90,7 +91,7 @@ cannot imagine that type of problem is time invariant.
     and provide more detail on each there.
     
     Finally, the standard Hausman test handily rejects the null for the basic 
-    model with survey dummies and Covid cases, for all three cumulative
+    model with survey dummies and COVID-19 cases, for all three cumulative
     food insecurity outcomes, indicating that fixed effects models are 
     preferred to random effects models.
     
@@ -113,22 +114,22 @@ how to compare to earlier tables.
     The implication of this is that the effect of time from severe lockdown 
     estimated interacted with survey indicators would only be identified by
     the variation within each survey round of when a household was surveyed.
-    In addition to the limited variation within each survey, a concern with 
-    this approach is that, despite this being a phone survey,
-    each region did not have the same distribution of interview dates.
+    However, this temporal variation within each round is very limited.
+    In addition, a concern with this approach is that, despite this being a 
+    phone survey, each region did not have the same distribution of interview dates.
     
     However, we appreciate the difficulty of interpreting the results in Tables 
     6 and 7 compared to the other results and have restructured our analysis to 
     address these issues.
     First, we now discuss what can be learned about the degree of lockdown from
-    the Google mobility data (see also our response below to R2, suggestion 8)
+    the Google mobility data (see also our response below to R2, Suggestion 8)
     in the "Lockdown Context and Enforcement" section.
-    Second, we present results for all rounds relative to round 4 and discuss
-    how far from the lockdowns each survey round is. 
-    Finally, we have added a new subsection that examines the regional variation 
-    in lockdowns and food insecurity and also discuss what can be learned about the 
+    Second, we present results for all rounds relative to Round 4 and discuss
+    how far each survey round is from the lockdowns in the Estimation Strategy section. 
+    Finally, we have added a new subsection that examines the differential
+    impact of lockdowns across the regions and also discuss what can be learned about the 
     degrees of lockdown by region using regional Google mobility data 
-    (See also our response to R2, suggestion 9 below.)
+    (See also our response to R2, Suggestion 9 below.)
     
 
 4. Attrition is large. Is it correlated with food security? It seems like it
@@ -147,8 +148,7 @@ about attriters, even if the answer is "super sensitive".
     that all attrited households would have been food insecure. 
     Except for severe food insecurity in round 1 when we assume that 
     attrited households are food insecure, the results that were statistically 
-    significant in the main model remain statistically significant for
-    the bounding exercise.
+    significant in the main model remain significant for the bounding exercise.
 
 
 
@@ -159,8 +159,10 @@ your reader why you do not.
 
     **Response:** The only food security-related question in UNPS 2019/20 asks 
     whether there has been a situation in the last 12 months when there was not 
-    enough food to feed the household plus two follow-up questions about why
+    enough food to feed the household, plus two follow-up questions about why
     and what months this occurred in.
+    Unfortunately, this question does not align with any of the food insecurity
+    questions asked in the phone survey.
     We now discuss in the subsection on Food Insecurity Measurement the differences
     across the surveys and why we cannot use the NPS as the baseline.
     See also our response to Referee 2 on the interpretation of the effects.
@@ -170,12 +172,12 @@ your reader why you do not.
 survey date? What do we think of that as measure of local covid exposure?
 
     **Response:** It is certainly possible that there are systematic differences in 
-    local Covid exposure, but, unfortunately, we have been unable to identify any 
-    data sources that could address regional differences in Covid exposure.
+    local COVID-19 exposure, but, unfortunately, we have been unable to identify any 
+    data sources that could address regional differences in COVID-19 exposure.
     
     As discussed above, we now include an analysis of the regional variation 
     in food insecurity and discuss the role of potential differences 
-    in Covid cases across regions.
+    in COVID-19 cases across regions.
     Furthermore, we also examine regional lockdown behavior through the 
     regional Google Mobility data on visits to retail and recreation locations.
     See also our responses below to the last two suggestions from Referee 2.
@@ -251,7 +253,7 @@ still be extremely useful. This would also alleviate some of the difficulties
 including fixed effects in the multinomial/ordered logit models.
 
 	**Response:** We have updated our discussion of why we use a fixed effects
-	model. Please see our response to Editor comment 2 above for more detail.
+	model. Please see our response to Editor Comment 2 above for more detail.
 
 3. Third, as hinted at in the “Contribution” section of this report, it would be
 useful for the paper to explain what additional points we learn from looking at
@@ -262,7 +264,20 @@ especially now the lockdowns in question are almost two years in the past?
 Additionally, explaining how the Uganda lockdowns provide extra information on
 aggregate shocks would be particularly important.
 
-    **Response:**
+    **Response:** We have rewritten the Introduction to better motivate why 
+    we examine the Uganda lockdowns, address our specific contribution, 
+    and what sets our paper apart from the prior literature.
+    Uganda had some of the strictest lockdowns, along with low numbers of
+    COVID-19 cases, which allows us to identify the impact of the lockdown policy itself. 
+    Understanding the costs and benefits of lockdowns will be particularly relevant for 
+    future pandemic policies, as, unfortunately, all too well illustrated by
+    the recent Ebola lockdown in parts of Uganda. 
+    It also helps us understand the impact of an aggregate shock compared to
+    idiosyncratic shocks. 
+    Lastly, as the world’s poor are still trying to recover from the pandemic, 
+    we believe that this analysis can provide important information on 
+    household coping and their recovery. 
+    
 
 ## Suggestions
 
@@ -296,7 +311,7 @@ would be more accurate.
     **Response:** We did, indeed, use unemployment as short-hand for not working,
     even though the survey does allow for other reasons for not working than
     strict unemployment (such as lacking transport or not wanting to work
-    because of fear of Covid exposure).
+    because of fear of COVID-19 exposure).
     We have updated the paper throughout to use "not working" rather than unemployment.
     
 
@@ -308,7 +323,7 @@ market switches.
 	**Response:** That is a great suggestion. 
 	We have included a table showing the transition probabilities between 
 	the three groups (working outside agriculture, working in agriculture, and not working).
-	The table notes also show the pre-Covid distribution across the three groups.
+	The table notes also show the pre-COVID-19 distribution across the three groups.
 	Furthermore, we have added an Appendix Figure showing the unweighted
 	absolute number of households in the three groups.
 	Finally, we have expanded the discussion of movement between sectors using the 
@@ -327,7 +342,7 @@ https://link.springer.com/article/10.1007/s11135-014-0057-0).
     probability of rejecting a true null of no differences across groups.
     We do not rely on or test differences across agricultural/non-agricultural 
     households but instead analyze the pattern of food insecurity within each group.
-    Furthermore, we now present results using separate samples based on pre-Covid
+    Furthermore, we now present results using separate samples based on pre-COVID-19
     agricultural status, as explained below in our response to R2, Suggestion 6,
     and the results are similar across the separate samples and the interaction 
     models.
@@ -341,11 +356,11 @@ being considered. Alternatively, the authors should provide a qualitative
 explanation of why this is not needed.
 
     **Response:** We now only use the three standard food insecurity levels,
-    multiple comparison correction is less of a concern than when we had 10
+    multiple comparison correction is less of a concern than when we had 9
     different food insecurity measures.
+    If there are specific analyses where some type of correction would still be 
+    helpful, we are, of course, open to including that.
     
-    [There clearly is still an issue with the response part of the analysis]
-
 
 # Referee 2 Comments
 
@@ -365,17 +380,13 @@ is not a surprise to the reader.
     relevant literature are specifically able to focus on lockdowns vs. merely the
     aggregate effect of the pandemic and lockdowns.
     
-    **Response:** We have added this to the Introduction and rewritten the 
-    Estimation Strategy section to clarify and highlight that we are comparing 
+    **Response:** We now clarify in the Introduction and in the 
+    Estimation Strategy section that we are comparing 
     lockdowns to other periods during the pandemic with less severe lockdowns 
-    and that with the low number of Covid cases we can therefore identify the 
-    effect of the lockdown separately from the spread of Covid.
+    and that with the low number of COVID-19 cases we can therefore identify the 
+    effect of the lockdown separately from the spread of COVID-19.
     See also our response to Referee 1 (Essential Point 1), above.
-    
-    [few exceptions where we have pre-Covid results]
-    
-    [still need to do something about the literature part]
-
+        
 
 2. It is not clear to me why reductions in paid work seems to be in the authors’
 preferred channel. Based on Table 3, paid work is certainly decreasing, but so
@@ -420,22 +431,22 @@ this channel is not considered a primary one.
     estimating how the round indicators affect the number of members (total,
     adults, and children).
     One advantage of this, besides easier interpretation, is that we can use 
-    pre-Covid as the base/excluded period.
+    pre-COVID-19 as the base/excluded period.
     
     The new results, indeed, show significant increases in the number of children 
-    below 18 compared to pre-Covid, but little change in the number of adults 
+    below 18 compared to pre-COVID-19, but little change in the number of adults 
     until after the second severe lockdown.
     One possible explanation for these results could certainly be the school 
     closures leading to children returning home from boarding schools.
     The concern about this explanation is that the number of household 
     members younger than 18 is increasing at an approximately uniform rate between 
     surveys until Round 4, rather than being associated with a substantial
-    increase in connection with the first severe lockdowns and the associated
+    increase in connection with the first severe lockdowns and its associated
     school closures.
     
-    Hence, while we agree completely that the increase compared to the pre-Covid 
+    Hence, while we agree completely that the increase compared to the pre-COVID-19 
     period likely contributed to raising the *base* level of food insecurity 
-    compared to before Covid, we do not see the changes in the number of
+    compared to before COVID-19, we do not see the changes in the number of
     children as a primary channel through which the lockdowns increase 
     food insecurity.
     That the change in the number of children should drive the increase in
@@ -446,15 +457,12 @@ this channel is not considered a primary one.
 
     Furthermore, unfortunately, we cannot establish whether the absence of 
     school lunches added to the level of food insecurity, but we now discuss 
-    the possibility in a footnote.
-    Note, as for the number of children, the lack of school lunches may raise 
-    the base level of food insecurity, but it is unlikely to drive the 
-    lockdown-related changes as the schools were closed in all of the UHFS 
-    survey rounds.
-
-    [Shamma: should we also include a discussion of the Round 7 results?
-    It is possible that we are getting an increase in adults because of the
-    below-normal rainfall but that is not really lockdown related.]
+    the possibility in the section.
+    Clearly, the lack of school lunches may raise the base level of food 
+    insecurity, as shown by @Abay2021 for Nigeria.
+    It is, however, unlikely to drive the lockdown-related changes that
+    we observe, as the schools were closed in all of the UHFS survey rounds
+    and there is, therefore, no variation in school closures.
     
 
 ## Suggestions
@@ -466,6 +474,20 @@ effects models, but not to the broader literature, or even to the subset of
 literature that focuses on Uganda (Kansiime et al. focuses on Uganda; as does
 Agamile (2022), who actually uses much of the same dataset). Is the 25 pp
 estimate found by the authors large, small, or average relative to these papers?
+
+    **Response:** Among the studies that try to provide causal evidence based on
+    panel data, most do not find an impact on food insecurity. 
+    The exception is @Amare2021, who found a 39 percentage-point increase 
+    in moderate (skipping a meal) and an 11 percentage-point increase in severe food
+    insecurity (going without eating a whole day).
+
+    There were large variations among other studies. For example, for any kind
+    of food insecurity, the impact varied between 13.1% [@Agamile2022] and 59%
+    [Nguyen2021]. 
+    For studies focusing on moderate security, the impact varied between 
+    11.1% [@Agamile2022] and 53% [@Ceballos2021]. 
+    For severe food insecurity, the impacts varied between null effects
+    [@Gaitán-Rossi2021] and 16% [@Kansiime2021].
 
 5. How much should we expect the household fixed effects to deal with in this
 estimation? My main concern about omitted variable bias would be something like
@@ -497,7 +519,7 @@ see the authors justify making this variable dynamic in more specific detail.
 
     **Response:** To address this, we now use two different approaches.
     First, we split the sample into two and present results separately for households 
-    that were in agriculture and those that were not in agriculture before Covid.
+    that were in agriculture and those that were not in agriculture before COVID-19.
     Second, we show the results equivalent to the original table but with all 
     survey rounds, interacting households' agricultural status in the prior round 
     with survey indicators (in effect, allowing households to change status).
