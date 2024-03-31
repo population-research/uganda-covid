@@ -1316,51 +1316,71 @@ agricultural households had previously had.
 
 # Conclusion
 
+As countries around the world continue to navigate the challenges posed by 
+the aftermaths of the COVID-19 pandemic and plan for responses to potential 
+future crises and epidemics, 
+understanding the cost and benefits of potential policies is critical.
 Using country-wide panel data with a household fixed-effects model, we
-examine the impact of two COVID-19 lockdowns in Uganda on food insecurity. 
-Food insecurity increased substantially during the first
-lockdown, with the relative effects largest for the worst types of food
-insecurity. 
+examine the impact of the two COVID-19 lockdowns in Uganda on food insecurity
+and household responses.
+As we use the periods during COVID-19 with fewer restrictions as the comparison,
+we expect our results to be lower-bound estimates.
+ 
+Food insecurity increased substantially during the first lockdown. 
 The first lockdown also had a significant medium-run impact
 on food insecurity. 
-The medium-run impact was even higher following the
-second lockdown, as a lower-than-normal rainfall across Uganda 
-compounded the negative effects of the lockdown.
+The medium-run impact was even more pronounced following the
+second lockdown, partly from the compounding effect of the 
+concurrent environmental stressors of a lower-than-normal rainfall across Uganda.
 
-There were significant decreases in income.
-However, agricultural households were better able to continue working
-during the first lockdown than non-agricultural households.
-Consequently, their food security outcomes were better as well.
+The lockdowns led to significant disruptions in income sources across the board, 
+with decreases in income from agriculture, non-farm businesses, and wage employment 
+contributing to the rise in food insecurity.
+Both agricultural and non-agricultural households were affected, though
+non-agricultural households experienced more severe impacts. 
+This difference underscores the relative resilience of agricultural activities 
+during lockdown periods.
+Agriculture provided a coping mechanism for many households, and 
+the switch towards agricultural work suggests a strategic shift in 
+employment patterns in response to the lockdown measures. 
 
-We find evidence that households attempted to cope with the first
-lockdown by temporarily switching to agricultural work. 
-However, traditional sources of coping mechanisms, such as remittance from
-abroad, assistance from family members within the country, assistance
-from non-family individuals, and assistance from development
-organizations, were all either flat or decreased during the lockdowns. 
-The lack of assistance may explain lockdowns' substantial effect on food insecurity.
+However, traditional sources of coping mechanisms, such as reliance on 
+outside assistance from family members and friends, NGOs, or government support, 
+proved inadequate during the lockdowns, leaving households to face 
+the economic shocks with limited external support.
+Remittance from abroad, assistance from family members within the country, assistance
+from non-family individuals, and assistance from development organizations, 
+were all either flat or decreased during the lockdowns. 
+This lack of assistance may explain lockdowns' substantial effect on food insecurity.
 
 Three broader conclusions emerge from our results. 
 First, on average, agriculture is likely less productive than non-farm 
 work but better than not working. 
-With a slow rate of switching back from agriculture, the
+Hence, with a slow rate of switching back from agriculture, the
 lockdowns can potentially have severe long-term adverse effects on
-Uganda's development. 
+Uganda's development.
+ 
 Second, the results show the limit of self-insurance and mutual 
 insurance when faced with a systemic shock.
 Most of the literature has focused on the smaller and more frequent risk
 of idiosyncratic shocks and how households respond to these. 
 However, a better understanding of systemic shocks and how households respond is
 still lacking. 
+
 Finally, the case of Uganda illustrates well the issues with the wholesale 
-lockdown of economies in response to COVID-19 in situations with 
-low state capacity. 
+lockdown of economies in response to COVID-19 in situations with low state capacity. 
 Uganda has been hailed as a leading example of curbing COVID-19 [@Adams2021]. 
 However, the mitigation efforts failed to reach those most affected by the lockdown.
 With the low mortality rate in Sub-Saharan Africa, including Uganda, the
-long-term cost of the lockdowns likely significantly outweighs the benefits. 
-Quantifying these costs and identifying possible
+long-term cost of the lockdowns likely significantly outweighs the benefits.
+In addition to the increasing food insecurity and decline in economic activity, 
+the lockdowns disrupted education and reduced accessibility 
+and use of health care with the lockdowns in Uganda.[^other_effects] 
+Quantifying all these costs and identifying possible
 avenues of mitigation are critical future areas of research.
+
+[^other_effects]: See @Bose2023 on health care and @Batte2021 for an early assessment 
+of the effects on education on a small sample.
 
     
     
