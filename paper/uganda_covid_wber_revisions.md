@@ -26,18 +26,16 @@ thanks: |
   University of Washington.
   
 abstract: |
-  \noindent We examine the short- and medium-term impacts of Uganda's strict
+  \noindent We examine the short- and medium-term impacts of Uganda's 
   COVID-19 lockdowns on household food insecurity, labor market outcomes, and
-  coping strategies, using longitudinal data. 
-  Uganda, which implemented two of the harshest lockdowns in the developing world, 
-  provides a unique case study for understanding the implications of such public 
-  health measures on economic wellbeing. 
+  coping strategies, using longitudinal data.
+  These severe lockdowns provide a unique case study for understanding 
+  the implications of such public health measures on economic well-being. 
   Lockdowns significantly exacerbated food insecurity immediately and 
   continued to do so in the medium term. 
-  The effect was more pronounced after the second lockdown, likely due to its
-  coinciding with a period of lower-than-normal rainfall, highlighting the
-  compounded challenges of concurrent environmental stressors and reduced resilience
-  after the first lockdown.
+  The effect was more pronounced after the second lockdown, likely from 
+  a combination of reduced resilience after the first lockdown and
+  lower-than-normal rainfall immediately before.
   There were substantial decreases in income from various sources---including
   agriculture, non-farm businesses, and wage employment---contributing to the
   heightened food insecurity. 
