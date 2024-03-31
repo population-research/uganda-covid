@@ -15,7 +15,7 @@ author:
 - Ishraq Ahmed^[Senior Economist, 
     Policy Development, Office of Tax Policy,
     Virginia Department of Taxation, Richmond, VA.
-    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{texttt{Ishraq.Ahmed@tax.virginia.gov}}]
+    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{\texttt{Ishraq.Ahmed@tax.virginia.gov}}]
 thanks: |
   We would like to thank seminar participants at Howard University, Alex
   Henke, and four anonymous referees for their helpful comments and suggestions. 
@@ -26,23 +26,27 @@ thanks: |
   University of Washington.
   
 abstract: |
-  \noindent We examine the short- and medium-run impacts of two of the strictest
-  COVID-19 lockdowns in the developing world, employing longitudinal
-  data from Uganda. 
-  We find significant, immediate increases in food insecurity after the first
-  lockdown and a continued negative impact three months after its lifting. 
-  The second lockdown's medium-term impact was even worse, likely because 
-  of a compounding effect of a concurrent drier-than-normal period. 
-  Income from agriculture, non-farm businesses, and wage employment were all 
-  lower during lockdowns, contributing to the increased food insecurity.
-  However, agricultural households were less affected than other households
-  and particularly showed a lower impact on severe food insecurity.
-  The likelihood of engaging in market work declined significantly 
-  and there was a marked movement towards agricultural work, suggesting a
-  switch to agriculture as a coping mechanism. 
+  \noindent We examine the short- and medium-term impacts of Uganda's strict
+  COVID-19 lockdowns on household food insecurity, labor market outcomes, and
+  coping strategies, using longitudinal data. 
+  Uganda, which implemented two of the harshest lockdowns in the developing world, 
+  provides a unique case study for understanding the implications of such public 
+  health measures on economic wellbeing. 
+  Lockdowns significantly exacerbated food insecurity immediately and 
+  continued to do so in the medium term. 
+  The effect was more pronounced after the second lockdown, likely due to its
+  coinciding with a period of lower-than-normal rainfall, highlighting the
+  compounded challenges of concurrent environmental stressors and reduced resilience
+  after the first lockdown.
+  There were substantial decreases in income from various sources---including
+  agriculture, non-farm businesses, and wage employment---contributing to the
+  heightened food insecurity. 
+  Notably, agricultural households were less adversely affected, and we find
+  significant switching to agricultural activities as a coping mechanism. 
   The other coping mechanisms that households typically rely on for 
-  idiosyncratic shocks failed, contributing to the sizeable increase in 
-  food insecurity.
+  idiosyncratic shocks, such as remittances and government assistance,
+  failed, contributing to the sizeable increase in food insecurity.  
+
 bibliography: uganda_covid.bib
 csl: the-quarterly-journal-of-economics.csl
 link-citations: true
@@ -51,11 +55,13 @@ link-citations: true
 
 \newpage
 
+\doublespace
+
 # Introduction
 
 Uganda had two of the strictest COVID-19 lockdowns in Sub-Saharan Africa, 
 with the most severe parts of these lockdowns covering April through June 2020 
-and July through August 2021 [@BBC2020;@Birner2021;@Mahmud2021].
+and June through July 2021 [@BBC2020;@Birner2021;@Mahmud2021].
 As [@fig:raw-insecurity] shows, Uganda also experienced substantially higher food
 insecurity during or immediately following these lockdowns than at any other time
 during the pandemic.[^definition]
@@ -68,7 +74,7 @@ the lockdowns.
 in detail below [@FAO2015].
 
 ![Food insecurity by survey round of the Uganda high-frequency phone survey on 
-COVID-19 together with severe lockdown periods in grey](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
+COVID-19 together with severe lockdown periods shaded](../figures/food_insecurity_by_survey_round_3_levels.pdf){#fig:raw-insecurity}
 
 To achieve this, we compare periods after severe lockdowns with other periods 
 during COVID-19 where the restrictions were less severe.
@@ -81,7 +87,7 @@ the economy was recovering.
 Understanding how lockdowns impacted food insecurity and how households responded to them is relevant for three reasons.
 First, it provides us with a way to learn about the effects of aggregate/covariate 
 shocks and how households respond to them.
-Second, households are still in the process of responding to these shocks and 
+Second, households are still in the process of recovering from these shocks and 
 likely will be for a substantial period, and this type of analysis 
 can serve as a starting point for estimating the costs of the lockdowns.
 Last but not least, understanding the cost and benefits of lockdowns is an important 
@@ -97,14 +103,16 @@ affected communities, across  Liberia, Sierra Leone, and Uganda, although
 separating out effects of the disease and the lockdowns is difficult
 [@Langlay2014; @Kastelic2015; @Gatiso2018; @Djomaleu2022; @Makerere-University-School-of-Statistics-and-Planning2023]. 
 
-Assessments in low-income countries have found a mixed impact of lockdowns on 
+Assessments in low- and lower-middle-income countries have found a mixed impact of lockdowns on 
 food insecurity when identifying the effect through spatial or temporal variation 
 in lockdowns.[^snapshots]
 The Bangladeshi lockdown exacerbated food insecurity for urban low-income groups 
-[@Ruszczyk2021]. 
+and in rural areas [@Hamadani2020; @Ruszczyk2021]. 
+Households with mothers with very young children in Uttar Pradesh saw a sharp increase 
+in food insecurity compared to pre-COVID-19 [@Nguyen2021a].
 In Nigeria, higher COVID-19 case rates and lockdown measures increased food insecurity,
 particularly for households relying on non-farm businesses and those in remote
-and conflicted-affected zones [@Amare2020]. 
+and conflicted-affected zones [@Amare2021]. 
 Similarly, in 14 refugee-hosting settlements and the associated host community in Uganda, 
 lockdowns were associated with increased food insecurity and worsening diet 
 quality, with refugees being more affected than hosts [@Squarcina2022].
@@ -116,8 +124,8 @@ increased food insecurity with lockdowns
 food insecurity prevalence during COVID-19 and how it varies with household
 characteristics but do not attempt to identify the effects of lockdowns
 [@Ceballos2020; @Ceballos2021; @Dasgupta2021; @Egger2022; @Gaitan-Rossi2021; 
-@Giacoman2021; @Hamadani2020; @Harris2020; @Jaacks2021; @Kansiime2021; 
-@Kesar2021; @Kundu2021; @Lee2022; @Nguyen2021]. 
+@Giacoman2021; @Harris2020; @Jaacks2021; @Kansiime2021; 
+@Kesar2021; @Kundu2021; @Lee2022]. 
 Similarly, for income, employment, agricultural production, and savings
 [@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; 
 @Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
@@ -127,12 +135,9 @@ Similarly, for income, employment, agricultural production, and savings
 lockdowns were all associated with increased food insecurity 
 [@Ceballos2021a; @Curi-Quinto2021; @Giacoman2021].
 
-There is more consensus on the negative effects on income and employment during the pandemic.
-In Ghana, lockdowns significantly decreased employment and earnings [@Schotte2023]. 
-In western, rural Uganda, household income declined sharply during the initial
-lockdown, although, a year later, those without a business mostly recovered, 
-while business-owning households still had significantly lower incomes [@Mahmud2023].
-This reduced income in the initial phases of the pandemic was  associated with 
+There is more consensus on the negative effects on income and employment 
+during the pandemic [@Schotte2023; @Mahmud2023].
+This reduced income in the initial phases of the pandemic was associated with 
 increased food insecurity in Uganda, particularly in rural areas [@Agamile2022].
 Furthermore, there is evidence that households tried to cope with the 
 pandemic and lockdowns and through behavior changes, such as 
@@ -152,21 +157,11 @@ short- and medium-run effects of lockdowns, with the goal of understanding the
 persistence of the impact of lockdowns in the months following their lifting. 
 
 Second, we contribute to the small but growing body of research on the
-effects of aggregate shocks and how households cope with these shocks.
-There is a long-standing literature on how households in low-income countries
-smooth consumption in response to idiosyncratic shocks through
-self-insurance approaches [@Case1995]. 
-However, we know less about how these coping mechanisms fare when households 
-are exposed to aggregate shocks. 
-Most of the research on aggregate shocks has focused on
-financial shocks and natural disasters and has found varying degrees of
-ability to smooth consumption, although wealthier households are
-generally better able to deal with the shock 
+effects of aggregate shocks and how households cope with these shocks,
+which has mostly focused on financial shocks and natural disasters 
 [@Del-Ninno2003; @Fallon2002; @Glewwe1998; @Hallegatte2020; @McKenzie2003; @Skoufias2003; @Thomas2007].
-
-We contribute to the literature on coping with aggregate shocks in two ways. 
-First, we examine a repeated systemic shock, of which the first instance was almost
-entirely unanticipated. 
+First, we examine a repeated systemic shock, of which the first instance was 
+almost entirely unanticipated. 
 Second, we directly analyze four broad categories of coping mechanisms 
 that households may use to mitigate the effects of these shocks. 
 The categories are changes in labor market participation,
@@ -182,27 +177,25 @@ lockdown [@Mahmud2023].
 Compared to the prior literature, three things set our paper apart.
 First, we use a nationwide representative longitudinal survey.
 This is in contrast to much of the prior research, which is based on either very 
-small samples [@Ruszczyk2021; @Squarcina2022; @Hirvonen2021], or
+small samples [@Ruszczyk2021; @Squarcina2022; @Hirvonen2021; @Nguyen2021a] or
 only rural areas [@Janssens2021; @Aggarwal2022].
 Second, the data covers close to the entire pandemic, so we can observe 
 the changes in food insecurity and household responses over time and through
 multiple lockdowns.[^Nigeria]
 Third, with very few COVID-19 cases in Uganda, especially for the first lockdown, 
-we can separate out COVID-19 effects from lockdown effect. 
-However, there are, at least, three potential drawbacks to our approach.
+we can separate the effects of COVID-19 from lockdown effects. 
+However, there are at least three potential drawbacks to our approach.
 First, phone surveys, as we use here, provide less detailed data about household 
 members and may suffer from selection bias.
-Second, in contrast to, for example, @Amare2020, we have limited  pre-COVID-19 
+Second, in contrast to, for example, @Amare2021, we have limited  pre-COVID-19 
 information on the households.
 Third, there was no spatial variation in the lockdowns decreed by the government, 
 opposite of, for example, Nigeria or India.
 Hence, identification is based on comparing periods with varying degrees 
-of restrictions.
-Given that the general election took place during the non-lockdown periods,
-our estimates are likely lower-bound estimates.
+of restrictions, and our estimates are, therefore, likely lower-bound estimates. 
 
 [^Nigeria]: The other study using nationwide representative data only cover
-one survey round, April-May 2020, although more are planned [@Amare2020].
+one survey round, April-May 2020, although more are planned [@Amare2021].
 
 We find that food insecurity significantly increased during the lockdowns. 
 The point estimates are significant, with an increase of almost 25 percentage 
@@ -382,7 +375,7 @@ of September, when land borders reopened, and international flights
 resumed [@Guloba2021].
 
 In response to the increasing number of COVID-19 infections in 2021, the
-government of Uganda imposed a second severe lockdown from June 2021 
+government of Uganda imposed a second severe lockdown from mid-June 2021 
 [@Atamanov2022; @Athumani2021]. 
 This second lockdown was partly eased by the end of July 2021 [@Biryabarema2021].
 
@@ -1317,7 +1310,7 @@ agricultural households had previously had.
 # Conclusion
 
 As countries around the world continue to navigate the challenges posed by 
-the aftermaths of the COVID-19 pandemic and plan for responses to potential 
+the aftermath of the COVID-19 pandemic and plan for responses to potential 
 future crises and epidemics, 
 understanding the cost and benefits of potential policies is critical.
 Using country-wide panel data with a household fixed-effects model, we
@@ -1329,14 +1322,16 @@ we expect our results to be lower-bound estimates.
 Food insecurity increased substantially during the first lockdown. 
 The first lockdown also had a significant medium-run impact
 on food insecurity. 
-The medium-run impact was even more pronounced following the
-second lockdown, partly from the compounding effect of the 
-concurrent environmental stressors of a lower-than-normal rainfall across Uganda.
+The medium-run impact was even more pronounced following the second lockdown.
+The larger effect is likely partly from the compounding effect of the 
+concurrent environmental stressors of a lower-than-normal rainfall,
+especially in the Western region of Uganda,
+and partly from reduced resilience after the effects of the first lockdown.
 
 The lockdowns led to significant disruptions in income sources across the board, 
 with decreases in income from agriculture, non-farm businesses, and wage employment 
 contributing to the rise in food insecurity.
-Both agricultural and non-agricultural households were affected, though
+Both agricultural and non-agricultural households were affected, although
 non-agricultural households experienced more severe impacts. 
 This difference underscores the relative resilience of agricultural activities 
 during lockdown periods.
@@ -1355,12 +1350,11 @@ This lack of assistance may explain lockdowns' substantial effect on food insecu
 
 Three broader conclusions emerge from our results. 
 First, on average, agriculture is likely less productive than non-farm 
-work but better than not working. 
-Hence, with a slow rate of switching back from agriculture, the
-lockdowns can potentially have severe long-term adverse effects on
-Uganda's development.
+work but more productive than not working. 
+Hence, with the slow rate of switching back from agriculture that we observe, 
+the lockdowns can potentially have severe long-term adverse effects on Uganda's development.
  
-Second, the results show the limit of self-insurance and mutual 
+Second, the results show the limits of self-insurance and mutual 
 insurance when faced with a systemic shock.
 Most of the literature has focused on the smaller and more frequent risk
 of idiosyncratic shocks and how households respond to these. 
@@ -1368,7 +1362,8 @@ However, a better understanding of systemic shocks and how households respond is
 still lacking. 
 
 Finally, the case of Uganda illustrates well the issues with the wholesale 
-lockdown of economies in response to COVID-19 in situations with low state capacity. 
+lockdown of economies in response to COVID-19,
+particularly in situations with low state capacity. 
 Uganda has been hailed as a leading example of curbing COVID-19 [@Adams2021]. 
 However, the mitigation efforts failed to reach those most affected by the lockdown.
 With the low mortality rate in Sub-Saharan Africa, including Uganda, the
