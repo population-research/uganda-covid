@@ -1,7 +1,7 @@
 ---  
 title: 'Response to Editor and Referee Comments — Impact of Twin Lockdowns on Hunger, 
         Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda'
-date: January 2024
+date: March 2024
 bibliography: ../paper/uganda_covid.bib
 csl: the-quarterly-journal-of-economics.csl
 link-citations: true
@@ -477,7 +477,7 @@ estimate found by the authors large, small, or average relative to these papers?
 
     There were large variations among other studies. For example, for any kind
     of food insecurity, the impact varied between 13.1% [@Agamile2022] and 59%
-    [@Nguyen2021]. 
+    [@Nguyen2021a]. 
     For studies focusing on moderate security, the impact varied between 
     11.1% [@Agamile2022] and 53% [@Ceballos2021]. 
     For severe food insecurity, the impacts varied between null effects
