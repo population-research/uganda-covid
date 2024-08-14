@@ -1295,10 +1295,11 @@ for non-agricultural and agricultural households.
 Left two columns condition on pre-COVID-19 agricultural status, while the 
 right two columns allow households to change status](../figures/agri_vs_non_agri.pdf){#fig:ag_vs_non_ag}   
 
-Agricultural households appeared to be more food secure than
-non-agricultural households during the first lockdown. 
-Their likelihood of suffering "any food insecurity" during lockdowns was about 20
-percentage points lower than non-agricultural households, as shown by Round 1.
+Agricultural households' food security appeared change less than
+non-agricultural households' food security during the first lockdown. 
+Their likelihood of suffering "any food insecurity" during lockdowns,
+relative to Round 4, was about 20 percentage points lower than non-agricultural 
+households, as shown by Round 1.
 In fact, there are no statistically significant differences between Rounds 1
 and 4 for agricultural households, whether we use pre-COVID-19 or prior survey
 agricultural status.
