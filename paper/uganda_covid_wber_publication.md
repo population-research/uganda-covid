@@ -481,7 +481,7 @@ Our main specification regresses outcomes, $Y$, on a
 set of variables using a linear fixed-effects model:[^linear_advantages]
 
 $$
-Y_{i,t} =  \sum_{t=1}^7 \beta_t 1[Round = t]  + \gamma Cases_{i,t} 
+Y_{i,t} =  \sum_{t=1}^7 \beta_t 1[Round = t]  + \gamma Cases_{t} 
 + \omega_i + \epsilon_{i,t}, 
 $$
 
@@ -518,9 +518,14 @@ number of COVID-19 cases, and before the general election begins in earnest.
 In addition to government-imposed lockdowns, individuals may be ill,
 decide to self-isolate, or take other steps to avoid contact with others
 if they perceive a high risk of contracting COVID-19, which may increase
-food insecurity. To capture the severity of the COVID-19 situation, the
-$Cases$ variable measures the number of new COVID-19 cases per 100,000
-persons in the 30 days before the household's survey date. 
+food insecurity. 
+To capture the severity of the COVID-19 situation, the $Cases$ variable 
+measures the number of new COVID-19 cases per 100,000
+persons in the 30 days before the household's survey date.
+Unfortunately, there is no information available on the number of COVID-19 cases
+at a more granular level than the country level.
+
+
 
 Although we do not include any household-level variables in the 
 model, there are still three advantages to using a fixed effects model.
