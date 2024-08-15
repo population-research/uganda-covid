@@ -1,6 +1,6 @@
 ### Makefile for Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and Household Coping Mechanisms: Evidence from Uganda       ###
 
-PAPER = uganda_covid_wber_revisions
+PAPER = uganda_covid_wber_publication
 TEXT   = ./paper
 REP    = ./response
 FIG    = ./figures
