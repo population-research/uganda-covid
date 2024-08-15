@@ -962,21 +962,15 @@ for market work in the same round, this suggests that the economy had
 slowly started to recover right before the beginning of the second
 severe lockdown.
 
-Given the overall decrease in market work, it is useful to understand
-whether individuals, who were able to continue work during the lockdowns, 
-did so in the same jobs.
-The first lockdown significantly was associated with an approximately
+Given the overall decrease in market work, it is useful to understand whether individuals 
+who were able to continue working during the lockdowns did so in the same jobs.
+The first lockdown was significantly associated with an approximately
 10 percentage points lower likelihood of working at the same job, 
 relatively to Round 4. 
 Thus, we find both a decrease in market work and an increased likelihood 
 of moving jobs. 
 The impact in the medium run is small, indicating that people remained 
 in their new jobs after the end of the lockdown. 
-
-We do not have direct information on wages, but these new jobs likely paid 
-less than the pre-lockdown job,
-suggesting continued labor market difficulties in the medium run, which
-would also affect food insecurity. 
 There is only a small, statistically insignificant, effect in the medium 
 run following the second lockdown. 
 However, we cannot establish whether this is because the second lockdown 
@@ -1072,6 +1066,18 @@ The results suggest that the COVID-19 lockdowns had pronounced effects on
 employment dynamics, underscored by the migration from non-agricultural to 
 agricultural employment and the significant increases in the likelihood 
 of not working.
+Furthermore, after the first lockdown, those who could continue working were
+significantly more likely to work in new jobs, some of which were likely in
+agriculture. 
+We do not have direct information on wages. 
+However, these new jobs likely paid less than the pre-lockdown job, given the economy's 
+contraction, the increasing supply of workers relative to available openings, and the 
+movement toward the agricultural sector, where the marginal product of an additional
+worker is likely to be low. 
+The high rate of new jobs and the reduction in movements between jobs after the first 
+lockdown suggest continued labor market difficulties in the medium run, which would also 
+affect food insecurity. 
+
 Although there was a semblance of recovery after the first lockdown, 
 the continued high levels of agricultural employment imply a structural 
 rather than a transitory adjustment to the employment landscape. 
@@ -1080,7 +1086,7 @@ recovery in  non-agricultural employment, showing the precariousness of
 economic revival in the face of additional lockdowns. 
 Overall, the results underscore the agricultural sector's role as a vital 
 reservoir of employment during periods of economic upheaval, yet also 
-highlights its susceptibility to further disruptions, whether policy-driven 
+highlight its susceptibility to further disruptions, whether policy-driven 
 or environmental.
 
 
