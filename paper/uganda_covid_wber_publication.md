@@ -589,8 +589,8 @@ a linear model with household fixed effects.[^base_results]
 Overall, COVID-19 lockdowns appear to be associated with substantial 
 increases in all levels of food insecurity.
 
-[^base_results]: The full tables for this and all following
-results presented as tables are available upon request.
+[^base_results]: The full tables for this and all following results presented as tables 
+are available upon request.
 
 Approximately a month after the end of the first severe lockdown, 
 the proportion of households that report any or moderate to severe food 
@@ -617,6 +617,40 @@ Any and moderate to severe food insecurity are both more than 20 percentage
 points higher than in Round 4, while severe food insecurity is more than 10
 percentage points higher; all three are strongly statistically significant.
 These medium-term effects are close to the short-run effect of the first severe lockdown.
+
+How do these results compare to those in the prior literature?
+As discussed in the Introduction, among the studies that try to provide causal 
+evidence based on panel data, most do not find an impact on food insecurity. 
+The exception is for Nigeria, where there was a 39 percentage-point increase in 
+the likelihood of skipping a meal and an 11 percentage-point increase in going without 
+eating a whole day.
+However, two factors make comparison difficult: the results 
+are based on comparison with pre-COVID-19 data rather than within the COVID-19 period, 
+and do not use the Food Insecurity Experience Scale (FIES) [@Amare2021]. 
+
+Two studies are of particular interest here as they use data from Uganda
+[@Kansiime2021; @Agamile2022].
+@Kansiime2021 find that food insecurity increased by 44, 30, and 7
+percentage points for any, moderate, and severe levels, respectively, five weeks into the 
+first lockdown compared to "normal."
+Howevever, these results are based on a non-representative 
+sample of 129 respondents using a Google form distributed via social media.
+@Agamile2022 uses a subset of the same data as here, covering Rounds 1 through 5, and
+finds, for example, that going without food the entire day is 4.8 percentage points higher 
+in Round 1 than in Round 5, and the likelihood of running out of food 8.9 percentage 
+points higher.
+However, direct comparison is complex, and not just because the outcomes are seven 
+individual food security questions rather than the FEIS. 
+The goal of the analysis in @Agamile2022 is to examine the effects of income loss 
+on food security rather than the overall effect of the lockdowns, and the Round 
+indicators, therefore, capture the difference to the excluded Round 5, conditional
+on the households' occupations, reductions in various income sources, region dummies,
+and a set of household characteristics.
+However, as shown below, most of these variables change in response to the lockdowns, and 
+the Round indicators are, therefore, not estimates of the lockdown's effect.
+Furthermore, the estimation methods do not use household fixed effects or control for
+the number of COVID-19 cases.
+
 
 
 ## The Role of Seasonality
