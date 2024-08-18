@@ -140,6 +140,9 @@ fx_regions %>%
     y = "Coefficient"
   ) +
   scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4)) +
-  facet_grid(vars(region), vars(variable), scales = "fixed")
+  facet_grid(vars(variable), vars(region), scales = "fixed") +
+  theme(
+    strip.text = element_text(size = 11) # Make labels slightly bigger
+  )
 
-ggsave(here("figures", "food_insecurity_region.pdf"), width = 8, height = 10, units = "in")      
+ggsave(here("figures", "food_insecurity_region.pdf"), width = 8, height = 8, units = "in")      
