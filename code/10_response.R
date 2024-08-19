@@ -482,18 +482,36 @@ ag_0_8 %>%
     n = n * 100 / sum(n)
   ) %>%
   ungroup() %>%
-  ggplot(aes(x = survey_num, y = n, color = factor(agri))) +
-  geom_line(stat = "identity") +
+  ggplot(
+    aes(
+      x = survey_num, y = n, 
+      color = factor(agri),
+      linetype = factor(agri)
+      )
+    ) +
+  geom_line(stat = "identity", linewidth = 1.5) +
   labs(
     x = "Survey",
     y = "Percentage of households (Unweighted)"
   ) +
   # Make 0 the intersection between y-axis and x-axis
-  scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 60)) +
   # Add a legend
-  scale_color_manual(values = color_palette[1:3], labels = c("Non-agricultural work", "Agricultural work", "Not working")) +
+  scale_color_manual(
+    values = color_palette[1:3], 
+    labels = c("Non-agricultural work", "Agricultural work", "Not working")
+    ) +
+  scale_linetype_manual(
+    values = c("solid", "dashed", "dotted"),
+    labels = c("Non-agricultural work", "Agricultural work", "Not working")
+    ) +
   # Make legend be on top and one row
-  theme(legend.position = "top", legend.direction = "horizontal") +
+  theme(
+    legend.position = "top", 
+    legend.direction = "horizontal",
+    legend.text = element_text(size = 11),
+    legend.key.width = unit(2, "cm")
+    ) +
   # Add ticks for each survey
   scale_x_continuous(breaks = 0:7)
 
