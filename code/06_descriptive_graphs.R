@@ -797,12 +797,16 @@ national_level %>%
       levels = c("any", "moderate", "severe")
     )
   )%>%
-  ggplot(aes(x = value, ymin = first_date, ymax = last_date, color = type)) +
-  geom_linerange(linewidth = 2) +
-  coord_flip(xlim = c(0, 100), expand = FALSE) +
-  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
-               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
-  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  ggplot(
+    aes(
+      x = value, ymin = first_date, ymax = last_date, 
+      color = type,
+      shape = type
+      )
+    ) +
+  geom_linerange(linewidth = 1.5) +
+  geom_point(aes(y = first_date, shape = type), size = 2.5) +
+  geom_point(aes(y = last_date, shape = type), size = 2.5) +
   scale_colour_manual(
     values = color_palette,
     labels = c(
@@ -810,12 +814,27 @@ national_level %>%
       "Moderate or severe food insecurity",
       "Severe food insecurity")
   ) +
+  scale_shape_manual(
+    values = c(16, 17, 15),
+    labels = c(
+      "Any food insecurity",
+      "Moderate or severe food insecurity",
+      "Severe food insecurity")
+  ) + # Circle, triangle, square
+  coord_flip(xlim = c(0, 100), expand = FALSE) +
+  scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
+               limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
   labs(
     x = "Percent",
     y = "Survey dates"
   ) +
-  guides(color = guide_legend(nrow = 1)) +
-  theme(legend.position = "top", legend.direction = "horizontal") +
+  guides(color = guide_legend(nrow = 1), shape = guide_legend(nrow = 1)) +
+  theme(
+    legend.position = "top", 
+    legend.direction = "horizontal",
+    legend.text = element_text(size = 11)
+    ) +
   # Grumble, grumble - have to specify this as it would be *before* the coord_flip!
   annotate("rect",
            ymin = lockdowns$start[1],
@@ -826,7 +845,7 @@ national_level %>%
            ymax = lockdowns$end[2],
            xmin = -Inf, xmax = Inf, alpha = 0.4) 
   
-  ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
+  ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 7, units = "in")
 
 
 # Regional-level food security and interview dates by round ----
@@ -856,25 +875,45 @@ regional_level %>%
       levels = c("any", "moderate", "severe")
     )
   )%>%
-  ggplot(aes(x = value, color = type)) +
-  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 2) +
+  ggplot(
+    aes(
+      x = value, 
+      color = type,
+      shape = type
+      )
+    ) +
+  geom_linerange(aes(ymin = first_date, ymax = last_date), linewidth = 1.5) +
+  geom_point(aes(y = first_date, shape = type), size = 2.5) +
+  geom_point(aes(y = last_date, shape = type), size = 2.5) +
+  scale_colour_manual(
+    values = color_palette,
+    labels = c(
+      "Any food insecurity",
+      "Moderate or severe food insecurity",
+      "Severe food insecurity")
+  ) +
+  scale_shape_manual(
+    values = c(16, 17, 15),
+    labels = c(
+      "Any food insecurity",
+      "Moderate or severe food insecurity",
+      "Severe food insecurity")
+  ) + # Circle, triangle, square
   coord_flip(xlim = c(0, 100), expand = FALSE) +
   scale_y_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) +
-  scale_colour_manual(
-    values = color_palette,
-    labels = c(
-      "Any",
-      "Moderate or severe",
-      "Severe")
-  ) +
   labs(
     x = "Percent",
     y = "Survey dates"
   ) +
-  guides(color = guide_legend(nrow = 1)) +
-  theme(legend.position = "top", legend.direction = "horizontal") +
+  guides(color = guide_legend(nrow = 1), shape = guide_legend(nrow = 1)) +
+  theme(
+    legend.position = "top", 
+    legend.direction = "horizontal",
+    legend.text = element_text(size = 11),
+    strip.text = element_text(size = 11)
+    ) +
   # Grumble, grumble - have to specify this as it would be *before* the coord_flip!
   annotate("rect",
            ymin = lockdowns$start[1],
@@ -884,8 +923,8 @@ regional_level %>%
            ymin = lockdowns$start[2],
            ymax = lockdowns$end[2],
            xmin = -Inf, xmax = Inf, alpha = 0.4) +
-  facet_wrap(~region, scales = "fixed")
+  facet_wrap(~region, scales = "fixed", ncol = 1)
 
-ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 8, height = 6, units = "in")
+ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 7, height = 6.5, units = "in")
 
 
