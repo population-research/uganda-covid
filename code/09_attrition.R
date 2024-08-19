@@ -339,7 +339,10 @@ org_fx %>%
   mutate(
     attrition = factor(attrition, levels = c("Original", "Assume attrited food secure", "Assume attrited food insecure"))
   ) %>% 
-  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high, color = factor(attrition))) +
+  ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high, 
+             color = factor(attrition),
+             shape = factor(attrition)
+             )) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
   geom_pointrange(position = position_dodge(width = 0.30)) +
@@ -348,12 +351,16 @@ org_fx %>%
     y = "Coefficient"
   ) +
   scale_color_manual(values = c("black", color_palette[2], color_palette[3]) ) +
+  scale_shape_manual(values = c(16, 17, 15)) + 
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~variable, scales = "fixed", ncol = 1) +
   # Make legend be on top and one row
-  theme(legend.position = "top", legend.direction = "horizontal")
+  theme(legend.position = "top", 
+        legend.direction = "horizontal", 
+        legend.text = element_text(size = 11), 
+        strip.text = element_text(size = 11))
   
 
-ggsave(here("figures", "food_insecurity_survey_attrition_combined.pdf"), width = 8, height = 4, units = "in")
+ggsave(here("figures", "food_insecurity_survey_attrition_combined.pdf"), width = 8, height = 8, units = "in")
 
 
