@@ -227,19 +227,30 @@ combined <- food %>%
   
   
 ggplot(combined, aes(x = date)) +
-  geom_point(aes(y = percent, color = fct_rev(factor(var))), size = 3) +
+  geom_point(
+    aes(
+      y = percent, 
+      color = fct_rev(factor(var)),
+      shape = fct_rev(factor(var))
+    ), 
+    size = 3
+  ) +
   coord_cartesian(ylim = c(0, 32), expand = FALSE) +
   scale_colour_manual(values = color_palette) +
+  scale_shape_manual(values = c(15, 16, 17, 18)) +
   ylab("Percent reported") +
   xlab("Month") +
   theme(legend.position = "top", legend.direction = "horizontal") +
   guides(color = guide_legend(nrow = 2)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2019-12-15"), ymd("2021-12-15"))) +
-  theme(axis.text.x=element_text(angle=60, hjust=1))
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    legend.text = element_text(size = 11)
+    )
   
 ggsave(here("figures", "seasonality.pdf"),
-       width = 8, height = 4.5, units = "in")
+       width = 8, height = 6, units = "in")
 
 
 # Appendix results - comparing lean seasons: R1, R2 vs R6 and R4 vs R7 ----
