@@ -26,7 +26,7 @@ thanks: |
   University of Washington.
   
 abstract: |
-  \noindent We examine the short- and medium-term impacts of Uganda's 
+  \noindent This paper examines the short- and medium-term impacts of Uganda's 
   COVID-19 lockdowns on household food insecurity, labor market outcomes, and
   coping strategies, using longitudinal data.
   These severe lockdowns provide a unique case study for understanding 
@@ -39,7 +39,7 @@ abstract: |
   There were substantial decreases in income from various sources---including
   agriculture, non-farm businesses, and wage employment---contributing to the
   heightened food insecurity. 
-  Notably, agricultural households were less adversely affected, and we find
+  Notably, agricultural households were less adversely affected, and there was
   significant switching to agricultural activities as a coping mechanism. 
   The other coping mechanisms that households typically rely on for 
   idiosyncratic shocks, such as remittances and government assistance,
@@ -63,7 +63,7 @@ and June through July 2021 [@BBC2020;@Birner2021;@Mahmud2021].
 As [@fig:raw-insecurity] shows, Uganda also experienced substantially higher food
 insecurity during or immediately following these lockdowns than at any other time
 during the pandemic.[^definition]
-Using longitudinal household data, we aim to understand the extent to which
+Using longitudinal household data, this paper aims to understand the extent to which
 these changes arose from the twin lockdowns in Uganda by examining food insecurity, 
 labor market outcomes, income changes, and how households attempted to cope with 
 the lockdowns.
@@ -148,15 +148,15 @@ In addition, remittances declined, and there were insufficient or delayed
 government support to help households cope with the shock 
 [@Ceballos2021; @Curi-Quinto2021; @Suresh2022].
 
-Our study contributes to two strands of the literature. 
-First, we contribute to the literature on understanding the impacts of 
+This study contributes to two strands of the literature. 
+First, it contributes to the literature on understanding the impacts of 
 the lockdowns themselves.
 Given the mixed findings and the limitations in data in the prior literature, 
 we use household fixed-effects models on country-wide panel data to estimate 
 short- and medium-run effects of lockdowns, with the goal of understanding the 
 persistence of the impact of lockdowns in the months following their lifting. 
 
-Second, we contribute to the small but growing body of research on the
+Second, it contributes to the small but growing body of research on the
 effects of aggregate shocks and how households cope with these shocks,
 which has mostly focused on financial shocks and natural disasters 
 [@Del-Ninno2003; @Fallon2002; @Glewwe1998; @Hallegatte2020; @McKenzie2003; @Skoufias2003; @Thomas2007].
@@ -175,11 +175,11 @@ likelihood of net borrowing, presumably as a coping mechanism after the first
 lockdown [@Mahmud2023].
 
 Compared to the prior literature, three things set our paper apart.
-First, we use a nationwide representative longitudinal survey.
+First, it uses a nationwide representative longitudinal survey.
 This is in contrast to much of the prior research, which is based on either very 
 small samples [@Ruszczyk2021; @Squarcina2022; @Hirvonen2021; @Nguyen2021a] or
 only rural areas [@Janssens2021; @Aggarwal2022].
-Second, the data covers close to the entire pandemic, so we can observe 
+Second, the data covers almost the entire pandemic, so we can observe 
 the changes in food insecurity and household responses over time and through
 multiple lockdowns.[^Nigeria]
 Third, with very few COVID-19 cases in Uganda, especially for the first lockdown, 
@@ -187,7 +187,7 @@ we can separate the effects of COVID-19 from lockdown effects.
 However, there are at least three potential drawbacks to our approach.
 First, phone surveys, as we use here, provide less detailed data about household 
 members and may suffer from selection bias.
-Second, in contrast to, for example, @Amare2021, we have limited  pre-COVID-19 
+Second, in contrast to, for example, @Amare2021, there is limited  pre-COVID-19 
 information on the households.
 Third, there was no spatial variation in the lockdowns decreed by the government, 
 opposite of, for example, Nigeria or India.
@@ -197,16 +197,16 @@ of restrictions, and our estimates are, therefore, likely lower-bound estimates.
 [^Nigeria]: The other study using nationwide representative data only cover
 one survey round, April-May 2020, although more are planned [@Amare2021].
 
-We find that food insecurity significantly increased during the lockdowns. 
+Food insecurity significantly increased during the lockdowns. 
 The point estimates are significant, with an increase of almost 25 percentage 
 points for any food insecurity during the first lockdown compared to the period
 with no lockdowns. 
 Even more concerning, moderate to severe and severe food insecurity
-is more than 20 percentage points and almost 10 percentage points higher
+is more than 20 percentage points and almost ten percentage points higher
 relative to when there are fewer lockdown-related restrictions.
 
-We also find that lockdowns have a substantial medium-term impact, with
-any food insecurity about 10 percentage points higher two to three months after
+Lockdowns also have a substantial medium-term impact, with
+any food insecurity about ten percentage points higher two to three months after
 the first lockdown was lifted. 
 The medium-term impact was even higher following the second lockdown, 
 with an approximately 20 percentage points increase three months after 
@@ -313,8 +313,8 @@ lack of money or other resources:
 (vii) were hungry, but did not eat; 
 and (viii) went without eating for a whole day. 
 
-We follow the prior literature and calculate three food insecurity measure 
-based on the sum of the eight food insecurity questions:
+Following the prior literature, three food insecurity measure 
+based on the sum of the eight food insecurity questions are calculated:
 any, moderate or severe, and severe food insecurity 
 [@Kansiime2021;@Wambogo2018;@FAO2016].
 "Any" corresponds to having answered yes to any of the questions, 
