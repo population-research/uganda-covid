@@ -99,7 +99,7 @@ districts [@Makerere-University-School-of-Statistics-and-Planning2023].[^ebola_l
 significant, and often long-lasting, impacts on food security and livelihoods in the
 affected communities, across  Liberia, Sierra Leone, and Uganda, although 
 separating out effects of the disease and the lockdowns is difficult
-[@Langlay2014; @Kastelic2015; @Gatiso2018; @Djomaleu2022; @Makerere-University-School-of-Statistics-and-Planning2023]. 
+[@Langlay2014; @Himelein2015; @Gatiso2018; @Djomaleu2022; @Makerere-University-School-of-Statistics-and-Planning2023]. 
 
 Assessments in low- and lower-middle-income countries have found a mixed impact of lockdowns on 
 food insecurity when identifying the effect through spatial or temporal variation 
@@ -125,9 +125,11 @@ characteristics but do not attempt to identify the effects of lockdowns
 @Giacoman2021; @Harris2020; @Jaacks2021; @Kansiime2021; 
 @Kesar2021; @Kundu2021; @Lee2022]. 
 Similarly, for income, employment, agricultural production, and savings
-[@Balde2020; @Deshpande2020; @Egger2022; @Harris2020; 
+[@Balde2021; @Deshpande2020; @Egger2022; @Harris2020; 
 @Jaacks2021; @Kang2021; @Kesar2021; @Komin2021; @Ronkko2022;
 @Siwach2023].
+Even for countries with limited lockdowns and few COVID-19 cases, the associated
+price shocks lead to worsening food security [@Alam2024].
 
 [^middle_income]: In the middle-income countries of Chile, Guatemala, and Peru, 
 lockdowns were all associated with increased food insecurity 
@@ -1215,7 +1217,7 @@ The first two fell slightly, while the level of remittances increased slightly.
 This statistically insignificant increase for remittances does run counter to 
 the substantial decline in remittances across the world in the second quarter of 2020, 
 as lockdowns worldwide led to the closure of workplaces and limited people's 
-movements  [@Cardozo-Silva2022; @Guha2021; @Kpodar2021; @Shimizutani2021; @Zhang2021]. 
+movements  [@Cardozo-Silva2022; @Guha2021; @Kpodar2023; @Shimizutani2021; @Zhang2021]. 
 However, only 63 households reported any change over the six survey rounds.
 
 Neither could the households turn to NGOs or the government for help.
