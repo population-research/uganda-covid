@@ -589,8 +589,8 @@ a linear model with household fixed effects.[^base_results]
 Overall, COVID-19 lockdowns appear to be associated with substantial 
 increases in all levels of food insecurity.
 
-[^base_results]: The full tables for this and all following
-results presented as tables are available upon request.
+[^base_results]: The full tables for this and all following results presented as tables 
+are available upon request.
 
 Approximately a month after the end of the first severe lockdown, 
 the proportion of households that report any or moderate to severe food 
@@ -617,6 +617,40 @@ Any and moderate to severe food insecurity are both more than 20 percentage
 points higher than in Round 4, while severe food insecurity is more than 10
 percentage points higher; all three are strongly statistically significant.
 These medium-term effects are close to the short-run effect of the first severe lockdown.
+
+How do these results compare to those in the prior literature?
+As discussed in the Introduction, among the studies that try to provide causal 
+evidence based on panel data, most do not find an impact on food insecurity. 
+The exception is for Nigeria, where there was a 39 percentage-point increase in 
+the likelihood of skipping a meal and an 11 percentage-point increase in going without 
+eating a whole day.
+However, two factors make comparison difficult: the results 
+are based on comparison with pre-COVID-19 data rather than within the COVID-19 period, 
+and do not use the Food Insecurity Experience Scale (FIES) [@Amare2021]. 
+
+Two studies are of particular interest here as they use data from Uganda
+[@Kansiime2021; @Agamile2022].
+@Kansiime2021 find that food insecurity increased by 44, 30, and 7
+percentage points for any, moderate, and severe levels, respectively, five weeks into the 
+first lockdown compared to "normal."
+Howevever, these results are based on a non-representative 
+sample of 129 respondents using a Google form distributed via social media.
+@Agamile2022 uses a subset of the same data as here, covering Rounds 1 through 5, and
+finds, for example, that going without food the entire day is 4.8 percentage points higher 
+in Round 1 than in Round 5, and the likelihood of running out of food 8.9 percentage 
+points higher.
+However, direct comparison is complex, and not just because the outcomes are seven 
+individual food security questions rather than the FEIS. 
+The goal of the analysis in @Agamile2022 is to examine the effects of income loss 
+on food security rather than the overall effect of the lockdowns, and the Round 
+indicators, therefore, capture the difference to the excluded Round 5, conditional
+on the households' occupations, reductions in various income sources, region dummies,
+and a set of household characteristics.
+However, as shown below, most of these variables change in response to the lockdowns, and 
+the Round indicators are, therefore, not estimates of the lockdown's effect.
+Furthermore, the estimation methods do not use household fixed effects or control for
+the number of COVID-19 cases.
+
 
 
 ## The Role of Seasonality
@@ -962,21 +996,15 @@ for market work in the same round, this suggests that the economy had
 slowly started to recover right before the beginning of the second
 severe lockdown.
 
-Given the overall decrease in market work, it is useful to understand
-whether individuals, who were able to continue work during the lockdowns, 
-did so in the same jobs.
-The first lockdown significantly was associated with an approximately
+Given the overall decrease in market work, it is useful to understand whether individuals 
+who were able to continue working during the lockdowns did so in the same jobs.
+The first lockdown was significantly associated with an approximately
 10 percentage points lower likelihood of working at the same job, 
 relatively to Round 4. 
 Thus, we find both a decrease in market work and an increased likelihood 
 of moving jobs. 
 The impact in the medium run is small, indicating that people remained 
 in their new jobs after the end of the lockdown. 
-
-We do not have direct information on wages, but these new jobs likely paid 
-less than the pre-lockdown job,
-suggesting continued labor market difficulties in the medium run, which
-would also affect food insecurity. 
 There is only a small, statistically insignificant, effect in the medium 
 run following the second lockdown. 
 However, we cannot establish whether this is because the second lockdown 
@@ -1072,6 +1100,18 @@ The results suggest that the COVID-19 lockdowns had pronounced effects on
 employment dynamics, underscored by the migration from non-agricultural to 
 agricultural employment and the significant increases in the likelihood 
 of not working.
+Furthermore, after the first lockdown, those who could continue working were
+significantly more likely to work in new jobs, some of which were likely in
+agriculture. 
+We do not have direct information on wages. 
+However, these new jobs likely paid less than the pre-lockdown job, given the economy's 
+contraction, the increasing supply of workers relative to available openings, and the 
+movement toward the agricultural sector, where the marginal product of an additional
+worker is likely to be low. 
+The high rate of new jobs and the reduction in movements between jobs after the first 
+lockdown suggest continued labor market difficulties in the medium run, which would also 
+affect food insecurity. 
+
 Although there was a semblance of recovery after the first lockdown, 
 the continued high levels of agricultural employment imply a structural 
 rather than a transitory adjustment to the employment landscape. 
@@ -1080,7 +1120,7 @@ recovery in  non-agricultural employment, showing the precariousness of
 economic revival in the face of additional lockdowns. 
 Overall, the results underscore the agricultural sector's role as a vital 
 reservoir of employment during periods of economic upheaval, yet also 
-highlights its susceptibility to further disruptions, whether policy-driven 
+highlight its susceptibility to further disruptions, whether policy-driven 
 or environmental.
 
 
