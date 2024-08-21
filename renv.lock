@@ -1048,6 +1048,21 @@
       ],
       "Hash": "cc3361e234c4a5050e29697d675764aa"
     },
+    "ggtext": {
+      "Package": "ggtext",
+      "Version": "0.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "ggplot2",
+        "grid",
+        "gridtext",
+        "rlang",
+        "scales"
+      ],
+      "Hash": "c5ba8f5056487403a299b91984be86ca"
+    },
     "globals": {
       "Package": "globals",
       "Version": "0.16.3",
