@@ -10,6 +10,7 @@ library(labelled)  # For data checking
 library(lubridate)
 library(cowplot)
 library(ggfittext)
+library(ggtext)
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -786,7 +787,7 @@ lockdowns <- tribble(
 )
 
 
-national_level %>% 
+gg_national_level <- national_level %>% 
   filter(str_detect(type, "insecure_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "insecure_")) %>% 
@@ -844,8 +845,20 @@ national_level %>%
            ymin = lockdowns$start[2],
            ymax = lockdowns$end[2],
            xmin = -Inf, xmax = Inf, alpha = 0.4) 
-  
-  ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 7, units = "in")
+
+gg_national_level
+
+ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.tiff"), width = 8, height = 7, units = "in")
+
+gg_national_level +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey, Rounds 1-7.<br>*Note:* Severe lockdowns shaded in grey. Lines cover start date to end date of each survey round."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
+ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 7, units = "in")
 
 
 # Regional-level food security and interview dates by round ----

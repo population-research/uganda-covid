@@ -34,6 +34,7 @@ data/unzip_mics_temp/*
 tables/*.tex
 figures/*.tex
 figures/*.png
+figures/*.tiff
 
 # LaTeX
 *.nav
