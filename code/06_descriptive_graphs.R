@@ -714,11 +714,31 @@ p_deaths <- ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
 
+gg_combined <- plot_grid(p_index, p_mobility, p_cases, p_deaths, ncol = 1, align = "v")
 
-plot_grid(p_index, p_mobility, p_cases, p_deaths, ncol = 1, align = "v")
+gg_combined
+
+ggsave(here("figures", "combined.tiff"),
+       width = 8, height = 10, units = "in")
+
+gg_combined + 
+  labs(
+    caption = str_wrap("*Source:* Authors’ analysis based on data from: 
+    the lockdown stringency index developed at the Blavatnik School of
+    Government,<br> University of Oxford, for the  Daily Stringency Index,
+    Google Mobility for the Percentage Change in Visitors to Retail, 
+    Our World<br> in Data for the Daily New Cases and Daily New Deaths,
+    and the Uganda High-Frequency Phone Survey.<br><br>
+    *Note:* Survey dates are shaded in grey and shaded areas cover start 
+    date to end date of each of the seven survey round.", width = 100)
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
 
 ggsave(here("figures", "combined.pdf"),
-       width = 19, height = 25, units = "cm")
+       width = 8, height = 10, units = "in")
 
 
 # National-level Food security and interview dates by round ----
