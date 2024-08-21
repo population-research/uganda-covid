@@ -718,7 +718,7 @@ Our second approach is to re-estimate our main models on three subsets
 of the data. 
 First, we make use of the fact that Round 6 took place during the April/May 
 lean season but was the round least affected by lockdowns.
-Because Rounds 1 and 2 also took place during the lean season, we  
+Because Rounds 1 and 2 also took place during the lean season, we 
 estimate our main model using only information from Rounds 1, 2, and 6. 
 The results are shown in the top panel of Appendix [@fig:seasonality_comparison]. 
 Compared to the main model, the short-run effects are slightly smaller 
