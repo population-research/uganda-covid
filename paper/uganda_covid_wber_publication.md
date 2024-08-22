@@ -17,20 +17,34 @@ author:
     Virginia Department of Taxation, Richmond, VA.
     \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{\texttt{Ishraq.Ahmed@tax.virginia.gov}}]
 thanks: |
+  Claus C. Pörtner (corresponding author) is an associate professor at 
+  the Department of Economics, Seattle University, Seattle, WA, and an external affiliate 
+  at the Center for Studies in Demography and Ecology, University of Washington, 
+  Seattle, WA (email: cportner@seattleu.edu);
+  Shamma A. Alam is an associate professor at the Department of Economics, 
+  Dickinson College, Carlisle, PA (email: alams@dickinson.edu);
+  Ishraq Ahmed is a senior economist at the Office of Tax Policy, Virginia Department of 
+  Taxation, VA (email: Ishraq.Ahmed@tax.virginia.gov).
   We would like to thank seminar participants at Howard University, Alex
-  Henke, and four anonymous referees for their helpful comments and suggestions. 
+  Henke, four anonymous referees, and the Editor for their helpful comments and suggestions. 
   We would also like to thank Pascal Ntaganda for his research assistance.
   Partial support for this research came from a Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
   5R24HD042828, to the Center for Studies in Demography and Ecology at the
   University of Washington.
+  A supplementary online appendix is available with this article at the World Bank 
+  Economic Review website.
+  R code and text for this article are available at 
+  \href{https://github.com/population-research/uganda-covid.git}{https://github.com/population-research/uganda-covid.git}
   
 abstract: |
-  \noindent This paper examines the short- and medium-term impacts of Uganda's 
-  COVID-19 lockdowns on household food insecurity, labor market outcomes, and
-  coping strategies, using longitudinal data.
-  These severe lockdowns provide a unique case study for understanding 
-  the implications of such public health measures on economic well-being. 
+  \noindent 
+  Uganda had two of the strictest COVID-19 lockdowns in Sub-Saharan Africa and
+  these severe lockdowns provide a unique case study for understanding the 
+  implications of such public health measures on economic well-being.
+  We use longitudinal data to examine the short- and medium-term impacts of
+  the lockdowns on household food insecurity, labor market outcomes, and coping 
+  strategies.
   Lockdowns significantly exacerbated food insecurity immediately and 
   continued to do so in the medium term. 
   The effect was more pronounced after the second lockdown, likely from 
