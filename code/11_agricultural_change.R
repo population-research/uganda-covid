@@ -9,6 +9,7 @@ library(tidymodels) # For extracting model coefficients
 library(patchwork) # For plotting
 library(haven)     # For zapping labels
 library(xtable)    # For table output
+library(ggtext)
 
 # Graph theme set-up ----
 theme_uft <- theme_classic() +
@@ -82,7 +83,7 @@ base <- base %>%
 
 # Estimations ----
 
-feols(ag_plant_change ~ survey + cases_smooth_per_100000 | hhid,
+gg_feols <- feols(ag_plant_change ~ survey + cases_smooth_per_100000 | hhid,
           data = base,
           cluster = ~ psu,
           weights = ~ weight_final
@@ -108,8 +109,22 @@ feols(ag_plant_change ~ survey + cases_smooth_per_100000 | hhid,
     y = "Coefficient"
   )
 
+gg_feols
+
+ggsave(here("figures", "ag_plant_change.tiff"),
+       width = 8, height = 3, units = "in")
+
+gg_feols +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1, 4, and 7.<br><br>
+    *Note:* Coefficients from fixed effects ordered logit model, with positive representing an increase, 0 no change, and<br> negative a decrease in planting activity.\n"
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
 ggsave(here("figures", "ag_plant_change.pdf"),
-       width = 8, height = 2, units = "in")
+       width = 8, height = 3, units = "in")
 
 
 # Generate tables of means by survey ----
@@ -206,6 +221,8 @@ cat(
     "\\bottomrule\n",
     "\\end{tabular}\n",
     "\\begin{tablenotes}\n",
+    "\\item \\hspace*{-0.5em} \\textbf{Source:} \n",
+    "Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1, 4, and 7. \n",
     "\\item \\hspace*{-0.5em} \\textbf{Note:} \n",
     "Questions on crop planting activities are only asked in rounds 1, 4, and 7.",
     "\\end{tablenotes}\n",
