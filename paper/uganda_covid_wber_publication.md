@@ -3,19 +3,9 @@ title: 'Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
 		Household Coping Mechanisms: Evidence from Uganda'
 date: August 2024
 author:
-- Claus C. Pörtner^[Associate Professor, 
-	Albers School of Business and Economics, 
-	Seattle University, Seattle, WA, and Center for Studies
-	in Demography and Ecology, University of Washington, Seattle, WA. 
-	\href{mailto:cportner@seattleu.edu}{\texttt{cportner@seattleu.edu}},
-    \href{http://www.clausportner.com}{\texttt{www.clausportner.com}}]
-- Shamma Adeeb Alam^[Associate Professor, Department of Economics, 
-    Dickinson College, Carlisle, PA.
-	\href{mailto:alams@dickinson.edu}{\texttt{alams@dickinson.edu}}]
-- Ishraq Ahmed^[Senior Economist, 
-    Policy Development, Office of Tax Policy,
-    Virginia Department of Taxation, Richmond, VA.
-    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{\texttt{Ishraq.Ahmed@tax.virginia.gov}}]
+- Claus C. Pörtner
+- Shamma Adeeb Alam
+- Ishraq Ahmed
 thanks: |
   Claus C. Pörtner (corresponding author) is an associate professor at 
   the Department of Economics, Seattle University, Seattle, WA, and an external affiliate 
@@ -39,11 +29,11 @@ thanks: |
   
 abstract: |
   \noindent 
-  Uganda had two of the strictest COVID-19 lockdowns in Sub-Saharan Africa and
-  these severe lockdowns provide a unique case study for understanding the 
+  Uganda had two of the strictest COVID-19 lockdowns in Sub-Saharan Africa.
+  These severe lockdowns provide a unique case study for understanding the 
   implications of such public health measures on economic well-being.
-  We use longitudinal data to examine the short- and medium-term impacts of
-  the lockdowns on household food insecurity, labor market outcomes, and coping 
+  We use longitudinal data to examine the lockdowns' short- and medium-term
+  impacts on household food insecurity, labor market outcomes, and coping
   strategies.
   Lockdowns significantly exacerbated food insecurity immediately and 
   continued to do so in the medium term. 
@@ -53,9 +43,9 @@ abstract: |
   There were substantial decreases in income from various sources---including
   agriculture, non-farm businesses, and wage employment---contributing to the
   heightened food insecurity. 
-  Notably, agricultural households were less adversely affected, and there was
-  significant switching to agricultural activities as a coping mechanism. 
-  The other coping mechanisms that households typically rely on for 
+  Notably, agricultural households were less adversely affected, and there was a
+  significant switch to agricultural activities as a coping mechanism. 
+  The other coping mechanisms households typically rely on for 
   idiosyncratic shocks, such as remittances and government assistance,
   failed, contributing to the sizeable increase in food insecurity.  
 
