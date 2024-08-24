@@ -904,14 +904,14 @@ ggsave(here("figures", "combined.tiff"),
 
 gg_combined + 
   labs(
-    caption = str_wrap("*Source:* Authors’ analysis based on data from: 
-    the lockdown stringency index developed at the Blavatnik School of
-    Government,<br> University of Oxford, for the  Daily Stringency Index,
-    Google Mobility for the Percentage Change in Visitors to Retail, 
-    Our World<br> in Data for the Daily New Cases and Daily New Deaths,
-    and the Uganda High-Frequency Phone Survey.<br><br>
-    *Note:* Survey dates are shaded in grey and shaded areas cover start 
-    date to end date of each of the seven survey round.", width = 100)
+    caption = str_wrap("*Source:* 
+    Authors’ analyses based on the following: 
+    for the Daily Stringency Index, the lockdown stringency index developed 
+    at the<br> Blavatnik School of Government, University of Oxford;  
+    for the Percentage Change in Visitors to Retail, data from Google Mobility;<br>
+    for the Daily New Cases and Daily New Deaths, data from Our World in Data;
+    and the survey dates from Uganda High-<br>Frequency Phone Survey.<br><br>
+    *Note:* Grey shaded areas indicate start date to end date for each of the seven survey rounds.", width = 100)
   ) +
   theme(
     plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
