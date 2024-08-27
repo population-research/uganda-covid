@@ -7,6 +7,8 @@ library(vtable)    # For data checking
 library(fixest)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
 library(xtable)
+library(ggtext)
+
 
 # Graph theme set-up ----
 theme_uft <- theme_classic() +
@@ -126,6 +128,12 @@ cat(
   c(
     "\\bottomrule\n",
     "\\end{tabular}\n",
+    "\\begin{tablenotes}\n",
+    "\\scriptsize\n",
+    "\\item \\emph{Source:} Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.\n",
+    "\\item \\emph{Note:} Original households are households \n",
+    "surveyed in the first round. New households are households added as replacements.\n",
+    "\\end{tablenotes}\n",
     "\\end{threeparttable}\n",
     "\\end{small}\n",
     "\\end{center}\n",
@@ -333,7 +341,7 @@ new_fx_1 <- list_rbind(fx_1) %>%
     attrition = "Assume attrited food insecure"
   )
 
-org_fx %>%
+gg_org_fx <- org_fx %>%
   bind_rows(new_fx_0) %>%
   bind_rows(new_fx_1) %>% 
   mutate(
@@ -359,7 +367,22 @@ org_fx %>%
         legend.direction = "horizontal", 
         legend.text = element_text(size = 11), 
         strip.text = element_text(size = 11))
+
+gg_org_fx
+
+ggsave(here("latex", "tiff", "fig_07.tiff"), width = 8, height = 8, units = "in")
+ggsave(here("latex", "eps", "fig_07.eps"), width = 8, height = 8, units = "in")
   
+gg_org_fx +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* Household fixed effects estimates relative to Round 4. Assume attrited food secure: Estimates when assuming<br> 
+    that all missing households would have reported that they were food secure if observed. Assume attrited food insecure: <br> 
+    Estimates when assuming that all missing households would have reported that they were food insecure if observed."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
 
 ggsave(here("figures", "food_insecurity_survey_attrition_combined.pdf"), width = 8, height = 8, units = "in")
 

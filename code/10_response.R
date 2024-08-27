@@ -11,6 +11,7 @@ library(patchwork) # For plotting
 library(xtable)    # For exporting tables
 library(haven)
 library(rio)
+library(ggtext)
 library(RStata)
 options("RStata.StataPath" = "/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp")
 options("RStata.StataVersion" = 18)
@@ -446,7 +447,24 @@ graph_employment_type <- stata(
 
 # Combine this graph with the graph_work_employment graph from above
 # Combine the plots into a 2x2 grid
-graph_work_employment / graph_employment_type + plot_layout(heights = c(3, 2))
+gg_work_employ <- graph_work_employment / graph_employment_type + plot_layout(heights = c(3, 2))
+
+gg_work_employ
+
+ggsave(here("latex", "tiff", "fig_08.tiff"), width = 8, height = 8, units = "in")
+
+ggsave(here("latex", "eps", "fig_08.eps"), width = 8, height = 8, units = "in")
+
+gg_work_employ +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* The top 3 panels show coefficients from linear models with household fixed effects. The bottom two panels<br>
+    show coefficients from a fixed effects multinomial logit model, relative to non-agricultural work."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
 
 ggsave(here("figures", "work_employment.pdf"),  width = 8, height = 8, units = "in")  
 
@@ -472,7 +490,7 @@ transition <- ag_0_8 %>%
   filter(!is.na(next_outcome), !is.na(outcome))
 
 # Plot the absolute number of households in each state
-ag_0_8 %>% 
+gg_ag_0_8 <- ag_0_8 %>% 
   select(survey_num, agri) %>% 
   group_by(survey_num) %>%
   count(agri) %>% 
@@ -514,6 +532,19 @@ ag_0_8 %>%
     ) +
   # Add ticks for each survey
   scale_x_continuous(breaks = 0:7)
+
+gg_ag_0_8
+
+ggsave(here("figures", "transition_absolute.tiff"), width = 8, height = 6, units = "in")
+
+gg_ag_0_8 +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* The figure shows the unweighted percentage of households in each state over time."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
 
 ggsave(here("figures", "transition_absolute.pdf"),  width = 8, height = 6, units = "in")
  
@@ -633,7 +664,9 @@ cat(
     "\\bottomrule\n",
     "\\end{tabular}\n",
     "\\begin{tablenotes}\n",
-    "\\item \\hspace*{-0.5em} \\textbf{Note:} \n",
+    "\\item \\hspace*{-0.5em} \\textit{Source:} \n",
+    "Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.\n",
+    "\\item \\hspace*{-0.5em} \\textit{Note:} \n",
     "Before COVID-19, there were ", count_0$n[1], " households in non-agricultural work, \n",
     count_0$n[2], " working in agriculture, and ", count_0$n[3], " not working. \n",
     "\\end{tablenotes}\n",
@@ -724,7 +757,7 @@ income_source_mapping <- tribble(
 
 income_source_labels <- generate_labels(income_source, income_source_mapping, N_group)
 
-income_source %>% 
+gg_income_source <- income_source %>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -735,9 +768,28 @@ income_source %>%
   ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
-             labeller = labeller(org_variable = income_source_labels)) 
+             labeller = labeller(org_variable = income_source_labels)) +
+  theme(
+    strip.text = element_text(size = 11)
+  )
 
-ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 4.5, units = "in")  
+gg_income_source 
+
+ggsave(here("latex", "tiff", "fig_09.tiff"),  width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_09.eps"),  width = 8, height = 6, units = "in")
+
+gg_income_source +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* Coeﬀicients from fixed effects ordered logit model, with positive representing an increase, 0 no change, and<br> 
+    negative a decrease."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
+
+ggsave(here("figures", "income_sources.pdf"),  width = 8, height = 6, units = "in")  
 
 
 tabyl(reduced_df, inc_level_farm, survey_num)
@@ -796,7 +848,7 @@ assistance_mapping <- tribble(
 assistance_labels <- generate_labels(assistance, assistance_mapping, N_group)
 
 # Produce graph
-assistance %>% 
+gg_assistance <- assistance %>% 
   ggplot(aes(x = var, y = coef, ymin = ci_lower, ymax = ci_upper)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -807,9 +859,27 @@ assistance %>%
   ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~org_variable, scales = "free_y", ncol = 1,
-             labeller = labeller(org_variable = assistance_labels)) 
+             labeller = labeller(org_variable = assistance_labels)) +
+  theme(
+    strip.text = element_text(size = 11)
+  )
 
-ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 4.5, units = "in")
+gg_assistance
+
+ggsave(here("latex", "tiff", "fig_10.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_10.eps"), width = 8, height = 6, units = "in")
+
+gg_assistance +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* Coefficients from fixed effects ordered logit model, with positive representing an increase, 0 no change, and<br> 
+    negative a decrease."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
+ggsave(here("figures", "income_assistance.pdf"), width = 8, height = 6, units = "in")
 
 
 # Household composition and urban location ----
@@ -877,7 +947,7 @@ labels_mapping <- tribble(
 hh_composition_labels <- generate_labels(hh_composition, labels_mapping, n_fixef)
 
 # Produce graphs
-hh_composition %>%
+gg_hh_composition <- hh_composition %>%
   ggplot(aes(x = term, y = estimate, ymin = conf.low, ymax = conf.high)) +
   # Make 0 line more prominent
   geom_hline(yintercept = 0, color = color_palette[1]) +
@@ -888,9 +958,27 @@ hh_composition %>%
   ) +
   # Combining the graphs from food_insecurity_graphs
   facet_wrap(~org_variable, scales = "fixed", ncol = 1,
-             labeller = labeller(org_variable = hh_composition_labels)) 
+             labeller = labeller(org_variable = hh_composition_labels)) +
+  theme(
+    strip.text = element_text(size = 11)
+  )
 
-ggsave(here("figures", "household_composition_and_urban_location.pdf"), width = 8, height = 4.5, units = "in")
+gg_hh_composition
+
+ggsave(here("latex", "tiff", "fig_11.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_11.eps"), width = 8, height = 6, units = "in")
+
+gg_hh_composition +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* Coefficients from household fixed effects coefficients from linear models with continuous outcome variables for <br> 
+    the top three panels and an indicator variable for the bottom panel."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
+ggsave(here("figures", "household_composition_and_urban_location.pdf"), width = 8, height = 6, units = "in")
 
 
 # Agricultural households and food insecurity ----
@@ -1041,7 +1129,7 @@ left_columns <- agri_separately %>%
   theme(plot.title = element_text(hjust = 0.5, size = 10))
 
 # Combine the two plots
-left_columns + right_columns +  plot_layout(axes = 'collect')
+gg_agri <- left_columns + right_columns +  plot_layout(axes = 'collect')
 
 # Prior version that does not have titles above columns
 # agri_separately %>% 
@@ -1066,4 +1154,19 @@ left_columns + right_columns +  plot_layout(axes = 'collect')
 #   ) +
 #   facet_grid(variable ~ type , scales = "fixed") 
 
-ggsave(here("figures", "agri_vs_non_agri.pdf"), width = 8, height = 4.5, units = "in")
+gg_agri
+
+ggsave(here("latex", "tiff", "fig_12.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_12.eps"), width = 8, height = 6, units = "in")
+
+gg_agri +
+  plot_annotation(
+    caption = "*Source:* Authors' analysis based on data from the Uganda High−Frequency Phone Survey, Rounds 1−7.<br><br>
+    *Note:* Coefficients from household fixed effects models for non-agricultural and agricultural households. Left two columns <br>
+    condition on pre-COVID-19 agricultural status, while the right two columns allow households to change status.",
+    theme = theme(
+      plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+    )
+  )
+
+ggsave(here("figures", "agri_vs_non_agri.pdf"), width = 8, height = 6, units = "in")

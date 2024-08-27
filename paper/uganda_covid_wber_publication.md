@@ -3,34 +3,38 @@ title: 'Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
 		Household Coping Mechanisms: Evidence from Uganda'
 date: August 2024
 author:
-- Claus C. Pörtner^[Associate Professor, 
-	Albers School of Business and Economics, 
-	Seattle University, Seattle, WA, and Center for Studies
-	in Demography and Ecology, University of Washington, Seattle, WA. 
-	\href{mailto:cportner@seattleu.edu}{\texttt{cportner@seattleu.edu}},
-    \href{http://www.clausportner.com}{\texttt{www.clausportner.com}}]
-- Shamma Adeeb Alam^[Associate Professor, Department of Economics, 
-    Dickinson College, Carlisle, PA.
-	\href{mailto:alams@dickinson.edu}{\texttt{alams@dickinson.edu}}]
-- Ishraq Ahmed^[Senior Economist, 
-    Policy Development, Office of Tax Policy,
-    Virginia Department of Taxation, Richmond, VA.
-    \href{mailto:Ishraq.Ahmed@tax.virginia.gov}{\texttt{Ishraq.Ahmed@tax.virginia.gov}}]
+- Claus C. Pörtner
+- Shamma Adeeb Alam
+- Ishraq Ahmed
 thanks: |
+  Claus C. Pörtner (corresponding author) is an associate professor at 
+  the Department of Economics, Seattle University, Seattle, WA, and an external affiliate 
+  at the Center for Studies in Demography and Ecology, University of Washington, 
+  Seattle, WA (email: cportner@seattleu.edu);
+  Shamma A. Alam is an associate professor at the Department of Economics, 
+  Dickinson College, Carlisle, PA (email: alams@dickinson.edu);
+  Ishraq Ahmed is a senior economist at the Office of Tax Policy, Virginia Department of 
+  Taxation, VA (email: Ishraq.Ahmed@tax.virginia.gov).
   We would like to thank seminar participants at Howard University, Alex
-  Henke, and four anonymous referees for their helpful comments and suggestions. 
+  Henke, four anonymous referees, and the Editor for their helpful comments and suggestions. 
   We would also like to thank Pascal Ntaganda for his research assistance.
   Partial support for this research came from a Eunice Kennedy Shriver National
   Institute of Child Health and Human Development research infrastructure grant,
   5R24HD042828, to the Center for Studies in Demography and Ecology at the
   University of Washington.
+  A supplementary online appendix is available with this article at the World Bank 
+  Economic Review website.
+  R code and text for this article are available at 
+  \href{https://github.com/population-research/uganda-covid.git}{https://github.com/population-research/uganda-covid.git}
   
 abstract: |
-  \noindent We examine the short- and medium-term impacts of Uganda's 
-  COVID-19 lockdowns on household food insecurity, labor market outcomes, and
-  coping strategies, using longitudinal data.
-  These severe lockdowns provide a unique case study for understanding 
-  the implications of such public health measures on economic well-being. 
+  \noindent 
+  Uganda had two of the strictest COVID-19 lockdowns in Sub-Saharan Africa.
+  These severe lockdowns provide a unique case study for understanding the 
+  implications of such public health measures on economic well-being.
+  We use longitudinal data to examine the lockdowns' short- and medium-term
+  impacts on household food insecurity, labor market outcomes, and coping
+  strategies.
   Lockdowns significantly exacerbated food insecurity immediately and 
   continued to do so in the medium term. 
   The effect was more pronounced after the second lockdown, likely from 
@@ -39,9 +43,9 @@ abstract: |
   There were substantial decreases in income from various sources---including
   agriculture, non-farm businesses, and wage employment---contributing to the
   heightened food insecurity. 
-  Notably, agricultural households were less adversely affected, and we find
-  significant switching to agricultural activities as a coping mechanism. 
-  The other coping mechanisms that households typically rely on for 
+  Notably, agricultural households were less adversely affected, and there was a
+  significant switch to agricultural activities as a coping mechanism. 
+  The other coping mechanisms households typically rely on for 
   idiosyncratic shocks, such as remittances and government assistance,
   failed, contributing to the sizeable increase in food insecurity.  
 
@@ -63,7 +67,7 @@ and June through July 2021 [@BBC2020;@Birner2021;@Mahmud2021].
 As [@fig:raw-insecurity] shows, Uganda also experienced substantially higher food
 insecurity during or immediately following these lockdowns than at any other time
 during the pandemic.[^definition]
-Using longitudinal household data, we aim to understand the extent to which
+Using longitudinal household data, this paper aims to understand the extent to which
 these changes arose from the twin lockdowns in Uganda by examining food insecurity, 
 labor market outcomes, income changes, and how households attempted to cope with 
 the lockdowns.
@@ -148,15 +152,15 @@ In addition, remittances declined, and there were insufficient or delayed
 government support to help households cope with the shock 
 [@Ceballos2021; @Curi-Quinto2021; @Suresh2022].
 
-Our study contributes to two strands of the literature. 
-First, we contribute to the literature on understanding the impacts of 
+This study contributes to two strands of the literature. 
+First, it contributes to the literature on understanding the impacts of 
 the lockdowns themselves.
 Given the mixed findings and the limitations in data in the prior literature, 
 we use household fixed-effects models on country-wide panel data to estimate 
 short- and medium-run effects of lockdowns, with the goal of understanding the 
 persistence of the impact of lockdowns in the months following their lifting. 
 
-Second, we contribute to the small but growing body of research on the
+Second, it contributes to the small but growing body of research on the
 effects of aggregate shocks and how households cope with these shocks,
 which has mostly focused on financial shocks and natural disasters 
 [@Del-Ninno2003; @Fallon2002; @Glewwe1998; @Hallegatte2020; @McKenzie2003; @Skoufias2003; @Thomas2007].
@@ -175,11 +179,11 @@ likelihood of net borrowing, presumably as a coping mechanism after the first
 lockdown [@Mahmud2023].
 
 Compared to the prior literature, three things set our paper apart.
-First, we use a nationwide representative longitudinal survey.
+First, it uses a nationwide representative longitudinal survey.
 This is in contrast to much of the prior research, which is based on either very 
 small samples [@Ruszczyk2021; @Squarcina2022; @Hirvonen2021; @Nguyen2021a] or
 only rural areas [@Janssens2021; @Aggarwal2022].
-Second, the data covers close to the entire pandemic, so we can observe 
+Second, the data covers almost the entire pandemic, so we can observe 
 the changes in food insecurity and household responses over time and through
 multiple lockdowns.[^Nigeria]
 Third, with very few COVID-19 cases in Uganda, especially for the first lockdown, 
@@ -187,7 +191,7 @@ we can separate the effects of COVID-19 from lockdown effects.
 However, there are at least three potential drawbacks to our approach.
 First, phone surveys, as we use here, provide less detailed data about household 
 members and may suffer from selection bias.
-Second, in contrast to, for example, @Amare2021, we have limited  pre-COVID-19 
+Second, in contrast to, for example, @Amare2021, there is limited  pre-COVID-19 
 information on the households.
 Third, there was no spatial variation in the lockdowns decreed by the government, 
 opposite of, for example, Nigeria or India.
@@ -197,16 +201,16 @@ of restrictions, and our estimates are, therefore, likely lower-bound estimates.
 [^Nigeria]: The other study using nationwide representative data only cover
 one survey round, April-May 2020, although more are planned [@Amare2021].
 
-We find that food insecurity significantly increased during the lockdowns. 
+Food insecurity significantly increased during the lockdowns. 
 The point estimates are significant, with an increase of almost 25 percentage 
 points for any food insecurity during the first lockdown compared to the period
 with no lockdowns. 
 Even more concerning, moderate to severe and severe food insecurity
-is more than 20 percentage points and almost 10 percentage points higher
+is more than 20 percentage points and almost ten percentage points higher
 relative to when there are fewer lockdown-related restrictions.
 
-We also find that lockdowns have a substantial medium-term impact, with
-any food insecurity about 10 percentage points higher two to three months after
+Lockdowns also have a substantial medium-term impact, with
+any food insecurity about ten percentage points higher two to three months after
 the first lockdown was lifted. 
 The medium-term impact was even higher following the second lockdown, 
 with an approximately 20 percentage points increase three months after 
@@ -313,8 +317,8 @@ lack of money or other resources:
 (vii) were hungry, but did not eat; 
 and (viii) went without eating for a whole day. 
 
-We follow the prior literature and calculate three food insecurity measure 
-based on the sum of the eight food insecurity questions:
+Following the prior literature, three food insecurity measure 
+based on the sum of the eight food insecurity questions are calculated:
 any, moderate or severe, and severe food insecurity 
 [@Kansiime2021;@Wambogo2018;@FAO2016].
 "Any" corresponds to having answered yes to any of the questions, 
@@ -718,7 +722,7 @@ Our second approach is to re-estimate our main models on three subsets
 of the data. 
 First, we make use of the fact that Round 6 took place during the April/May 
 lean season but was the round least affected by lockdowns.
-Because Rounds 1 and 2 also took place during the lean season, we  
+Because Rounds 1 and 2 also took place during the lean season, we 
 estimate our main model using only information from Rounds 1, 2, and 6. 
 The results are shown in the top panel of Appendix [@fig:seasonality_comparison]. 
 Compared to the main model, the short-run effects are slightly smaller 

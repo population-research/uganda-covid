@@ -10,6 +10,7 @@ library(labelled)  # For data checking
 library(lubridate)
 library(cowplot)
 library(ggfittext)
+library(ggtext)
 
 # Functions
 rename_to_lower_snake <- function(df) {
@@ -271,7 +272,7 @@ google <- read_csv(here("raw_data", "external_data", "Global_Mobility_Report.csv
 
 national_level <- google %>% filter(is.na(sub_region_1))
 
-ggplot(national_level,aes(x = date)) + 
+gg_mob_res <- ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = residential)) + 
   ylab("Percentage Change in Time Spent at\nResidencies (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -293,10 +294,24 @@ ggplot(national_level,aes(x = date)) +
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
+gg_mob_res
+
+ggsave(here("figures", "mobility_national_residential.tiff"),
+       width = 20, height = 10, units = "cm")
+
+gg_mob_res +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
 ggsave(here("figures", "mobility_national_residential.pdf"),
        width = 20, height = 10, units = "cm")
 
-ggplot(national_level,aes(x = date)) + 
+gg_mob_work <- ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = workplaces)) + 
   ylab("Percentage Change in Visits to\nWorkplaces (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -318,10 +333,24 @@ ggplot(national_level,aes(x = date)) +
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
+gg_mob_work
+
+ggsave(here("figures", "mobility_national_workplaces.tiff"),
+       width = 20, height = 10, units = "cm")
+
+gg_mob_work +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
 ggsave(here("figures", "mobility_national_workplaces.pdf"),
        width = 20, height = 10, units = "cm")
 
-ggplot(national_level,aes(x = date)) + 
+gg_mob_groc <- ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = grocery_and_pharmacy)) + 
   ylab("Percentage Change in Visits to\nGroceries and Pharmacies (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -343,10 +372,24 @@ ggplot(national_level,aes(x = date)) +
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
+gg_mob_groc
+
+ggsave(here("figures", "mobility_national_grocery.tiff"),
+       width = 20, height = 10, units = "cm")
+
+gg_mob_groc +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
 ggsave(here("figures", "mobility_national_grocery.pdf"),
        width = 20, height = 10, units = "cm")
 
-ggplot(national_level,aes(x = date)) + 
+gg_mob_park <- ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = parks)) + 
   ylab("Percentage Change in Visits to\nParks (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -368,11 +411,25 @@ ggplot(national_level,aes(x = date)) +
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
+gg_mob_park
+
+ggsave(here("figures", "mobility_national_parks.tiff"),
+       width = 20, height = 10, units = "cm")
+
+gg_mob_park +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
 ggsave(here("figures", "mobility_national_parks.pdf"),
        width = 20, height = 10, units = "cm")
 
 
-ggplot(national_level,aes(x = date)) + 
+gg_mob_transit <- ggplot(national_level,aes(x = date)) + 
   geom_line(aes(y = transit_stations)) + 
   ylab("Percentage Change in Visits to\nTransit Stantions (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -393,6 +450,20 @@ ggplot(national_level,aes(x = date)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y",
                limits = c(ymd("2020-03-01"), ymd("2021-11-30"))) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
+
+gg_mob_transit
+
+ggsave(here("figures", "mobility_national_transit.tiff"),
+       width = 20, height = 10, units = "cm")
+
+gg_mob_transit +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_national_transit.pdf"),
        width = 20, height = 10, units = "cm")
@@ -431,7 +502,7 @@ ggsave(here("figures", "mobility_national_retail.pdf"),
 
 regional <- google %>% filter(!is.na(sub_region_1) & is.na(sub_region_2))
 
-ggplot(regional, aes(x = date)) + 
+gg_mob_reg_retail <- ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = retail_and_recreation)) + 
   ylab("Percentage Change in Visitors to\nRetail (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -451,13 +522,33 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   facet_wrap(~sub_region_1, scales = "fixed") +
   scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
-  theme(axis.text.x=element_text(angle=60, hjust=1)) 
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    strip.text = element_text(size = 11)
+    ) 
   
+gg_mob_reg_retail
+
+ggsave(here("latex", "tiff", "fig_05.tiff"),
+       width = 8, height = 4.5, units = "in")
+
+ggsave(here("latex", "eps", "fig_05.eps"),
+       width = 8, height = 4.5, units = "in")
+
+
+gg_mob_reg_retail +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_regional_retail.pdf"),
        width = 8, height = 4.5, units = "in")
 
-ggplot(regional, aes(x = date)) + 
+gg_mob_reg_res <- ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = residential)) + 
   ylab("Percentage Change in Time Spent at\nResidencies (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -475,13 +566,32 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  facet_wrap(~sub_region_1, scales = "fixed")
+  facet_wrap(~sub_region_1, scales = "fixed") +
+  scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    strip.text = element_text(size = 11)
+    )
+
+gg_mob_reg_res
+
+ggsave(here("figures", "mobility_regional_residential.tiff"),
+       width = 20, height = 15, units = "cm")
+
+gg_mob_reg_res +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_regional_residential.pdf"),
        width = 20, height = 15, units = "cm")
 
 
-ggplot(regional, aes(x = date)) + 
+gg_mobs_reg_work <- ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = workplaces)) +
   ylab("Percentage Change in Visits to\nWorkplaces (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -499,13 +609,32 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  facet_wrap(~sub_region_1, scales = "fixed")
+  facet_wrap(~sub_region_1, scales = "fixed") +
+  scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    strip.text = element_text(size = 11)
+    )
+
+gg_mobs_reg_work
+
+ggsave(here("figures", "mobility_regional_workplaces.tiff"),
+       width = 20, height = 15, units = "cm")
+
+gg_mobs_reg_work +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_regional_workplaces.pdf"),
        width = 20, height = 15, units = "cm")
 
 
-ggplot(regional, aes(x = date)) + 
+gg_mob_reg_groc <- ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = grocery_and_pharmacy)) +
   ylab("Percentage Change in Visits to\nGrocery and Pharmacies (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -523,13 +652,31 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  facet_wrap(~sub_region_1, scales = "fixed")
+  facet_wrap(~sub_region_1, scales = "fixed") +
+  scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    strip.text = element_text(size = 11)
+    )
+
+gg_mob_reg_groc
+
+ggsave(here("figures", "mobility_regional_grocery.tiff"),
+       width = 20, height = 15, units = "cm")
+
+gg_mob_reg_groc +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_regional_grocery.pdf"),
        width = 20, height = 15, units = "cm")
 
-
-ggplot(regional, aes(x = date)) + 
+gg_mob_reg_parks <- ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = parks)) +
   ylab("Percentage Change in Visits to\nParks (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -547,12 +694,32 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  facet_wrap(~sub_region_1, scales = "fixed")
+  facet_wrap(~sub_region_1, scales = "fixed") +
+  scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    strip.text = element_text(size = 11)
+    )
+
+gg_mob_reg_parks
+
+ggsave(here("figures", "mobility_regional_parks.tiff"),
+       width = 20, height = 15, units = "cm")
+
+gg_mob_reg_parks +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_regional_parks.pdf"),
        width = 20, height = 15, units = "cm")
 
-ggplot(regional, aes(x = date)) + 
+
+gg_mob_reg_transit <- ggplot(regional, aes(x = date)) + 
   geom_line(aes(y = transit_stations)) +
   ylab("Percentage Change in Visits to\nTransit Stations (Base: 01/03-02/06, 2020)") +
   xlab("Date") +
@@ -570,7 +737,26 @@ ggplot(regional, aes(x = date)) +
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
   annotate("rect", xmin = survey_dates$first_date[7], xmax = survey_dates$last_date[7],
            ymin = -Inf, ymax = Inf, alpha = 0.4) +
-  facet_wrap(~sub_region_1, scales = "fixed")
+  facet_wrap(~sub_region_1, scales = "fixed") +
+  scale_x_date(date_breaks = "2 month", date_labels =  "%b %Y") +
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    strip.text = element_text(size = 11)
+    )
+
+gg_mob_reg_transit
+
+ggsave(here("figures", "mobility_regional_transit.tiff"),
+       width = 20, height = 15, units = "cm")
+
+gg_mob_reg_transit +
+  labs(
+    caption = "*Source:* Authors' analysis based on data from Google Mobility.<br>
+    *Note:* Missing are due to no data provided for those dates. Shaded areas represent the survey dates."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "mobility_regional_transit.pdf"),
        width = 20, height = 15, units = "cm")
@@ -713,11 +899,34 @@ p_deaths <- ggplot(our_world_data, aes(x=date, y=deaths_smooth_per_100000)) +
   theme(axis.text.x=element_text(angle=60, hjust=1)) 
 
 
+gg_combined <- plot_grid(p_index, p_mobility, p_cases, p_deaths, ncol = 1, align = "v")
 
-plot_grid(p_index, p_mobility, p_cases, p_deaths, ncol = 1, align = "v")
+gg_combined
+
+ggsave(here("latex", "tiff", "fig_02.tiff"),
+       width = 8, height = 10, units = "in")
+
+ggsave(here("latex", "eps", "fig_02.eps"),
+       width = 8, height = 10, units = "in")
+
+gg_combined + 
+  labs(
+    caption = str_wrap("*Source:* 
+    Authors’ analyses based on the following: 
+    for the Daily Stringency Index, the lockdown stringency index developed 
+    at the<br> Blavatnik School of Government, University of Oxford;  
+    for the Percentage Change in Visitors to Retail, data from Google Mobility;<br>
+    for the Daily New Cases and Daily New Deaths, data from Our World in Data;
+    and the survey dates from Uganda High-<br>Frequency Phone Survey.<br><br>
+    *Note:* Grey shaded areas indicate start date to end date for each of the seven survey rounds.", width = 100)
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
 
 ggsave(here("figures", "combined.pdf"),
-       width = 19, height = 25, units = "cm")
+       width = 8, height = 10, units = "in")
 
 
 # National-level Food security and interview dates by round ----
@@ -786,7 +995,7 @@ lockdowns <- tribble(
 )
 
 
-national_level %>% 
+gg_national_level <- national_level %>% 
   filter(str_detect(type, "insecure_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "insecure_")) %>% 
@@ -844,8 +1053,22 @@ national_level %>%
            ymin = lockdowns$start[2],
            ymax = lockdowns$end[2],
            xmin = -Inf, xmax = Inf, alpha = 0.4) 
-  
-  ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 7, units = "in")
+
+gg_national_level
+
+ggsave(here("latex", "tiff", "fig_01.tiff"), width = 8, height = 7, units = "in")
+
+ggsave(here("latex", "eps", "fig_01.eps"), width = 8, height = 7, units = "in")
+
+gg_national_level +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey, Rounds 1-7.<br>*Note:* Severe lockdowns shaded in grey. Lines cover start date to end date of each survey round."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
+ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.pdf"), width = 8, height = 7, units = "in")
 
 
 # Regional-level food security and interview dates by round ----
@@ -864,7 +1087,7 @@ regional_level <- read_rds(here("data", "base.rds")) %>%
   pivot_longer(-c(region, survey, first_date, last_date), names_to = "type", values_to = "value") 
 
 # Cumulative food insecurity outcomes 
-regional_level %>% 
+gg_region_level <- regional_level %>% 
   filter(str_detect(type, "insecure_")) %>%
   # remove food_ from variable 
   mutate(type = str_remove(type, "insecure_")) %>% 
@@ -925,6 +1148,19 @@ regional_level %>%
            xmin = -Inf, xmax = Inf, alpha = 0.4) +
   facet_wrap(~region, scales = "fixed", ncol = 1)
 
-ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 7, height = 6.5, units = "in")
+gg_region_level
+
+ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.tiff"), width = 8, height = 7.5, units = "in")
+
+gg_region_level +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey, Rounds 1-7.<br>
+    *Note:* Severe lockdowns shaded in grey. Lines cover start date to end date of each survey round."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
+ggsave(here("figures", "food_insecurity_by_region_survey_round_3_levels.pdf"), width = 8, height = 7.5, units = "in")
 
 

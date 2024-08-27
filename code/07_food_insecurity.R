@@ -6,6 +6,7 @@ library(janitor)   # For data checking
 library(vtable)    # For data checking
 library(fixest)       # For fixed effects
 library(tidymodels) # For extracting model coefficients
+library(ggtext)
 
 
 # Graph theme set-up ----
@@ -77,7 +78,7 @@ fx <- map(
 # )
 
 # Make fx into one data frame and combine graphs
-list_rbind(fx) %>% 
+gg_food_insecurity <- list_rbind(fx) %>% 
     mutate(
       term = str_remove(term, "survey"),
       variable = str_to_title(str_remove(variable, "insecure_"))
@@ -92,9 +93,29 @@ list_rbind(fx) %>%
     ) +
   scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3)) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~variable, scales = "fixed", ncol = 1) +  
+  theme(
+    strip.text = element_text(size = 11) # Make labels slightly bigger
+  )
 
-ggsave(here("figures", "food_insecurity_survey.pdf"), width = 8, height = 5, units = "in")
+
+gg_food_insecurity
+
+ggsave(here("latex", "tiff", "fig_03.tiff"), width = 8, height = 6, units = "in")
+
+ggsave(here("latex", "eps", "fig_03.eps"), width = 8, height = 6, units = "in")
+
+
+gg_food_insecurity +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey, Rounds 1-7.<br>
+    *Note:* Household fixed effects estimates relative to Round 4."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
+ggsave(here("figures", "food_insecurity_survey.pdf"), width = 8, height = 6, units = "in")
 
 
 # Regional variation in food insecurity ----
@@ -126,7 +147,7 @@ fx_regions <- base %>%
   unnest(cols = regional_result)
 
 # Produce graphs
-fx_regions %>% 
+gg_fx_regions <- fx_regions %>% 
   mutate(
     term = str_remove(term, "survey"),
     variable = str_to_title(str_remove(variable, "insecure_"))
@@ -144,5 +165,21 @@ fx_regions %>%
   theme(
     strip.text = element_text(size = 11) # Make labels slightly bigger
   )
+
+gg_fx_regions
+
+ggsave(here("latex", "tiff", "fig_06.tiff"), width = 8, height = 8, units = "in")
+
+ggsave(here("latex", "eps", "fig_06.eps"), width = 8, height = 8, units = "in")
+
+gg_fx_regions +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey, Rounds 1-7.<br>
+    *Note:* Household fixed effects estimates relative to Round 4 with each region treated as a separate sample."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
+
 
 ggsave(here("figures", "food_insecurity_region.pdf"), width = 8, height = 8, units = "in")      

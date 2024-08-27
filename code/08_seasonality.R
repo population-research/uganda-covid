@@ -12,6 +12,7 @@ library(clock)
 library(fixest) # For fixed effects
 library(tidymodels) # For extracting model coefficients
 library(patchwork) # For plotting
+library(ggtext)
 
 
 # Functions
@@ -226,7 +227,7 @@ combined <- food %>%
   bind_rows(base_all_day)
   
   
-ggplot(combined, aes(x = date)) +
+gg_seasonality <- ggplot(combined, aes(x = date)) +
   geom_point(
     aes(
       y = percent, 
@@ -248,7 +249,31 @@ ggplot(combined, aes(x = date)) +
     axis.text.x=element_text(angle=60, hjust=1),
     legend.text = element_text(size = 11)
     )
-  
+
+gg_seasonality
+
+ggsave(here("latex", "tiff", "fig_04.tiff"),
+       width = 8, height = 6, units = "in")
+
+ggsave(here("latex", "eps", "fig_04.eps"),
+       width = 8, height = 6, units = "in")
+
+gg_seasonality +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the 2015/16 and 
+    2019/20 Uganda National Panel Survey (UNPS)  and<br> data from the 
+    Uganda High-Frequency Phone Survey (UHFS), Rounds 1-7.<br><br>
+    *Note:* For the UNPS question, all observations from 2015/16 and 2019/20 
+    are combined by month, and the percentage<br> who reported not having enough 
+    food to feed the household in each month calculated. 
+    For the UHFS questions, the<br> percentages of food insecure are calculated by 
+    interview month. "
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.2)
+  )
+
+
 ggsave(here("figures", "seasonality.pdf"),
        width = 8, height = 6, units = "in")
 
@@ -298,7 +323,11 @@ plot_1_2_6 <- list_rbind(results_rounds_1_2_6) %>%
   coord_cartesian(ylim = c(-0.1, 0.3), expand = TRUE) +
   scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3)) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~variable, scales = "fixed", ncol = 1) +
+  theme(
+    strip.text = element_text(size = 11) # Make labels slightly bigger
+  )
+
 
 
 rounds_4_7 <- base %>% 
@@ -342,9 +371,27 @@ plot_4_7 <- list_rbind(results_rounds_4_7) %>%
   coord_cartesian(ylim = c(-0.1, 0.3), expand = TRUE) +
   scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3)) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~variable, scales = "fixed", ncol = 1) +
+  theme(
+    strip.text = element_text(size = 11) # Make labels slightly bigger
+  )
 
-plot_1_2_6 / plot_4_7
+
+gg_comparison <- plot_1_2_6 / plot_4_7
+
+gg_comparison
+
+ggsave(here("figures", "seasonality_comparison.tiff"),
+       width = 8, height = 8, units = "in")
+
+gg_comparison +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey.<br>
+    *Note:* Top three panels use data from Rounds 1, 2, and 6, while the bottom three panels use data from Rounds 4 and 7."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "seasonality_comparison.pdf"),
        width = 8, height = 8, units = "in")
@@ -372,7 +419,7 @@ results_urban_only <- map(
 )
 
 # Make into one data frame and combine graphs
-list_rbind(results_urban_only) %>% 
+gg_urban <- list_rbind(results_urban_only) %>% 
   mutate(
     term = str_remove(term, "survey"),
     variable = str_to_title(str_remove(variable, "insecure_"))
@@ -388,6 +435,22 @@ list_rbind(results_urban_only) %>%
   # coord_cartesian(ylim = c(-0.2, 0.6), expand = TRUE) +
   scale_y_continuous(breaks = c(-0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6)) +
   # Combining the graphs from food_insecurity_graphs
-  facet_wrap(~variable, scales = "fixed", ncol = 1) 
+  facet_wrap(~variable, scales = "fixed", ncol = 1) +
+  theme(
+    strip.text = element_text(size = 11) # Make labels slightly bigger
+  )
+
+gg_urban
+
+ggsave(here("figures", "seasonality_urban.tiff"), width = 8, height = 6, units = "in")
+
+gg_urban +
+  labs(
+    caption = "*Source:* Authors’ analysis based on data from the Uganda High-Frequency Phone Survey.<br>
+    *Note:* Household fixed effects estimates using data from urban areas only."
+  ) +
+  theme(
+    plot.caption = element_markdown(hjust = 0, size = 10, lineheight = 1.5)
+  )
 
 ggsave(here("figures", "seasonality_urban.pdf"), width = 8, height = 6, units = "in")

@@ -1,0 +1,272 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{fontspec}
+% \setromanfont[Ligatures=TeX]{texgyrepagella-regular.otf}
+% \usepackage{unicode-math}
+% \setmathfont{texgyrepagella-math.otf}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage[figuresleft]{rotating}
+\usepackage[longnamesfirst]{natbib}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+\usepackage{setspace}
+\usepackage[justification=centering]{caption}
+\usepackage[]{subcaption}
+\usepackage[xetex,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{adjustbox}
+\usepackage{nicefrac}
+\usepackage{graphicx}
+\shortcites{Ward2021} 
+
+
+% \bibpunct{(}{)}{;}{a}{}{,}
+\newcommand{\mco}[1]{\multicolumn{1}{c}{#1}}
+\newcommand{\mct}[1]{\multicolumn{2}{c}{#1}}
+\newcommand{\X}{$\times$ }
+\newcommand{\hs}{\hspace{15pt}}
+\newcommand{\Cov}{\operatorname{Cov}}
+
+% Attempt to squeeze more floats in
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
+
+
+% Redefine the \appendix command
+\usepackage{titlesec}
+\usepackage{chngcntr} % Package to change the counter
+
+% Define a new counter for the appendix sections
+\newcounter{appendixsection}
+\newcommand{\appsection}[1]{
+    \stepcounter{appendixsection}
+    \section*{Supplementary Online Appendix S\arabic{appendixsection}: #1}
+    \addcontentsline{toc}{section}{Supplementary Online Appendix S\arabic{appendixsection}: #1}
+    \setcounter{figure}{0} % Reset figure counter for each appendix section
+    \setcounter{table}{0} % Reset table counter for each appendix section
+    \renewcommand{\thefigure}{S\arabic{appendixsection}.\arabic{figure}} % Custom figure numbering
+    \renewcommand{\thetable}{S\arabic{appendixsection}.\arabic{table}} % Custom table numbering
+    \renewcommand{\theHfigure}{\thefigure} % Ensure unique hyperlink targets for figures
+    \renewcommand{\theHtable}{\thetable} % Ensure unique hyperlink targets for tables
+}
+
+
+\title{
+Supplementary Online Appendix to 
+
+\bigskip
+
+Impact of Twin Lockdowns on Hunger, Labor Market Outcomes, and
+Household Coping Mechanisms: Evidence from Uganda
+}
+
+\author{Claus C. Pörtner \and Shamma A. Alam \and Ishraq Ahmed}
+
+\date{August 2024}
+
+\begin{document}
+
+
+\maketitle
+
+\appendix
+
+\appsection{Alternative Google Mobility Measures}\label{alternative-google-mobility-measures}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_national_workplaces.pdf}
+\caption{Percentage changes in the number of visitors to workplace
+locations}\label{fig:mobility_national_workplaces}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_national_transit.pdf}
+\caption{Percentage changes in the number of visitors to transit
+locations}\label{fig:mobility_national_transit}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_national_grocery.pdf}
+\caption{Percentage changes in the number of visitors to grocery and
+pharmacy locations}\label{fig:mobility_national_grocery}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_national_parks.pdf}
+\caption{Percentage changes in the number of visitors to
+park}\label{fig:mobility_national_parks}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_national_residential.pdf}
+\caption{Percentage changes in the time spent at residential
+locations}\label{fig:mobility_national_residential}
+\end{figure}
+
+\clearpage
+
+
+\appsection{Seasonality}\label{seasonality}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/seasonality_comparison.pdf}
+\caption{Results with restricted sample to examine
+seasonality}\label{fig:seasonality_comparison}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/seasonality_urban.pdf}
+\caption{Results for urban only to examine
+seasonality}\label{fig:seasonality_urban}
+\end{figure}
+
+\clearpage
+
+\appsection{Regional}\label{regional}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/food_insecurity_by_region_survey_round_3_levels.pdf}
+\caption{Food insecurity by region and survey round of the Uganda
+high-frequency phone survey on COVID-19 together with severe lockdown
+periods in grey}\label{fig:region_descriptive}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_regional_workplaces.pdf}
+\caption{Regional distribution of percentage changes in the number of
+visitors to workplace locations}\label{fig:mobility_regional_workplaces}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_regional_transit.pdf}
+\caption{Regional distribution of percentage changes in the number of
+visitors to transit locations}\label{fig:mobility_regional_transit}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_regional_grocery.pdf}
+\caption{Regional distribution of percentage changes in the number of
+visitors to grocery and pharmacy
+locations}\label{fig:mobility_regional_grocery}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_regional_parks.pdf}
+\caption{Regional distribution of percentage changes in the number of
+visitors to parks}\label{fig:mobility_regional_parks}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/mobility_regional_residential.pdf}
+\caption{Regional distribution of percentage changes in the time spent
+at residential locations}\label{fig:mobility_regional_residential}
+\end{figure}
+
+\clearpage
+
+\appsection{Labor Market Outcomes}\label{labor-market-outcomes}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/transition_absolute.pdf}
+\caption{Sectoral distribution by survey round in
+percent}\label{fig:transition_absolute}
+\end{figure}
+
+\clearpage
+
+\appsection{Change in Agricultural Strategy}\label{change-in-agricultural-strategy}
+
+In this section, we examine whether agricultural households change their
+agricultural strategy to better cope with the effects of the lockdowns.
+The survey asked in Rounds 1, 4, and 7 to households engaged in planting
+activities whether they changed their ``planting activities in the
+current agricultural season because of changes in the country or
+community due to coronavirus?''. During the first lockdown, 23.2 percent
+of agricultural households reported changing their planting activities
+because of the pandemic, as did 18.5 percent during the second lockdown.
+This is as opposed to 5 percent for the non-lockdown period of Round 4.
+
+We create an indicator variable where 1 represents a change in planting
+activities, and 0 represents no change. We present the estimates of the
+impact of lockdowns on changes in planting activities in
+Figure \ref{fig:ag_plant_change}. The estimates show that the first
+lockdown led to a 57 percentage points increase in the likelihood of
+changing crop planting activities, and the second lockdown led to a 26
+percentage points increase compared to Round 4.
+
+For households with a change in activities, the survey also asked them
+how they changed their activities. This allows us to shed more light on
+how agricultural households attempted to change their farming strategy
+to cope with the effect of the shock. Table \ref{tab:ag_changes} shows
+that the biggest change was a change in the use of farm areas, where 8.7
+percent reported a reduction, and 9 percent reported an increase in the
+use of farm areas after the first lockdown. It is followed by changes in
+the number of varieties of crops produced, where both an increase
+(4.1\%) and a decrease (2.6\%) in variety are mentioned after the first
+lockdown. Only a small fraction of farmers delayed planting (1.3\%) or
+abandoned crop farming (1.5\%) altogether for that season after the
+first lockdown.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{../figures/ag_plant_change.pdf}
+\caption{Estimated change in planting activities, relative to Round
+4}\label{fig:ag_plant_change}
+\end{figure}
+
+\begin{table}[hbtp!]
+\begin{center}
+\begin{small}
+\begin{threeparttable}
+\caption{Average changes in                               
+ agricultural strategy                                      
+ because of COVID-19 (in                                    
+ percentages)}
+\label{tab:ag_changes}
+\begin{tabular}{@{} l  D{.}{.}{2.2} D{.}{.}{2.2}  D{.}{.}{2.2}  @{}}
+\toprule 
+        & \multicolumn{3}{c}{Survey Round} \\ \cmidrule(lr){2-4} 
+        & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{4}  & \multicolumn{1}{c}{7} \\ 
+\midrule 
+Change planting because of COVID-19 & 23.2\% & 5.0\% & 18.5\% \\ 
+ Reduced farm area & 8.7\% & 2.1\% & 10.0\% \\ 
+ Increased farm area & 9.0\% & 0.0\% & 3.8\% \\ 
+ Planted less variety/number of crops & 4.1\% & 1.4\% & 6.2\% \\ 
+ Planted more variety/number of crops & 2.6\% & 1.1\% & 1.6\% \\ 
+ Delayed planting & 1.3\% & 0.3\% & 2.8\% \\ 
+ Planted crops that mature quickly & 1.0\% & 0.0\% & 1.6\% \\ 
+ Abandoned crop farming & 1.5\% & 0.0\% & 0.5\% \\ 
+ \bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item \hspace*{-0.5em} \scriptsize \emph{Source:} Authors' analysis based on data from the Uganda High-Frequency Phone Survey, Rounds 1, 4, and 7. 
+\item \hspace*{-0.5em} \scriptsize \textit{Note:} Questions on crop planting activities are only asked in rounds 1, 4, and 7. \end{tablenotes}
+\end{threeparttable}
+\end{small}
+\end{center}
+\end{table}
+
+
+\end{document}
