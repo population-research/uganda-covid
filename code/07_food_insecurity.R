@@ -101,7 +101,9 @@ gg_food_insecurity <- list_rbind(fx) %>%
 
 gg_food_insecurity
 
-ggsave(here("figures", "food_insecurity_survey.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "tiff", "fig_03.tiff"), width = 8, height = 6, units = "in")
+
+ggsave(here("latex", "eps", "fig_03.eps"), width = 8, height = 6, units = "in")
 
 
 gg_food_insecurity +
@@ -166,7 +168,9 @@ gg_fx_regions <- fx_regions %>%
 
 gg_fx_regions
 
-ggsave(here("figures", "food_insecurity_region.tiff"), width = 8, height = 8, units = "in")
+ggsave(here("latex", "tiff", "fig_06.tiff"), width = 8, height = 8, units = "in")
+
+ggsave(here("latex", "eps", "fig_06.eps"), width = 8, height = 8, units = "in")
 
 gg_fx_regions +
   labs(

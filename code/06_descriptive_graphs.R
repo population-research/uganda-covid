@@ -529,8 +529,12 @@ gg_mob_reg_retail <- ggplot(regional, aes(x = date)) +
   
 gg_mob_reg_retail
 
-ggsave(here("figures", "mobility_regional_retail.tiff"),
+ggsave(here("latex", "tiff", "fig_05.tiff"),
        width = 8, height = 4.5, units = "in")
+
+ggsave(here("latex", "eps", "fig_05.eps"),
+       width = 8, height = 4.5, units = "in")
+
 
 gg_mob_reg_retail +
   labs(
@@ -899,7 +903,10 @@ gg_combined <- plot_grid(p_index, p_mobility, p_cases, p_deaths, ncol = 1, align
 
 gg_combined
 
-ggsave(here("figures", "combined.tiff"),
+ggsave(here("latex", "tiff", "fig_02.tiff"),
+       width = 8, height = 10, units = "in")
+
+ggsave(here("latex", "eps", "fig_02.eps"),
        width = 8, height = 10, units = "in")
 
 gg_combined + 
@@ -1049,7 +1056,9 @@ gg_national_level <- national_level %>%
 
 gg_national_level
 
-ggsave(here("figures", "food_insecurity_by_survey_round_3_levels.tiff"), width = 8, height = 7, units = "in")
+ggsave(here("latex", "tiff", "fig_01.tiff"), width = 8, height = 7, units = "in")
+
+ggsave(here("latex", "eps", "fig_01.eps"), width = 8, height = 7, units = "in")
 
 gg_national_level +
   labs(

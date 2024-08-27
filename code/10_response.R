@@ -451,7 +451,9 @@ gg_work_employ <- graph_work_employment / graph_employment_type + plot_layout(he
 
 gg_work_employ
 
-ggsave(here("figures", "work_employment.tiff"), width = 8, height = 8, units = "in")
+ggsave(here("latex", "tiff", "fig_08.tiff"), width = 8, height = 8, units = "in")
+
+ggsave(here("latex", "eps", "fig_08.eps"), width = 8, height = 8, units = "in")
 
 gg_work_employ +
   labs(
@@ -773,7 +775,8 @@ gg_income_source <- income_source %>%
 
 gg_income_source 
 
-ggsave(here("figures", "income_sources.tiff"),  width = 8, height = 6, units = "in")
+ggsave(here("latex", "tiff", "fig_09.tiff"),  width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_09.eps"),  width = 8, height = 6, units = "in")
 
 gg_income_source +
   labs(
@@ -863,7 +866,8 @@ gg_assistance <- assistance %>%
 
 gg_assistance
 
-ggsave(here("figures", "income_assistance.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "tiff", "fig_10.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_10.eps"), width = 8, height = 6, units = "in")
 
 gg_assistance +
   labs(
@@ -961,7 +965,8 @@ gg_hh_composition <- hh_composition %>%
 
 gg_hh_composition
 
-ggsave(here("figures", "household_composition_and_urban_location.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "tiff", "fig_11.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_11.eps"), width = 8, height = 6, units = "in")
 
 gg_hh_composition +
   labs(
@@ -1151,7 +1156,8 @@ gg_agri <- left_columns + right_columns +  plot_layout(axes = 'collect')
 
 gg_agri
 
-ggsave(here("figures", "agri_vs_non_agri.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "tiff", "fig_12.tiff"), width = 8, height = 6, units = "in")
+ggsave(here("latex", "eps", "fig_12.eps"), width = 8, height = 6, units = "in")
 
 gg_agri +
   plot_annotation(

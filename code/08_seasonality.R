@@ -252,9 +252,12 @@ gg_seasonality <- ggplot(combined, aes(x = date)) +
 
 gg_seasonality
 
-ggsave(here("figures", "seasonality.tiff"),
+ggsave(here("latex", "tiff", "fig_04.tiff"),
        width = 8, height = 6, units = "in")
-  
+
+ggsave(here("latex", "eps", "fig_04.eps"),
+       width = 8, height = 6, units = "in")
+
 gg_seasonality +
   labs(
     caption = "*Source:* Authors’ analysis based on data from the 2015/16 and 

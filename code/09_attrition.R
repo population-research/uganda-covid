@@ -370,7 +370,8 @@ gg_org_fx <- org_fx %>%
 
 gg_org_fx
 
-ggsave(here("figures", "food_insecurity_survey_attrition_combined.tiff"), width = 8, height = 8, units = "in")
+ggsave(here("latex", "tiff", "fig_07.tiff"), width = 8, height = 8, units = "in")
+ggsave(here("latex", "eps", "fig_07.eps"), width = 8, height = 8, units = "in")
   
 gg_org_fx +
   labs(
